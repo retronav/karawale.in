@@ -81,8 +81,8 @@ code {
 }
 
 // Don't let images overflow!
-img {
-  width: 100%;
+main img {
+  max-width: 100%;
   height: auto;
   object-fit: cover;
 }
