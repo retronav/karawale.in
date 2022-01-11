@@ -27,6 +27,11 @@
     padding: 1rem 2rem;
     ul.links {
       @include v.links();
+      grid-template-rows: repeat(auto-fill, minmax(3rem, 1fr));
+      li, li a {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 </style>
