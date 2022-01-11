@@ -60,10 +60,9 @@
 }
 
 @mixin links {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10ch, 1fr));
   list-style: none;
   margin: 0;
   padding: 0;
-  justify-content: space-evenly;
 }

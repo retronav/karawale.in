@@ -79,3 +79,14 @@ code {
   font-family: 'Victor Mono', monospace;
   font-feature-settings: 'liga', 'calt';
 }
+
+// Don't let images overflow!
+img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+code {
+  word-wrap: break-word;
+}
