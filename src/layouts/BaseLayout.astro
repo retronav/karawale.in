@@ -1,0 +1,53 @@
+---
+import siteConfig from '../site.config';
+import Navbar from '../components/Navbar.svelte';
+import Footer from '../components/Footer.svelte';
+import '@fontsource/inter/variable.css';
+import '@fontsource/victor-mono/index.css';
+
+const defaultMeta = {
+  description: siteConfig.description,
+};
+
+const { title, meta: propsMeta } = Astro.props;
+const meta = { ...defaultMeta, ...propsMeta };
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+    {Object.entries(meta).map(([key, value]) => (
+      <meta name={key} content={value} />
+    ))}
+    <link rel="stylesheet" href={Astro.resolve('../styles/global.scss')} />
+    <title
+      >{title && title !== siteConfig.title
+        ? `${title} - ${siteConfig.title}`
+        : siteConfig.title}
+    </title>
+  </head>
+  <body>
+    <Navbar />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style lang="scss">
+  @use '../styles/variables.scss' as v;
+  main {
+    @include v.size-lg {
+      max-width: 60vw;
+      margin: 1rem auto;
+    }
+    @include v.size-md {
+      margin: 0 1rem;
+    }
+  }
+</style>

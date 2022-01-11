@@ -1,0 +1,30 @@
+{
+  "name": "@obnoxiousnerd/personal-website",
+  "license": "Apache-2.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "postbuild": "node ./scripts/fixViteAsset.mjs",
+    "postinstall": "node ./scripts/fetchCodeTheme.mjs",
+    "preview": "astro preview"
+  },
+  "devDependencies": {
+    "@astrojs/renderer-svelte": "^0.3.1",
+    "astro": "^0.22.7",
+    "prettier-plugin-astro": "^0.0.11",
+    "hast-util-raw": "^7.2.1",
+    "hast-util-select": "^5.0.1",
+    "hast-util-to-text": "^3.1.1",
+    "hastscript": "^7.0.2",
+    "node-fetch": "^3.1.0",
+    "rehype-autolink-headings": "^6.1.1",
+    "shiki": "^0.10.0",
+    "unist-util-map": "^3.0.0"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^4.5.1",
+    "@fontsource/victor-mono": "^4.5.1"
+  }
+}

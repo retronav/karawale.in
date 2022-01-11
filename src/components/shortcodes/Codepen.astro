@@ -1,0 +1,13 @@
+---
+const { slug, title, user, height, result, theme } = Astro.props;
+---
+
+<script
+  data-slug-hash={slug}
+  data-user={user}
+  data-height={height ?? 300}
+  data-default-tab={result ?? 'result'}
+  data-theme-id={theme}
+  class="codepen"
+  async
+  src="//codepen.io/assets/embed/ei.js"></script>
