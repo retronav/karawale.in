@@ -1,5 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PostPreview from '../components/PostPreview.svelte';
+const posts = Astro.fetchContent('./posts/**/*.md')
+  .filter((post) => (import.meta.env.PROD ? !post.draft : true))
+  .sort((a, b) => b.date - a.date)
+  .slice(0, 2);
 ---
 
 <BaseLayout>
@@ -29,6 +34,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <br />
     <b>Feel free to browse around, and enjoy this website!</b>
   </p>
+  <h2>Recent posts</h2>
+  {posts && posts.map((post) => <PostPreview post={post} />)}
+  <a style="font-size: var(--font-size-h4)" href="/posts">More posts</a>
 </BaseLayout>
 
 <style>
