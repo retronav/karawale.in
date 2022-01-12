@@ -14,9 +14,6 @@ title: Bit fields for web developers
 draft: true
 layout: ../../layouts/PostLayout.astro
 ---
-
-Bit fields, or binary fields, or binary bit fields, or binary flags as people call them, are really just bit positions in a number which make sense when we give the number some context. Now I know that sounds nonsense, but after you finish reading this post, you'll be familiar with bit fields and will hopefully start using them in your dream projects. As a bit of bonus, I will also write some code which can abstract this whole process.
-
 Bit fields, or binary fields, or binary bit fields, or binary flags as people call them, are really just bit positions in a number which make sense when we give the number some context. Now I know that sounds nonsense, but after you finish reading this post, you'll be familiar with bit fields and will hopefully start using them in your dream projects. As a bit of bonus, I will also write some code which can abstract this whole process.
 
 # What are bit fields?
