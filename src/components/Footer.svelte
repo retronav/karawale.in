@@ -26,8 +26,12 @@
     margin-top: 1rem;
     padding: 1rem 2rem;
     ul.links {
+      @include v.size-lg {
+        width: 70%;
+        margin: 0 auto;
+      }
       @include v.links();
-      grid-template-rows: repeat(auto-fill, minmax(3rem, 1fr));
+      grid-auto-rows: 3rem;
       li, li a {
         width: 100%;
         height: 100%;
