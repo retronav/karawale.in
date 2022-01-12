@@ -16,13 +16,13 @@
 
 :root {
   --light-color-main: #ebffff;
-  --light-color-accent: #adffff;
+  --light-color-accent: #c2fdff;
   --light-color-main-text: #292929;
   --light-color-accent-text: #292929;
   --light-color-anchor: #0040b6;
 
-  --dark-color-main: #242124;
-  --dark-color-accent: #4b4b4b;
+  --dark-color-main: #161517;
+  --dark-color-accent: #242124;
   --dark-color-main-text: #fafafa;
   --dark-color-accent-text: #ebeaeb;
   --dark-color-anchor: #4fbeff;
@@ -60,9 +60,16 @@
 }
 
 @mixin links {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10ch, 1fr));
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
   list-style: none;
   margin: 0;
   padding: 0;
+  li:not(:last-child)::after {
+    display: inline;
+    content: '|';
+    margin: 0 1ch;
+  }
 }
