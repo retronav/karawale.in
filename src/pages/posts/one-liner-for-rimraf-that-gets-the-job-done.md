@@ -3,8 +3,10 @@ title: 'One Liner for rimraf that gets the job done'
 date: 2021-07-10T06:30:00Z
 draft: false
 summary: Oneliner to replace rimraf and delete folders/files in a cross-platform way.
-categories: programming
-tags: snippets
+categories:
+  - programming
+tags:
+  - snippets
 layout: ../../layouts/PostLayout.astro
 ---
 

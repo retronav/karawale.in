@@ -1,6 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-const { title, date, summary } = Astro.props.content;
+const { title, date, summary, tags, categories } = Astro.props.content;
 const meta = {
   description: summary ?? title,
 };
@@ -22,6 +22,28 @@ const meta = {
   <article>
     <slot />
   </article>
+  <aside>
+    {tags && tags.length > 0 && (
+      <dl class="tags">
+        <dd>Tags: &nbsp;</dd>
+        {tags.map((tag) => (
+          <dt>
+            <code>#{tag}</code>
+          </dt>
+        ))}
+      </dl>
+    )}
+    {categories && categories.length > 0 && (
+      <dl class="categories">
+        <dd>Categories: &nbsp;</dd>
+        {categories.map((category) => (
+          <dt>
+            <code>{category}</code>
+          </dt>
+        ))}
+      </dl>
+    )}
+  </aside>
 </BaseLayout>
 
 <style lang="scss" global>
@@ -43,6 +65,21 @@ const meta = {
     @each $heading in $headings {
       #{$heading}:hover .icon-link {
         opacity: 1;
+      }
+    }
+  }
+  aside {
+    dl {
+      list-style-type: none;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      dd {
+        margin-left: 0;
+      }
+      dt:not(:last-child)::after {
+        content: ', ';
+        margin-right: 1ch;
       }
     }
   }
