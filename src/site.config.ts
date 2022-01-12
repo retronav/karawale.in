@@ -8,6 +8,11 @@ interface Config {
       path: string;
     }[];
   };
+  webmention: {
+    webmentionUrl: string;
+    pingbackUrl: string;
+    meUrl: string;
+  }
 }
 
 const config: Partial<Config> = {
@@ -44,6 +49,11 @@ const config: Partial<Config> = {
       },
     ],
   },
+  webmention: {
+    webmentionUrl: 'https://webmention.io/obnerd.in/webmention',
+    pingbackUrl: 'https://webmention.io/obnerd.in/xmlrpc',
+    meUrl: 'https://github.com/obnoxiousnerd',
+  }
 };
 
 export default config;

@@ -33,6 +33,11 @@ const meta = { ...defaultMeta, ...propsMeta };
     {Object.entries(meta).map(([key, value]) => (
       <meta name={key} content={value} />
     ))}
+    {siteConfig.webmention && (
+      <link rel="webmention" href={siteConfig.webmention.webmentionUrl} />
+      <link rel="pingback" href={siteConfig.webmention.pingbackUrl} />
+      <link rel="me" href={siteConfig.webmention.meUrl} />
+    )}
     <link rel="stylesheet" href={Astro.resolve('../styles/global.scss')} />
     <title
       >{title && title !== siteConfig.title
