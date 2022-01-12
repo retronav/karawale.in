@@ -19,6 +19,16 @@ const meta = { ...defaultMeta, ...propsMeta };
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="theme-color"
+      content="#ebffff"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#242124"
+      media="(prefers-color-scheme: dark)"
+    />
     <link rel="shortcut icon" href="/favicon.png" type="image/png" />
     {Object.entries(meta).map(([key, value]) => (
       <meta name={key} content={value} />
