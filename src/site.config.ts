@@ -39,7 +39,7 @@ const config: Partial<Config> = {
         path: 'https://dev.to/obnoxiousnerd',
       },
       {
-        label: "Stack Overflow",
+        label: 'Stack Overflow',
         path: 'https://stackoverflow.com/users/12020232/pranav',
       },
     ],
