@@ -5,8 +5,8 @@ export async function getStaticPaths({ paginate, rss }) {
   const posts = Astro.fetchContent('./*.md').sort(
     (a, b) => new Date(b.date) - new Date(a.date)
   );
-  const isNotDev = process.env.NODE_ENV !== 'development';
-  if (isNotDev) posts.filter((post) => post.draft);
+  const isProd = import.meta.env.PROD;
+  if (isProd) posts.filter((post) => post.draft);
   // Generate RSS feed
   rss({
     // The RSS Feed title, description, and custom metadata.
