@@ -24,7 +24,7 @@
     @include v.accent();
     text-align: center;
     font-size: 0.9rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
     padding: 1rem 2rem;
     section.links {
       margin-bottom: 1rem;

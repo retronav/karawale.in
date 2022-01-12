@@ -23,8 +23,8 @@
 	@use '../styles/variables.scss' as v;
 	.post-preview {
 		@include v.accent;
-		margin: 1rem 0;
-		padding: 0.5rem;
+		margin: 1rem;
+		padding: 1rem;
 		h1 {
 			margin: 0;
 		}

@@ -36,11 +36,18 @@ const posts = Astro.fetchContent('./posts/**/*.md')
   </p>
   <h2>Recent posts</h2>
   {posts && posts.map((post) => <PostPreview post={post} />)}
-  <a style="font-size: var(--font-size-h4)" href="/posts">More posts</a>
+  <p class="more-posts">
+    <a style="font-size: var(--font-size-h4)" href="/posts">More posts</a>
+  </p>
 </BaseLayout>
 
-<style>
+<style lang="scss">
   :global(main) {
     max-width: 60ch !important;
+    p.more-posts {
+      background-color: var(--color-accent);
+      margin: 1rem;
+      padding: 1rem;
+    }
   }
 </style>
