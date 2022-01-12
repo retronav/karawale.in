@@ -6,19 +6,20 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "postbuild": "node ./scripts/fixViteAsset.mjs",
+    "postbuild": "node ./scripts/fixViteAsset.mjs && node ./scripts/runCritical.mjs",
     "postinstall": "node ./scripts/fetchCodeTheme.mjs",
     "preview": "astro preview"
   },
   "devDependencies": {
     "@astrojs/renderer-svelte": "^0.3.1",
     "astro": "^0.22.7",
-    "prettier-plugin-astro": "^0.0.11",
+    "critical": "^4.0.1",
     "hast-util-raw": "^7.2.1",
     "hast-util-select": "^5.0.1",
     "hast-util-to-text": "^3.1.1",
     "hastscript": "^7.0.2",
     "node-fetch": "^3.1.0",
+    "prettier-plugin-astro": "^0.0.11",
     "rehype-autolink-headings": "^6.1.1",
     "shiki": "^0.10.0",
     "unist-util-map": "^3.0.0"
