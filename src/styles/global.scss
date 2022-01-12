@@ -39,11 +39,11 @@ body {
   @include v.main;
   font-family: 'InterVariable', sans-serif;
   margin: 0;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.4;
-  @include v.size-md {
-    font-size: 18;
-  }
+  // @include v.size-md {
+  //   font-size: 16px;
+  // }
 }
 
 // Style links according to the current color scheme
