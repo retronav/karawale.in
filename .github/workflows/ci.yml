@@ -20,6 +20,8 @@ jobs:
         run: |
           npm ci
           npm run build
+        env:
+          PROD: true
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.2.2
         with:
