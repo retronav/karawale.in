@@ -27,10 +27,11 @@
     margin-top: 1rem;
     padding: 1rem 2rem;
     section.links {
+      margin-bottom: 1rem;
       @include v.size-lg {
         width: 70%;
-        margin: 0 auto;
-        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
       }
       p {
         margin-top: 0;
