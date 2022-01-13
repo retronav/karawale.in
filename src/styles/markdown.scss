@@ -20,4 +20,9 @@ article {
       opacity: 1;
     }
   }
+  blockquote {
+    border-left: var(--blockquote-border);
+    padding-left: 1rem;
+    margin-left: 0;
+  }
 }
