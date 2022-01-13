@@ -4,6 +4,8 @@ import fs from 'fs';
 
 const buildDir = 'dist';
 
+console.log('Fixing Vite asset references');
+
 const cssFiles = await fg(`./${buildDir}/**/*.css`);
 const hashes = (await fg(`./${buildDir}/**/*`))
   .map((path) => path.replace(`./${buildDir}/`, '/'))
@@ -15,6 +17,7 @@ const hashes = (await fg(`./${buildDir}/**/*`))
   .filter(Boolean);
 
 cssFiles.forEach((path) => {
+  console.log(`Fixing ${path}`);
   const content = fs.readFileSync(path, 'utf8');
   let newContent = content;
   // Sample asset: __VITE_ASSET__643e4e0a__
