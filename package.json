@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@astrojs/renderer-svelte": "^0.3.1",
-    "astro": "^0.22.7",
+    "astro": "^0.22.10",
     "critical": "^4.0.1",
     "hast-util-raw": "^7.2.1",
     "hast-util-select": "^5.0.1",

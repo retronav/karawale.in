@@ -14,12 +14,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: build website
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2.0.1
+      - name: Build website
         run: |
-          npm ci
-          npm run build
+          pnpm ci
+          pnpm build
         env:
           PROD: true
       - name: Deploy to GitHub Pages
