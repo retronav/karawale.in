@@ -59,6 +59,12 @@
   }
 }
 
+@mixin size-xl {
+  @media (min-width: 1025px) {
+    @content;
+  }
+}
+
 @mixin links {
   display: flex;
   flex-direction: row;

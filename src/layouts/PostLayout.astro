@@ -5,7 +5,7 @@ const meta = {
   description: summary ?? title,
 };
 ---
-
+<link rel="stylesheet" href={Astro.resolve("../styles/markdown.scss")}>
 <BaseLayout {title} {meta}>
   <section class="heading">
     <h1 class="title">{title}</h1>
@@ -50,23 +50,6 @@ const meta = {
   @use 'sass:list';
   h1.title {
     margin-bottom: 0;
-  }
-  article {
-    max-width: 60ch;
-    pre {
-      overflow-x: auto;
-      padding: 1rem;
-    }
-    .icon-link {
-      opacity: 0;
-      margin-left: 0.5ch;
-    }
-    $headings: (h1, h2, h3, h4, h5, h6);
-    @each $heading in $headings {
-      #{$heading}:hover .icon-link {
-        opacity: 1;
-      }
-    }
   }
   aside {
     dl {
