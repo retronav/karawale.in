@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const posts = Astro.fetchContent('../posts/*.md');
+let categories: string[] = [];
+posts.map((post) =>
+  post.categories.map((c) => (categories.includes(c) ? {} : categories.push(c)))
+);
+categories = categories.sort((a, b) => a.localeCompare(b));
+---
+
+<BaseLayout title="Categories">
+  <h1 class="title">Categories</h1>
+  <ul class="categories">
+    {categories.map((c) => (
+      <li>
+        <a href={`/categories/${c}`}>{c}</a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

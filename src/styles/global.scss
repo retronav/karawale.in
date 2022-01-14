@@ -41,9 +41,9 @@ body {
   margin: 0;
   font-size: 16px;
   line-height: 1.4;
-  // @include v.size-md {
-  //   font-size: 16px;
-  // }
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: minmax(2rem, max-content) 1fr max-content;
 }
 
 // Style links according to the current color scheme

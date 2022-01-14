@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const posts = Astro.fetchContent('../posts/*.md');
+let tags: string[] = [];
+posts.map((post) =>
+  post.tags.map((tag) => (tags.includes(tag) ? {} : tags.push(tag)))
+);
+tags = tags.sort((a, b) => a.localeCompare(b));
+---
+
+<BaseLayout title="Tags">
+  <h1 class="title">Tags</h1>
+  <ul class="tags">
+    {tags.map((tag) => (
+      <li>
+        <a href={`/tags/${tag}`}>#{tag}</a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

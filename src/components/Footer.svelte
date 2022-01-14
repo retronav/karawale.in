@@ -22,6 +22,8 @@
   @use '../styles/variables.scss' as v;
   footer {
     @include v.accent();
+    position: relative;
+    bottom: 0;
     text-align: center;
     font-size: 0.9rem;
     margin-top: 2rem;

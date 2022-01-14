@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostPreview from '../../components/PostPreview.svelte';
+import { filterPosts } from '../../util';
+export function getStaticPaths() {
+  const posts = filterPosts(Astro.fetchContent('../posts/*.md')).sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
+  let categories: Map<string, any[]> = new Map();
+  posts.map((post) =>
+    post.categories.map((c) =>
+      categories.set(c, [...(categories.get(c) || []), post])
+    )
+  );
+
+  return Array.from(categories.entries()).map(([category, posts]) => {
+    return {
+      params: { category },
+      props: { posts },
+    };
+  });
+}
+const { posts } = Astro.props;
+const { category } = Astro.request.params;
+---
+
+<BaseLayout title={`Posts categorised under "${category}"`}>
+  <h1 class="title">
+    {category}
+  </h1>
+  {posts.map((post) => <PostPreview post={post} />)}
+</BaseLayout>

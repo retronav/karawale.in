@@ -25,24 +25,22 @@ const meta = {
   </article>
   <aside>
     {tags && tags.length > 0 && (
-      <dl class="tags">
-        <dd>Tags: &nbsp;</dd>
-        {tags.map((tag) => (
-          <dt>
-            <code>#{tag}</code>
-          </dt>
+      <p>
+      <span>Tags:&nbsp;</span>
+        {tags.map((tag, i) => (
+          <a href={`/tags/${tag}`}><code>#{tag}</code></a>
+          {i < tags.length - 1 && ', '}
         ))}
-      </dl>
+      </p>
     )}
     {categories && categories.length > 0 && (
-      <dl class="categories">
-        <dd>Categories: &nbsp;</dd>
-        {categories.map((category) => (
-          <dt>
-            <code>{category}</code>
-          </dt>
+      <p>
+      <span>Categories:&nbsp;</span>
+        {categories.map((category, i) => (
+          <a href={`/categories/${category}`}><code>{category}</code></a>
+          {i < categories.length - 1 && ', '}
         ))}
-      </dl>
+        </p>
     )}
   </aside>
 </BaseLayout>

@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostPreview from '../../components/PostPreview.svelte';
+import { filterPosts } from '../../util';
+export function getStaticPaths() {
+  const posts = filterPosts(Astro.fetchContent('../posts/*.md')).sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
+  let tags: Map<string, any[]> = new Map();
+  posts.map((post) =>
+    post.tags.map((tag) => tags.set(tag, [...(tags.get(tag) || []), post]))
+  );
+
+  return Array.from(tags.entries()).map(([tag, posts]) => {
+    return {
+      params: { tag },
+      props: { posts },
+    };
+  });
+}
+const { posts } = Astro.props;
+const { tag } = Astro.request.params;
+---
+
+<BaseLayout title={`Posts tagged with "${tag}"`}>
+  <h1 class="title">
+    #{tag}
+  </h1>
+  {posts.map((post) => <PostPreview post={post} />)}
+</BaseLayout>

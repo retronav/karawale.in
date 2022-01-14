@@ -5,13 +5,15 @@ export async function getStaticPaths({ paginate, rss }) {
   const posts = Astro.fetchContent('./*.md')
     .filter((post) => (import.meta.env.PROD ? !post.draft : true))
     .sort((a, b) => new Date(b.date) - new Date(a.date));
-  console.log(posts.map(post => post.title))
   // Generate RSS feed
   rss({
     // The RSS Feed title, description, and custom metadata.
     title: "Pranav's Blog",
     description: 'Feed of all posts on https://obnerd.in/',
-    customData: `<language>en-gb</language>`,
+    customData: `
+    <language>en-gb</language>
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    `,
     items: posts.map((item) => ({
       title: item.title,
       description: item.summary,
