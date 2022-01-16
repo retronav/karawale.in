@@ -23,10 +23,7 @@ export default {
         remarkPlugins: ['remark-gfm', 'remark-smartypants'],
         rehypePlugins: [
           'rehype-slug',
-          [
-            { default: (await import('./plugins/shiki.mjs')).default },
-            { highlighter },
-          ],
+          ['@obnoxiousnerd/rehype-shiki', { highlighter }],
           [
             'rehype-autolink-headings',
             {
