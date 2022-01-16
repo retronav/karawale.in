@@ -23,26 +23,16 @@ export async function getStaticPaths({ paginate, rss }) {
     dest: '/posts.xml',
   });
   // Return a paginated collection of paths for all posts
-  return paginate(posts, { pageSize: 2 });
+  return paginate(posts);
 }
 const { page } = Astro.props;
-// console.log(page);
 ---
 
 <BaseLayout
-  title={page.currentPage > 1 ? `Posts - Page ${page.currentPage}` : 'Posts'}
+  title='Posts'
 >
   <h1 class="title">
-    Posts {page.currentPage > 1 && `- Page ${page.currentPage}`}
+    Post
   </h1>
   {page.data.map((post) => <PostPreview post={post} />)}
-  <section class="pagination">
-    <span>
-      {page.url.prev && <a href={page.url.prev}>&lt; Prev</a>}
-    </span>
-    <span>{page.currentPage} / {page.lastPage}</span>
-    <span>
-      {page.url.next && <a href={page.url.next}>Next &gt;</a>}
-    </span>
-  </section>
 </BaseLayout>
