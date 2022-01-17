@@ -7,7 +7,7 @@
     "start": "astro dev",
     "build": "run-s clean build:*",
     "build:astro": "astro build",
-    "build:optimize": "node ./scripts/fixViteAsset.mjs && node ./scripts/runCritical.mjs",
+    "build:optimize": "node ./scripts/fixViteAsset.mjs",
     "clean": "node -e \"require('fs').rmSync('./dist',{recursive:true,force:true})\"",
     "format": "prettier --plugin-search-dir=. -w .",
     "postinstall": "node ./scripts/fetchCodeTheme.mjs",
