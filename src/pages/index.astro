@@ -8,7 +8,10 @@ const posts = Astro.fetchContent('./posts/**/*.md')
 ---
 
 <BaseLayout>
-  <h1 class="title">Hi 👋! I am Pranav Karawale!</h1>
+  <section class="hero">
+    <h1 class="title">Hi 👋! I am Pranav Karawale!</h1>
+  </section>
+
   <h2>About me</h2>
   <p>
     I am a 16-year old student from India. I aspire to be a professional
@@ -42,6 +45,7 @@ const posts = Astro.fetchContent('./posts/**/*.md')
 </BaseLayout>
 
 <style lang="scss">
+  @use '../styles/variables.scss' as v;
   :global(main) {
     max-width: 60ch !important;
     p.more-posts {

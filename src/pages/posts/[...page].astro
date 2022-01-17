@@ -28,11 +28,7 @@ export async function getStaticPaths({ paginate, rss }) {
 const { page } = Astro.props;
 ---
 
-<BaseLayout
-  title='Posts'
->
-  <h1 class="title">
-    Post
-  </h1>
+<BaseLayout title="Posts">
+  <h1 class="title">Post</h1>
   {page.data.map((post) => <PostPreview post={post} />)}
 </BaseLayout>
