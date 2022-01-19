@@ -1,0 +1,38 @@
+backend:
+  name: github
+  repo: obnoxiousnerd/obnerd.in
+  branch: main
+media_folder: public/assets/uploads
+public_folder: /assets/uploads
+
+collections:
+  - name: post
+    label: Post
+    folder: src/pages/posts
+    create: true
+    fields:
+      - label: 'Layout'
+        name: layout
+        widget: hidden
+        default: ../../layouts/PostLayout.astro
+      - label: 'Title'
+        name: title
+        widget: string
+      - label: 'Description'
+        name: summary
+        widget: text
+      - label: 'Publish Date'
+        name: date
+        widget: datetime
+      - label: 'Tags'
+        name: tags
+        widget: list
+      - label: 'Categories'
+        name: categories
+        widget: list
+      - label: 'Draft post'
+        name: draft
+        widget: boolean
+      - label: "Body"
+        name: body
+        widget: markdown
