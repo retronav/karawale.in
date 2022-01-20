@@ -2,8 +2,9 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostPreview from '../../components/PostPreview.svelte';
 export async function getStaticPaths({ paginate, rss }) {
-  const posts = Astro.fetchContent('./*.md')
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
+  const posts = Astro.fetchContent('./*.md').sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
   // Generate RSS feed
   rss({
     // The RSS Feed title, description, and custom metadata.
@@ -19,7 +20,7 @@ export async function getStaticPaths({ paginate, rss }) {
       link: item.url,
       pubDate: item.date,
     })),
-    dest: '/posts.xml',
+    dest: '/posts/index.xml',
   });
   // Return a paginated collection of paths for all posts
   return paginate(posts);

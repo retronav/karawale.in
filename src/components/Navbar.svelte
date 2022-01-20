@@ -6,8 +6,8 @@
   <nav class="navbar">
     <a class="home" href="/">
       <img
-      src="/assets/logo.png"
-      alt={"My avatar; The letters 'pk' with a transculent red shadow in" +
+        src="/assets/logo.png"
+        alt={"My avatar; The letters 'pk' with a transculent red shadow in" +
           ' the behind, on a purplish color resembling the night sky.'}
       />
       <p class="title">{siteConfig.title}</p>

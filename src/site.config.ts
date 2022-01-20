@@ -22,30 +22,26 @@ const config: Partial<Config> = {
   menus: {
     navbar: [
       {
-        label: 'Projects',
+        label: 'projects',
         path: 'https://gh.obnerd.in',
       },
       {
-        label: 'Posts',
+        label: 'posts',
         path: '/posts',
       },
     ],
     footerSocial: [
       {
-        label: 'GitHub',
+        label: 'github',
         path: 'https://github.com/obnoxiousnerd',
       },
       {
-        label: 'LinkedIn',
+        label: 'linkedin',
         path: 'https://www.linkedin.com/in/pranav-karawale/',
       },
       {
-        label: 'Dev.to',
-        path: 'https://dev.to/obnoxiousnerd',
-      },
-      {
-        label: 'Stack Overflow',
-        path: 'https://stackoverflow.com/users/12020232/pranav',
+        label: 'rss',
+        path: '/posts/index.xml',
       },
     ],
   },
