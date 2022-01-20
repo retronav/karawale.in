@@ -1,9 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostPreview from '../../components/PostPreview.svelte';
-import { filterPosts } from '../../util';
 export function getStaticPaths() {
-  const posts = filterPosts(Astro.fetchContent('../posts/*.md')).sort(
+  const posts = Astro.fetchContent('../posts/*.md').sort(
     (a, b) => new Date(b.date) - new Date(a.date)
   );
   let categories: Map<string, any[]> = new Map();

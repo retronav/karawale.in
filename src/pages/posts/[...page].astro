@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostPreview from '../../components/PostPreview.svelte';
 export async function getStaticPaths({ paginate, rss }) {
   const posts = Astro.fetchContent('./*.md')
-    .filter((post) => (import.meta.env.PROD ? !post.draft : true))
     .sort((a, b) => new Date(b.date) - new Date(a.date));
   // Generate RSS feed
   rss({
