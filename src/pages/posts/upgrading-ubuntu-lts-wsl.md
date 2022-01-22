@@ -1,5 +1,6 @@
 ---
 title: 'Upgrading your Ubuntu LTS distro in WSL'
+summary: A short guide + notes for upgrading your WSL Ubuntu LTS distro
 date: 2022-01-20T20:00:00+05:30
 draft: false
 categories:
