@@ -2,6 +2,7 @@ interface Config {
   copyrightHolder: string;
   title: string;
   description: string;
+  site: string;
   menus: {
     [key: string]: {
       label: string;
@@ -19,6 +20,7 @@ const config: Partial<Config> = {
   copyrightHolder: 'Pranav Karawale',
   title: 'Pranav Karawale',
   description: "Pranav Karawale's personal website",
+  site: 'https://obnerd.in',
   menus: {
     navbar: [
       {
