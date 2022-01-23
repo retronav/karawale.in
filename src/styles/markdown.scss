@@ -6,6 +6,7 @@ article {
   pre {
     overflow-x: auto;
     padding: 1rem;
+    max-width: calc(100vw - 4rem);
     @include v.size-xl {
       width: 80ch;
     }
