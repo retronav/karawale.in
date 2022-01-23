@@ -7,7 +7,7 @@ const meta = {
 ---
 
 <link rel="stylesheet" href={Astro.resolve('../styles/markdown.scss')} />
-<BaseLayout {title} {meta}>
+<BaseLayout title={title} meta={meta}>
   <section class="heading">
     <h1 class="title">{title}</h1>
     <small>
@@ -29,7 +29,7 @@ const meta = {
       <span>Tags:&nbsp;</span>
         {tags.map((tag, i) => (
           <a href={`/tags/${tag}`}><code>#{tag}</code></a>
-          {i < tags.length - 1 && ', '}
+          <span>{i < tags.length - 1 && ', '}</span>
         ))}
       </p>
     )}
@@ -38,7 +38,7 @@ const meta = {
       <span>Categories:&nbsp;</span>
         {categories.map((category, i) => (
           <a href={`/categories/${category}`}><code>{category}</code></a>
-          {i < categories.length - 1 && ', '}
+          <span>{i < categories.length - 1 && ', '}</span>
         ))}
         </p>
     )}

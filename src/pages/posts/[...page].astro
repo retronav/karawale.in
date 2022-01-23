@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostPreview from '../../components/PostPreview.svelte';
 import { filterPosts } from '../../util';
-import siteConfig from "../../site.config";
+import siteConfig from '../../site.config';
 export async function getStaticPaths({ paginate, rss }) {
   const posts = filterPosts(Astro.fetchContent('./*.md')).sort(
     (a, b) => new Date(b.date) - new Date(a.date)
@@ -17,13 +17,15 @@ export async function getStaticPaths({ paginate, rss }) {
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     `,
     items: posts.map((item) => {
-      const summary = item.summary + "\n\n <a href='" siteConfig.site + item.url + "'>Read more</a>";
+      const summary =
+        item.summary +
+        `\n\n <a href="${siteConfig.site + item.url}">Read more</a>`;
       return {
         title: item.title,
         description: summary,
         link: item.url,
         pubDate: item.date,
-    }
+      };
     }),
     dest: '/posts/index.xml',
   });
