@@ -3,7 +3,7 @@
 </script>
 
 <section class="post-preview">
-  <h1>{post.title}</h1>
+  <h2>{post.title}</h2>
   <small>
     <time datetime={post.date}>
       {new Intl.DateTimeFormat('en-US', {
@@ -25,7 +25,7 @@
     @include v.accent;
     margin: 1rem;
     padding: 1rem;
-    h1 {
+    h2 {
       margin: 0;
     }
   }

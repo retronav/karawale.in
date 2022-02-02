@@ -38,7 +38,6 @@ const meta = { ...defaultMeta, ...propsMeta };
       <link rel="pingback" href={siteConfig.webmention.pingbackUrl} />
       <link rel="me" href={siteConfig.webmention.meUrl} />
     )}
-    <link rel="stylesheet" href={Astro.resolve('../styles/global.scss')} />
     <title
       >{title && title !== siteConfig.title
         ? `${title} - ${siteConfig.title}`
@@ -54,8 +53,9 @@ const meta = { ...defaultMeta, ...propsMeta };
   </body>
 </html>
 
-<style lang="scss">
+<style lang="scss" global>
   @use '../styles/variables.scss' as v;
+  @import '../styles/global.scss';
   main {
     @include v.size-lg {
       max-width: 60vw;
