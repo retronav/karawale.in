@@ -35,7 +35,7 @@ const config: Partial<Config> = {
     footerSocial: [
       {
         label: 'github',
-        path: 'https://github.com/obnoxiousnerd',
+        path: 'https://github.com/retronav',
       },
       {
         label: 'linkedin',
@@ -50,7 +50,7 @@ const config: Partial<Config> = {
   webmention: {
     webmentionUrl: 'https://webmention.io/obnerd.in/webmention',
     pingbackUrl: 'https://webmention.io/obnerd.in/xmlrpc',
-    meUrl: 'https://github.com/obnoxiousnerd',
+    meUrl: 'https://github.com/retronav',
   },
 };
 
