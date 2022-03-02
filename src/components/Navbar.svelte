@@ -6,7 +6,7 @@
   <nav class="navbar">
     <a class="home" href="/">
       <img
-        src="/assets/logo64.webp"
+        src="/assets/logo48.webp"
         alt={"My avatar; The letters 'pk' with a transculent red shadow in" +
           ' the behind, on a purplish color resembling the night sky.'}
       />
@@ -27,17 +27,17 @@
   @use '../styles/variables.scss' as v;
   nav.navbar {
     @include v.accent();
-    display: grid;
-    grid-column-gap: 1rem;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    display: grid;
     @include v.size-lg {
       grid-template-columns: fit-content(30%) 1fr;
       height: 2rem;
     }
     @include v.size-md {
-      grid-template-columns: 1fr;
+      row-gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(2, 1fr);
       min-height: 2rem;
     }
@@ -49,8 +49,8 @@
       display: grid;
       grid-template-columns: 3rem 1fr;
       margin: -0.5rem 0;
-      column-gap: 1rem;
       align-items: center;
+      column-gap: 1rem;
       p.title {
         margin: 0;
         font-weight: 600;
@@ -63,6 +63,10 @@
     }
     section.links {
       text-align: right;
+      @include v.size-md {
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+      }
     }
   }
 </style>

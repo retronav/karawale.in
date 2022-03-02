@@ -23,7 +23,7 @@ export default {
         remarkPlugins: ['remark-gfm', 'remark-smartypants'],
         rehypePlugins: [
           'rehype-slug',
-          ['@obnoxiousnerd/rehype-shiki', { highlighter }],
+          ['@retronav/rehype-shiki', { highlighter }],
           [
             'rehype-autolink-headings',
             {
