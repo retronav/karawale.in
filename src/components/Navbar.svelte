@@ -6,7 +6,7 @@
   <nav class="navbar">
     <a class="home" href="/">
       <img
-        src="/assets/logo48.webp"
+        src="/assets/logo96.webp"
         alt={"My avatar; The letters 'pk' with a transculent red shadow in" +
           ' the behind, on a purplish color resembling the night sky.'}
       />
