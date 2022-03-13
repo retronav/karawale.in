@@ -59,6 +59,7 @@ h1.title {
 
 h1 {
   font-size: var(--font-size-h1);
+  font-weight: 900;
 }
 h2 {
   font-size: var(--font-size-h2);
@@ -71,6 +72,16 @@ h4 {
 }
 small {
   font-size: var(--font-size-small);
+}
+$headings: (h1, h2, h3, h4, h5, h6);
+@each $heading in $headings {
+  #{$heading}:hover .icon-link {
+    opacity: 1;
+  }
+}
+.icon-link {
+  opacity: 0;
+  margin-left: 0.5ch;
 }
 
 // Code font

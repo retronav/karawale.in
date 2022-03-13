@@ -28,7 +28,13 @@ export default {
             'rehype-autolink-headings',
             {
               behavior: 'append',
-              content: h('span.icon.icon-link', { ariaHidden: 'true' }, '#'),
+              content(node) {
+                return h(
+                  'span.icon.icon-link',
+                  { ariaHidden: 'true' },
+                  new Array(parseInt(node.tagName[1])).fill('#').join('')
+                );
+              },
             },
           ],
         ],

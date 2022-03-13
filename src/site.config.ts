@@ -20,7 +20,7 @@ const config: Partial<Config> = {
   copyrightHolder: 'Pranav Karawale',
   title: 'Pranav Karawale',
   description: "Pranav Karawale's personal website",
-  site: 'https://obnerd.in',
+  site: 'https://karawale.in',
   menus: {
     navbar: [
       {
@@ -48,8 +48,8 @@ const config: Partial<Config> = {
     ],
   },
   webmention: {
-    webmentionUrl: 'https://webmention.io/obnerd.in/webmention',
-    pingbackUrl: 'https://webmention.io/obnerd.in/xmlrpc',
+    webmentionUrl: 'https://webmention.io/karawale.in/webmention',
+    pingbackUrl: 'https://webmention.io/karawale.in/xmlrpc',
     meUrl: 'https://github.com/retronav',
   },
 };
