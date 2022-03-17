@@ -1,0 +1,14 @@
+---
+layout: main
+---
+<article>
+  <h1 class="title">{{ title }}</h1>
+  <aside>
+    <small datetime="{{ date | dateToRfc3339 }}">
+      {{ date | dateToHuman }}
+    </small>
+    {{ content | toc | safe }}
+  </aside>
+  <hr/>
+  {{ content | safe }}
+</article>

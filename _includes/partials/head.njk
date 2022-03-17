@@ -1,0 +1,22 @@
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="{{ description if description else site.description }}"/>
+
+<link rel="me" href="github.com/retronav"/>
+<link rel="me" href="https://tilde.zone/@pranav"/>
+
+{%- if site.preloads -%}
+    {% for preload in site.preloads %}
+        <link rel="preload" as="{{ preload.as }}" type="{{ preload.type }}" href="{{ preload.href }}" {% if preload.crossorigin %}crossorigin{% endif %}>
+    {%- endfor -%}
+{%- endif -%}
+<link rel="shortcut icon" href="/favicon.png" type="image/png">
+<link rel="stylesheet" href="/main.css"/>
+<title>
+    {% if title %}
+        {{ title }} - {{ site.title }}
+    {% else %}
+        {{ site.title }}
+    {% endif %}
+</title>

@@ -1,0 +1,18 @@
+<footer>
+  <nav>
+    <dl>
+      {% for category, entries in links.nav %}
+        <dt>{{ category }}</dt>
+        <dd>
+          <ul>
+            {% for label, link in entries %}
+              <li>
+                <a href="{{ link }}">{{ label }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </dd>
+      {% endfor %}
+    </dl>
+  </nav>
+</footer>

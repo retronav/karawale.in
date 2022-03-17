@@ -1,0 +1,16 @@
+// Styles for elements which are commonly applied wherever Markdown is used in this site.
+@use "./variables.scss" as v;
+
+article {
+	max-width: 80ch;
+	pre {
+		overflow-x: auto;
+		padding: 1rem;
+		max-width: calc(100vw - 4rem);
+	}
+	blockquote {
+		border-left: var(--blockquote-border);
+		padding-left: 1rem;
+		margin-left: 0;
+	}
+}

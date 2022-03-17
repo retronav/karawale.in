@@ -1,0 +1,18 @@
+---
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  filter:
+    - post
+    - posts
+    - all
+  addAllPagesToCollections: true
+permalink: "/tags/{{ tag }}/"
+---
+
+<h1>Tagged "{{ tag }}"</h1>
+{% set taglist = collections[tag] %}
+{% for post in taglist | reverse %}
+  {% include "partials/post-preview.njk" %}
+{% endfor %}
