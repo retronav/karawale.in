@@ -4,7 +4,7 @@
   <subtitle>Blog about some interesting stuff.</subtitle>
   <link href="https://karawale.in/feed.xml" rel="self"/>
   <link href="https://karawale.in/"/>
-  <updated>2022-03-20T05:45:13Z</updated>
+  <updated>2022-03-20T08:56:47Z</updated>
   <id>https://karawale.in/</id>
   <author>
     <name>Pranav Karawale</name>
@@ -524,5 +524,14 @@ And, I will be writing my Projects page in Astro, because I want some dynamic th
       <updated>2022-03-20T05:45:13Z</updated>
       <id>https://karawale.in/likes/855415/</id>
       <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title>Note written on March 20, 2022</title>
+      <link href="https://karawale.in/notes/ee986c/"/>
+      <updated>2022-03-20T08:56:47Z</updated>
+      <id>https://karawale.in/notes/ee986c/</id>
+      <content type="html">&lt;p&gt;Testing webmentions! Send one here if you like :D&lt;/p&gt;
+</content>
     </entry>
 </feed>
