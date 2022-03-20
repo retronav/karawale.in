@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Oneliner to replace rimraf and delete folders/files in a cross-platform way."/>
+
+<link rel="me" href="https://github.com/retronav"/>
+<link rel="me" href="https://tilde.zone/@pranav"/>
+
+
+
+
+        <link rel="preload" as="font" type="font/woff2" href="/roboto-slab-latin-variable-wghtOnly-normal.woff2" crossorigin="anonymous">
+        <link rel="preload" as="font" type="font/woff2" href="/victor-mono-latin.woff2" crossorigin="anonymous"><link rel="shortcut icon" href="/favicon.png" type="image/png">
+<link rel="stylesheet" href="/main.css"/>
+<title>
+    
+        One Liner for rimraf that gets the job done - Pranav Karawale
+    
+</title>
+  </head>
+  <body>
+    
+<header>
+    <img src="/logo96.webp" height="48" width="48" alt="">
+    <br/>
+    <div class="h-card">
+        <a class="u-url p-name" href="/">Pranav Karawale</a>
+    </div>
+</header>
+<hr>
+<main>
+  <article class="h-entry">
+  <header>
+    <h1 class="p-name" class="title">One Liner for rimraf that gets the job done</h1>
+    <time class="dt-published" datetime="2021-07-10T00:00:00Z">
+      July 10, 2021
+    </time>
+    <span class="seperator">&centerdot;</span>
+    <span>By</span><div class="h-card h-card-mini p-author">
+    <img class="u-photo" width="24" height="24" src="/img/me96.webp" alt="A close-up photo of my face.">
+    <a href="/" rel="author" class="p-name u-url">
+        Pranav Karawale
+    </a>
+</div>
+  </header>
+  <aside>
+    
+  </aside>
+  <hr/>
+  <div class="e-content">
+    <p>I have been striving to cut down on node_modules. Most of the times, I need rimraf to delete a folder (usually <code>public</code>/<code>dist</code>/<code>build</code>) and to keep the project cross platform. So, here is a one-liner to delete a folder/file:</p>
+<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #BFBDB6">node -e </span><span style="color: #AAD94C">&quot;require(&#39;fs&#39;).rmSync(&#39;PATH&#39;,{recursive:true,force:true})&quot;</span></span>
+<span class="line"></span></code></pre>
+<p>Note: Replace <code>PATH</code> by the path to the folder/file. This works the same as <code>rm -rf</code> command, but cross-platform.</p>
+
+  </div>
+</article>
+</main>
+<hr>
+<footer>
+  <nav>
+    <dl>
+      
+        <dt>Main</dt>
+        <dd>
+          <ul>
+            
+              <li>
+                <a href="/">Home</a>
+              </li>
+            
+              <li>
+                <a href="/contact">Contact</a>
+              </li>
+            
+              <li>
+                <a href="/projects">Projects</a>
+              </li>
+            
+              <li>
+                <a href="/feed.xml">RSS</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>Writings</dt>
+        <dd>
+          <ul>
+            
+              <li>
+                <a href="/posts">Blog</a>
+              </li>
+            
+              <li>
+                <a href="/notes">Notes</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>Links</dt>
+        <dd>
+          <ul>
+            
+              <li>
+                <a href="https://sr.ht/~retronav">Sourcehut</a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/retronav">GitHub</a>
+              </li>
+            
+              <li>
+                <a href="https://www.linkedin.com/in/pranav-karawale">LinkedIn</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  </nav>
+</footer>
+  </body>
+</html>

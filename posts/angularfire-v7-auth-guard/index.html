@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Pranav Karawale&#39;s various things in writing."/>
+
+<link rel="me" href="https://github.com/retronav"/>
+<link rel="me" href="https://tilde.zone/@pranav"/>
+
+
+
+
+        <link rel="preload" as="font" type="font/woff2" href="/roboto-slab-latin-variable-wghtOnly-normal.woff2" crossorigin="anonymous">
+        <link rel="preload" as="font" type="font/woff2" href="/victor-mono-latin.woff2" crossorigin="anonymous"><link rel="shortcut icon" href="/favicon.png" type="image/png">
+<link rel="stylesheet" href="/main.css"/>
+<title>
+    
+        Angularfire V7 Auth Guard - Pranav Karawale
+    
+</title>
+  </head>
+  <body>
+    
+<header>
+    <img src="/logo96.webp" height="48" width="48" alt="">
+    <br/>
+    <div class="h-card">
+        <a class="u-url p-name" href="/">Pranav Karawale</a>
+    </div>
+</header>
+<hr>
+<main>
+  <article class="h-entry">
+  <header>
+    <h1 class="p-name" class="title">Angularfire V7 Auth Guard</h1>
+    <time class="dt-published" datetime="2021-06-08T00:00:00Z">
+      June 08, 2021
+    </time>
+    <span class="seperator">&centerdot;</span>
+    <span>By</span><div class="h-card h-card-mini p-author">
+    <img class="u-photo" width="24" height="24" src="/img/me96.webp" alt="A close-up photo of my face.">
+    <a href="/" rel="author" class="p-name u-url">
+        Pranav Karawale
+    </a>
+</div>
+  </header>
+  <aside>
+    
+  </aside>
+  <hr/>
+  <div class="e-content">
+    <p>As of now, the AngularFire v7(<strong>&quot;Beta&quot;</strong>) does not have an implementation for an auth guard(which I really need), so I went ahead, copied the original auth guard code (from v6), and refactored it to make it compatible with v7.</p>
+<p><strong>This code works on Angular 12. I haven't tested it for older versions, but it should work.</strong></p>
+<p>Here's the code:</p>
+<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #FF8F40">import</span><span style="color: #BFBDB6"> { Injectable } </span><span style="color: #FF8F40">from</span><span style="color: #BFBDB6"> </span><span style="color: #AAD94C">&quot;@angular/core&quot;</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #FF8F40">import</span><span style="color: #BFBDB6"> { Auth } </span><span style="color: #FF8F40">from</span><span style="color: #BFBDB6"> </span><span style="color: #AAD94C">&quot;@angular/fire&quot;</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #FF8F40">import</span><span style="color: #BFBDB6"> { authState } </span><span style="color: #FF8F40">from</span><span style="color: #BFBDB6"> </span><span style="color: #AAD94C">&quot;@angular/fire/auth&quot;</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #FF8F40">import</span><span style="color: #BFBDB6"> {</span></span>
+<span class="line"><span style="color: #BFBDB6">  ActivatedRouteSnapshot</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">  CanActivate</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">  Router</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">  RouterStateSnapshot</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">  UrlTree</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">} </span><span style="color: #FF8F40">from</span><span style="color: #BFBDB6"> </span><span style="color: #AAD94C">&quot;@angular/router&quot;</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #FF8F40">import</span><span style="color: #BFBDB6"> { User } </span><span style="color: #FF8F40">from</span><span style="color: #BFBDB6"> </span><span style="color: #AAD94C">&quot;@firebase/auth&quot;</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #FF8F40">import</span><span style="color: #BFBDB6"> { Observable</span><span style="color: #BFBDB6B3">,</span><span style="color: #BFBDB6"> of</span><span style="color: #BFBDB6B3">,</span><span style="color: #BFBDB6"> pipe</span><span style="color: #BFBDB6B3">,</span><span style="color: #BFBDB6"> UnaryFunction } </span><span style="color: #FF8F40">from</span><span style="color: #BFBDB6"> </span><span style="color: #AAD94C">&quot;rxjs&quot;</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #FF8F40">import</span><span style="color: #BFBDB6"> { map</span><span style="color: #BFBDB6B3">,</span><span style="color: #BFBDB6"> switchMap</span><span style="color: #BFBDB6B3">,</span><span style="color: #BFBDB6"> take } </span><span style="color: #FF8F40">from</span><span style="color: #BFBDB6"> </span><span style="color: #AAD94C">&quot;rxjs/operators&quot;</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF8F40">export</span><span style="color: #BFBDB6"> </span><span style="color: #FF8F40">type</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">AuthPipeGenerator</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> (</span></span>
+<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #D2A6FF">next</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">ActivatedRouteSnapshot</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #D2A6FF">state</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">RouterStateSnapshot</span></span>
+<span class="line"><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">AuthPipe</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #FF8F40">export</span><span style="color: #BFBDB6"> </span><span style="color: #FF8F40">type</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">AuthPipe</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">UnaryFunction</span><span style="color: #BFBDB6">&lt;</span></span>
+<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #59C2FF">Observable</span><span style="color: #BFBDB6">&lt;</span><span style="color: #59C2FF">User</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">|</span><span style="color: #BFBDB6"> </span><span style="color: #39BAE6">null</span><span style="color: #BFBDB6">&gt;</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #59C2FF">Observable</span><span style="color: #BFBDB6">&lt;</span><span style="color: #39BAE6">boolean</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">|</span><span style="color: #BFBDB6"> </span><span style="color: #39BAE6">string</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">|</span><span style="color: #BFBDB6"> </span><span style="color: #39BAE6">any</span><span style="color: #BFBDB6">[]&gt;</span></span>
+<span class="line"><span style="color: #BFBDB6">&gt;</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF8F40">export</span><span style="color: #BFBDB6"> </span><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> loggedIn</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">AuthPipe</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">map</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">user</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">!!</span><span style="color: #BFBDB6">user)</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ACB6BF8C; font-style: italic">/**</span></span>
+<span class="line"><span style="color: #ACB6BF8C; font-style: italic"> * Auth guard based on AngularFire v6 AngularFireAuthGuard.</span></span>
+<span class="line"><span style="color: #ACB6BF8C; font-style: italic"> * Check out the v6 implementation here: https://git.io/JZOcy</span></span>
+<span class="line"><span style="color: #ACB6BF8C; font-style: italic"> */</span></span>
+<span class="line"><span style="color: #E6B673">@</span><span style="color: #FFB454">Injectable</span><span style="color: #BFBDB6">({</span></span>
+<span class="line"><span style="color: #BFBDB6">  providedIn</span><span style="color: #BFBDB6B3">:</span><span style="color: #BFBDB6"> </span><span style="color: #AAD94C">&quot;root&quot;</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">})</span></span>
+<span class="line"><span style="color: #FF8F40">export</span><span style="color: #BFBDB6"> </span><span style="color: #FF8F40">class</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">AuthGuard</span><span style="color: #BFBDB6"> </span><span style="color: #FF8F40">implements</span><span style="color: #BFBDB6"> </span><span style="color: #39BAE6">CanActivate</span><span style="color: #BFBDB6"> {</span></span>
+<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FF8F40">constructor</span><span style="color: #BFBDB6">(</span><span style="color: #FF8F40">private</span><span style="color: #BFBDB6"> </span><span style="color: #D2A6FF">auth</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">Auth</span><span style="color: #BFBDB6B3">,</span><span style="color: #BFBDB6"> </span><span style="color: #FF8F40">private</span><span style="color: #BFBDB6"> </span><span style="color: #D2A6FF">router</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">Router</span><span style="color: #BFBDB6">) {}</span></span>
+<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FFB454">canActivate</span><span style="color: #BFBDB6">(</span></span>
+<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #D2A6FF">route</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">ActivatedRouteSnapshot</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #D2A6FF">state</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">RouterStateSnapshot</span></span>
+<span class="line"><span style="color: #BFBDB6">  )</span><span style="color: #F29668">:</span></span>
+<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #F29668">|</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">Observable</span><span style="color: #BFBDB6">&lt;</span><span style="color: #39BAE6">boolean</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">|</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">UrlTree</span><span style="color: #BFBDB6">&gt;</span></span>
+<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #F29668">|</span><span style="color: #BFBDB6"> </span><span style="color: #39BAE6">Promise</span><span style="color: #F29668">&lt;</span><span style="color: #BFBDB6">boolean </span><span style="color: #F29668">|</span><span style="color: #BFBDB6"> UrlTree</span><span style="color: #F29668">&gt;</span></span>
+<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #F29668">|</span><span style="color: #BFBDB6"> boolean</span></span>
+<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #F29668">|</span><span style="color: #BFBDB6"> UrlTree {</span></span>
+<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> authPipeFactory </span><span style="color: #F29668">=</span></span>
+<span class="line"><span style="color: #BFBDB6">      (route</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">data</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">authGuardPipe </span><span style="color: #FF8F40">as</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">AuthPipeGenerator</span><span style="color: #BFBDB6">) </span><span style="color: #F29668">||</span><span style="color: #BFBDB6"> (() </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> loggedIn)</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #FF8F40">return</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">authState</span><span style="color: #BFBDB6">(</span><span style="color: #39BAE6; font-style: italic">this</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">auth)</span><span style="color: #F29668">.</span><span style="color: #FFB454">pipe</span><span style="color: #BFBDB6">(</span></span>
+<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #FFB454">take</span><span style="color: #BFBDB6">(</span><span style="color: #D2A6FF">1</span><span style="color: #BFBDB6">)</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #FFB454">authPipeFactory</span><span style="color: #BFBDB6">(route</span><span style="color: #BFBDB6B3">,</span><span style="color: #BFBDB6"> state)</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #FFB454">map</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">can</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> {</span></span>
+<span class="line"><span style="color: #BFBDB6">        </span><span style="color: #FF8F40">if</span><span style="color: #BFBDB6"> (</span><span style="color: #F29668">typeof</span><span style="color: #BFBDB6"> can </span><span style="color: #F29668">===</span><span style="color: #BFBDB6"> </span><span style="color: #AAD94C">&quot;boolean&quot;</span><span style="color: #BFBDB6">) {</span></span>
+<span class="line"><span style="color: #BFBDB6">          </span><span style="color: #FF8F40">return</span><span style="color: #BFBDB6"> can</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #BFBDB6">        } </span><span style="color: #FF8F40">else</span><span style="color: #BFBDB6"> </span><span style="color: #FF8F40">if</span><span style="color: #BFBDB6"> (</span><span style="color: #39BAE6">Array</span><span style="color: #F29668">.</span><span style="color: #FFB454">isArray</span><span style="color: #BFBDB6">(can)) {</span></span>
+<span class="line"><span style="color: #BFBDB6">          </span><span style="color: #FF8F40">return</span><span style="color: #BFBDB6"> </span><span style="color: #39BAE6; font-style: italic">this</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">router</span><span style="color: #F29668">.</span><span style="color: #FFB454">createUrlTree</span><span style="color: #BFBDB6">(can)</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #BFBDB6">        } </span><span style="color: #FF8F40">else</span><span style="color: #BFBDB6"> {</span></span>
+<span class="line"><span style="color: #BFBDB6">          </span><span style="color: #FF8F40">return</span><span style="color: #BFBDB6"> </span><span style="color: #39BAE6; font-style: italic">this</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">router</span><span style="color: #F29668">.</span><span style="color: #FFB454">parseUrl</span><span style="color: #BFBDB6">(can)</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #BFBDB6">        }</span></span>
+<span class="line"><span style="color: #BFBDB6">      })</span></span>
+<span class="line"><span style="color: #BFBDB6">    )</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #BFBDB6">  }</span></span>
+<span class="line"><span style="color: #BFBDB6">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF8F40">export</span><span style="color: #BFBDB6"> </span><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">canActivate</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> (</span><span style="color: #D2A6FF">pipe</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">AuthPipeGenerator</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> ({</span></span>
+<span class="line"><span style="color: #BFBDB6">  canActivate</span><span style="color: #BFBDB6B3">:</span><span style="color: #BFBDB6"> [AuthGuard]</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">  data</span><span style="color: #BFBDB6B3">:</span><span style="color: #BFBDB6"> { authGuardPipe</span><span style="color: #BFBDB6B3">:</span><span style="color: #BFBDB6"> pipe }</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">})</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF8F40">export</span><span style="color: #BFBDB6"> </span><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> isNotAnonymous</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">AuthPipe</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">map</span><span style="color: #BFBDB6">(</span></span>
+<span class="line"><span style="color: #BFBDB6">  (</span><span style="color: #D2A6FF">user</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">!!</span><span style="color: #BFBDB6">user </span><span style="color: #F29668">&amp;&amp;</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">!</span><span style="color: #BFBDB6">user</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">isAnonymous</span></span>
+<span class="line"><span style="color: #BFBDB6">)</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #FF8F40">export</span><span style="color: #BFBDB6"> </span><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> idTokenResult </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">switchMap</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">user</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">User</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">|</span><span style="color: #BFBDB6"> </span><span style="color: #39BAE6">null</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span></span>
+<span class="line"><span style="color: #BFBDB6">  user </span><span style="color: #F29668">?</span><span style="color: #BFBDB6"> user</span><span style="color: #F29668">.</span><span style="color: #FFB454">getIdTokenResult</span><span style="color: #BFBDB6">() </span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">of</span><span style="color: #BFBDB6">(</span><span style="color: #D2A6FF">null</span><span style="color: #BFBDB6">)</span></span>
+<span class="line"><span style="color: #BFBDB6">)</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #FF8F40">export</span><span style="color: #BFBDB6"> </span><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> emailVerified</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">AuthPipe</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">map</span><span style="color: #BFBDB6">(</span></span>
+<span class="line"><span style="color: #BFBDB6">  (</span><span style="color: #D2A6FF">user</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">!!</span><span style="color: #BFBDB6">user </span><span style="color: #F29668">&amp;&amp;</span><span style="color: #BFBDB6"> user</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">emailVerified</span></span>
+<span class="line"><span style="color: #BFBDB6">)</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #FF8F40">export</span><span style="color: #BFBDB6"> </span><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> customClaims </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">pipe</span><span style="color: #BFBDB6">(</span></span>
+<span class="line"><span style="color: #BFBDB6">  idTokenResult</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FFB454">map</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">idTokenResult</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> (idTokenResult </span><span style="color: #F29668">?</span><span style="color: #BFBDB6"> idTokenResult</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">claims </span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> []))</span></span>
+<span class="line"><span style="color: #BFBDB6">)</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #FF8F40">export</span><span style="color: #BFBDB6"> </span><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">hasCustomClaim</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> (</span><span style="color: #D2A6FF">claim</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> </span><span style="color: #39BAE6">string</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">AuthPipe</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> (</span><span style="color: #D2A6FF">claim</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span></span>
+<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FFB454">pipe</span><span style="color: #BFBDB6">(</span></span>
+<span class="line"><span style="color: #BFBDB6">    customClaims</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #FFB454">map</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">claims</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> claims</span><span style="color: #F29668">.</span><span style="color: #FFB454">hasOwnProperty</span><span style="color: #BFBDB6">(claim))</span></span>
+<span class="line"><span style="color: #BFBDB6">  )</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #FF8F40">export</span><span style="color: #BFBDB6"> </span><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">redirectUnauthorizedTo</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> (</span><span style="color: #D2A6FF">redirect</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> </span><span style="color: #39BAE6">string</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">|</span><span style="color: #BFBDB6"> </span><span style="color: #39BAE6">any</span><span style="color: #BFBDB6">[]) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">AuthPipe</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> (</span></span>
+<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #D2A6FF">redirect</span></span>
+<span class="line"><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span></span>
+<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FFB454">pipe</span><span style="color: #BFBDB6">(</span></span>
+<span class="line"><span style="color: #BFBDB6">    loggedIn</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #FFB454">map</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">loggedIn</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> loggedIn </span><span style="color: #F29668">||</span><span style="color: #BFBDB6"> redirect)</span></span>
+<span class="line"><span style="color: #BFBDB6">  )</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"><span style="color: #FF8F40">export</span><span style="color: #BFBDB6"> </span><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">redirectLoggedInTo</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> (</span><span style="color: #D2A6FF">redirect</span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> </span><span style="color: #39BAE6">string</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">|</span><span style="color: #BFBDB6"> </span><span style="color: #39BAE6">any</span><span style="color: #BFBDB6">[]) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> </span><span style="color: #59C2FF">AuthPipe</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> (</span></span>
+<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #D2A6FF">redirect</span></span>
+<span class="line"><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span></span>
+<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FFB454">pipe</span><span style="color: #BFBDB6">(</span></span>
+<span class="line"><span style="color: #BFBDB6">    loggedIn</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #FFB454">map</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">loggedIn</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> (loggedIn </span><span style="color: #F29668">&amp;&amp;</span><span style="color: #BFBDB6"> redirect) </span><span style="color: #F29668">||</span><span style="color: #BFBDB6"> </span><span style="color: #D2A6FF">true</span><span style="color: #BFBDB6">)</span></span>
+<span class="line"><span style="color: #BFBDB6">  )</span><span style="color: #BFBDB6B3">;</span></span>
+<span class="line"></span></code></pre>
+<p><sup></sub>Note: If you are an contributor of the Angularfire library, you can steal this code and cram it in the library. Just keep a link to this article ;)</sup></sub></p>
+
+  </div>
+</article>
+</main>
+<hr>
+<footer>
+  <nav>
+    <dl>
+      
+        <dt>Main</dt>
+        <dd>
+          <ul>
+            
+              <li>
+                <a href="/">Home</a>
+              </li>
+            
+              <li>
+                <a href="/contact">Contact</a>
+              </li>
+            
+              <li>
+                <a href="/projects">Projects</a>
+              </li>
+            
+              <li>
+                <a href="/feed.xml">RSS</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>Writings</dt>
+        <dd>
+          <ul>
+            
+              <li>
+                <a href="/posts">Blog</a>
+              </li>
+            
+              <li>
+                <a href="/notes">Notes</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>Links</dt>
+        <dd>
+          <ul>
+            
+              <li>
+                <a href="https://sr.ht/~retronav">Sourcehut</a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/retronav">GitHub</a>
+              </li>
+            
+              <li>
+                <a href="https://www.linkedin.com/in/pranav-karawale">LinkedIn</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  </nav>
+</footer>
+  </body>
+</html>

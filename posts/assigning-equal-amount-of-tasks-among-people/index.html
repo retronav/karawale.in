@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Post about some code that assigns m number of tasks to n people, considering that everyone gets equal amount of tasks."/>
+
+<link rel="me" href="https://github.com/retronav"/>
+<link rel="me" href="https://tilde.zone/@pranav"/>
+
+
+
+
+        <link rel="preload" as="font" type="font/woff2" href="/roboto-slab-latin-variable-wghtOnly-normal.woff2" crossorigin="anonymous">
+        <link rel="preload" as="font" type="font/woff2" href="/victor-mono-latin.woff2" crossorigin="anonymous"><link rel="shortcut icon" href="/favicon.png" type="image/png">
+<link rel="stylesheet" href="/main.css"/>
+<title>
+    
+        Assigning equal amount of tasks among people - Pranav Karawale
+    
+</title>
+  </head>
+  <body>
+    
+<header>
+    <img src="/logo96.webp" height="48" width="48" alt="">
+    <br/>
+    <div class="h-card">
+        <a class="u-url p-name" href="/">Pranav Karawale</a>
+    </div>
+</header>
+<hr>
+<main>
+  <article class="h-entry">
+  <header>
+    <h1 class="p-name" class="title">Assigning equal amount of tasks among people</h1>
+    <time class="dt-published" datetime="2022-02-26T00:00:00Z">
+      February 26, 2022
+    </time>
+    <span class="seperator">&centerdot;</span>
+    <span>By</span><div class="h-card h-card-mini p-author">
+    <img class="u-photo" width="24" height="24" src="/img/me96.webp" alt="A close-up photo of my face.">
+    <a href="/" rel="author" class="p-name u-url">
+        Pranav Karawale
+    </a>
+</div>
+  </header>
+  <aside>
+    <nav class="toc" >
+        <ul><li><a href="#context">Context</a></li><li><a href="#finding-the-right-thing-to-do-the-job">Finding the right thing to do the job</a><ul><li><a href="#randomshuffle">random.shuffle()</a></li></ul></li><li><a href="#the-script">The script</a><ul><li><a href="#on-what-would-it-wont-work">On what would it won't work?</a></li></ul></li></ul>
+      </nav>
+  </aside>
+  <hr/>
+  <div class="e-content">
+    <h1 id="context" tabindex="-1">Context</h1>
+<p>So I had this edge-case scenario where I was to assign tasks among the four of us for a video project. We had initially decided to take the tasks numerically, but then I thought, &quot;let's make this randomized&quot;. The tasks were equally dividable, and my team members gave in, ergo I created this little script to do the work.</p>
+<h1 id="finding-the-right-thing-to-do-the-job" tabindex="-1">Finding the right thing to do the job</h1>
+<p>Obviously, TypeScript is the first option to do this, but the interface for random numbers isn't the most pleasing one for this situation. There's also shell scripts (<code>fish</code> is my pick), but I never dealt with random numbers in the command line. So then its Python which will be used to do the job.</p>
+<h2 id="randomshuffle" tabindex="-1"><code>random.shuffle()</code></h2>
+<p>Checking <a href="https://stackoverflow.com/a/473983">this question on StackOverflow</a>, there was a function in the <code>random</code> module of Python to shuffle the lists <em>in place</em>. Phew. I thought I was going to write a bunch of more stuff for shuffling the lists and stuff 😅</p>
+<p>So the plan was clear, use this function and build code around it and get the job done.</p>
+<h1 id="the-script" tabindex="-1">The script</h1>
+<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #FF8F40">import</span><span style="color: #BFBDB6"> random</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ACB6BF8C; font-style: italic"># Obviously these are not the real names and tasks.</span></span>
+<span class="line"><span style="color: #BFBDB6">people </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> [</span><span style="color: #AAD94C">&quot;Jack&quot;</span><span style="color: #BFBDB6B3">,</span><span style="color: #BFBDB6"> </span><span style="color: #AAD94C">&quot;Jamie&quot;</span><span style="color: #BFBDB6">]</span></span>
+<span class="line"><span style="color: #BFBDB6">tasks </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> [</span></span>
+<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #AAD94C">&quot;Going for the messages&quot;</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #AAD94C">&quot;Water the plants&quot;</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #AAD94C">&quot;Check the mailbox&quot;</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #AAD94C">&quot;Wash the clothes&quot;</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #AAD94C">&quot;Clean the plates&quot;</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #AAD94C">&quot;Cook lunch&quot;</span><span style="color: #BFBDB6B3">,</span></span>
+<span class="line"><span style="color: #BFBDB6">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #BFBDB6">task_per_person </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> </span><span style="color: #F07178">len</span><span style="color: #BFBDB6">(tasks) </span><span style="color: #F29668">/</span><span style="color: #BFBDB6"> </span><span style="color: #F07178">len</span><span style="color: #BFBDB6">(people)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ACB6BF8C; font-style: italic"># This shouldn&#39;t continue if the tasks cannot be divided equally. If this</span></span>
+<span class="line"><span style="color: #ACB6BF8C; font-style: italic"># is the case, then one has to remove some number of tasks to make the</span></span>
+<span class="line"><span style="color: #ACB6BF8C; font-style: italic"># number correct, or else make a custom solution.</span></span>
+<span class="line"><span style="color: #FF8F40">if</span><span style="color: #BFBDB6"> task_per_person </span><span style="color: #F29668">%</span><span style="color: #BFBDB6"> </span><span style="color: #D2A6FF">1</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">!=</span><span style="color: #BFBDB6"> </span><span style="color: #D2A6FF">0</span><span style="color: #BFBDB6B3">:</span></span>
+<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #FF8F40">raise</span><span style="color: #BFBDB6"> </span><span style="color: #39BAE6">Exception</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">&quot;Tasks cannot be equally divided&quot;</span><span style="color: #BFBDB6">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #BFBDB6">c </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> </span><span style="color: #D2A6FF">0</span></span>
+<span class="line"><span style="color: #FF8F40">for</span><span style="color: #BFBDB6"> i </span><span style="color: #FF8F40">in</span><span style="color: #BFBDB6"> </span><span style="color: #F07178">range</span><span style="color: #BFBDB6">(</span><span style="color: #39BAE6">int</span><span style="color: #BFBDB6">(task_per_person))</span><span style="color: #BFBDB6B3">:</span></span>
+<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #ACB6BF8C; font-style: italic"># Shuffling the tasks list is totally optional</span></span>
+<span class="line"><span style="color: #BFBDB6">	random</span><span style="color: #BFBDB6B3">.</span><span style="color: #FFB454">shuffle</span><span style="color: #BFBDB6">(tasks)</span></span>
+<span class="line"><span style="color: #BFBDB6">	shuffled </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> people</span></span>
+<span class="line"><span style="color: #BFBDB6">	random</span><span style="color: #BFBDB6B3">.</span><span style="color: #FFB454">shuffle</span><span style="color: #BFBDB6">(shuffled)</span></span>
+<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #FF8F40">for</span><span style="color: #BFBDB6"> person </span><span style="color: #FF8F40">in</span><span style="color: #BFBDB6"> shuffled</span><span style="color: #BFBDB6B3">:</span></span>
+<span class="line"><span style="color: #BFBDB6">		</span><span style="color: #F07178">print</span><span style="color: #BFBDB6">(</span><span style="color: #FF8F40">f</span><span style="color: #AAD94C">&quot;</span><span style="color: #95E6CB">{</span><span style="color: #BFBDB6">tasks[c]</span><span style="color: #95E6CB">}</span><span style="color: #AAD94C"> : </span><span style="color: #95E6CB">{</span><span style="color: #BFBDB6">person</span><span style="color: #95E6CB">}</span><span style="color: #AAD94C">&quot;</span><span style="color: #BFBDB6">)</span></span>
+<span class="line"><span style="color: #BFBDB6">		c </span><span style="color: #F29668">+=</span><span style="color: #BFBDB6"> </span><span style="color: #D2A6FF">1</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+<h2 id="on-what-would-it-wont-work" tabindex="-1">On what would it won't work?</h2>
+<p>This won't work when the tasks are not equally assignable. For instance. 8 tasks among 4 people is possible, but 7 tasks among 3 isn't. I'll probably write code for this too in the future.</p>
+<hr>
+<p><small>The names in the snippet are a reference to an Ed Sheeran's song. Check if you can find out ;)</small></p>
+
+  </div>
+</article>
+</main>
+<hr>
+<footer>
+  <nav>
+    <dl>
+      
+        <dt>Main</dt>
+        <dd>
+          <ul>
+            
+              <li>
+                <a href="/">Home</a>
+              </li>
+            
+              <li>
+                <a href="/contact">Contact</a>
+              </li>
+            
+              <li>
+                <a href="/projects">Projects</a>
+              </li>
+            
+              <li>
+                <a href="/feed.xml">RSS</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>Writings</dt>
+        <dd>
+          <ul>
+            
+              <li>
+                <a href="/posts">Blog</a>
+              </li>
+            
+              <li>
+                <a href="/notes">Notes</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>Links</dt>
+        <dd>
+          <ul>
+            
+              <li>
+                <a href="https://sr.ht/~retronav">Sourcehut</a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/retronav">GitHub</a>
+              </li>
+            
+              <li>
+                <a href="https://www.linkedin.com/in/pranav-karawale">LinkedIn</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  </nav>
+</footer>
+  </body>
+</html>
