@@ -4,7 +4,7 @@
   <subtitle>Blog about some interesting stuff.</subtitle>
   <link href="https://karawale.in/feed.xml" rel="self"/>
   <link href="https://karawale.in/"/>
-  <updated>2022-03-20T09:21:24Z</updated>
+  <updated>2022-03-23T00:00:00Z</updated>
   <id>https://karawale.in/</id>
   <author>
     <name>Pranav Karawale</name>
@@ -532,6 +532,200 @@ And, I will be writing my Projects page in Astro, because I want some dynamic th
       <updated>2022-03-20T09:21:24Z</updated>
       <id>https://karawale.in/notes/2022-03-20-14-51/</id>
       <content type="html">&lt;p&gt;Testing webmentions! Send one here if you like :D&lt;/p&gt;
+</content>
+    </entry>
+    
+    <entry>
+      <title>Making a container image for my school python project</title>
+      <link href="https://karawale.in/posts/making-container-image-for-school-project/"/>
+      <updated>2022-03-23T00:00:00Z</updated>
+      <id>https://karawale.in/posts/making-container-image-for-school-project/</id>
+      <content type="html">&lt;h1 id=&quot;what-is-this&quot; tabindex=&quot;-1&quot;&gt;What is this?&lt;/h1&gt;
+&lt;p&gt;This is a simple documentation/journal/story of me trying to create a container
+image for my school python project using &lt;code&gt;podman&lt;/code&gt;/&lt;code&gt;buildah&lt;/code&gt; for the first time.&lt;/p&gt;
+&lt;p&gt;I used:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;podman&lt;/code&gt;: The pick for me because Docker has too many features that I don&#39;t
+use.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;buildah&lt;/code&gt;: Used for making the container image.&lt;/li&gt;
+&lt;li&gt;All scripts written in &lt;a href=&quot;https://fishshell.com/&quot;&gt;&lt;code&gt;fish&lt;/code&gt;&lt;/a&gt; unless specified.&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;first-steps&quot; tabindex=&quot;-1&quot;&gt;First steps&lt;/h1&gt;
+&lt;p&gt;I&#39;ve had experience with Docker but I found &lt;code&gt;podman&lt;/code&gt; and &lt;code&gt;buildah&lt;/code&gt; to be more of
+the tool I&#39;d like to use. Especially &lt;code&gt;buildah&lt;/code&gt;; the fact that I can make shell
+scripts to build container images really made it look attractive to me.
+So the first step definitely was to dig into using both the tools.&lt;/p&gt;
+&lt;h2 id=&quot;choosing-a-base-image&quot; tabindex=&quot;-1&quot;&gt;Choosing a base image&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;[Spoiler - Bad Idea]&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For me, the go-to image for containers is the Alpine Linux image (due to its
+small size), but never did I knew that I will be swapping it out because the
+whole thing wouldn&#39;t even work at all!&lt;/p&gt;
+&lt;h1 id=&quot;making-the-binary-work-in-the-container&quot; tabindex=&quot;-1&quot;&gt;Making the binary work in the container&lt;/h1&gt;
+&lt;p&gt;So the first steps were to try out my application binary (made using
+&lt;code&gt;pyinstaller&lt;/code&gt;) in the image. So the commands to make it were:&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #F07178&quot;&gt;set&lt;/span&gt;&lt;span style=&quot;color: #BFBDB6&quot;&gt; id (&lt;/span&gt;&lt;span style=&quot;color: #F07178&quot;&gt;buildah&lt;/span&gt;&lt;span style=&quot;color: #BFBDB6&quot;&gt; from --pull alpine)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #F07178&quot;&gt;buildah&lt;/span&gt;&lt;span style=&quot;color: #BFBDB6&quot;&gt; copy $id ./dist/cli /&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #F07178&quot;&gt;buildah&lt;/span&gt;&lt;span style=&quot;color: #BFBDB6&quot;&gt; run $id -- sh&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that I am jumping into the container&#39;s shell because I didn&#39;t want
+to commit an image right now. Tried to run the binary, only to get&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;sh: ./dist/cli: not found&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I was initially confused by this error message, but later got to know that this
+is a
+&lt;a href=&quot;https://stackoverflow.com/a/66974607&quot;&gt;common symptom of a dynamic link failure&lt;/a&gt;
+, which is entirely right, because Alpine Linux uses &lt;code&gt;musl-libc&lt;/code&gt;, and not
+&lt;code&gt;glibc&lt;/code&gt;, so definitely the glibc libraries will be missing there. After a bit of
+searching, I found a
+&lt;a href=&quot;https://wiki.alpinelinux.org/wiki/Running_glibc_programs&quot;&gt;way to run glibc programs on Alpine linux&lt;/a&gt;
+. So tried that, and...&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;/ # ./cli --help&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;Error relocating /tmp/_MEIAdPkMp/libz.so.1: crc32_z: symbol not found&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So, definitely I was clueless about what to do. So I really had two options:
+switch to another image, or not containerise. Fortunately, I picked the
+first one - choose a different image.&lt;/p&gt;
+&lt;h2 id=&quot;choosing-another-image&quot; tabindex=&quot;-1&quot;&gt;Choosing another image&lt;/h2&gt;
+&lt;p&gt;Since the app was working well enough in my Ubuntu 20.04 LTS distro
+(WSL by the way), I decided to go for it. Checked the
+&lt;a href=&quot;https://hub.docker.com/_/ubuntu?tab=tags&amp;amp;page=1&amp;amp;name=20.04&quot;&gt;20.04 tag&lt;/a&gt; on the
+&lt;code&gt;ubuntu&lt;/code&gt; image. ~76 MB uncompressed disk size, not bad. So I pulled the image,
+slapped the binary in, and tried &lt;code&gt;./cli --help&lt;/code&gt;, it worked! So I was ready to
+do the next.&lt;/p&gt;
+&lt;h1 id=&quot;making-the-pdf-generation-work-in-the-container&quot; tabindex=&quot;-1&quot;&gt;Making the PDF generation work in the container&lt;/h1&gt;
+&lt;p&gt;My application uses &lt;a href=&quot;https://playwright.dev/python&quot;&gt;Playwright&lt;/a&gt; to generate the
+report card PDFs, based on a Jinja template filled with data which can be
+sourced from different places. So if you go to the website of Playwright, throw
+in a few clicks by navigating through the website, you will land here - the page
+that tells how to
+&lt;a href=&quot;https://playwright.dev/python/docs/cli#install-system-dependencies&quot;&gt;install system dependencies&lt;/a&gt;. So I pulled on a temporary Ubuntu container
+and tried to install python3 and pip, but...&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;root@35423fdec4a9:/# apt install -y python3 python3-pip&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;...&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;Need to get 72.5 MB of archives.&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;After this operation, 319 MB of additional disk space will be used.&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;319 MB? Just to install the system dependencies? I was shocked. I decided to
+leave this here and instead take a look in the source code of the Playwright CLI
+, to figure out how it figures out system dependencies. So after quite a bit of
+searching, I landed at this
+&lt;a href=&quot;https://github.com/microsoft/playwright/blob/eaf2507ec1322401e5fb05c976a0d2a4d1c438f9/packages/playwright-core/src/utils/nativeDeps.ts&quot;&gt;nativeDeps.ts file&lt;/a&gt;,
+which has a list of dependencies required for Playwright to function. Immediately realising this is an TypeScript file, an idea came to my mind. What if we just get the dependencies every time from this file when we start building out image?&lt;/p&gt;
+&lt;h2 id=&quot;installing-dependencies-the-diy-way&quot; tabindex=&quot;-1&quot;&gt;Installing dependencies, the DIY way&lt;/h2&gt;
+&lt;p&gt;If we run playwright without the dependencies installed, we will get something like this:&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;╔════════════════════════════════════════════════════════════╗&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;║ Host system is missing a few dependencies to run browsers. ║&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;║ Please install them with the following command:            ║&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;║                                                            ║&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;║     playwright install-deps                                ║&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;║                                                            ║&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;║ &amp;lt;3 Playwright Team                                         ║&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;╚════════════════════════════════════════════════════════════╝&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So I hacked up a little Deno script to fetch the dependencies:&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;deno eval &amp;quot;import {deps} from &amp;#39;https://raw.githubusercontent.com/microsoft/playwright/main/packages/playwright-core/src/utils/nativeDeps.ts&amp;#39;; console.log(deps[&amp;#39;ubuntu20.04&amp;#39;][&amp;#39;chromium&amp;#39;].join(&amp;#39;\n&amp;#39;));&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;small&gt;Cheeky enough, I know 😉. By the way, Deno is used because the source is a TypeScript file, and I wouldn&#39;t like to install several dozen packages on Node just to get the dependencies list.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;And tried installing that in the container but apt decided to greet me with an error message:&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;E: Unable to locate package &amp;lt;all-the-package-names-seperated-by-a-space&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Realising how naïve this was, I tried to look up for solutions to this. One &lt;a href=&quot;https://unix.stackexchange.com/a/212214&quot;&gt;solution that particularly stood out&lt;/a&gt; was somewhat like this:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Store the list of dependencies in a file, one item on a line.&lt;/li&gt;
+&lt;li&gt;Using &lt;code&gt;xargs&lt;/code&gt; to pass the arguments to apt
+So I came up with these lines to do it:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #ACB6BF8C; font-style: italic&quot;&gt;# Install dependencies&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #F07178&quot;&gt;deno&lt;/span&gt;&lt;span style=&quot;color: #BFBDB6&quot;&gt; eval &lt;/span&gt;&lt;span style=&quot;color: #AAD94C&quot;&gt;&amp;quot;import {deps} from &amp;#39;https://raw.githubusercontent.com/microsoft/playwright/main/packages/playwright-core/src/utils/nativeDeps.ts&amp;#39;; console.log(deps[&amp;#39;ubuntu20.04&amp;#39;][&amp;#39;chromium&amp;#39;].join(&amp;#39;\n&amp;#39;));&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #BFBDB6&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #F29668&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span style=&quot;color: #BFBDB6&quot;&gt; /tmp/deps.txt&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #F07178&quot;&gt;buildah&lt;/span&gt;&lt;span style=&quot;color: #BFBDB6&quot;&gt; copy $id /tmp/deps.txt /tmp&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #F07178&quot;&gt;buildah&lt;/span&gt;&lt;span style=&quot;color: #BFBDB6&quot;&gt; run $id -- xargs -a /tmp/deps.txt apt install -y&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Which gets those packages installed, claiming ~117 MB of space in the process (not to shabby, at least better than the previous 319 MB).&lt;/p&gt;
+&lt;h2 id=&quot;the-tzdata-prompt-problem&quot; tabindex=&quot;-1&quot;&gt;The tzdata prompt problem&lt;/h2&gt;
+&lt;p&gt;While doing the installation, I noticed a prompt popping up:&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;Configuring tzdata&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;------------------&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;Please select the geographic area in which you live. Subsequent configuration&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;questions will narrow this down by presenting a list of cities, representing&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;the time zones in which they are located.&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;1. Africa 4. Australia 7. Atlantic 10. Pacific 13. Etc&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;2. America 5. Arctic 8. Europe 11. SystemV&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;3. Antarctica 6. Asia 9. Indian 12. US&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;Geographic area:&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This was really a disappointment since building container image is supposed to be an automated process. &lt;a href=&quot;https://serverfault.com/a/992421&quot;&gt;Looking up a solution&lt;/a&gt; for this on the Web, I found out that if I set the &lt;code&gt;DEBIAN_FRONTEND&lt;/code&gt; environment variable to &lt;code&gt;noninteractive&lt;/code&gt;, I can stop the prompt from appearing. But I still need a time zone somehow! There was another solution for it:&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;buildah config --env TZ=Asia/Kolkata $id&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;buildah run $id -- ln -snf /usr/share/zoneinfo/\$TZ /etc/localtime&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;small&gt;Notice the $TZ. The $ was to prevent the TZ env from the host to creep in&lt;/small&gt;
+Running this, gets the job done. No more tzdata prompt in the middle of an installation, yay!&lt;/p&gt;
+&lt;h1 id=&quot;setting-up-the-images-public-interface&quot; tabindex=&quot;-1&quot;&gt;Setting up the image&#39;s public interface&lt;/h1&gt;
+&lt;p&gt;The first step was to change the working directory, since the app is being copied to &lt;code&gt;/app&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;buildah config --entrypoint &amp;#39;[&amp;quot;/app/cli&amp;quot;]&amp;#39; $id&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After this, I commit the image and then remove the working container:&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;buildah commit $id rep&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;buildah rm $id&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;building-the-image&quot; tabindex=&quot;-1&quot;&gt;Building the image&lt;/h1&gt;
+&lt;p&gt;After this, I thought the thing was done. So I start the process of building the image and leave the machine alone for some time. After the build was done, I tried to run the image just to see that everything is working.&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;podman run -it --rm localhost/rep&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And I see a very, very peculiar error:&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;Usage: cli [OPTIONS] COMMAND [ARGS]...&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;Try &amp;#39;cli --help&amp;#39; for help.&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;Error: No such command &amp;#39;bash&amp;#39;.&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But I didn&#39;t pass bash as a parameter! However, digging in the logs, I see a line:&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;WARN[0000] cmd &amp;quot;bash&amp;quot; exists and will be passed to entrypoint as a parameter&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Some more &amp;quot;looking up&amp;quot; and I get to know that I have not set the &lt;code&gt;cmd&lt;/code&gt; key in the image config[1]. So I had two attempts to fix it:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;buildah config --cmd &amp;quot;&amp;quot; $id&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;buildah config --cmd &#39;[&amp;quot;&amp;quot;]&#39; $id&lt;/code&gt;
+But they didn&#39;t work. I, getting bonkers about not getting a solution, ran &lt;code&gt;buildah config --cmd &#39;[]&#39; $id&lt;/code&gt; and it worked! There was no &amp;quot;bash&amp;quot; being passed as a parameter!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;running-the-image&quot; tabindex=&quot;-1&quot;&gt;Running the image&lt;/h2&gt;
+&lt;p&gt;For this one, I use this command to run it:&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;podman run -it --rm -v $PWD/config:/app/config -v $PWD/out:/app/out localhost/rep&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And it worked flawlessly. I was happy.&lt;/p&gt;
+&lt;h2 id=&quot;size-of-the-image&quot; tabindex=&quot;-1&quot;&gt;Size of the image&lt;/h2&gt;
+&lt;p&gt;I also took a look at the image size just to see if our efforts have made any significant effect. So running &lt;code&gt;podman image ls&lt;/code&gt; gives:&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;REPOSITORY                 TAG         IMAGE ID      CREATED            SIZE&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;localhost/rep              latest      4c129f4360a0  About an hour ago  494 MB&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;494 MB. Still OK. &lt;s&gt;Could have easily been in the range of 1GB if I would install Python to install the dependencies.&lt;/s&gt; I did that too, here are some rough figures:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;With Python and pip: 1.1 GB&lt;/li&gt;
+&lt;li&gt;With Python and pip, but deleted them afterwards plus ran &lt;code&gt;apt autoremove&lt;/code&gt;: ~580 MB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;getting-attracted-to-alpine-again&quot; tabindex=&quot;-1&quot;&gt;Getting attracted to Alpine, again&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;SPOILER: BAD IDEA AGAIN! :(&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;As I am writing this post, another idea pops up: what if, we bundle the app into an AppImage bundle, and pop it inside an Alpine container? After all, AppImage bundles, if done correctly, can run anywhere, even in the scratch container. Also we could save more storage space. The Ubuntu image still has lots of things that are of no use to my app and we could, in theory, cut on a lot of bloat.
+The general process could be:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Figure out the shared libraries of the app and the Playwright-supplied Chromium binary.&lt;/li&gt;
+&lt;li&gt;Create an AppImage.&lt;/li&gt;
+&lt;li&gt;Pop it in the &lt;code&gt;scratch&lt;/code&gt;/&lt;code&gt;alpine&lt;/code&gt; image
+&lt;s&gt;Could be a very nice plan to do, but not now, its for another day!&lt;/s&gt; Figured out the shared libraries using &lt;code&gt;ldd&lt;/code&gt;, I made an AppImage, tried to run it on my host machine, but it failed to generate the PDFs. Maybe the Chromium binary was missing a library or two, who knows.
+Later I found a Docker image for &lt;a href=&quot;https://hub.docker.com/r/zenika/alpine-chrome&quot;&gt;running Chrome in Alpine&lt;/a&gt; and thought of trying it out. But first, I checked the image size, it was 282.18 MB compressed. If I consider the compression ratio to be about as half, that, plus, my binary, the total storage space would be well over the current image size. Not worth the effort.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;ending-words&quot; tabindex=&quot;-1&quot;&gt;Ending Words&lt;/h1&gt;
+&lt;p&gt;This was really my first time making an image, and it was a fun adventure, span over the course of a week.&lt;/p&gt;
+&lt;p&gt;If you are interested about this project, &lt;a href=&quot;https://github.com/retronav/rep&quot;&gt;check it out here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Also, here&#39;s a &lt;a href=&quot;https://github.com/retronav/rep/blob/main/scripts/build-image.fish&quot;&gt;direct link&lt;/a&gt; to the script that makes the container image.&lt;/p&gt;
+&lt;p&gt;[1]: ( https://www.mankier.com/1/buildah-config#--cmd ) Always read your man pages when in doubt. It helps. If it doesn&#39;t, then you might need to look up elsewhere.&lt;/p&gt;
 </content>
     </entry>
 </feed>
