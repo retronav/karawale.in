@@ -55,7 +55,9 @@
   </aside>
   <hr/>
   <div class="e-content">
-    <p>As of now, the AngularFire v7(<strong>&quot;Beta&quot;</strong>) does not have an implementation for an auth guard(which I really need), so I went ahead, copied the original auth guard code (from v6), and refactored it to make it compatible with v7.</p>
+    <p>As of now, the AngularFire v7(<strong>&quot;Beta&quot;</strong>) does not have an implementation for an
+auth guard(which I really need), so I went ahead, copied the original auth guard
+code (from v6), and refactored it to make it compatible with v7.</p>
 <p><strong>This code works on Angular 12. I haven't tested it for older versions, but it should work.</strong></p>
 <p>Here's the code:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #FF8F40">import</span><span style="color: #BFBDB6"> { Injectable } </span><span style="color: #FF8F40">from</span><span style="color: #BFBDB6"> </span><span style="color: #AAD94C">&#39;@angular/core&#39;</span><span style="color: #BFBDB6B3">;</span></span>
@@ -156,7 +158,6 @@
 <span class="line"><span style="color: #BFBDB6">    </span><span style="color: #FFB454">map</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">loggedIn</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> (loggedIn </span><span style="color: #F29668">&amp;&amp;</span><span style="color: #BFBDB6"> redirect) </span><span style="color: #F29668">||</span><span style="color: #BFBDB6"> </span><span style="color: #D2A6FF">true</span><span style="color: #BFBDB6">)</span></span>
 <span class="line"><span style="color: #BFBDB6">  )</span><span style="color: #BFBDB6B3">;</span></span>
 <span class="line"></span></code></pre>
-<p><sup></sub>Note: If you are an contributor of the Angularfire library, you can steal this code and cram it in the library. Just keep a link to this article ;)</sup></sub></p>
 
   </div>
   <footer>

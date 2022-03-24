@@ -55,7 +55,9 @@
   </aside>
   <hr/>
   <div class="e-content">
-    <p>I have been striving to cut down on node_modules. Most of the times, I need rimraf to delete a folder (usually <code>public</code>/<code>dist</code>/<code>build</code>) and to keep the project cross platform. So, here is a one-liner to delete a folder/file:</p>
+    <p>I have been striving to cut down on node_modules. Most of the times, I need
+rimraf to delete a folder (usually <code>public</code>/<code>dist</code>/<code>build</code>) and to keep the
+project cross platform. So, here is a one-liner to delete a folder/file:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #BFBDB6">node -e </span><span style="color: #AAD94C">&quot;require(&#39;fs&#39;).rmSync(&#39;PATH&#39;,{recursive:true,force:true})&quot;</span></span>
 <span class="line"></span></code></pre>
 <p>Note: Replace <code>PATH</code> by the path to the folder/file. This works the same as <code>rm -rf</code> command, but cross-platform.</p>

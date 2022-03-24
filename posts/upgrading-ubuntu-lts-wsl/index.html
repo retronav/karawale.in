@@ -56,19 +56,38 @@
   <hr/>
   <div class="e-content">
     <blockquote>
-<p>Note: This post was written after upgrading my Ubuntu 20.04 LTS, so I don't have any relevant screenshots/logs at the moment. Things are subject to change in the future.</p>
+<p>Note: This post was written after upgrading my Ubuntu 20.04 LTS, so I don't
+have any relevant screenshots/logs at the moment. Things are subject to change
+in the future.</p>
 </blockquote>
-<p>I was configuring my git settings when I realised that git's version was an older one (2.25). So I tried to update, but it didn't do that and instead told that it's already up-to-date. It didn't took long to realise that the newer versions are on the repositories of the newer versions and so I need to upgrade my WSL distro. Here are the steps:</p>
+<p>I was configuring my git settings when I realised that git's version was an
+older one (2.25). So I tried to update, but it didn't do that and instead told
+that it's already up-to-date. It didn't took long to realise that the newer
+versions are on the repositories of the newer versions and so I need to upgrade
+my WSL distro. Here are the steps:</p>
 <ol>
 <li>Run <code>sudo do-release-upgrade</code>
-At this stage you will probably see some error telling you that it couldn't find any release, that is because it is looking for LTS releases but there isn't any (as of writing this), so you need to change some configuration files.
+At this stage you will probably see some error
+telling you that it couldn't find any release, that is because it is looking
+for LTS releases but there isn't any (as of writing this), so you need to
+change some configuration files.
 <ul>
-<li>Open the <code>/etc/update-manager/release-upgrades</code>, and set the <code>Prompt</code> from <code>lts</code> to <code>normal</code> (only do this if you are OK with a non-LTS version). Now you can run the original command again.</li>
+<li>Open the <code>/etc/update-manager/release-upgrades</code>, and set the <code>Prompt</code> from
+<code>lts</code> to <code>normal</code> (only do this if you are OK with a non-LTS version). Now
+you can run the original command again.</li>
 </ul>
 </li>
-<li>It will start pulling the repositories of the newest upgradable release. If you notice that the installer is hanging and then terminating, that is because of it trying to start <code>snap</code>. So, for the upgrade to proceed, you need to remove <code>snap</code>. Don't worry, if you need it, you can install it back after the upgrade (<a href="https://discourse.ubuntu.com/t/using-snapd-in-wsl2/12113">why is snap even in WSL when it doesn't work by default? ¯\_(ツ)_/¯</a>). Remove the <code>snap</code> and <code>snapd</code> packages, you'd be good to go.</li>
-<li>Now follow the prompts. At one point it will ask for permission to restart all services. Grant the permission and let it continue.</li>
-<li>BOOM! You have upgraded to a newer version! Hope you enjoy your distro with a breath of fresh air.</li>
+<li>It will start pulling the repositories of the newest upgradable release. If
+you notice that the installer is hanging and then terminating, that is
+because of it trying to start <code>snap</code>. So, for the upgrade to proceed, you
+need to remove <code>snap</code>. Don't worry, if you need it, you can install it back
+after the upgrade (<a href="https://discourse.ubuntu.com/t/using-snapd-in-wsl2/12113">why is snap even in WSL when it doesn't work by default?
+¯\_(ツ)_/¯</a>).
+Remove the <code>snap</code> and <code>snapd</code> packages, you'd be good to go.</li>
+<li>Now follow the prompts. At one point it will ask for permission to restart
+all services. Grant the permission and let it continue.</li>
+<li>BOOM! You have upgraded to a newer version! Hope you enjoy your distro with a
+breath of fresh air.</li>
 </ol>
 <hr>
 <p>I could find this on <a href="https://www.hughrawlinson.me/posts/2021/06/04/solved-do-release-upgrade-hangs-in-ubuntu-on-wsl">another post</a> by Hugh Rawlinson, however their Ubuntu's version was 18.04 LTS, but the steps are pretty much the same.</p>

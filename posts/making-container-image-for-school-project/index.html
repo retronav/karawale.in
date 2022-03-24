@@ -130,7 +130,8 @@ searching, I landed at this
 <a href="https://github.com/microsoft/playwright/blob/eaf2507ec1322401e5fb05c976a0d2a4d1c438f9/packages/playwright-core/src/utils/nativeDeps.ts">nativeDeps.ts file</a>,
 which has a list of dependencies required for Playwright to function. Immediately realising this is an TypeScript file, an idea came to my mind. What if we just get the dependencies every time from this file when we start building out image?</p>
 <h2 id="installing-dependencies-the-diy-way" tabindex="-1">Installing dependencies, the DIY way</h2>
-<p>If we run playwright without the dependencies installed, we will get something like this:</p>
+<p>If we run playwright without the dependencies installed, we will get something
+like this:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">╔════════════════════════════════════════════════════════════╗</span></span>
 <span class="line"><span style="color: #bfbdb6">║ Host system is missing a few dependencies to run browsers. ║</span></span>
 <span class="line"><span style="color: #bfbdb6">║ Please install them with the following command:            ║</span></span>
@@ -143,11 +144,16 @@ which has a list of dependencies required for Playwright to function. Immediatel
 <p>So I hacked up a little Deno script to fetch the dependencies:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">deno eval &quot;import {deps} from &#39;https://raw.githubusercontent.com/microsoft/playwright/main/packages/playwright-core/src/utils/nativeDeps.ts&#39;; console.log(deps[&#39;ubuntu20.04&#39;][&#39;chromium&#39;].join(&#39;\n&#39;));&quot;</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
-<p><small>Cheeky enough, I know 😉. By the way, Deno is used because the source is a TypeScript file, and I wouldn't like to install several dozen packages on Node just to get the dependencies list.</small></p>
-<p>And tried installing that in the container but apt decided to greet me with an error message:</p>
+<p><small>Cheeky enough, I know 😉. By the way, Deno is used because the source is
+a TypeScript file, and I wouldn't like to install several dozen packages on Node
+just to get the dependencies list.</small></p>
+<p>And tried installing that in the container but apt decided to greet me with an
+error message:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">E: Unable to locate package &lt;all-the-package-names-seperated-by-a-space&gt;</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
-<p>Realising how naïve this was, I tried to look up for solutions to this. One <a href="https://unix.stackexchange.com/a/212214">solution that particularly stood out</a> was somewhat like this:</p>
+<p>Realising how naïve this was, I tried to look up for solutions to this. One
+<a href="https://unix.stackexchange.com/a/212214">solution that particularly stood out</a>
+was somewhat like this:</p>
 <ol>
 <li>Store the list of dependencies in a file, one item on a line.</li>
 <li>Using <code>xargs</code> to pass the arguments to apt
@@ -158,7 +164,8 @@ So I came up with these lines to do it:</li>
 <span class="line"><span style="color: #F07178">buildah</span><span style="color: #BFBDB6"> copy $id /tmp/deps.txt /tmp</span></span>
 <span class="line"><span style="color: #F07178">buildah</span><span style="color: #BFBDB6"> run $id -- xargs -a /tmp/deps.txt apt install -y</span></span>
 <span class="line"></span></code></pre>
-<p>Which gets those packages installed, claiming ~117 MB of space in the process (not to shabby, at least better than the previous 319 MB).</p>
+<p>Which gets those packages installed, claiming ~117 MB of space in the process
+(not to shabby, at least better than the previous 319 MB).</p>
 <h2 id="the-tzdata-prompt-problem" tabindex="-1">The tzdata prompt problem</h2>
 <p>While doing the installation, I noticed a prompt popping up:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">Configuring tzdata</span></span>
@@ -179,14 +186,21 @@ So I came up with these lines to do it:</li>
 <span class="line"><span style="color: #bfbdb6"></span></span>
 <span class="line"><span style="color: #bfbdb6">Geographic area:</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
-<p>This was really a disappointment since building container image is supposed to be an automated process. <a href="https://serverfault.com/a/992421">Looking up a solution</a> for this on the Web, I found out that if I set the <code>DEBIAN_FRONTEND</code> environment variable to <code>noninteractive</code>, I can stop the prompt from appearing. But I still need a time zone somehow! There was another solution for it:</p>
+<p>This was really a disappointment since building container image is supposed to
+be an automated process. <a href="https://serverfault.com/a/992421">Looking up a
+solution</a> for this on the Web, I found out
+that if I set the <code>DEBIAN_FRONTEND</code> environment variable to <code>noninteractive</code>, I
+can stop the prompt from appearing. But I still need a time zone somehow! There
+was another solution for it:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">buildah config --env TZ=Asia/Kolkata $id</span></span>
 <span class="line"><span style="color: #bfbdb6">buildah run $id -- ln -snf /usr/share/zoneinfo/\$TZ /etc/localtime</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
-<p><small>Notice the $TZ. The $ was to prevent the TZ env from the host to creep in</small>
-Running this, gets the job done. No more tzdata prompt in the middle of an installation, yay!</p>
+<p><small>Notice the $TZ. The $ was to prevent the TZ env from the host to creep
+in</small> Running this, gets the job done. No more tzdata prompt in the middle
+of an installation, yay!</p>
 <h1 id="setting-up-the-images-public-interface" tabindex="-1">Setting up the image's public interface</h1>
-<p>The first step was to change the working directory, since the app is being copied to <code>/app</code>.</p>
+<p>The first step was to change the working directory, since the app is being
+copied to <code>/app</code>.</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">buildah config --entrypoint &#39;[&quot;/app/cli&quot;]&#39; $id</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
 <p>After this, I commit the image and then remove the working container:</p>
@@ -194,7 +208,9 @@ Running this, gets the job done. No more tzdata prompt in the middle of an insta
 <span class="line"><span style="color: #bfbdb6">buildah rm $id</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
 <h1 id="building-the-image" tabindex="-1">Building the image</h1>
-<p>After this, I thought the thing was done. So I start the process of building the image and leave the machine alone for some time. After the build was done, I tried to run the image just to see that everything is working.</p>
+<p>After this, I thought the thing was done. So I start the process of building the
+image and leave the machine alone for some time. After the build was done, I
+tried to run the image just to see that everything is working.</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">podman run -it --rm localhost/rep</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
 <p>And I see a very, very peculiar error:</p>
@@ -203,14 +219,17 @@ Running this, gets the job done. No more tzdata prompt in the middle of an insta
 <span class="line"><span style="color: #bfbdb6"></span></span>
 <span class="line"><span style="color: #bfbdb6">Error: No such command &#39;bash&#39;.</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
-<p>But I didn't pass bash as a parameter! However, digging in the logs, I see a line:</p>
+<p>But I didn't pass bash as a parameter! However, digging in the logs, I see a
+line:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">WARN[0000] cmd &quot;bash&quot; exists and will be passed to entrypoint as a parameter</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
-<p>Some more &quot;looking up&quot; and I get to know that I have not set the <code>cmd</code> key in the image config[1]. So I had two attempts to fix it:</p>
+<p>Some more &quot;looking up&quot; and I get to know that I have not set the <code>cmd</code> key in
+the image config[1]. So I had two attempts to fix it:</p>
 <ol>
 <li><code>buildah config --cmd &quot;&quot; $id</code></li>
-<li><code>buildah config --cmd '[&quot;&quot;]' $id</code>
-But they didn't work. I, getting bonkers about not getting a solution, ran <code>buildah config --cmd '[]' $id</code> and it worked! There was no &quot;bash&quot; being passed as a parameter!</li>
+<li><code>buildah config --cmd '[&quot;&quot;]' $id</code> But they didn't work. I, getting bonkers
+about not getting a solution, ran <code>buildah config --cmd '[]' $id</code> and it
+worked! There was no &quot;bash&quot; being passed as a parameter!</li>
 </ol>
 <h2 id="running-the-image" tabindex="-1">Running the image</h2>
 <p>For this one, I use this command to run it:</p>
@@ -218,31 +237,53 @@ But they didn't work. I, getting bonkers about not getting a solution, ran <code
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
 <p>And it worked flawlessly. I was happy.</p>
 <h2 id="size-of-the-image" tabindex="-1">Size of the image</h2>
-<p>I also took a look at the image size just to see if our efforts have made any significant effect. So running <code>podman image ls</code> gives:</p>
+<p>I also took a look at the image size just to see if our efforts have made any
+significant effect. So running <code>podman image ls</code> gives:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">REPOSITORY                 TAG         IMAGE ID      CREATED            SIZE</span></span>
 <span class="line"><span style="color: #bfbdb6">localhost/rep              latest      4c129f4360a0  About an hour ago  494 MB</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
-<p>494 MB. Still OK. <s>Could have easily been in the range of 1GB if I would install Python to install the dependencies.</s> I did that too, here are some rough figures:</p>
+<p>494 MB. Still OK. <s>Could have easily been in the range of 1GB if I would
+install Python to install the dependencies.</s> I did that too, here are some
+rough figures:</p>
 <ul>
 <li>With Python and pip: 1.1 GB</li>
-<li>With Python and pip, but deleted them afterwards plus ran <code>apt autoremove</code>: ~580 MB</li>
+<li>With Python and pip, but deleted them afterwards plus ran <code>apt autoremove</code>:
+~580 MB</li>
 </ul>
 <h1 id="getting-attracted-to-alpine-again" tabindex="-1">Getting attracted to Alpine, again</h1>
 <p><strong>SPOILER: BAD IDEA AGAIN! :(</strong></p>
-<p>As I am writing this post, another idea pops up: what if, we bundle the app into an AppImage bundle, and pop it inside an Alpine container? After all, AppImage bundles, if done correctly, can run anywhere, even in the scratch container. Also we could save more storage space. The Ubuntu image still has lots of things that are of no use to my app and we could, in theory, cut on a lot of bloat.
-The general process could be:</p>
+<p>As I am writing this post, another idea pops up: what if, we bundle the app into
+an AppImage bundle, and pop it inside an Alpine container? After all, AppImage
+bundles, if done correctly, can run anywhere, even in the scratch container.
+Also we could save more storage space. The Ubuntu image still has lots of things
+that are of no use to my app and we could, in theory, cut on a lot of bloat. The
+general process could be:</p>
 <ol>
-<li>Figure out the shared libraries of the app and the Playwright-supplied Chromium binary.</li>
+<li>Figure out the shared libraries of the app and the Playwright-supplied
+Chromium binary.</li>
 <li>Create an AppImage.</li>
-<li>Pop it in the <code>scratch</code>/<code>alpine</code> image
-<s>Could be a very nice plan to do, but not now, its for another day!</s> Figured out the shared libraries using <code>ldd</code>, I made an AppImage, tried to run it on my host machine, but it failed to generate the PDFs. Maybe the Chromium binary was missing a library or two, who knows.
-Later I found a Docker image for <a href="https://hub.docker.com/r/zenika/alpine-chrome">running Chrome in Alpine</a> and thought of trying it out. But first, I checked the image size, it was 282.18 MB compressed. If I consider the compression ratio to be about as half, that, plus, my binary, the total storage space would be well over the current image size. Not worth the effort.</li>
+<li>Pop it in the <code>scratch</code>/<code>alpine</code> image <s>Could be a very nice plan to do, but
+not now, its for another day!</s> Figured out the shared libraries using <code>ldd</code>,
+I made an AppImage, tried to run it on my host machine, but it failed to
+generate the PDFs. Maybe the Chromium binary was missing a library or two,
+who knows. Later I found a Docker image for <a href="https://hub.docker.com/r/zenika/alpine-chrome">running Chrome in
+Alpine</a> and thought of trying
+it out. But first, I checked the image size, it was 282.18 MB compressed. If
+I consider the compression ratio to be about as half, that, plus, my binary,
+the total storage space would be well over the current image size. Not worth
+the effort.</li>
 </ol>
 <h1 id="ending-words" tabindex="-1">Ending Words</h1>
-<p>This was really my first time making an image, and it was a fun adventure, span over the course of a week.</p>
-<p>If you are interested about this project, <a href="https://github.com/retronav/rep">check it out here</a>.</p>
-<p>Also, here's a <a href="https://github.com/retronav/rep/blob/main/scripts/build-image.fish">direct link</a> to the script that makes the container image.</p>
-<p>[1]: ( https://www.mankier.com/1/buildah-config#--cmd ) Always read your man pages when in doubt. It helps. If it doesn't, then you might need to look up elsewhere.</p>
+<p>This was really my first time making an image, and it was a fun adventure, span
+over the course of a week.</p>
+<p>If you are interested about this project,
+<a href="https://github.com/retronav/rep">check it out here</a>.</p>
+<p>Also, here's a
+<a href="https://github.com/retronav/rep/blob/main/scripts/build-image.fish">direct link</a>
+to the script that makes the container image.</p>
+<p>[1]: ( https://www.mankier.com/1/buildah-config#--cmd ) Always read your man
+pages when in doubt. It helps. If it doesn't, then you might need to look up
+elsewhere.</p>
 
   </div>
   <footer>

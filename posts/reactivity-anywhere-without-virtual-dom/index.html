@@ -58,9 +58,20 @@
   <hr/>
   <div class="e-content">
     <h1 id="how-did-this-got-into-my-mind" tabindex="-1">How did this got into my mind??</h1>
-<p>Virtual DOM can be referenced as the thing which just &quot;introduced&quot; me to the title of this post. What if we keep aside all that diffing, state stuff, and focus on one thing: reactivity between the JavaScript and the DOM. Well, most of us are using libraries just to achieve this reactivity in our apps. But most of them implement a virtual DOM which keeps track of all the tags, states, variables, objects, and whatnot and then syncs them with the real DOM. As said, things might get a little crazy doing all this stuff. So I just decided, why not just implement a crude example of all this &quot;virtual DOM&quot; thing without virtual DOM. Is this even achievable?? The answer is (0.5 * yes)!! For the sake of this post, let us call it &quot;Reactivity Anywhere.&quot;</p>
+<p>Virtual DOM can be referenced as the thing which just &quot;introduced&quot; me to the
+title of this post. What if we keep aside all that diffing, state stuff, and
+focus on one thing: reactivity between the JavaScript and the DOM. Well, most of
+us are using libraries just to achieve this reactivity in our apps. But most of
+them implement a virtual DOM which keeps track of all the tags, states,
+variables, objects, and whatnot and then syncs them with the real DOM. As said,
+things might get a little crazy doing all this stuff. So I just decided, why not
+just implement a crude example of all this &quot;virtual DOM&quot; thing without virtual
+DOM. Is this even achievable?? The answer is (0.5 * yes)!! For the sake of this
+post, let us call it &quot;Reactivity Anywhere.&quot;</p>
 <h1 id="disclaimer" tabindex="-1">Disclaimer</h1>
-<p>This post might have things that seem vague and senseless. Also don't take things too seriously here, take them as just a thought. Reader discretion is advised.</p>
+<p>This post might have things that seem vague and senseless. Also don't take
+things too seriously here, take them as just a thought. Reader discretion is
+advised.</p>
 <h1 id="lets-start" tabindex="-1">Let's Start!!</h1>
 <h2 id="prerequisites" tabindex="-1">Prerequisites</h2>
 <ul>
@@ -68,7 +79,8 @@
 <li>JavaScript</li>
 </ul>
 <h1 id="defining-the-global-variablesprecisely-stores" tabindex="-1">Defining the global variables(precisely, stores)</h1>
-<p>To keep track of what goes here and there, we need some global variables to preserve and mutate all the states.</p>
+<p>To keep track of what goes here and there, we need some global variables to
+preserve and mutate all the states.</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> __refs__ </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> {}</span><span style="color: #BFBDB6B3">;</span></span>
 <span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> __reactives__ </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> []</span><span style="color: #BFBDB6B3">;</span></span>
 <span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> __reactiveEl__ </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> document</span><span style="color: #F29668">.</span><span style="color: #FFB454">querySelectorAll</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">&#39;[reactive]&#39;</span><span style="color: #BFBDB6">)</span><span style="color: #BFBDB6B3">;</span></span>
@@ -79,16 +91,24 @@
 <span class="line"><span style="color: #BFBDB6">  </span><span style="color: #ACB6BF8C; font-style: italic">/*Add logic*/</span></span>
 <span class="line"><span style="color: #BFBDB6">}</span><span style="color: #BFBDB6B3">;</span></span>
 <span class="line"></span></code></pre>
-<p>This is just everything we need for the logic. The variables whose names start and end with double underscores are <a href="https://github.com/facebook/react/blob/3ebf05183dfcb8eadfc41a9e19559d835fd9b77e/packages/react/index.js#L71">internals</a>.
-We will only store two things: references to the elements, and, of course, the reactive variables.</p>
+<p>This is just everything we need for the logic. The variables whose names start
+and end with double underscores are
+<a href="https://github.com/facebook/react/blob/3ebf05183dfcb8eadfc41a9e19559d835fd9b77e/packages/react/index.js#L71">internals</a>.
+We will only store two things: references to the elements, and, of course, the
+reactive variables.</p>
 <h2 id="but-this-seems-like-virtual-dom" tabindex="-1">But this seems like virtual DOM!!!</h2>
 <p>But I'm sorry, this is not the virtual DOM you think:</p>
 <ul>
-<li>We will not be diffing the whole element tree for every single change; only and only the affected element will be mutated (less carbon dioxide)</li>
+<li>We will not be diffing the whole element tree for every single change; only
+and only the affected element will be mutated (less carbon dioxide)</li>
 </ul>
 <h1 id="determining-reactive-elements" tabindex="-1">Determining <code>reactive</code> elements</h1>
-<p>To keep specificity and refrain from scanning the whole DOM, we will just handpick special elements that work with our module. So, any element that has the <code>reactive</code> attribute (<code>&lt;element reactive&gt;&lt;/element&gt;</code>), will only be able to use the special reactive powers.</p>
-<p>To access the reactive elements from the store, we will use the ES6 string interpolation syntax. So, to access the <code>count</code>, we will write</p>
+<p>To keep specificity and refrain from scanning the whole DOM, we will just
+handpick special elements that work with our module. So, any element that has
+the <code>reactive</code> attribute (<code>&lt;element reactive&gt;&lt;/element&gt;</code>), will only be able to
+use the special reactive powers.</p>
+<p>To access the reactive elements from the store, we will use the ES6 string
+interpolation syntax. So, to access the <code>count</code>, we will write</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #39BAE680">&lt;</span><span style="color: #39BAE6">h1</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">reactive</span><span style="color: #39BAE680">&gt;</span><span style="color: #BFBDB6">The time is ${count}</span><span style="color: #39BAE680">&lt;/</span><span style="color: #39BAE6">h1</span><span style="color: #39BAE680">&gt;</span></span>
 <span class="line"></span></code></pre>
 <h1 id="the-refs" tabindex="-1">The <code>__refs__</code></h1>
@@ -96,10 +116,10 @@ We will only store two things: references to the elements, and, of course, the r
 <h1 id="the-reactives" tabindex="-1">The <code>__reactives__</code></h1>
 <p>This is just an array containing live references of the DOM Elements.</p>
 <h1 id="the-reactive" tabindex="-1">The <code>reactive()</code></h1>
-<p>This function is basically a store where you'd be storing all the reactive stuff.
-The definition of the function is surprisingly simple:</p>
+<p>This function is basically a store where you'd be storing all the reactive
+stuff. The definition of the function is surprisingly simple:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">reactive</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> (</span><span style="color: #D2A6FF">obj</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> {</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #ACB6BF8C; font-style: italic">//Loop through the string</span></span>
+<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #ACB6BF8C; font-style: italic">// Loop through the string</span></span>
 <span class="line"><span style="color: #BFBDB6">  </span><span style="color: #39BAE6">Object</span><span style="color: #F29668">.</span><span style="color: #FFB454">keys</span><span style="color: #BFBDB6">(obj)</span><span style="color: #F29668">.</span><span style="color: #FFB454">forEach</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">key</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> {</span></span>
 <span class="line"><span style="color: #BFBDB6">    </span><span style="color: #ACB6BF8C; font-style: italic">// defineProperty, anyone??</span></span>
 <span class="line"><span style="color: #BFBDB6">    </span><span style="color: #ACB6BF8C; font-style: italic">// We want to maintain reactivity, so we are using custom</span></span>
@@ -125,7 +145,10 @@ The definition of the function is surprisingly simple:</p>
 <span class="line"><span style="color: #BFBDB6">}</span><span style="color: #BFBDB6B3">;</span></span>
 <span class="line"></span></code></pre>
 <h1 id="the-updatedom" tabindex="-1">The <code>__updateDOM__()</code></h1>
-<p>This is the <a href="https://en.wikipedia.org/wiki/Rosetta_(software)#:~:text=Rosetta%20is%20a%20dynamic%20binary%20translator%20developed,application%20compatibility%20layer%20between%20different%20CPU%20architectures">Rosetta</a> for the <code>reactive</code> DOM Elements and the <code>__refs__</code>. This function is also relative simple in its definition:</p>
+<p>This is the
+<a href="https://en.wikipedia.org/wiki/Rosetta_(software)#:~:text=Rosetta%20is%20a%20dynamic%20binary%20translator%20developed,application%20compatibility%20layer%20between%20different%20CPU%20architectures">Rosetta</a>
+for the <code>reactive</code> DOM Elements and the <code>__refs__</code>. This function is also
+relative simple in its definition:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #ACB6BF8C; font-style: italic">// Ref can be any key from the __refs__ store</span></span>
 <span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">__updateDOM__</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> (</span><span style="color: #D2A6FF">ref</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> {</span></span>
 <span class="line"><span style="color: #BFBDB6">  </span><span style="color: #ACB6BF8C; font-style: italic">// This is to check whether we want to update a specific ref value</span></span>
@@ -151,7 +174,8 @@ The definition of the function is surprisingly simple:</p>
 <span class="line"><span style="color: #BFBDB6">}</span><span style="color: #BFBDB6B3">;</span></span>
 <span class="line"></span></code></pre>
 <h1 id="finding-all-the-reactive-variables-and-bootstrapping-them" tabindex="-1">Finding all the reactive variables and bootstrapping them</h1>
-<p>This can be wrapped as an IIFE (Immediately Invoked Function Expression) but I don't consider doing it for the sake of simplicity. So, here we go!!</p>
+<p>This can be wrapped as an IIFE (Immediately Invoked Function Expression) but I
+don't consider doing it for the sake of simplicity. So, here we go!!</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #ACB6BF8C; font-style: italic">// Get live elements</span></span>
 <span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> __reactiveEl__ </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> document</span><span style="color: #F29668">.</span><span style="color: #FFB454">querySelectorAll</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">&#39;[reactive]&#39;</span><span style="color: #BFBDB6">)</span><span style="color: #BFBDB6B3">;</span></span>
 <span class="line"><span style="color: #BFBDB6">__reactiveEl__</span><span style="color: #F29668">.</span><span style="color: #FFB454">forEach</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">el</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> {</span></span>
@@ -179,7 +203,8 @@ The definition of the function is surprisingly simple:</p>
 <h1 id="making-input-and-textarea-work-with-reactives" tabindex="-1">Making <code>&lt;input&gt;</code> and <code>&lt;textarea&gt;</code> work with reactives</h1>
 <p>Of course, we need this if user input is needed for our code to run.</p>
 <p>The supercharged textareas and input elements will bear the <code>ref</code> attribute</p>
-<p>A lot of things, harsh things are going to be done in this section, so brace yourself and hold on tight.</p>
+<p>A lot of things, harsh things are going to be done in this section, so brace
+yourself and hold on tight.</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">parseDefaultRefValue</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> (</span><span style="color: #D2A6FF">el</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=&gt;</span><span style="color: #BFBDB6"> {</span></span>
 <span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FF8F40">let</span><span style="color: #BFBDB6"> parsed </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> </span><span style="color: #D2A6FF">null</span><span style="color: #BFBDB6B3">;</span></span>
 <span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FF8F40">try</span><span style="color: #BFBDB6"> {</span></span>
@@ -229,22 +254,28 @@ The definition of the function is surprisingly simple:</p>
 <span class="line"><span style="color: #BFBDB6">})</span><span style="color: #BFBDB6B3">;</span></span>
 <span class="line"></span></code></pre>
 <h1 id="were-almost-done" tabindex="-1">We're almost done!</h1>
-<p>Now the only thing that remains is to write some HTML to check whether everything works!
-So, here we go!!
-Some more things to note here:</p>
+<p>Now the only thing that remains is to write some HTML to check whether
+everything works! So, here we go!! Some more things to note here:</p>
 <ul>
-<li>You can use multiple stores!! However, if you redeclare a key in the latter store, it will take precedence, not the first one</li>
+<li>You can use multiple stores!! However, if you redeclare a key in the latter
+store, it will take precedence, not the first one</li>
 </ul>
 <!-- <Codepen slug="wvWbNqo" title="Reactivity Anywhere!!" result="result" height="500"/> -->
 <h1 id="why-something-like-this-would-be-great-to-use-according-to-me" tabindex="-1">Why something like this would be great to use (according to me)</h1>
 <ul>
-<li>It will allow HTML to do its work and JS to do its own. It's not like &quot;All HTML!&quot; or &quot;All JS!&quot; but harmony between the two (not to mention CSS here) that will appreciate the job these languages have to do.</li>
-<li>Minimal overhead. As I said earlier, no virtual DOM, only real DOM (credits to <a href="https://svelte.dev">Svelte</a>) with some objects in memory</li>
+<li>It will allow HTML to do its work and JS to do its own. It's not like &quot;All
+HTML!&quot; or &quot;All JS!&quot; but harmony between the two (not to mention CSS here) that
+will appreciate the job these languages have to do.</li>
+<li>Minimal overhead. As I said earlier, no virtual DOM, only real DOM (credits to
+<a href="https://svelte.dev">Svelte</a>) with some objects in memory</li>
 </ul>
 <h1 id="limitations" tabindex="-1">Limitations</h1>
-<p>You're going to think over this :) because this is just a crude implementation of an idea. So, feel free to critically think over it.</p>
+<p>You're going to think over this :) because this is just a crude implementation
+of an idea. So, feel free to critically think over it.</p>
 <h1 id="ending-notes" tabindex="-1">Ending notes</h1>
-<p>If you seem to be interested in creating some sort of framework with this, you're ready to go (some frameworks, using this idea, might even exist)! I'd also be happy to help you! Thank you for bearing with me in such a long post!</p>
+<p>If you seem to be interested in creating some sort of framework with this,
+you're ready to go (some frameworks, using this idea, might even exist)! I'd
+also be happy to help you! Thank you for bearing with me in such a long post!</p>
 
   </div>
   <footer>

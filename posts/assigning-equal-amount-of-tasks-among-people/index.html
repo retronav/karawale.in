@@ -58,12 +58,23 @@
   <hr/>
   <div class="e-content">
     <h1 id="context" tabindex="-1">Context</h1>
-<p>So I had this edge-case scenario where I was to assign tasks among the four of us for a video project. We had initially decided to take the tasks numerically, but then I thought, &quot;let's make this randomized&quot;. The tasks were equally dividable, and my team members gave in, ergo I created this little script to do the work.</p>
+<p>So I had this edge-case scenario where I was to assign tasks among the four of
+us for a video project. We had initially decided to take the tasks numerically,
+but then I thought, &quot;let's make this randomized&quot;. The tasks were equally
+dividable, and my team members gave in, ergo I created this little script to do
+the work.</p>
 <h1 id="finding-the-right-thing-to-do-the-job" tabindex="-1">Finding the right thing to do the job</h1>
-<p>Obviously, TypeScript is the first option to do this, but the interface for random numbers isn't the most pleasing one for this situation. There's also shell scripts (<code>fish</code> is my pick), but I never dealt with random numbers in the command line. So then its Python which will be used to do the job.</p>
+<p>Obviously, TypeScript is the first option to do this, but the interface for
+random numbers isn't the most pleasing one for this situation. There's also
+shell scripts (<code>fish</code> is my pick), but I never dealt with random numbers in the
+command line. So then its Python which will be used to do the job.</p>
 <h2 id="randomshuffle" tabindex="-1"><code>random.shuffle()</code></h2>
-<p>Checking <a href="https://stackoverflow.com/a/473983">this question on StackOverflow</a>, there was a function in the <code>random</code> module of Python to shuffle the lists <em>in place</em>. Phew. I thought I was going to write a bunch of more stuff for shuffling the lists and stuff 😅</p>
-<p>So the plan was clear, use this function and build code around it and get the job done.</p>
+<p>Checking <a href="https://stackoverflow.com/a/473983">this question on StackOverflow</a>,
+there was a function in the <code>random</code> module of Python to shuffle the lists <em>in
+place</em>. Phew. I thought I was going to write a bunch of more stuff for shuffling
+the lists and stuff 😅</p>
+<p>So the plan was clear, use this function and build code around it and get the
+job done.</p>
 <h1 id="the-script" tabindex="-1">The script</h1>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #FF8F40">import</span><span style="color: #BFBDB6"> random</span></span>
 <span class="line"></span>
@@ -98,9 +109,12 @@
 <span class="line"></span>
 <span class="line"></span></code></pre>
 <h2 id="on-what-would-it-wont-work" tabindex="-1">On what would it won't work?</h2>
-<p>This won't work when the tasks are not equally assignable. For instance. 8 tasks among 4 people is possible, but 7 tasks among 3 isn't. I'll probably write code for this too in the future.</p>
+<p>This won't work when the tasks are not equally assignable. For instance. 8 tasks
+among 4 people is possible, but 7 tasks among 3 isn't. I'll probably write code
+for this too in the future.</p>
 <hr>
-<p><small>The names in the snippet are a reference to an Ed Sheeran's song. Check if you can find out ;)</small></p>
+<p><small>The names in the snippet are a reference to an Ed Sheeran's song. Check
+if you can find out ;)</small></p>
 
   </div>
   <footer>
