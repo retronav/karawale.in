@@ -4,7 +4,7 @@
   <subtitle>Blog about some interesting stuff.</subtitle>
   <link href="https://karawale.in/feed.xml" rel="self"/>
   <link href="https://karawale.in/"/>
-  <updated>2022-03-27T04:27:38Z</updated>
+  <updated>2022-03-29T13:11:13Z</updated>
   <id>https://karawale.in/</id>
   <author>
     <name>Pranav Karawale</name>
@@ -960,6 +960,14 @@ elsewhere. &lt;a href=&quot;https://karawale.in/posts/making-container-image-for
       <link href="https://karawale.in/likes/65df26/"/>
       <updated>2022-03-27T04:27:38Z</updated>
       <id>https://karawale.in/likes/65df26/</id>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title>Like of https://georgefrancis.dev/writing/texture-generative-snacks/</title>
+      <link href="https://karawale.in/likes/611c12/"/>
+      <updated>2022-03-29T13:11:13Z</updated>
+      <id>https://karawale.in/likes/611c12/</id>
       <content type="html"></content>
     </entry>
 </feed>
