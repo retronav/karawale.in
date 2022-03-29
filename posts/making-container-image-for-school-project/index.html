@@ -66,7 +66,6 @@ image for my school python project using <code>podman</code>/<code>buildah</code
 use.</li>
 <li><code>buildah</code>: Used for making the container image.</li>
 <li>All scripts written in <a href="https://fishshell.com"><code>fish</code></a> unless specified.</li>
-<li></li>
 </ul>
 <h1 id="first-steps" tabindex="-1">First steps</h1>
 <p>I've had experience with Docker but I found <code>podman</code> and <code>buildah</code> to be more of
@@ -224,7 +223,7 @@ line:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">WARN[0000] cmd &quot;bash&quot; exists and will be passed to entrypoint as a parameter</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
 <p>Some more &quot;looking up&quot; and I get to know that I have not set the <code>cmd</code> key in
-the image config[1]. So I had two attempts to fix it:</p>
+the image config<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>. So I had two attempts to fix it:</p>
 <ol>
 <li><code>buildah config --cmd &quot;&quot; $id</code></li>
 <li><code>buildah config --cmd '[&quot;&quot;]' $id</code> But they didn't work. I, getting bonkers
@@ -281,9 +280,15 @@ over the course of a week.</p>
 <p>Also, here's a
 <a href="https://github.com/retronav/rep/blob/main/scripts/build-image.fish">direct link</a>
 to the script that makes the container image.</p>
-<p>[1]: ( https://www.mankier.com/1/buildah-config#--cmd ) Always read your man
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>( https://www.mankier.com/1/buildah-config#--cmd ) Always read your man
 pages when in doubt. It helps. If it doesn't, then you might need to look up
-elsewhere.</p>
+elsewhere. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 
   </div>
   <footer>

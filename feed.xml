@@ -729,7 +729,6 @@ image for my school python project using &lt;code&gt;podman&lt;/code&gt;/&lt;cod
 use.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;buildah&lt;/code&gt;: Used for making the container image.&lt;/li&gt;
 &lt;li&gt;All scripts written in &lt;a href=&quot;https://fishshell.com/&quot;&gt;&lt;code&gt;fish&lt;/code&gt;&lt;/a&gt; unless specified.&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&quot;first-steps&quot; tabindex=&quot;-1&quot;&gt;First steps&lt;/h1&gt;
 &lt;p&gt;I&#39;ve had experience with Docker but I found &lt;code&gt;podman&lt;/code&gt; and &lt;code&gt;buildah&lt;/code&gt; to be more of
@@ -887,7 +886,7 @@ line:&lt;/p&gt;
 &lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;WARN[0000] cmd &amp;quot;bash&amp;quot; exists and will be passed to entrypoint as a parameter&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Some more &amp;quot;looking up&amp;quot; and I get to know that I have not set the &lt;code&gt;cmd&lt;/code&gt; key in
-the image config[1]. So I had two attempts to fix it:&lt;/p&gt;
+the image config&lt;sup class=&quot;footnote-ref&quot;&gt;&lt;a href=&quot;https://karawale.in/posts/making-container-image-for-school-project/#fn1&quot; id=&quot;fnref1&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt;. So I had two attempts to fix it:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;buildah config --cmd &amp;quot;&amp;quot; $id&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;buildah config --cmd &#39;[&amp;quot;&amp;quot;]&#39; $id&lt;/code&gt; But they didn&#39;t work. I, getting bonkers
@@ -944,9 +943,15 @@ over the course of a week.&lt;/p&gt;
 &lt;p&gt;Also, here&#39;s a
 &lt;a href=&quot;https://github.com/retronav/rep/blob/main/scripts/build-image.fish&quot;&gt;direct link&lt;/a&gt;
 to the script that makes the container image.&lt;/p&gt;
-&lt;p&gt;[1]: ( https://www.mankier.com/1/buildah-config#--cmd ) Always read your man
+&lt;hr class=&quot;footnotes-sep&quot; /&gt;
+&lt;section class=&quot;footnotes&quot;&gt;
+&lt;ol class=&quot;footnotes-list&quot;&gt;
+&lt;li id=&quot;fn1&quot; class=&quot;footnote-item&quot;&gt;&lt;p&gt;( https://www.mankier.com/1/buildah-config#--cmd ) Always read your man
 pages when in doubt. It helps. If it doesn&#39;t, then you might need to look up
-elsewhere.&lt;/p&gt;
+elsewhere. &lt;a href=&quot;https://karawale.in/posts/making-container-image-for-school-project/#fnref1&quot; class=&quot;footnote-backref&quot;&gt;↩︎&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;
 </content>
     </entry>
     
