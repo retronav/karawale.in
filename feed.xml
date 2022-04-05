@@ -646,7 +646,7 @@ and I know it very well. The new compiler in Go unfortunately has some
 bizarre bug which would throw random errors even on files with the correct
 syntax. It was a pain to get things fixed with that.&lt;/li&gt;
 &lt;li&gt;Personal preferences. Astro, like Hugo or Eleventy, does not have
-shortcodes[1] as of now (there will be, I know it, probably I&#39;ll implement it
+shortcodes&lt;sup class=&quot;footnote-ref&quot;&gt;&lt;a href=&quot;https://karawale.in/posts/moving-to-eleventy/#fn1&quot; id=&quot;fnref1&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt; as of now (there will be, I know it, probably I&#39;ll implement it
 if I get the chance), which I absolutely like to use. I was not very pleased
 with writing JSX-esque components in my Markdown. Also my way of writing and
 structuring my personal website didn&#39;t align with the structure of a typical
@@ -675,9 +675,15 @@ sense of me betraying Astro, but I hope I&#39;ll feel better after rambling abou
 this. And, I will be writing my Projects page in Astro, because I want some
 dynamic things in it without sacrificing static HTML! There you go, yet another
 case of extensibility.&lt;/p&gt;
-&lt;p&gt;[1]: In Astro, shortcodes basically means using a component written in a
+&lt;hr class=&quot;footnotes-sep&quot; /&gt;
+&lt;section class=&quot;footnotes&quot;&gt;
+&lt;ol class=&quot;footnotes-list&quot;&gt;
+&lt;li id=&quot;fn1&quot; class=&quot;footnote-item&quot;&gt;&lt;p&gt;In Astro, shortcodes basically means using a component written in a
 framework or Astro&#39;s own templating language. I&#39;ll implement them if its in
-the plans and if I get it done correctly.&lt;/p&gt;
+the plans and if I get it done correctly. &lt;a href=&quot;https://karawale.in/posts/moving-to-eleventy/#fnref1&quot; class=&quot;footnote-backref&quot;&gt;↩︎&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;
 </content>
     </entry>
     
