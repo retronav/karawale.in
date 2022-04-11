@@ -4,7 +4,7 @@
   <subtitle>Blog about some interesting stuff.</subtitle>
   <link href="https://karawale.in/feed.xml" rel="self"/>
   <link href="https://karawale.in/"/>
-  <updated>2022-04-10T00:00:00Z</updated>
+  <updated>2022-03-29T13:11:13Z</updated>
   <id>https://karawale.in/</id>
   <author>
     <name>Pranav Karawale</name>
@@ -965,27 +965,5 @@ elsewhere. &lt;a href=&quot;https://karawale.in/posts/making-container-image-for
       <updated>2022-03-29T13:11:13Z</updated>
       <id>https://karawale.in/likes/611c12/</id>
       <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title>Assigning unequal amount of tasks among people</title>
-      <link href="https://karawale.in/posts/assigning-unequal-amount-of-tasks/"/>
-      <updated>2022-04-10T00:00:00Z</updated>
-      <id>https://karawale.in/posts/assigning-unequal-amount-of-tasks/</id>
-      <content type="html">&lt;p&gt;In a previous &lt;a href=&quot;https://karawale.in/posts/assigning-equal-amount-of-tasks-among-people&quot;&gt;post&lt;/a&gt;, we
-took a look at how we can randomly assign tasks of equal priority among some
-people. But this time, the game is now a bit harder. We have a certain number
-of tasks to assign to some people and that number is not divisible to the
-number of people.&lt;/p&gt;
-&lt;h2 id=&quot;upping-the-game&quot;&gt;Upping the game&lt;/h2&gt;
-&lt;p&gt;Well, this is not really a game, but this one was a bit harder and required
-some thinking. This time, we have&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;m number of tasks to divide among n people&lt;/li&gt;
-&lt;li&gt;m is not divisible by n&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;To design a model for this task, I&#39;ve used &lt;a href=&quot;https://excalidraw.com/&quot;&gt;Exclalidraw&lt;/a&gt; to
-whip up a drawing real quick, explaining what my plans are.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://karawale.in/posts/assigning-unequal-amount-of-tasks/TODO&quot; alt=&quot;An image&quot; /&gt;&lt;/p&gt;</content>
     </entry>
 </feed>
