@@ -65,14 +65,14 @@
   </header>
   <aside>
     <nav class="toc" >
-        <ul><li><a href="#backstory">Backstory</a></li><li><a href="#astro">Astro</a><ul><li><a href="#the-reasons-behind-the-change">The reasons behind the change</a></li></ul></li><li><a href="#back-to-eleventy">Back to Eleventy</a></li><li><a href="#the-future">The future</a></li></ul>
+        <ul><li><a href="#backstory">Backstory</a></li><li><a href="#footnote-label">Footnotes</a></li><li><a href="#astro">Astro</a><ul><li><a href="#the-reasons-behind-the-change">The reasons behind the change</a></li></ul></li><li><a href="#back-to-eleventy">Back to Eleventy</a></li><li><a href="#the-future">The future</a></li></ul>
       </nav>
   </aside>
   <hr/>
   <div class="e-content">
     <p>You read the title. I've migrated my site over to <a href="https://11ty.dev">Eleventy</a>,
 from <a href="https://astro.build">Astro</a>.</p>
-<h1 id="backstory" tabindex="-1">Backstory</h1>
+<h2 id="backstory">Backstory</h2>
 <p>First of all, I always wanted to love <a href="https://11ty.dev">Eleventy (or 11ty)</a>.
 When I discovered it (in 2020), it was love at first sight, and I wanted to
 build my site with it. But that time the project was probably in the beta stage,
@@ -83,12 +83,12 @@ probably not for me at that stage, and then moved on. Then comes
 <em>exceptionally fast</em>. There were lots of themes/templates to choose from, and I
 got my site up within a week. But there was a problem. Hugo basically had very
 little opportunities for extensibility. Being written Go, which is a compiled
-language, there was no concept of &quot;plugins&quot; for it. Everything had to be done
+language, there was no concept of "plugins" for it. Everything had to be done
 using scripting. I remember spending an afternoon to write a script to highlight
 code blocks using <a href="https://github.com/shikijs/shiki">Shiki</a>. In retrospect, it
 did get the job done, but it was still problematic. If I had went on, it'd been
-a &quot;script hell&quot; around Hugo to build my site.</p>
-<h1 id="astro" tabindex="-1">Astro</h1>
+a "script hell" around Hugo to build my site.</p>
+<h2 id="astro">Astro</h2>
 <p>Then comes Astro, which I got to know about in May of 2021. It was a very young
 project, but with a clear vision - to create static sites with on-demand
 JavaScript. I quickly got in contact with the awesome people making it, and had
@@ -113,7 +113,7 @@ my first earning from contributing to open source, of which I am very grateful
 of. But, there's a few things which were not fitting quite well with my site
 with Astro, which boils down to a few personal preferences and the beta nature
 of Astro, as I'm writing this.</p>
-<h2 id="the-reasons-behind-the-change" tabindex="-1">The reasons behind the change</h2>
+<h3 id="the-reasons-behind-the-change">The reasons behind the change</h3>
 <ol>
 <li>Beta software. Now no one here is to be blamed for this, it's always good to
 be a kind of early adopter for new software. Astro, I think, is doing things
@@ -125,7 +125,7 @@ and I know it very well. The new compiler in Go unfortunately has some
 bizarre bug which would throw random errors even on files with the correct
 syntax. It was a pain to get things fixed with that.</li>
 <li>Personal preferences. Astro, like Hugo or Eleventy, does not have
-shortcodes<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> as of now (there will be, I know it, probably I'll implement it
+shortcodes<sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref aria-describedby="footnote-label">1</a></sup> as of now (there will be, I know it, probably I'll implement it
 if I get the chance), which I absolutely like to use. I was not very pleased
 with writing JSX-esque components in my Markdown. Also my way of writing and
 structuring my personal website didn't align with the structure of a typical
@@ -134,7 +134,7 @@ Nunjucks? Boy did I missed it a lot.</li>
 <li>I like the idea of Webmentions, but I was totally not sure how to implement
 it with Astro. Maybe if someone knows it, they must create a guide for it.</li>
 </ol>
-<h1 id="back-to-eleventy" tabindex="-1">Back to Eleventy</h1>
+<h2 id="back-to-eleventy">Back to Eleventy</h2>
 <p>I was checking on Eleventy after quite a few months now, and looks like they've
 released their first stable version! Looking at this, I check out their docs,
 this time its well structured and in place, and I just couldn't resist myself
@@ -144,7 +144,7 @@ extensibility, just what I needed. And so here we are, now.</p>
 <p>With Astro, my website was still sturctured very good and was very modular, and
 that helped me migrate to Eleventy in just two days. Astro's very good, give it
 a try!</p>
-<h1 id="the-future" tabindex="-1">The future</h1>
+<h2 id="the-future">The future</h2>
 <p>So as it stands, I am sticking with Eleventy for now, regarding my website. But
 that doesn't mean it's all over for me and Astro. Astro, and its community will
 always have a special place in my heart, and I will continue working with Astro
@@ -154,16 +154,15 @@ sense of me betraying Astro, but I hope I'll feel better after rambling about
 this. And, I will be writing my Projects page in Astro, because I want some
 dynamic things in it without sacrificing static HTML! There you go, yet another
 case of extensibility.</p>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>In Astro, shortcodes basically means using a component written in a
+<section data-footnotes class="footnotes"><h3 id="footnote-label" class="sr-only">Footnotes</h3>
+<ol>
+<li id="user-content-fn-1">
+<p>In Astro, shortcodes basically means using a component written in a
 framework or Astro's own templating language. I'll implement them if its in
-the plans and if I get it done correctly. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+the plans and if I get it done correctly. <a href="#user-content-fnref-1" data-footnote-backref class="data-footnote-backref" aria-label="Back to content">↩</a></p>
 </li>
 </ol>
 </section>
-
   </div>
   <footer>
     <hr>

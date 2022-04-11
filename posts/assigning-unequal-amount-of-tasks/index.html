@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="Pranav Karawale&#39;s various things in writing."/>
+<meta name="description" content="Sequel to the previous post; this time with unequal amount of tasks for each person."/>
 
 <link rel="me" href="https://github.com/retronav"/>
 <link rel="me" href="https://tilde.zone/@pranav"/>
@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="/main.css"/>
 <title>
     
-        Note written on 20 March 2022 - Pranav Karawale
+        Assigning unequal amount of tasks among people - Pranav Karawale
     
 </title>
   </head>
@@ -38,33 +38,57 @@
 </header>
 <hr>
 <main>
-  
-<article class="note h-entry">
-    <header>
-        <time class="dt-published" datetime="2022-03-20T09:21:24Z">
-            20 March 2022</time>
-        <span class="seperator">&centerdot;</span>
-       By <div class="h-card h-card-mini p-author">
+  <article class="h-entry">
+  <header>
+    <h1 class="p-name" class="title">Assigning unequal amount of tasks among people</h1>
+    <time class="dt-published" datetime="2022-04-10T00:00:00Z">
+      10 April 2022
+    </time>
+    <span class="seperator">&centerdot;</span>
+    <span>By</span><div class="h-card h-card-mini p-author">
     <img class="u-photo" width="24" height="24" src="/img/me96.webp" alt="A close-up photo of my face.">
     <a href="/" rel="author" class="p-name u-url">
         Pranav Karawale
     </a>
 </div>
-    </header>
-    <aside>
-        
-    </aside>
-    <div class="p-content p-name">
-        <p>Testing webmentions! Send one here if you like :D</p>
-    </div>
     <br>
-    <small>
-        <data class="p-bridgy-omit-link" value="maybe"/>
-        <a class="u-url" href="/notes/2022-03-20-14-51/">permalink</a>
-    </small>
+    <span>Tagged under: </span>
+    
+      <a class="p-category" href="/tags/posts">posts</a>
+    
+      <a class="p-category" href="/tags/experiment">experiment</a>
+    
+      <a class="p-category" href="/tags/snippets">snippets</a>
+    
+      <a class="p-category" href="/tags/lua">lua</a>
+    
+  </header>
+  <aside>
+    <nav class="toc" >
+        <ul><li><a href="#upping-the-game">Upping the game</a></li></ul>
+      </nav>
+  </aside>
+  <hr/>
+  <div class="e-content">
+    <p>In a previous <a href="/posts/assigning-equal-amount-of-tasks-among-people">post</a>, we
+took a look at how we can randomly assign tasks of equal priority among some
+people. But this time, the game is now a bit harder. We have a certain number
+of tasks to assign to some people and that number is not divisible to the
+number of people.</p>
+<h2 id="upping-the-game">Upping the game</h2>
+<p>Well, this is not really a game, but this one was a bit harder and required
+some thinking. This time, we have</p>
+<ul>
+<li>m number of tasks to divide among n people</li>
+<li>m is not divisible by n</li>
+</ul>
+<p>To design a model for this task, I've used <a href="https://excalidraw.com">Exclalidraw</a> to
+whip up a drawing real quick, explaining what my plans are.</p>
+<p><img src="TODO" alt="An image"></p>
+  </div>
+  <footer>
     <hr>
-    <footer>
-        <h2>Webmentions</h2>
+    <h2>Webmentions</h2>
 <section class="webmention webmention-reactions">
     <p>
         My site uses <a href="http://indieweb.org/webmention">Webmentions</a> via the 
@@ -83,7 +107,7 @@
         <input 
             type="text"
             name="target"
-            hidden value="https://karawale.in/notes/2022-03-20-14-51/"
+            hidden value="https://karawale.in/posts/assigning-unequal-amount-of-tasks/"
         >
         <input type="submit" value="Send webmention">
     </form>
@@ -100,30 +124,9 @@
         
     
         
-            
-        
     
         
-            
-        
     
-        
-            
-                <li class="webmention-reaction">
-                    
-                        
-                    
-                    <a 
-                    aria-description="Liked by Pranav Karawale"
-                    title="Liked by Pranav Karawale"
-                    href="https://twitter.com/retronav/status/1505478317826269186#favorited-by-1404403371595898883">
-                        <img
-                        width="48" height="48" 
-                        src="https://webmention.io/avatar/pbs.twimg.com/481b60a79c98baf0870b7f36d3187292828c19cb39811d803ebdad0744584fa7.png"
-                        alt="Avatar of Pranav Karawale">
-                    </a>
-                </li>
-            
         
     
 </ul>
@@ -138,43 +141,15 @@
         
     
         
-            
-        
     
         
-            
-                <li class="webmention-reply">
-                    <article>
-                        <header>
-                            <a class="webmention-reply-author" href="">
-                                <img height="48" width="48" src="https://webmention.io/avatar/webmention.rocks/e08155b03da96cb1bdfd161ea24efdfad8d85d06afcee540ec246f1f613eb5a9.png" alt="Avatar of Webmention Rocks!">
-                            </a>
-                            <span>Webmention Rocks!</span>
-                            <br/>
-                            <small>
-                                <time datetime="2022-03-20T07:53:58-07:00">
-                                    20 March 2022, 14:53
-                                </time>
-                            </small>
-                        </header>
-                        This test verifies that you accept a Webmention request that contains a valid source and target URL. To pass this test, your Webmention endpoint must return either HTTP 200, 201 or 202 along with the appropriate headers.
-        If your endpoint returns HTTP 201, then it MUST also return a Location header. If it returns HTTP 200 or 202, then it MUST NOT include a Location header.
-                        <footer>
-                            <a href="https://webmention.rocks/receive/1/eba57559c73157fe73dc07a934424139">Source</a>
-                        </footer>
-                    </article>
-                </li>
-            
-        
     
-        
-            
         
     
 </ul>
 </section>
 <section class="webmention-replies"></section>
-    </footer>
+  </footer>
 </article>
 </main>
 <hr>

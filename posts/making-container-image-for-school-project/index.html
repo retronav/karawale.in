@@ -69,12 +69,12 @@
   </header>
   <aside>
     <nav class="toc" >
-        <ul><li><a href="#what-is-this">What is this?</a></li><li><a href="#first-steps">First steps</a><ul><li><a href="#choosing-a-base-image">Choosing a base image</a></li></ul></li><li><a href="#making-the-binary-work-in-the-container">Making the binary work in the container</a><ul><li><a href="#choosing-another-image">Choosing another image</a></li></ul></li><li><a href="#making-the-pdf-generation-work-in-the-container">Making the PDF generation work in the container</a><ul><li><a href="#installing-dependencies-the-diy-way">Installing dependencies, the DIY way</a></li><li><a href="#the-tzdata-prompt-problem">The tzdata prompt problem</a></li></ul></li><li><a href="#setting-up-the-images-public-interface">Setting up the image's public interface</a></li><li><a href="#building-the-image">Building the image</a><ul><li><a href="#running-the-image">Running the image</a></li><li><a href="#size-of-the-image">Size of the image</a></li></ul></li><li><a href="#getting-attracted-to-alpine-again">Getting attracted to Alpine, again</a></li><li><a href="#ending-words">Ending Words</a></li></ul>
+        <ul><li><a href="#what-is-this">What is this?</a></li><li><a href="#first-steps">First steps</a><ul><li><a href="#choosing-a-base-image">Choosing a base image</a></li></ul></li><li><a href="#making-the-binary-work-in-the-container">Making the binary work in the container</a><ul><li><a href="#choosing-another-image">Choosing another image</a></li></ul></li><li><a href="#making-the-pdf-generation-work-in-the-container">Making the PDF generation work in the container</a><ul><li><a href="#installing-dependencies-the-diy-way">Installing dependencies, the DIY way</a></li><li><a href="#the-tzdata-prompt-problem">The tzdata prompt problem</a></li></ul></li><li><a href="#setting-up-the-image-s-public-interface">Setting up the image's public interface</a></li><li><a href="#building-the-image">Building the image</a><ul><li><a href="#running-the-image">Running the image</a></li><li><a href="#size-of-the-image">Size of the image</a></li></ul></li><li><a href="#footnote-label">Footnotes</a></li><li><a href="#getting-attracted-to-alpine-again">Getting attracted to Alpine, again</a></li><li><a href="#ending-words">Ending Words</a></li></ul>
       </nav>
   </aside>
   <hr/>
   <div class="e-content">
-    <h1 id="what-is-this" tabindex="-1">What is this?</h1>
+    <h2 id="what-is-this">What is this?</h2>
 <p>This is a simple documentation/journal/story of me trying to create a container
 image for my school python project using <code>podman</code>/<code>buildah</code> for the first time.</p>
 <p>I used:</p>
@@ -84,17 +84,17 @@ use.</li>
 <li><code>buildah</code>: Used for making the container image.</li>
 <li>All scripts written in <a href="https://fishshell.com"><code>fish</code></a> unless specified.</li>
 </ul>
-<h1 id="first-steps" tabindex="-1">First steps</h1>
+<h2 id="first-steps">First steps</h2>
 <p>I've had experience with Docker but I found <code>podman</code> and <code>buildah</code> to be more of
 the tool I'd like to use. Especially <code>buildah</code>; the fact that I can make shell
 scripts to build container images really made it look attractive to me.
 So the first step definitely was to dig into using both the tools.</p>
-<h2 id="choosing-a-base-image" tabindex="-1">Choosing a base image</h2>
+<h3 id="choosing-a-base-image">Choosing a base image</h3>
 <p><strong>[Spoiler - Bad Idea]</strong></p>
 <p>For me, the go-to image for containers is the Alpine Linux image (due to its
 small size), but never did I knew that I will be swapping it out because the
 whole thing wouldn't even work at all!</p>
-<h1 id="making-the-binary-work-in-the-container" tabindex="-1">Making the binary work in the container</h1>
+<h2 id="making-the-binary-work-in-the-container">Making the binary work in the container</h2>
 <p>So the first steps were to try out my application binary (made using
 <code>pyinstaller</code>) in the image. So the commands to make it were:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #F07178">set</span><span style="color: #BFBDB6"> id (</span><span style="color: #F07178">buildah</span><span style="color: #BFBDB6"> from --pull alpine)</span></span>
@@ -119,14 +119,14 @@ searching, I found a
 <p>So, definitely I was clueless about what to do. So I really had two options:
 switch to another image, or not containerise. Fortunately, I picked the
 first one - choose a different image.</p>
-<h2 id="choosing-another-image" tabindex="-1">Choosing another image</h2>
+<h3 id="choosing-another-image">Choosing another image</h3>
 <p>Since the app was working well enough in my Ubuntu 20.04 LTS distro
 (WSL by the way), I decided to go for it. Checked the
-<a href="https://hub.docker.com/_/ubuntu?tab=tags&amp;page=1&amp;name=20.04">20.04 tag</a> on the
+<a href="https://hub.docker.com/_/ubuntu?tab=tags&#x26;page=1&#x26;name=20.04">20.04 tag</a> on the
 <code>ubuntu</code> image. ~76 MB uncompressed disk size, not bad. So I pulled the image,
 slapped the binary in, and tried <code>./cli --help</code>, it worked! So I was ready to
 do the next.</p>
-<h1 id="making-the-pdf-generation-work-in-the-container" tabindex="-1">Making the PDF generation work in the container</h1>
+<h2 id="making-the-pdf-generation-work-in-the-container">Making the PDF generation work in the container</h2>
 <p>My application uses <a href="https://playwright.dev/python">Playwright</a> to generate the
 report card PDFs, based on a Jinja template filled with data which can be
 sourced from different places. So if you go to the website of Playwright, throw
@@ -145,7 +145,7 @@ leave this here and instead take a look in the source code of the Playwright CLI
 searching, I landed at this
 <a href="https://github.com/microsoft/playwright/blob/eaf2507ec1322401e5fb05c976a0d2a4d1c438f9/packages/playwright-core/src/utils/nativeDeps.ts">nativeDeps.ts file</a>,
 which has a list of dependencies required for Playwright to function. Immediately realising this is an TypeScript file, an idea came to my mind. What if we just get the dependencies every time from this file when we start building out image?</p>
-<h2 id="installing-dependencies-the-diy-way" tabindex="-1">Installing dependencies, the DIY way</h2>
+<h3 id="installing-dependencies-the-diy-way">Installing dependencies, the DIY way</h3>
 <p>If we run playwright without the dependencies installed, we will get something
 like this:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">╔════════════════════════════════════════════════════════════╗</span></span>
@@ -154,18 +154,18 @@ like this:</p>
 <span class="line"><span style="color: #bfbdb6">║                                                            ║</span></span>
 <span class="line"><span style="color: #bfbdb6">║     playwright install-deps                                ║</span></span>
 <span class="line"><span style="color: #bfbdb6">║                                                            ║</span></span>
-<span class="line"><span style="color: #bfbdb6">║ &lt;3 Playwright Team                                         ║</span></span>
+<span class="line"><span style="color: #bfbdb6">║ &#x3C;3 Playwright Team                                         ║</span></span>
 <span class="line"><span style="color: #bfbdb6">╚════════════════════════════════════════════════════════════╝</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
 <p>So I hacked up a little Deno script to fetch the dependencies:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">deno eval &quot;import {deps} from &#39;https://raw.githubusercontent.com/microsoft/playwright/main/packages/playwright-core/src/utils/nativeDeps.ts&#39;; console.log(deps[&#39;ubuntu20.04&#39;][&#39;chromium&#39;].join(&#39;\n&#39;));&quot;</span></span>
+<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">deno eval "import {deps} from 'https://raw.githubusercontent.com/microsoft/playwright/main/packages/playwright-core/src/utils/nativeDeps.ts'; console.log(deps['ubuntu20.04']['chromium'].join('\n'));"</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
 <p><small>Cheeky enough, I know 😉. By the way, Deno is used because the source is
 a TypeScript file, and I wouldn't like to install several dozen packages on Node
 just to get the dependencies list.</small></p>
 <p>And tried installing that in the container but apt decided to greet me with an
 error message:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">E: Unable to locate package &lt;all-the-package-names-seperated-by-a-space&gt;</span></span>
+<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">E: Unable to locate package &#x3C;all-the-package-names-seperated-by-a-space></span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
 <p>Realising how naïve this was, I tried to look up for solutions to this. One
 <a href="https://unix.stackexchange.com/a/212214">solution that particularly stood out</a>
@@ -176,13 +176,13 @@ was somewhat like this:</p>
 So I came up with these lines to do it:</li>
 </ol>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #ACB6BF8C; font-style: italic"># Install dependencies</span></span>
-<span class="line"><span style="color: #F07178">deno</span><span style="color: #BFBDB6"> eval </span><span style="color: #AAD94C">&quot;import {deps} from &#39;https://raw.githubusercontent.com/microsoft/playwright/main/packages/playwright-core/src/utils/nativeDeps.ts&#39;; console.log(deps[&#39;ubuntu20.04&#39;][&#39;chromium&#39;].join(&#39;\n&#39;));&quot;</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">&gt;</span><span style="color: #BFBDB6"> /tmp/deps.txt</span></span>
+<span class="line"><span style="color: #F07178">deno</span><span style="color: #BFBDB6"> eval </span><span style="color: #AAD94C">"import {deps} from 'https://raw.githubusercontent.com/microsoft/playwright/main/packages/playwright-core/src/utils/nativeDeps.ts'; console.log(deps['ubuntu20.04']['chromium'].join('\n'));"</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">></span><span style="color: #BFBDB6"> /tmp/deps.txt</span></span>
 <span class="line"><span style="color: #F07178">buildah</span><span style="color: #BFBDB6"> copy $id /tmp/deps.txt /tmp</span></span>
 <span class="line"><span style="color: #F07178">buildah</span><span style="color: #BFBDB6"> run $id -- xargs -a /tmp/deps.txt apt install -y</span></span>
 <span class="line"></span></code></pre>
 <p>Which gets those packages installed, claiming ~117 MB of space in the process
 (not to shabby, at least better than the previous 319 MB).</p>
-<h2 id="the-tzdata-prompt-problem" tabindex="-1">The tzdata prompt problem</h2>
+<h3 id="the-tzdata-prompt-problem">The tzdata prompt problem</h3>
 <p>While doing the installation, I noticed a prompt popping up:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">Configuring tzdata</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span>
@@ -214,16 +214,16 @@ was another solution for it:</p>
 <p><small>Notice the $TZ. The $ was to prevent the TZ env from the host to creep
 in</small> Running this, gets the job done. No more tzdata prompt in the middle
 of an installation, yay!</p>
-<h1 id="setting-up-the-images-public-interface" tabindex="-1">Setting up the image's public interface</h1>
+<h2 id="setting-up-the-image-s-public-interface">Setting up the image's public interface</h2>
 <p>The first step was to change the working directory, since the app is being
 copied to <code>/app</code>.</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">buildah config --entrypoint &#39;[&quot;/app/cli&quot;]&#39; $id</span></span>
+<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">buildah config --entrypoint '["/app/cli"]' $id</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
 <p>After this, I commit the image and then remove the working container:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">buildah commit $id rep</span></span>
 <span class="line"><span style="color: #bfbdb6">buildah rm $id</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
-<h1 id="building-the-image" tabindex="-1">Building the image</h1>
+<h2 id="building-the-image">Building the image</h2>
 <p>After this, I thought the thing was done. So I start the process of building the
 image and leave the machine alone for some time. After the build was done, I
 tried to run the image just to see that everything is working.</p>
@@ -231,42 +231,42 @@ tried to run the image just to see that everything is working.</p>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
 <p>And I see a very, very peculiar error:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">Usage: cli [OPTIONS] COMMAND [ARGS]...</span></span>
-<span class="line"><span style="color: #bfbdb6">Try &#39;cli --help&#39; for help.</span></span>
+<span class="line"><span style="color: #bfbdb6">Try 'cli --help' for help.</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span>
-<span class="line"><span style="color: #bfbdb6">Error: No such command &#39;bash&#39;.</span></span>
+<span class="line"><span style="color: #bfbdb6">Error: No such command 'bash'.</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
 <p>But I didn't pass bash as a parameter! However, digging in the logs, I see a
 line:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">WARN[0000] cmd &quot;bash&quot; exists and will be passed to entrypoint as a parameter</span></span>
+<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">WARN[0000] cmd "bash" exists and will be passed to entrypoint as a parameter</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
-<p>Some more &quot;looking up&quot; and I get to know that I have not set the <code>cmd</code> key in
-the image config<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>. So I had two attempts to fix it:</p>
+<p>Some more "looking up" and I get to know that I have not set the <code>cmd</code> key in
+the image config<sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref aria-describedby="footnote-label">1</a></sup>. So I had two attempts to fix it:</p>
 <ol>
-<li><code>buildah config --cmd &quot;&quot; $id</code></li>
-<li><code>buildah config --cmd '[&quot;&quot;]' $id</code> But they didn't work. I, getting bonkers
+<li><code>buildah config --cmd "" $id</code></li>
+<li><code>buildah config --cmd '[""]' $id</code> But they didn't work. I, getting bonkers
 about not getting a solution, ran <code>buildah config --cmd '[]' $id</code> and it
-worked! There was no &quot;bash&quot; being passed as a parameter!</li>
+worked! There was no "bash" being passed as a parameter!</li>
 </ol>
-<h2 id="running-the-image" tabindex="-1">Running the image</h2>
+<h3 id="running-the-image">Running the image</h3>
 <p>For this one, I use this command to run it:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">podman run -it --rm -v $PWD/config:/app/config -v $PWD/out:/app/out localhost/rep</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
 <p>And it worked flawlessly. I was happy.</p>
-<h2 id="size-of-the-image" tabindex="-1">Size of the image</h2>
+<h3 id="size-of-the-image">Size of the image</h3>
 <p>I also took a look at the image size just to see if our efforts have made any
 significant effect. So running <code>podman image ls</code> gives:</p>
 <pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">REPOSITORY                 TAG         IMAGE ID      CREATED            SIZE</span></span>
 <span class="line"><span style="color: #bfbdb6">localhost/rep              latest      4c129f4360a0  About an hour ago  494 MB</span></span>
 <span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
-<p>494 MB. Still OK. <s>Could have easily been in the range of 1GB if I would
-install Python to install the dependencies.</s> I did that too, here are some
+<p>494 MB. Still OK. <del>Could have easily been in the range of 1GB if I would
+install Python to install the dependencies.</del> I did that too, here are some
 rough figures:</p>
 <ul>
 <li>With Python and pip: 1.1 GB</li>
 <li>With Python and pip, but deleted them afterwards plus ran <code>apt autoremove</code>:
 ~580 MB</li>
 </ul>
-<h1 id="getting-attracted-to-alpine-again" tabindex="-1">Getting attracted to Alpine, again</h1>
+<h2 id="getting-attracted-to-alpine-again">Getting attracted to Alpine, again</h2>
 <p><strong>SPOILER: BAD IDEA AGAIN! :(</strong></p>
 <p>As I am writing this post, another idea pops up: what if, we bundle the app into
 an AppImage bundle, and pop it inside an Alpine container? After all, AppImage
@@ -278,8 +278,8 @@ general process could be:</p>
 <li>Figure out the shared libraries of the app and the Playwright-supplied
 Chromium binary.</li>
 <li>Create an AppImage.</li>
-<li>Pop it in the <code>scratch</code>/<code>alpine</code> image <s>Could be a very nice plan to do, but
-not now, its for another day!</s> Figured out the shared libraries using <code>ldd</code>,
+<li>Pop it in the <code>scratch</code>/<code>alpine</code> image <del>Could be a very nice plan to do, but
+not now, its for another day!</del> Figured out the shared libraries using <code>ldd</code>,
 I made an AppImage, tried to run it on my host machine, but it failed to
 generate the PDFs. Maybe the Chromium binary was missing a library or two,
 who knows. Later I found a Docker image for <a href="https://hub.docker.com/r/zenika/alpine-chrome">running Chrome in
@@ -289,7 +289,7 @@ I consider the compression ratio to be about as half, that, plus, my binary,
 the total storage space would be well over the current image size. Not worth
 the effort.</li>
 </ol>
-<h1 id="ending-words" tabindex="-1">Ending Words</h1>
+<h2 id="ending-words">Ending Words</h2>
 <p>This was really my first time making an image, and it was a fun adventure, span
 over the course of a week.</p>
 <p>If you are interested about this project,
@@ -297,16 +297,15 @@ over the course of a week.</p>
 <p>Also, here's a
 <a href="https://github.com/retronav/rep/blob/main/scripts/build-image.fish">direct link</a>
 to the script that makes the container image.</p>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>( https://www.mankier.com/1/buildah-config#--cmd ) Always read your man
+<section data-footnotes class="footnotes"><h3 id="footnote-label" class="sr-only">Footnotes</h3>
+<ol>
+<li id="user-content-fn-1">
+<p>( <a href="https://www.mankier.com/1/buildah-config#--cmd">https://www.mankier.com/1/buildah-config#--cmd</a> ) Always read your man
 pages when in doubt. It helps. If it doesn't, then you might need to look up
-elsewhere. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+elsewhere. <a href="#user-content-fnref-1" data-footnote-backref class="data-footnote-backref" aria-label="Back to content">↩</a></p>
 </li>
 </ol>
 </section>
-
   </div>
   <footer>
     <hr>
