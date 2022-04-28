@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="Oneliner to replace rimraf and delete folders/files in a cross-platform way."/>
+<meta name="description" content="Sequel to the previous post; this time with unequal amount of tasks for each person."/>
 
 <link rel="me" href="https://github.com/retronav"/>
 <link rel="me" href="https://fosstodon.org/@retronav"/>
@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="/main.css"/>
 <title>
     
-        One Liner for rimraf that gets the job done - Pranav Karawale
+        Assigning unequal amount of tasks among people - Pranav Karawale
     
 </title>
   </head>
@@ -40,9 +40,9 @@
 <main>
   <article class="h-entry">
   <header>
-    <h1 class="p-name" class="title">One Liner for rimraf that gets the job done</h1>
-    <time class="dt-published" datetime="2021-07-10T00:00:00Z">
-      10 July 2021
+    <h1 class="p-name" class="title">Assigning unequal amount of tasks among people</h1>
+    <time class="dt-published" datetime="2022-04-10T00:00:00Z">
+      10 April 2022
     </time>
     <span class="seperator">&centerdot;</span>
     <span>By</span><div class="h-card h-card-mini p-author">
@@ -56,20 +56,35 @@
     
       <a class="p-category" href="/tags/posts">posts</a>
     
+      <a class="p-category" href="/tags/experiment">experiment</a>
+    
       <a class="p-category" href="/tags/snippets">snippets</a>
+    
+      <a class="p-category" href="/tags/lua">lua</a>
     
   </header>
   <aside>
-    
+    <nav class="toc" >
+        <ul><li><a href="#upping-the-game">Upping the game</a></li></ul>
+      </nav>
   </aside>
   <hr/>
   <div class="e-content">
-    <p>I have been striving to cut down on node_modules. Most of the times, I need
-rimraf to delete a folder (usually <code>public</code>/<code>dist</code>/<code>build</code>) and to keep the
-project cross platform. So, here is a one-liner to delete a folder/file:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #BFBDB6">node -e </span><span style="color: #AAD94C">"require('fs').rmSync('PATH',{recursive:true,force:true})"</span></span>
-<span class="line"></span></code></pre>
-<p>Note: Replace <code>PATH</code> by the path to the folder/file. This works the same as <code>rm -rf</code> command, but cross-platform.</p>
+    <p>In a previous <a href="/posts/assigning-equal-amount-of-tasks-among-people">post</a>, we
+took a look at how we can randomly assign tasks of equal priority among some
+people. But this time, the game is now a bit harder. We have a certain number
+of tasks to assign to some people and that number is not divisible to the
+number of people.</p>
+<h2 id="upping-the-game">Upping the game</h2>
+<p>Well, this is not really a game, but this one was a bit harder and required
+some thinking. This time, we have</p>
+<ul>
+<li>m number of tasks to divide among n people</li>
+<li>m is not divisible by n</li>
+</ul>
+<p>To design a model for this task, I've used <a href="https://excalidraw.com">Exclalidraw</a> to
+whip up a drawing real quick, explaining what my plans are.</p>
+<p><img src="TODO" alt="An image"></p>
   </div>
   <footer>
     <hr>
@@ -92,7 +107,7 @@ project cross platform. So, here is a one-liner to delete a folder/file:</p>
         <input 
             type="text"
             name="target"
-            hidden value="https://karawale.in/posts/one-liner-for-rimraf-that-gets-the-job-done/"
+            hidden value="https://karawale.in/posts/assigning-unequal-amount-of-tasks/"
         >
         <input type="submit" value="Send webmention">
     </form>
