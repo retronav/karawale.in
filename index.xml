@@ -4,7 +4,7 @@
   <subtitle>Blog about some interesting stuff.</subtitle>
   <link href="https://karawale.in/index.xml" rel="self"/>
   <link href="https://karawale.in/"/>
-  <updated>2022-04-10T00:00:00Z</updated>
+  <updated>2022-08-02T00:00:00Z</updated>
   <id>https://karawale.in/</id>
   <author>
     <name>Pranav Karawale</name>
@@ -12,25 +12,178 @@
   </author>
     
     <entry>
-      <title>Assigning unequal amount of tasks among people</title>
-      <link href="https://karawale.in/posts/assigning-unequal-amount-of-tasks/"/>
-      <updated>2022-04-10T00:00:00Z</updated>
-      <id>https://karawale.in/posts/assigning-unequal-amount-of-tasks/</id>
-      <content type="html">&lt;p&gt;In a previous &lt;a href=&quot;https://karawale.in/posts/assigning-equal-amount-of-tasks-among-people&quot;&gt;post&lt;/a&gt;, we
-took a look at how we can randomly assign tasks of equal priority among some
-people. But this time, the game is now a bit harder. We have a certain number
-of tasks to assign to some people and that number is not divisible to the
-number of people.&lt;/p&gt;
-&lt;h2 id=&quot;upping-the-game&quot;&gt;Upping the game&lt;/h2&gt;
-&lt;p&gt;Well, this is not really a game, but this one was a bit harder and required
-some thinking. This time, we have&lt;/p&gt;
+      <title>Moving from Windows to Fedora</title>
+      <link href="https://karawale.in/posts/moving-from-windows-to-fedora/"/>
+      <updated>2022-08-02T00:00:00Z</updated>
+      <id>https://karawale.in/posts/moving-from-windows-to-fedora/</id>
+      <content type="html">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+&lt;p&gt;The motives behind this was to&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Understand my system better (working with UEFI, Secure boot, etc)&lt;/li&gt;
+&lt;li&gt;Simplify my developing experience, as most of my stuff runs on &lt;del&gt;Linux&lt;/del&gt; WSL&lt;/li&gt;
+&lt;li&gt;Not send tons of telemetry to Microsoft&lt;/li&gt;
+&lt;li&gt;Make my system configurable to my liking (eg. stuff going on in r/unixporn)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;fedora-test-drive&quot;&gt;Fedora test-drive&lt;/h2&gt;
+&lt;p&gt;I downloaded the KDE spin of Fedora 36 since I had some previous memories with
+KDE distros in Virtualbox and then live-booted to it. It was exactly what I
+thought it would be but KDE was looking overwhelming and less polished (the
+defaults) to me. So I then tried out the GNOME one, Fedora 36 Workstation, and
+it was pretty much what I&#39;d like to use and be productive daily without spending
+days to customize it to my liking. GNOME simply has better UI defaults, IMO. The
+one thing I noticed was that Wi-Fi was not behaving normally. The connection
+dropped randomly, then the Wi-Fi card would disable and re-enable. I thought
+this would need work and moved on. Much much later, I found out that the builtin
+kernel drivers for Realtek Wi-Fi cards are
+&lt;a href=&quot;https://unix.stackexchange.com/questions/690485/realtek-driver-randomly-stops-working&quot;&gt;not the best ones&lt;/a&gt;
+and that I need a custom one.
+Also, no hate for KDE, I like them and their app ecosystem.&lt;/p&gt;
+&lt;h2 id=&quot;backups&quot;&gt;Backups&lt;/h2&gt;
+&lt;p&gt;Before going any further, it was necessary for me to backup my stuff. For my
+programming projects, I ran &lt;a href=&quot;https://npmjs.com/npkill&quot;&gt;&lt;code&gt;npkill&lt;/code&gt;&lt;/a&gt; to remove
+&lt;code&gt;node_modules&lt;/code&gt; which I don&#39;t need in the backup. There was also one Python
+project using &lt;code&gt;venv&lt;/code&gt; which was contributing a big chunk to the backup size. For
+that, it received the same treatment except here the &lt;code&gt;.venv&lt;/code&gt; directory was
+removed. I decided to test brotli for backups, and so ran these:&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #F07178&quot;&gt;tar&lt;/span&gt;&lt;span style=&quot;color: #BFBDB6&quot;&gt; -cvf Programming.tar Programming/&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #F07178&quot;&gt;brotli&lt;/span&gt;&lt;span style=&quot;color: #BFBDB6&quot;&gt; -j Programming.tar&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Which gives a &lt;code&gt;Programming.tar.br&lt;/code&gt; and gave decent results compression wise, I&#39;d
+say. For backing up keys, I followed a similar procedure. I created the
+following directory structure:&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;keys-backup/&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;├── gpg&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;└── ssh&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In &lt;code&gt;ssh/&lt;/code&gt;, contents of &lt;code&gt;~/.ssh&lt;/code&gt; were tossed into. For &lt;code&gt;gpg/&lt;/code&gt;, I followed
+&lt;a href=&quot;https://www.jwillikers.com/backup-and-restore-a-gpg-key&quot;&gt;this excellent guide&lt;/a&gt;
+to export my GPG keys. The resulting directory:&lt;/p&gt;
+&lt;pre class=&quot;shiki&quot; style=&quot;background-color: #0b0e14&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;keys-backup/&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;├── gpg&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;│	├── priv.asc&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;│	├── pub.asc&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;│	└── trustdb.txt&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;└── ssh&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;    ├── config&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;    ├── gh_codespaces.id_ed25519&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;    ├── gh_codespaces.id_ed25519.pub&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;    ├── github.id_ed25519&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;    ├── github.id_ed25519.pub&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;    ├── id_ed25519&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;    ├── id_ed25519.pub&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;    ├── known_hosts&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;    ├── known_hosts.old&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;    ├── srht.id_ed25519&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;    └── srht.id_ed25519.pub&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #bfbdb6&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This was then converted into a &lt;code&gt;.tar.br&lt;/code&gt; using the commands used previously.
+These &lt;code&gt;.tar.br&lt;/code&gt; files were then copied to &lt;a href=&quot;https://mega.io/&quot;&gt;MEGA&lt;/a&gt; and a flash
+drive.&lt;/p&gt;
+&lt;p&gt;For pictures and videos, I didn&#39;t really had much pictures to backup, most of
+them were screenshots that can be safely left behind; didn&#39;t need them. I had
+videos of some work that I had done in school, so they and the remaining
+pictures went into a &lt;a href=&quot;https://www.7-zip.org/&quot;&gt;7-Zip&lt;/a&gt; archive which was then
+transferred to the flash drive.&lt;/p&gt;
+&lt;h2 id=&quot;windows-recovery-drive&quot;&gt;Windows recovery drive&lt;/h2&gt;
+&lt;p&gt;I was ready to jump ship, but before that, I decided I would make a Windows
+recovery drive, &lt;em&gt;just in case&lt;/em&gt;. So I ordered
+&lt;a href=&quot;https://www.flipkart.com/sandisk-ultra-flair-usb-3-0-32-gb-pen-drive/p/itmcf7d79b775c99&quot;&gt;this flash drive&lt;/a&gt;
+and in the mean time, read up on other things regarding installing Fedora.
+After it came, I immediately created a Windows recovery drive on it. It took
+almost 16 gigabytes of space and took almost 3 hours to complete. If the
+recovery drive isn&#39;t used for a long period of time, I will eventually
+clean it and start using it for normal usage.&lt;/p&gt;
+&lt;h2 id=&quot;decisions-to-be-made&quot;&gt;Decisions to be made&lt;/h2&gt;
+&lt;h3 id=&quot;luks&quot;&gt;LUKS&lt;/h3&gt;
+&lt;p&gt;This was a no-brainer, I previously used
+&lt;a href=&quot;https://en.wikipedia.org/wiki/BitLocker&quot;&gt;Bitlocker&lt;/a&gt; with the TPM chip which
+came with in my laptop. I also figured out
+&lt;a href=&quot;https://docs.fedoraproject.org/en-US/quick-docs/encrypting-drives-using-LUKS/&quot;&gt;Fedora supports LUKS&lt;/a&gt;
+and decided to configure it during the installation.&lt;/p&gt;
+&lt;h3 id=&quot;secure-boot&quot;&gt;Secure Boot&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;To secure boot, or not to secure boot, that is the question.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;From previous sections, it was clear that I needed to install a custom driver,
+and also read that it&#39;d be a little different procedure to install it. To do
+this on a secure boot enabled system, you can either&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Don&#39;t secure boot and install the driver&lt;/li&gt;
+&lt;li&gt;Enroll your own keys in the MOK and sign the driver before installing it&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.fsf.org/campaigns/campaigns/secure-boot-vs-restricted-boot&quot;&gt;Some sources&lt;/a&gt;
+convey that Secure Boot might be one of Microsoft&#39;s shenanigans, while
+&lt;a href=&quot;https://superuser.com/a/1368702&quot;&gt;some&lt;/a&gt; suggest legitimate reasons to use it. So turning
+to Fedora, its said
+&lt;a href=&quot;https://docs.fedoraproject.org/en-US/fedora/latest/system-administrators-guide/kernel-module-driver-configuration/Working_with_the_GRUB_2_Boot_Loader/#sec-UEFI_Secure_Boot_Support_in_Fedora&quot;&gt;in the docs&lt;/a&gt;
+that it supports Secure boot, so time to go ahead. Also,
+&lt;a href=&quot;https://github.com/tomaspinho/rtl8821ce/issues/280&quot;&gt;one of the &quot;issues&quot;&lt;/a&gt;
+posted on a &lt;a href=&quot;https://github.com/tomaspinho/rtl8821ce&quot;&gt;custom Realtek Wi-Fi driver&lt;/a&gt;
+I was eyeing, they claimed the driver can be installed on Secure Boot and also
+kindly offered advice on how to install it. This all boils down to one
+conclusion: not bad at all to install with Secure Boot enabled.&lt;/p&gt;
+&lt;h3 id=&quot;dual-booting&quot;&gt;Dual booting&lt;/h3&gt;
+&lt;p&gt;No. I wanted my full drive for Fedora.&lt;/p&gt;
+&lt;h2 id=&quot;installing-fedora&quot;&gt;Installing Fedora&lt;/h2&gt;
+&lt;p&gt;The Fedora Workstation image I previously live-booted from will be the one from
+which I can install Fedora. This image was stored in an old Transcend 4GB
+JetFlash-400 flash drive which was chilling in dust. For HP laptops, I had to
+spam F9 during the boot process to interrupt it and choose a boot device. This
+is not similar to changing the boot device order since that changes it
+permanently while this is only for the current boot. Nevertheless, I booted to
+Fedora successfully and then proceeded with the installation process.&lt;/p&gt;
+&lt;p&gt;Before proceeding with the install,
+&lt;a href=&quot;https://fosstodon.org/web/@retronav/108742362070065915&quot;&gt;I asked&lt;/a&gt;
+folks on the Fediverse if they had some words of advice for me. And they
+&lt;a href=&quot;https://fosstodon.org/@mxu/108742493483156516&quot;&gt;didn&#39;t&lt;/a&gt;
+&lt;a href=&quot;https://fosstodon.org/@benjaminhollon/108742861835203831&quot;&gt;let&lt;/a&gt;
+&lt;a href=&quot;https://fosstodon.org/@allinone0/108743085063947317&quot;&gt;me&lt;/a&gt;
+down.&lt;/p&gt;
+&lt;p&gt;Most of what I did is shown in this
+&lt;a href=&quot;https://yewtu.be/watch?v=vNX764kURb8&quot;&gt;excellent tutorial&lt;/a&gt; by Adam Turner, with
+a little bit of difference in some steps. I also chose &quot;Custom Storage
+Configuration&quot; like Adam does in the video. Since I had a bit of exposure to
+data partitions, I made no mistake in yeeting the Windows partitions and
+installing a brtfs layout on the whole SSD. There was also an option to encrypt
+my drive with LUKS, which I did. With that, it had correctly identified my
+keyboard layout and time zone, so was time to begin the installtion. It hardly
+took 10 minutes, and after that I was straight into my laptop running Fedora. As
+someone who has hardly had exposure to devices running Linux distros bare-metal
+IRL, this was unbelieveable for me! Yay!&lt;/p&gt;
+&lt;h2 id=&quot;wi-fi&quot;&gt;Wi-Fi&lt;/h2&gt;
+&lt;p&gt;As I was vibing with my new Fedora installation, curiously checking out the
+built-in apps, browsing the internet on Firefox. Ah yes, the point where it all
+was meant to break. The builtin driver started its usual shenanigans and I was
+no longer able to even ping a domain.&lt;/p&gt;
+&lt;h3 id=&quot;installing-a-custom-driver&quot;&gt;Installing a custom driver&lt;/h3&gt;
+&lt;p&gt;I had came across lwfinger&#39;s excellent
+&lt;a href=&quot;https://github.com/lwfinger/rtw88&quot;&gt;Wi-Fi driver&lt;/a&gt; meant for rtw88 Realtek
+network cards. Technically my network card also falls under rtw88, so I decided
+to try this one, maybe it will fix the issues I was having. So I followed the
+steps for Secure Boot systems given in the README and then rebooted. I confirmed
+the driver was active but alas, the problems persisted. I then decided to
+uninstall this driver, and this is where I messed up. I&#39;m not sure where it went
+wrong, but now I couldn&#39;t figure out what to do.&lt;/p&gt;
+&lt;h3 id=&quot;installing-the-other-custom-driver&quot;&gt;Installing the other custom driver&lt;/h3&gt;
+&lt;p&gt;Since I had not upgraded the kernel, this was the perfect chance to fix this.
+After upgrading the kernel, I then installed Tomás Pinho&#39;s driver which is
+specifically made for Realtek RTL8821CE network card. Following the instructions
+given in the README, I was able to install this driver. Minor differences in the
+process installation were:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;m number of tasks to divide among n people&lt;/li&gt;
-&lt;li&gt;m is not divisible by n&lt;/li&gt;
+&lt;li&gt;Installing &lt;code&gt;kernel-devel&lt;/code&gt; along with &lt;code&gt;kernel-headers&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Following the &lt;a href=&quot;https://github.com/tomaspinho/rtl8821ce/issues/280&quot;&gt;GitHub issue instructing how to sign the module&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;To design a model for this task, I&#39;ve used &lt;a href=&quot;https://excalidraw.com/&quot;&gt;Exclalidraw&lt;/a&gt; to
-whip up a drawing real quick, explaining what my plans are.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://karawale.in/posts/assigning-unequal-amount-of-tasks/TODO&quot; alt=&quot;An image&quot; /&gt;&lt;/p&gt;</content>
+&lt;p&gt;I shut down the laptop, came back after some time, and booted it, hoping this
+one will solve the issue. And it did! Wi-Fi back to normal, I could now browse
+the Internet, run updates, do stuff. Life back to normal.&lt;/p&gt;
+&lt;h2 id=&quot;more-things-i-did-to-make-stuff-work&quot;&gt;More things I did to make stuff work&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Firefox was not playing videos. From the solutions mentioned on
+&lt;a href=&quot;https://unix.stackexchange.com/q/690359&quot;&gt;this page&lt;/a&gt;, installing &lt;code&gt;ffmpeg&lt;/code&gt;
+did the trick.&lt;/li&gt;
+&lt;li&gt;Bring back the
+&lt;a href=&quot;https://extensions.gnome.org/extension/615/appindicator-support/&quot;&gt;system tray&lt;/a&gt;
+in the top bar.&lt;/li&gt;
+&lt;/ul&gt;</content>
     </entry>
     
     <entry>

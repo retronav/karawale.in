@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="An entry discussing the things I did to migrate my laptop from Windows 11 to Fedora.
+"/>
+
+<link rel="me" href="https://github.com/retronav"/>
+<link rel="me" href="https://fosstodon.org/@retronav"/>
+
+
+    <link rel="webmention" href="https://webmention.io/karawale.in/webmention"/>
+
+
+
+    <link rel="pingback" href="https://webmention.io/karawale.in/xmlrpc"/>
+
+        <link rel="preload" as="font" type="font/woff2" href="fonts/cabin-latin-variable-wghtOnly-normal.woff2" crossorigin="anonymous">
+        <link rel="preload" as="font" type="font/woff2" href="fonts/victor-mono-latin.woff2" crossorigin="anonymous"><meta name="generator" content="Eleventy"/>
+
+<link rel="shortcut icon" href="/favicon.png" type="image/png">
+<link rel="stylesheet" href="/main.css"/>
+<title>
+    
+        Moving from Windows to Fedora - Pranav Karawale
+    
+</title>
+
+  </head>
+  <body>
+    
+<header>
+    <img src="/logo96.webp" height="48" width="48" alt="">
+    <br/>
+    <div class="h-card">
+        <a class="u-url p-name" href="/">Pranav Karawale</a>
+    </div>
+</header>
+<hr>
+<main>
+  <article class="h-entry">
+  <header>
+    <h1 class="p-name" class="title">Moving from Windows to Fedora</h1>
+    <time class="dt-published" datetime="2022-08-02T00:00:00Z">
+      02 August 2022
+    </time>
+    <span class="seperator">&centerdot;</span>
+    <span>By</span><div class="h-card h-card-mini p-author">
+    <img class="u-photo" width="24" height="24" src="/img/me96.webp" alt="A close-up photo of my face.">
+    <a href="/" rel="author" class="p-name u-url">
+        Pranav Karawale
+    </a>
+</div>
+    <br>
+    
+    
+      
+    
+  </header>
+  <aside>
+    <nav class="toc" >
+        <ul><li><a href="#motivation">Motivation</a></li><li><a href="#fedora-test-drive">Fedora test-drive</a></li><li><a href="#backups">Backups</a></li><li><a href="#windows-recovery-drive">Windows recovery drive</a></li><li><a href="#decisions-to-be-made">Decisions to be made</a><ul><li><a href="#luks">LUKS</a></li><li><a href="#secure-boot">Secure Boot</a></li><li><a href="#dual-booting">Dual booting</a></li></ul></li><li><a href="#installing-fedora">Installing Fedora</a></li><li><a href="#wi-fi">Wi-Fi</a><ul><li><a href="#installing-a-custom-driver">Installing a custom driver</a></li><li><a href="#installing-the-other-custom-driver">Installing the other custom driver</a></li></ul></li><li><a href="#more-things-i-did-to-make-stuff-work">More things I did to make stuff work</a></li></ul>
+      </nav>
+  </aside>
+  <hr/>
+  <div class="e-content">
+    <h2 id="motivation">Motivation</h2>
+<p>The motives behind this was to</p>
+<ol>
+<li>Understand my system better (working with UEFI, Secure boot, etc)</li>
+<li>Simplify my developing experience, as most of my stuff runs on <del>Linux</del> WSL</li>
+<li>Not send tons of telemetry to Microsoft</li>
+<li>Make my system configurable to my liking (eg. stuff going on in r/unixporn)</li>
+</ol>
+<h2 id="fedora-test-drive">Fedora test-drive</h2>
+<p>I downloaded the KDE spin of Fedora 36 since I had some previous memories with
+KDE distros in Virtualbox and then live-booted to it. It was exactly what I
+thought it would be but KDE was looking overwhelming and less polished (the
+defaults) to me. So I then tried out the GNOME one, Fedora 36 Workstation, and
+it was pretty much what I'd like to use and be productive daily without spending
+days to customize it to my liking. GNOME simply has better UI defaults, IMO. The
+one thing I noticed was that Wi-Fi was not behaving normally. The connection
+dropped randomly, then the Wi-Fi card would disable and re-enable. I thought
+this would need work and moved on. Much much later, I found out that the builtin
+kernel drivers for Realtek Wi-Fi cards are
+<a href="https://unix.stackexchange.com/questions/690485/realtek-driver-randomly-stops-working">not the best ones</a>
+and that I need a custom one.
+Also, no hate for KDE, I like them and their app ecosystem.</p>
+<h2 id="backups">Backups</h2>
+<p>Before going any further, it was necessary for me to backup my stuff. For my
+programming projects, I ran <a href="https://npmjs.com/npkill"><code>npkill</code></a> to remove
+<code>node_modules</code> which I don't need in the backup. There was also one Python
+project using <code>venv</code> which was contributing a big chunk to the backup size. For
+that, it received the same treatment except here the <code>.venv</code> directory was
+removed. I decided to test brotli for backups, and so ran these:</p>
+<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #F07178">tar</span><span style="color: #BFBDB6"> -cvf Programming.tar Programming/</span></span>
+<span class="line"><span style="color: #F07178">brotli</span><span style="color: #BFBDB6"> -j Programming.tar</span></span>
+<span class="line"></span></code></pre>
+<p>Which gives a <code>Programming.tar.br</code> and gave decent results compression wise, I'd
+say. For backing up keys, I followed a similar procedure. I created the
+following directory structure:</p>
+<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">keys-backup/</span></span>
+<span class="line"><span style="color: #bfbdb6">├── gpg</span></span>
+<span class="line"><span style="color: #bfbdb6">└── ssh</span></span>
+<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<p>In <code>ssh/</code>, contents of <code>~/.ssh</code> were tossed into. For <code>gpg/</code>, I followed
+<a href="https://www.jwillikers.com/backup-and-restore-a-gpg-key">this excellent guide</a>
+to export my GPG keys. The resulting directory:</p>
+<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">keys-backup/</span></span>
+<span class="line"><span style="color: #bfbdb6">├── gpg</span></span>
+<span class="line"><span style="color: #bfbdb6">│	├── priv.asc</span></span>
+<span class="line"><span style="color: #bfbdb6">│	├── pub.asc</span></span>
+<span class="line"><span style="color: #bfbdb6">│	└── trustdb.txt</span></span>
+<span class="line"><span style="color: #bfbdb6">└── ssh</span></span>
+<span class="line"><span style="color: #bfbdb6">    ├── config</span></span>
+<span class="line"><span style="color: #bfbdb6">    ├── gh_codespaces.id_ed25519</span></span>
+<span class="line"><span style="color: #bfbdb6">    ├── gh_codespaces.id_ed25519.pub</span></span>
+<span class="line"><span style="color: #bfbdb6">    ├── github.id_ed25519</span></span>
+<span class="line"><span style="color: #bfbdb6">    ├── github.id_ed25519.pub</span></span>
+<span class="line"><span style="color: #bfbdb6">    ├── id_ed25519</span></span>
+<span class="line"><span style="color: #bfbdb6">    ├── id_ed25519.pub</span></span>
+<span class="line"><span style="color: #bfbdb6">    ├── known_hosts</span></span>
+<span class="line"><span style="color: #bfbdb6">    ├── known_hosts.old</span></span>
+<span class="line"><span style="color: #bfbdb6">    ├── srht.id_ed25519</span></span>
+<span class="line"><span style="color: #bfbdb6">    └── srht.id_ed25519.pub</span></span>
+<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<p>This was then converted into a <code>.tar.br</code> using the commands used previously.
+These <code>.tar.br</code> files were then copied to <a href="https://mega.io">MEGA</a> and a flash
+drive.</p>
+<p>For pictures and videos, I didn't really had much pictures to backup, most of
+them were screenshots that can be safely left behind; didn't need them. I had
+videos of some work that I had done in school, so they and the remaining
+pictures went into a <a href="https://www.7-zip.org/">7-Zip</a> archive which was then
+transferred to the flash drive.</p>
+<h2 id="windows-recovery-drive">Windows recovery drive</h2>
+<p>I was ready to jump ship, but before that, I decided I would make a Windows
+recovery drive, <em>just in case</em>. So I ordered
+<a href="https://www.flipkart.com/sandisk-ultra-flair-usb-3-0-32-gb-pen-drive/p/itmcf7d79b775c99">this flash drive</a>
+and in the mean time, read up on other things regarding installing Fedora.
+After it came, I immediately created a Windows recovery drive on it. It took
+almost 16 gigabytes of space and took almost 3 hours to complete. If the
+recovery drive isn't used for a long period of time, I will eventually
+clean it and start using it for normal usage.</p>
+<h2 id="decisions-to-be-made">Decisions to be made</h2>
+<h3 id="luks">LUKS</h3>
+<p>This was a no-brainer, I previously used
+<a href="https://en.wikipedia.org/wiki/BitLocker">Bitlocker</a> with the TPM chip which
+came with in my laptop. I also figured out
+<a href="https://docs.fedoraproject.org/en-US/quick-docs/encrypting-drives-using-LUKS/">Fedora supports LUKS</a>
+and decided to configure it during the installation.</p>
+<h3 id="secure-boot">Secure Boot</h3>
+<p><em>To secure boot, or not to secure boot, that is the question.</em></p>
+<p>From previous sections, it was clear that I needed to install a custom driver,
+and also read that it'd be a little different procedure to install it. To do
+this on a secure boot enabled system, you can either</p>
+<ol>
+<li>Don't secure boot and install the driver</li>
+<li>Enroll your own keys in the MOK and sign the driver before installing it</li>
+</ol>
+<p><a href="https://www.fsf.org/campaigns/campaigns/secure-boot-vs-restricted-boot">Some sources</a>
+convey that Secure Boot might be one of Microsoft's shenanigans, while
+<a href="https://superuser.com/a/1368702">some</a> suggest legitimate reasons to use it. So turning
+to Fedora, its said
+<a href="https://docs.fedoraproject.org/en-US/fedora/latest/system-administrators-guide/kernel-module-driver-configuration/Working_with_the_GRUB_2_Boot_Loader/#sec-UEFI_Secure_Boot_Support_in_Fedora">in the docs</a>
+that it supports Secure boot, so time to go ahead. Also,
+<a href="https://github.com/tomaspinho/rtl8821ce/issues/280">one of the "issues"</a>
+posted on a <a href="https://github.com/tomaspinho/rtl8821ce">custom Realtek Wi-Fi driver</a>
+I was eyeing, they claimed the driver can be installed on Secure Boot and also
+kindly offered advice on how to install it. This all boils down to one
+conclusion: not bad at all to install with Secure Boot enabled.</p>
+<h3 id="dual-booting">Dual booting</h3>
+<p>No. I wanted my full drive for Fedora.</p>
+<h2 id="installing-fedora">Installing Fedora</h2>
+<p>The Fedora Workstation image I previously live-booted from will be the one from
+which I can install Fedora. This image was stored in an old Transcend 4GB
+JetFlash-400 flash drive which was chilling in dust. For HP laptops, I had to
+spam F9 during the boot process to interrupt it and choose a boot device. This
+is not similar to changing the boot device order since that changes it
+permanently while this is only for the current boot. Nevertheless, I booted to
+Fedora successfully and then proceeded with the installation process.</p>
+<p>Before proceeding with the install,
+<a href="https://fosstodon.org/web/@retronav/108742362070065915">I asked</a>
+folks on the Fediverse if they had some words of advice for me. And they
+<a href="https://fosstodon.org/@mxu/108742493483156516">didn't</a>
+<a href="https://fosstodon.org/@benjaminhollon/108742861835203831">let</a>
+<a href="https://fosstodon.org/@allinone0/108743085063947317">me</a>
+down.</p>
+<p>Most of what I did is shown in this
+<a href="https://yewtu.be/watch?v=vNX764kURb8">excellent tutorial</a> by Adam Turner, with
+a little bit of difference in some steps. I also chose "Custom Storage
+Configuration" like Adam does in the video. Since I had a bit of exposure to
+data partitions, I made no mistake in yeeting the Windows partitions and
+installing a brtfs layout on the whole SSD. There was also an option to encrypt
+my drive with LUKS, which I did. With that, it had correctly identified my
+keyboard layout and time zone, so was time to begin the installtion. It hardly
+took 10 minutes, and after that I was straight into my laptop running Fedora. As
+someone who has hardly had exposure to devices running Linux distros bare-metal
+IRL, this was unbelieveable for me! Yay!</p>
+<h2 id="wi-fi">Wi-Fi</h2>
+<p>As I was vibing with my new Fedora installation, curiously checking out the
+built-in apps, browsing the internet on Firefox. Ah yes, the point where it all
+was meant to break. The builtin driver started its usual shenanigans and I was
+no longer able to even ping a domain.</p>
+<h3 id="installing-a-custom-driver">Installing a custom driver</h3>
+<p>I had came across lwfinger's excellent
+<a href="https://github.com/lwfinger/rtw88">Wi-Fi driver</a> meant for rtw88 Realtek
+network cards. Technically my network card also falls under rtw88, so I decided
+to try this one, maybe it will fix the issues I was having. So I followed the
+steps for Secure Boot systems given in the README and then rebooted. I confirmed
+the driver was active but alas, the problems persisted. I then decided to
+uninstall this driver, and this is where I messed up. I'm not sure where it went
+wrong, but now I couldn't figure out what to do.</p>
+<h3 id="installing-the-other-custom-driver">Installing the other custom driver</h3>
+<p>Since I had not upgraded the kernel, this was the perfect chance to fix this.
+After upgrading the kernel, I then installed Tomás Pinho's driver which is
+specifically made for Realtek RTL8821CE network card. Following the instructions
+given in the README, I was able to install this driver. Minor differences in the
+process installation were:</p>
+<ul>
+<li>Installing <code>kernel-devel</code> along with <code>kernel-headers</code></li>
+<li>Following the <a href="https://github.com/tomaspinho/rtl8821ce/issues/280">GitHub issue instructing how to sign the module</a></li>
+</ul>
+<p>I shut down the laptop, came back after some time, and booted it, hoping this
+one will solve the issue. And it did! Wi-Fi back to normal, I could now browse
+the Internet, run updates, do stuff. Life back to normal.</p>
+<h2 id="more-things-i-did-to-make-stuff-work">More things I did to make stuff work</h2>
+<ul>
+<li>Firefox was not playing videos. From the solutions mentioned on
+<a href="https://unix.stackexchange.com/q/690359">this page</a>, installing <code>ffmpeg</code>
+did the trick.</li>
+<li>Bring back the
+<a href="https://extensions.gnome.org/extension/615/appindicator-support/">system tray</a>
+in the top bar.</li>
+</ul>
+  </div>
+  <footer>
+    <hr>
+    <h2>Webmentions</h2>
+<section class="webmention webmention-reactions">
+    <p>
+        My site uses <a href="http://indieweb.org/webmention">Webmentions</a> via the 
+        <a href="https://indieweb.org">Indieweb</a>
+        and <a href="https://webmention.io">webmention.io</a> 
+        for likes, reposts, and replies/comments.
+    </p>
+    <form class="send-webmention" action="https://webmention.io/karawale.in/webmention" method="post">
+        <label for="webmention-form-input">
+             URL of your webmention
+        </label>
+        <input 
+            id="webmention-form-input"
+            name="source" type="url" 
+            required placeholder="https://example.com/">
+        <input 
+            type="text"
+            name="target"
+            hidden value="https://karawale.in/posts/moving-from-windows-to-fedora/"
+        >
+        <input type="submit" value="Send webmention">
+    </form>
+    <details>
+        <summary>
+            Likes and reposts
+        </summary>
+        <ul class="webmention-reactions">
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+</ul>
+    </details>
+    <h3>Replies</h3>
+    <ul class="webmention-reactions">
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+</ul>
+</section>
+<section class="webmention-replies"></section>
+  </footer>
+</article>
+</main>
+<hr>
+<footer>
+  <nav>
+    <dl>
+      
+        <dt>Main</dt>
+        <dd>
+          <ul>
+            
+              <li>
+                <a href="/">Home</a>
+              </li>
+            
+              <li>
+                <a href="/contact">Contact</a>
+              </li>
+            
+              <li>
+                <a href="/projects">Projects</a>
+              </li>
+            
+              <li>
+                <a href="/feed.xml">RSS</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>Writings</dt>
+        <dd>
+          <ul>
+            
+              <li>
+                <a href="/posts">Blog</a>
+              </li>
+            
+              <li>
+                <a href="/notes">Notes</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>Links</dt>
+        <dd>
+          <ul>
+            
+              <li>
+                <a href="https://sr.ht/~retronav">Sourcehut</a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/retronav">GitHub</a>
+              </li>
+            
+              <li>
+                <a href="https://www.linkedin.com/in/pranav-karawale">LinkedIn</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  </nav>
+</footer>
+  </body>
+</html>
