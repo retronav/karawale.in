@@ -1,122 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Pranav Karawale&#39;s blog</title>
-  <subtitle>Posts about some interesting stuff from Pranav Karawale&#39;s blog.</subtitle>
-  <link href="https://karawale.in/feeds/posts.xml" rel="self"/>
-  <link href="https://karawale.in/"/>
-  <generator uri="https://11ty.dev" version="2.0.0">
-    Eleventy v2.0.0
-  </generator>
-  <updated>2022-08-05T00:00:00Z</updated>
-  <id>https://karawale.in/</id>
-  <author>
-    <name>Pranav Karawale</name>
-    <email>pranav@karawale.in</email>
-  </author>
-  <category term="technology" />
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-      <entry>
-        <title>Moving from Windows to Fedora</title>
-        <link href="https://karawale.in/posts/moving-from-windows-to-fedora/"/>
-        <updated>
-          
-            2022-08-05T00:00:00Z
-          
-        </updated>
-        <id>https://karawale.in/posts/moving-from-windows-to-fedora/</id>
-        <content type="html">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>Pranav Karawale&#39;s blog</title><subtitle>Posts about some interesting stuff from Pranav Karawale&#39;s blog.</subtitle><link href="https://karawale.in/feeds/posts.xml" rel="self"/><link href="https://karawale.in/"/><generator uri="https://11ty.dev" version="2.0.0">Eleventy v2.0.0</generator><updated>2022-08-05T00:00:00Z</updated><id>https://karawale.in/</id><author><name>Pranav Karawale</name><email>pranav@karawale.in</email></author><rights>© CC BY-NC-SA 4.0 2020-2022 Pranav Karawale</rights><category term="technology"/><entry><title>Moving from Windows to Fedora</title><link href="https://karawale.in/posts/moving-from-windows-to-fedora/"/><updated>2022-08-05T00:00:00Z</updated><id>https://karawale.in/posts/moving-from-windows-to-fedora/</id><content type="html">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
 &lt;p&gt;The motives behind this was to&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Understand my system better (working with UEFI, Secure boot, etc)&lt;/li&gt;
@@ -296,22 +178,7 @@ via modprobe to make headset mic working again.&lt;/li&gt;
 &lt;li&gt;For some reason OBS outputs poor recordings when using the &lt;code&gt;FFMPEG VAAPI&lt;/code&gt;
 encoder, so to make it print better, albeit more huge recordings, use CQP
 for &quot;Rate Control&quot; with QP=30 (works fine enough for my use case).&lt;/li&gt;
-&lt;/ul&gt;</content>
-      </entry>
-    
-  
-    
-    
-      <entry>
-        <title>Assigning unequal amount of tasks among people</title>
-        <link href="https://karawale.in/posts/assigning-unequal-amount-of-tasks/"/>
-        <updated>
-          
-            2022-04-10T00:00:00Z
-          
-        </updated>
-        <id>https://karawale.in/posts/assigning-unequal-amount-of-tasks/</id>
-        <content type="html">&lt;p&gt;In a previous &lt;a href=&quot;https://karawale.in/posts/assigning-equal-amount-of-tasks-among-people&quot;&gt;post&lt;/a&gt;, we
+&lt;/ul&gt;</content></entry><entry><title>Assigning unequal amount of tasks among people</title><link href="https://karawale.in/posts/assigning-unequal-amount-of-tasks/"/><updated>2022-04-10T00:00:00Z</updated><id>https://karawale.in/posts/assigning-unequal-amount-of-tasks/</id><content type="html">&lt;p&gt;In a previous &lt;a href=&quot;https://karawale.in/posts/assigning-equal-amount-of-tasks-among-people&quot;&gt;post&lt;/a&gt;, we
 took a look at how we can randomly assign tasks of equal priority among some
 people. But this time, the game is now a bit harder. We have a certain number
 of tasks to assign to some people and that number is not divisible to the
@@ -325,28 +192,7 @@ some thinking. This time, we have&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;To design a model for this task, I&#39;ve used &lt;a href=&quot;https://excalidraw.com/&quot;&gt;Exclalidraw&lt;/a&gt; to
 whip up a drawing real quick, explaining what my plans are.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://karawale.in/posts/assigning-unequal-amount-of-tasks/TODO&quot; alt=&quot;An image&quot; /&gt;&lt;/p&gt;</content>
-      </entry>
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-      <entry>
-        <title>Making a container image for my school python project</title>
-        <link href="https://karawale.in/posts/making-container-image-for-school-project/"/>
-        <updated>
-          
-            2022-03-23T00:00:00Z
-          
-        </updated>
-        <id>https://karawale.in/posts/making-container-image-for-school-project/</id>
-        <content type="html">&lt;h2 id=&quot;what-is-this&quot;&gt;What is this?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://karawale.in/posts/assigning-unequal-amount-of-tasks/TODO&quot; alt=&quot;An image&quot; /&gt;&lt;/p&gt;</content></entry><entry><title>Making a container image for my school python project</title><link href="https://karawale.in/posts/making-container-image-for-school-project/"/><updated>2022-03-23T00:00:00Z</updated><id>https://karawale.in/posts/making-container-image-for-school-project/</id><content type="html">&lt;h2 id=&quot;what-is-this&quot;&gt;What is this?&lt;/h2&gt;
 &lt;p&gt;This is a simple documentation/journal/story of me trying to create a container
 image for my school python project using &lt;code&gt;podman&lt;/code&gt;/&lt;code&gt;buildah&lt;/code&gt; for the first time.&lt;/p&gt;
 &lt;p&gt;I used:&lt;/p&gt;
@@ -577,28 +423,7 @@ pages when in doubt. It helps. If it doesn&#39;t, then you might need to look up
 elsewhere. &lt;a href=&quot;https://karawale.in/posts/making-container-image-for-school-project/#user-content-fnref-1&quot; data-footnote-backref=&quot;&quot; class=&quot;data-footnote-backref&quot; aria-label=&quot;Back to content&quot;&gt;↩&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/section&gt;</content>
-      </entry>
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-      <entry>
-        <title>I&#39;m moving my blog to Eleventy</title>
-        <link href="https://karawale.in/posts/moving-to-eleventy/"/>
-        <updated>
-          
-            2022-03-17T00:00:00Z
-          
-        </updated>
-        <id>https://karawale.in/posts/moving-to-eleventy/</id>
-        <content type="html">&lt;p&gt;You read the title. I&#39;ve migrated my site over to &lt;a href=&quot;https://11ty.dev/&quot;&gt;Eleventy&lt;/a&gt;,
+&lt;/section&gt;</content></entry><entry><title>I&#39;m moving my blog to Eleventy</title><link href="https://karawale.in/posts/moving-to-eleventy/"/><updated>2022-03-17T00:00:00Z</updated><id>https://karawale.in/posts/moving-to-eleventy/</id><content type="html">&lt;p&gt;You read the title. I&#39;ve migrated my site over to &lt;a href=&quot;https://11ty.dev/&quot;&gt;Eleventy&lt;/a&gt;,
 from &lt;a href=&quot;https://astro.build/&quot;&gt;Astro&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;backstory&quot;&gt;Backstory&lt;/h2&gt;
 &lt;p&gt;First of all, I always wanted to love &lt;a href=&quot;https://11ty.dev/&quot;&gt;Eleventy (or 11ty)&lt;/a&gt;.
@@ -690,22 +515,7 @@ framework or Astro&#39;s own templating language. I&#39;ll implement them if its
 the plans and if I get it done correctly. &lt;a href=&quot;https://karawale.in/posts/moving-to-eleventy/#user-content-fnref-1&quot; data-footnote-backref=&quot;&quot; class=&quot;data-footnote-backref&quot; aria-label=&quot;Back to content&quot;&gt;↩&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/section&gt;</content>
-      </entry>
-    
-  
-    
-    
-      <entry>
-        <title>Assigning equal amount of tasks among people</title>
-        <link href="https://karawale.in/posts/assigning-equal-amount-of-tasks-among-people/"/>
-        <updated>
-          
-            2022-02-26T00:00:00Z
-          
-        </updated>
-        <id>https://karawale.in/posts/assigning-equal-amount-of-tasks-among-people/</id>
-        <content type="html">&lt;h2 id=&quot;context&quot;&gt;Context&lt;/h2&gt;
+&lt;/section&gt;</content></entry><entry><title>Assigning equal amount of tasks among people</title><link href="https://karawale.in/posts/assigning-equal-amount-of-tasks-among-people/"/><updated>2022-02-26T00:00:00Z</updated><id>https://karawale.in/posts/assigning-equal-amount-of-tasks-among-people/</id><content type="html">&lt;h2 id=&quot;context&quot;&gt;Context&lt;/h2&gt;
 &lt;p&gt;So I had this edge-case scenario where I was to assign tasks among the four of
 us for a video project. We had initially decided to take the tasks numerically,
 but then I thought, &quot;let&#39;s make this randomized&quot;. The tasks were equally
@@ -762,22 +572,7 @@ among 4 people is possible, but 7 tasks among 3 isn&#39;t. I&#39;ll probably wri
 for this too in the future.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;small&gt;The names in the snippet are a reference to an Ed Sheeran&#39;s song. Check
-if you can find out ;)&lt;/small&gt;&lt;/p&gt;</content>
-      </entry>
-    
-  
-    
-    
-      <entry>
-        <title>Upgrading your Ubuntu LTS distro in WSL</title>
-        <link href="https://karawale.in/posts/upgrading-ubuntu-lts-wsl/"/>
-        <updated>
-          
-            2022-01-20T00:00:00Z
-          
-        </updated>
-        <id>https://karawale.in/posts/upgrading-ubuntu-lts-wsl/</id>
-        <content type="html">&lt;blockquote&gt;
+if you can find out ;)&lt;/small&gt;&lt;/p&gt;</content></entry><entry><title>Upgrading your Ubuntu LTS distro in WSL</title><link href="https://karawale.in/posts/upgrading-ubuntu-lts-wsl/"/><updated>2022-01-20T00:00:00Z</updated><id>https://karawale.in/posts/upgrading-ubuntu-lts-wsl/</id><content type="html">&lt;blockquote&gt;
 &lt;p&gt;Note: This post was written after upgrading my Ubuntu 20.04 LTS, so I don&#39;t
 have any relevant screenshots/logs at the moment. Things are subject to change
 in the future.&lt;/p&gt;
@@ -812,42 +607,12 @@ all services. Grant the permission and let it continue.&lt;/li&gt;
 breath of fresh air.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr /&gt;
-&lt;p&gt;I could find this on &lt;a href=&quot;https://www.hughrawlinson.me/posts/2021/06/04/solved-do-release-upgrade-hangs-in-ubuntu-on-wsl&quot;&gt;another post&lt;/a&gt; by Hugh Rawlinson, however their Ubuntu&#39;s version was 18.04 LTS, but the steps are pretty much the same.&lt;/p&gt;</content>
-      </entry>
-    
-  
-    
-    
-      <entry>
-        <title>One Liner for rimraf that gets the job done</title>
-        <link href="https://karawale.in/posts/one-liner-for-rimraf-that-gets-the-job-done/"/>
-        <updated>
-          
-            2021-07-10T00:00:00Z
-          
-        </updated>
-        <id>https://karawale.in/posts/one-liner-for-rimraf-that-gets-the-job-done/</id>
-        <content type="html">&lt;p&gt;I have been striving to cut down on node_modules. Most of the times, I need
+&lt;p&gt;I could find this on &lt;a href=&quot;https://www.hughrawlinson.me/posts/2021/06/04/solved-do-release-upgrade-hangs-in-ubuntu-on-wsl&quot;&gt;another post&lt;/a&gt; by Hugh Rawlinson, however their Ubuntu&#39;s version was 18.04 LTS, but the steps are pretty much the same.&lt;/p&gt;</content></entry><entry><title>One Liner for rimraf that gets the job done</title><link href="https://karawale.in/posts/one-liner-for-rimraf-that-gets-the-job-done/"/><updated>2021-07-10T00:00:00Z</updated><id>https://karawale.in/posts/one-liner-for-rimraf-that-gets-the-job-done/</id><content type="html">&lt;p&gt;I have been striving to cut down on node_modules. Most of the times, I need
 rimraf to delete a folder (usually &lt;code&gt;public&lt;/code&gt;/&lt;code&gt;dist&lt;/code&gt;/&lt;code&gt;build&lt;/code&gt;) and to keep the
 project cross platform. So, here is a one-liner to delete a folder/file:&lt;/p&gt;
 &lt;pre class=&quot;shiki&quot; style=&quot;background-color: #1d2021&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt;node -e &lt;/span&gt;&lt;span style=&quot;color: #A89984&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #B8BB26&quot;&gt;require(&#39;fs&#39;).rmSync(&#39;PATH&#39;,{recursive:true,force:true})&lt;/span&gt;&lt;span style=&quot;color: #A89984&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Note: Replace &lt;code&gt;PATH&lt;/code&gt; by the path to the folder/file. This works the same as &lt;code&gt;rm -rf&lt;/code&gt; command, but cross-platform.&lt;/p&gt;</content>
-      </entry>
-    
-  
-    
-    
-      <entry>
-        <title>Angularfire V7 Auth Guard</title>
-        <link href="https://karawale.in/posts/angularfire-v7-auth-guard/"/>
-        <updated>
-          
-            2021-06-08T00:00:00Z
-          
-        </updated>
-        <id>https://karawale.in/posts/angularfire-v7-auth-guard/</id>
-        <content type="html">&lt;p&gt;As of now, the AngularFire v7(&lt;strong&gt;&quot;Beta&quot;&lt;/strong&gt;) does not have an implementation for an
+&lt;p&gt;Note: Replace &lt;code&gt;PATH&lt;/code&gt; by the path to the folder/file. This works the same as &lt;code&gt;rm -rf&lt;/code&gt; command, but cross-platform.&lt;/p&gt;</content></entry><entry><title>Angularfire V7 Auth Guard</title><link href="https://karawale.in/posts/angularfire-v7-auth-guard/"/><updated>2021-06-08T00:00:00Z</updated><id>https://karawale.in/posts/angularfire-v7-auth-guard/</id><content type="html">&lt;p&gt;As of now, the AngularFire v7(&lt;strong&gt;&quot;Beta&quot;&lt;/strong&gt;) does not have an implementation for an
 auth guard(which I really need), so I went ahead, copied the original auth guard
 code (from v6), and refactored it to make it compatible with v7.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;This code works on Angular 12. I haven&#39;t tested it for older versions, but it should work.&lt;/strong&gt;&lt;/p&gt;
@@ -949,22 +714,7 @@ code (from v6), and refactored it to make it compatible with v7.&lt;/p&gt;
 &lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt;    &lt;/span&gt;&lt;span style=&quot;color: #83A598&quot;&gt;loggedIn&lt;/span&gt;&lt;span style=&quot;color: #A89984&quot;&gt;,&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt;    &lt;/span&gt;&lt;span style=&quot;color: #FABD2F&quot;&gt;map&lt;/span&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #A89984&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #83A598&quot;&gt;loggedIn&lt;/span&gt;&lt;span style=&quot;color: #A89984&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #8EC07C&quot;&gt;=&gt;&lt;/span&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt; (&lt;/span&gt;&lt;span style=&quot;color: #83A598&quot;&gt;loggedIn&lt;/span&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #FB4934&quot;&gt;&amp;#x26;&amp;#x26;&lt;/span&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #83A598&quot;&gt;redirect&lt;/span&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt;) &lt;/span&gt;&lt;span style=&quot;color: #FB4934&quot;&gt;||&lt;/span&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #D3869B&quot;&gt;true&lt;/span&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt;  )&lt;/span&gt;&lt;span style=&quot;color: #A89984&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</content>
-      </entry>
-    
-  
-    
-    
-      <entry>
-        <title>How to Keep Your Firebase Project Safe and Secure from everyone</title>
-        <link href="https://karawale.in/posts/how-to-keep-your-firebase-config-safe/"/>
-        <updated>
-          
-            2020-12-18T00:00:00Z
-          
-        </updated>
-        <id>https://karawale.in/posts/how-to-keep-your-firebase-config-safe/</id>
-        <content type="html">&lt;p&gt;After doing a couple of open source Firebase projects (web apps, I mean), I feel
+&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</content></entry><entry><title>How to Keep Your Firebase Project Safe and Secure from everyone</title><link href="https://karawale.in/posts/how-to-keep-your-firebase-config-safe/"/><updated>2020-12-18T00:00:00Z</updated><id>https://karawale.in/posts/how-to-keep-your-firebase-config-safe/</id><content type="html">&lt;p&gt;After doing a couple of open source Firebase projects (web apps, I mean), I feel
 like I&#39;m experienced* enough to write this post. So if I say something wrong
 here, kindly let me know here.&lt;/p&gt;
 &lt;h2 id=&quot;why-is-this-necessary&quot;&gt;Why is this necessary?&lt;/h2&gt;
@@ -1068,22 +818,7 @@ show them off or else you&#39;re done.&lt;/p&gt;
 &lt;h2 id=&quot;ending-thoughts&quot;&gt;Ending thoughts&lt;/h2&gt;
 &lt;p&gt;Good job if you&#39;ve made it this far. Now you can just chill back and write some
 code for your project. Always tell me if you got stuck in any of the steps. Have
-a nice day :)&lt;/p&gt;</content>
-      </entry>
-    
-  
-    
-    
-      <entry>
-        <title>Reactivity Anywhere Without Virtual Dom</title>
-        <link href="https://karawale.in/posts/reactivity-anywhere-without-virtual-dom/"/>
-        <updated>
-          
-            2020-11-20T00:00:00Z
-          
-        </updated>
-        <id>https://karawale.in/posts/reactivity-anywhere-without-virtual-dom/</id>
-        <content type="html">&lt;h2 id=&quot;how-did-this-got-into-my-mind&quot;&gt;How did this got into my mind??&lt;/h2&gt;
+a nice day :)&lt;/p&gt;</content></entry><entry><title>Reactivity Anywhere Without Virtual Dom</title><link href="https://karawale.in/posts/reactivity-anywhere-without-virtual-dom/"/><updated>2020-11-20T00:00:00Z</updated><id>https://karawale.in/posts/reactivity-anywhere-without-virtual-dom/</id><content type="html">&lt;h2 id=&quot;how-did-this-got-into-my-mind&quot;&gt;How did this got into my mind??&lt;/h2&gt;
 &lt;p&gt;Virtual DOM can be referenced as the thing which just &quot;introduced&quot; me to the
 title of this post. What if we keep aside all that diffing, state stuff, and
 focus on one thing: reactivity between the JavaScript and the DOM. Well, most of
@@ -1301,8 +1036,4 @@ of an idea. So, feel free to critically think over it.&lt;/p&gt;
 &lt;h2 id=&quot;ending-notes&quot;&gt;Ending notes&lt;/h2&gt;
 &lt;p&gt;If you seem to be interested in creating some sort of framework with this,
 you&#39;re ready to go (some frameworks, using this idea, might even exist)! I&#39;d
-also be happy to help you! Thank you for bearing with me in such a long post!&lt;/p&gt;</content>
-      </entry>
-    
-  
-</feed>
+also be happy to help you! Thank you for bearing with me in such a long post!&lt;/p&gt;</content></entry></feed>
