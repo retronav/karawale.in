@@ -4,11 +4,13 @@
   --light-color-main-text: #292929;
   --light-color-accent-text: #292929;
   --light-color-anchor: #0040b6;
+  --light-color-blockquote: #444;
   --dark-color-main: #161517;
   --dark-color-accent: #242124;
   --dark-color-main-text: #fafafa;
   --dark-color-accent-text: #ebeaeb;
   --dark-color-anchor: #4fbeff;
+  --dark-color-blockquote: #ccc;
   --font-size-title: 3.2rem;
   --font-size-h1: 2.4rem;
   --font-size-h2: 2rem;
@@ -18,7 +20,7 @@
   --font-size-small: 0.8rem;
   --blockquote-border: 0.3rem solid #666;
   --font-family: "CabinVariable", sans-serif;
-  --code-font-family: "Victor Mono", monospace;
+  --code-font-family: "Iosevka Minimal", monospace;
   --border-radius-generic: 5px;
 }
 
@@ -32,30 +34,11 @@ footer {
   bottom: 0;
   margin-top: 2rem;
 }
-footer dl {
-  display: grid;
-  grid-template-columns: auto 1fr;
-}
-@media (max-width: 768px) {
-  footer dl {
-    grid-template-columns: 1fr;
-  }
-}
-footer dl dd {
-  margin: 0;
-}
-footer dl dd ul {
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
+footer nav ul {
   list-style: none;
-  column-gap: 1.5rem;
-  justify-content: flex-end;
-}
-@media (max-width: 768px) {
-  footer dl dd ul {
-    justify-content: flex-start;
-  }
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 article {
@@ -153,7 +136,7 @@ li.webmention-reply article header img {
   font-style: normal;
   font-display: swap;
   font-weight: 400 700;
-  src: url("fonts/cabin-vietnamese-variable-wghtOnly-normal.woff2") format("woff2");
+  src: url("/fonts/cabin-vietnamese-variable-wghtOnly-normal.woff2") format("woff2");
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
 }
 @font-face {
@@ -161,7 +144,7 @@ li.webmention-reply article header img {
   font-style: normal;
   font-display: swap;
   font-weight: 400 700;
-  src: url("fonts/cabin-latin-ext-variable-wghtOnly-normal.woff2") format("woff2");
+  src: url("/fonts/cabin-latin-ext-variable-wghtOnly-normal.woff2") format("woff2");
   unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
@@ -169,15 +152,12 @@ li.webmention-reply article header img {
   font-style: normal;
   font-display: swap;
   font-weight: 400 700;
-  src: url("fonts/cabin-latin-variable-wghtOnly-normal.woff2") format("woff2");
+  src: url("/fonts/cabin-latin-variable-wghtOnly-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: "Victor Mono";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local("Victor Mono Medium"), local("VictorMono-Medium"), local("Victor Mono"), local("VictorMono"), url("./fonts/victor-mono-latin.woff2") format("woff2");
+  font-family: "Iosevka Minimal";
+  src: url(/fonts/iosevka-minimal.woff2);
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -186,6 +166,7 @@ li.webmention-reply article header img {
     --color-main-text: var(--dark-color-main-text);
     --color-accent-text: var(--dark-color-accent-text);
     --color-anchor: var(--dark-color-anchor);
+    --color-blockquote: var(--dark-color-blockquote);
   }
 }
 @media (prefers-color-scheme: light) {
@@ -195,6 +176,7 @@ li.webmention-reply article header img {
     --color-main-text: var(--light-color-main-text);
     --color-accent-text: var(--light-color-accent-text);
     --color-anchor: var(--light-color-anchor);
+    --color-blockquote: var(--light-color-blockquote);
   }
 }
 * {
@@ -278,6 +260,10 @@ code {
   word-wrap: break-word;
 }
 
+blockquote {
+  color: var(--color-blockquote);
+}
+
 header {
   text-align: center;
 }
@@ -303,9 +289,6 @@ section.post-preview h2 {
   margin: 0;
 }
 
-.note header {
-  text-align: left;
-}
 .note .p-content {
   font-size: var(--font-size-h4);
 }

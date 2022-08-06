@@ -16,8 +16,8 @@
 
     <link rel="pingback" href="https://webmention.io/karawale.in/xmlrpc"/>
 
-        <link rel="preload" as="font" type="font/woff2" href="fonts/cabin-latin-variable-wghtOnly-normal.woff2" crossorigin="anonymous">
-        <link rel="preload" as="font" type="font/woff2" href="fonts/victor-mono-latin.woff2" crossorigin="anonymous"><meta name="generator" content="Eleventy"/>
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/cabin-latin-variable-wghtOnly-normal.woff2" crossorigin="anonymous">
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/iosevka-minimal.woff2" crossorigin="anonymous"><meta name="generator" content="Eleventy v2.0.0"/>
 
 <link rel="shortcut icon" href="/favicon.png" type="image/png">
 <link rel="stylesheet" href="/main.css"/>
@@ -45,6 +45,7 @@
     <time class="dt-published" datetime="2022-02-26T00:00:00Z">
       26 February 2022
     </time>
+    
     <span class="seperator">&centerdot;</span>
     <span>By</span><div class="h-card h-card-mini p-author">
     <img class="u-photo" width="24" height="24" src="/img/me96.webp" alt="A close-up photo of my face.">
@@ -94,36 +95,36 @@ the lists and stuff 😅</p>
 <p>So the plan was clear, use this function and build code around it and get the
 job done.</p>
 <h2 id="the-script">The script</h2>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #FF8F40">import</span><span style="color: #BFBDB6"> random</span></span>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #FB4934">import</span><span style="color: #EBDBB2"> random</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #ACB6BF8C; font-style: italic"># Obviously these are not the real names and tasks.</span></span>
-<span class="line"><span style="color: #BFBDB6">people </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> [</span><span style="color: #AAD94C">"Jack"</span><span style="color: #BFBDB6B3">,</span><span style="color: #BFBDB6"> </span><span style="color: #AAD94C">"Jamie"</span><span style="color: #BFBDB6">]</span></span>
-<span class="line"><span style="color: #BFBDB6">tasks </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> [</span></span>
-<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #AAD94C">"Going for the messages"</span><span style="color: #BFBDB6B3">,</span></span>
-<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #AAD94C">"Water the plants"</span><span style="color: #BFBDB6B3">,</span></span>
-<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #AAD94C">"Check the mailbox"</span><span style="color: #BFBDB6B3">,</span></span>
-<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #AAD94C">"Wash the clothes"</span><span style="color: #BFBDB6B3">,</span></span>
-<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #AAD94C">"Clean the plates"</span><span style="color: #BFBDB6B3">,</span></span>
-<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #AAD94C">"Cook lunch"</span><span style="color: #BFBDB6B3">,</span></span>
-<span class="line"><span style="color: #BFBDB6">]</span></span>
+<span class="line"><span style="color: #928374; font-style: italic"># Obviously these are not the real names and tasks.</span></span>
+<span class="line"><span style="color: #EBDBB2">people </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">[</span><span style="color: #A89984">"</span><span style="color: #B8BB26">Jack</span><span style="color: #A89984">"</span><span style="color: #A89984">,</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">"</span><span style="color: #B8BB26">Jamie</span><span style="color: #A89984">"</span><span style="color: #A89984">]</span></span>
+<span class="line"><span style="color: #EBDBB2">tasks </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">[</span></span>
+<span class="line"><span style="color: #EBDBB2">	</span><span style="color: #A89984">"</span><span style="color: #B8BB26">Going for the messages</span><span style="color: #A89984">"</span><span style="color: #A89984">,</span></span>
+<span class="line"><span style="color: #EBDBB2">	</span><span style="color: #A89984">"</span><span style="color: #B8BB26">Water the plants</span><span style="color: #A89984">"</span><span style="color: #A89984">,</span></span>
+<span class="line"><span style="color: #EBDBB2">	</span><span style="color: #A89984">"</span><span style="color: #B8BB26">Check the mailbox</span><span style="color: #A89984">"</span><span style="color: #A89984">,</span></span>
+<span class="line"><span style="color: #EBDBB2">	</span><span style="color: #A89984">"</span><span style="color: #B8BB26">Wash the clothes</span><span style="color: #A89984">"</span><span style="color: #A89984">,</span></span>
+<span class="line"><span style="color: #EBDBB2">	</span><span style="color: #A89984">"</span><span style="color: #B8BB26">Clean the plates</span><span style="color: #A89984">"</span><span style="color: #A89984">,</span></span>
+<span class="line"><span style="color: #EBDBB2">	</span><span style="color: #A89984">"</span><span style="color: #B8BB26">Cook lunch</span><span style="color: #A89984">"</span><span style="color: #A89984">,</span></span>
+<span class="line"><span style="color: #A89984">]</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #BFBDB6">task_per_person </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> </span><span style="color: #F07178">len</span><span style="color: #BFBDB6">(tasks) </span><span style="color: #F29668">/</span><span style="color: #BFBDB6"> </span><span style="color: #F07178">len</span><span style="color: #BFBDB6">(people)</span></span>
+<span class="line"><span style="color: #EBDBB2">task_per_person </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #FE8019">len</span><span style="color: #A89984">(</span><span style="color: #D5C4A1">tasks</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">/</span><span style="color: #EBDBB2"> </span><span style="color: #FE8019">len</span><span style="color: #A89984">(</span><span style="color: #D5C4A1">people</span><span style="color: #A89984">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #ACB6BF8C; font-style: italic"># This shouldn't continue if the tasks cannot be divided equally. If this</span></span>
-<span class="line"><span style="color: #ACB6BF8C; font-style: italic"># is the case, then one has to remove some number of tasks to make the</span></span>
-<span class="line"><span style="color: #ACB6BF8C; font-style: italic"># number correct, or else make a custom solution.</span></span>
-<span class="line"><span style="color: #FF8F40">if</span><span style="color: #BFBDB6"> task_per_person </span><span style="color: #F29668">%</span><span style="color: #BFBDB6"> </span><span style="color: #D2A6FF">1</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">!=</span><span style="color: #BFBDB6"> </span><span style="color: #D2A6FF">0</span><span style="color: #BFBDB6B3">:</span></span>
-<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #FF8F40">raise</span><span style="color: #BFBDB6"> </span><span style="color: #39BAE6">Exception</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">"Tasks cannot be equally divided"</span><span style="color: #BFBDB6">)</span></span>
+<span class="line"><span style="color: #928374; font-style: italic"># This shouldn't continue if the tasks cannot be divided equally. If this</span></span>
+<span class="line"><span style="color: #928374; font-style: italic"># is the case, then one has to remove some number of tasks to make the</span></span>
+<span class="line"><span style="color: #928374; font-style: italic"># number correct, or else make a custom solution.</span></span>
+<span class="line"><span style="color: #FB4934">if</span><span style="color: #EBDBB2"> task_per_person </span><span style="color: #8EC07C">%</span><span style="color: #EBDBB2"> </span><span style="color: #D3869B">1</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">!=</span><span style="color: #EBDBB2"> </span><span style="color: #D3869B">0</span><span style="color: #A89984">:</span></span>
+<span class="line"><span style="color: #EBDBB2">	</span><span style="color: #FB4934">raise</span><span style="color: #EBDBB2"> </span><span style="color: #FABD2F">Exception</span><span style="color: #A89984">(</span><span style="color: #A89984">"</span><span style="color: #B8BB26">Tasks cannot be equally divided</span><span style="color: #A89984">"</span><span style="color: #A89984">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #BFBDB6">c </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> </span><span style="color: #D2A6FF">0</span></span>
-<span class="line"><span style="color: #FF8F40">for</span><span style="color: #BFBDB6"> i </span><span style="color: #FF8F40">in</span><span style="color: #BFBDB6"> </span><span style="color: #F07178">range</span><span style="color: #BFBDB6">(</span><span style="color: #39BAE6">int</span><span style="color: #BFBDB6">(task_per_person))</span><span style="color: #BFBDB6B3">:</span></span>
-<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #ACB6BF8C; font-style: italic"># Shuffling the tasks list is totally optional</span></span>
-<span class="line"><span style="color: #BFBDB6">	random</span><span style="color: #BFBDB6B3">.</span><span style="color: #FFB454">shuffle</span><span style="color: #BFBDB6">(tasks)</span></span>
-<span class="line"><span style="color: #BFBDB6">	shuffled </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> people</span></span>
-<span class="line"><span style="color: #BFBDB6">	random</span><span style="color: #BFBDB6B3">.</span><span style="color: #FFB454">shuffle</span><span style="color: #BFBDB6">(shuffled)</span></span>
-<span class="line"><span style="color: #BFBDB6">	</span><span style="color: #FF8F40">for</span><span style="color: #BFBDB6"> person </span><span style="color: #FF8F40">in</span><span style="color: #BFBDB6"> shuffled</span><span style="color: #BFBDB6B3">:</span></span>
-<span class="line"><span style="color: #BFBDB6">		</span><span style="color: #F07178">print</span><span style="color: #BFBDB6">(</span><span style="color: #FF8F40">f</span><span style="color: #AAD94C">"</span><span style="color: #95E6CB">{</span><span style="color: #BFBDB6">tasks[c]</span><span style="color: #95E6CB">}</span><span style="color: #AAD94C"> : </span><span style="color: #95E6CB">{</span><span style="color: #BFBDB6">person</span><span style="color: #95E6CB">}</span><span style="color: #AAD94C">"</span><span style="color: #BFBDB6">)</span></span>
-<span class="line"><span style="color: #BFBDB6">		c </span><span style="color: #F29668">+=</span><span style="color: #BFBDB6"> </span><span style="color: #D2A6FF">1</span></span>
+<span class="line"><span style="color: #EBDBB2">c </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #D3869B">0</span></span>
+<span class="line"><span style="color: #FB4934">for</span><span style="color: #EBDBB2"> i </span><span style="color: #FB4934">in</span><span style="color: #EBDBB2"> </span><span style="color: #FE8019">range</span><span style="color: #A89984">(</span><span style="color: #FABD2F">int</span><span style="color: #A89984">(</span><span style="color: #D5C4A1">task_per_person</span><span style="color: #A89984">)):</span></span>
+<span class="line"><span style="color: #EBDBB2">	</span><span style="color: #928374; font-style: italic"># Shuffling the tasks list is totally optional</span></span>
+<span class="line"><span style="color: #EBDBB2">	random</span><span style="color: #A89984">.</span><span style="color: #83A598">shuffle</span><span style="color: #A89984">(</span><span style="color: #D5C4A1">tasks</span><span style="color: #A89984">)</span></span>
+<span class="line"><span style="color: #EBDBB2">	shuffled </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> people</span></span>
+<span class="line"><span style="color: #EBDBB2">	random</span><span style="color: #A89984">.</span><span style="color: #83A598">shuffle</span><span style="color: #A89984">(</span><span style="color: #D5C4A1">shuffled</span><span style="color: #A89984">)</span></span>
+<span class="line"><span style="color: #EBDBB2">	</span><span style="color: #FB4934">for</span><span style="color: #EBDBB2"> person </span><span style="color: #FB4934">in</span><span style="color: #EBDBB2"> shuffled</span><span style="color: #A89984">:</span></span>
+<span class="line"><span style="color: #EBDBB2">		</span><span style="color: #FE8019">print</span><span style="color: #A89984">(</span><span style="color: #FB4934">f</span><span style="color: #B8BB26">"</span><span style="color: #D3869B">{</span><span style="color: #D5C4A1">tasks</span><span style="color: #A89984">[</span><span style="color: #D5C4A1">c</span><span style="color: #A89984">]</span><span style="color: #D3869B">}</span><span style="color: #B8BB26"> : </span><span style="color: #D3869B">{</span><span style="color: #D5C4A1">person</span><span style="color: #D3869B">}</span><span style="color: #B8BB26">"</span><span style="color: #A89984">)</span></span>
+<span class="line"><span style="color: #EBDBB2">		c </span><span style="color: #8EC07C">+=</span><span style="color: #EBDBB2"> </span><span style="color: #D3869B">1</span></span>
 <span class="line"></span>
 <span class="line"></span></code></pre>
 <h3 id="on-what-would-it-won-t-work">On what would it won't work?</h3>
@@ -136,13 +137,18 @@ if you can find out ;)</small></p>
   </div>
   <footer>
     <hr>
-    <h2>Webmentions</h2>
+    <h2>Comments</h2>
 <section class="webmention webmention-reactions">
     <p>
-        My site uses <a href="http://indieweb.org/webmention">Webmentions</a> via the 
-        <a href="https://indieweb.org">Indieweb</a>
-        and <a href="https://webmention.io">webmention.io</a> 
-        for likes, reposts, and replies/comments.
+        To comment, like, or repost this page, my website supports 
+        <a href="https://en.wikipedia.org/wiki/Webmention">webmentions</a>.
+        Such interactions on different social media platforms will show up here.
+        Alternatively, you can also send a webmention from your website using
+        the form below.
+        <br>
+        <br>
+        Or if you want to, you can e-mail your thoughts about it on 
+        "<code>my first name [at] this domain</code>".
     </p>
     <form class="send-webmention" action="https://webmention.io/karawale.in/webmention" method="post">
         <label for="webmention-form-input">
@@ -177,10 +183,14 @@ if you can find out ;)</small></p>
     
         
     
+        
+    
 </ul>
     </details>
     <h3>Replies</h3>
     <ul class="webmention-reactions">
+    
+        
     
         
     
@@ -203,66 +213,33 @@ if you can find out ;)</small></p>
 <hr>
 <footer>
   <nav>
-    <dl>
+    <ul>
       
-        <dt>Main</dt>
-        <dd>
-          <ul>
-            
-              <li>
-                <a href="/">Home</a>
-              </li>
-            
-              <li>
-                <a href="/contact">Contact</a>
-              </li>
-            
-              <li>
-                <a href="/projects">Projects</a>
-              </li>
-            
-              <li>
-                <a href="/feed.xml">RSS</a>
-              </li>
-            
-          </ul>
-        </dd>
+        <li>
+          <a href="/">Home</a>
+        </li>
       
-        <dt>Writings</dt>
-        <dd>
-          <ul>
-            
-              <li>
-                <a href="/posts">Blog</a>
-              </li>
-            
-              <li>
-                <a href="/notes">Notes</a>
-              </li>
-            
-          </ul>
-        </dd>
+        <li>
+          <a href="/about">About</a>
+        </li>
       
-        <dt>Links</dt>
-        <dd>
-          <ul>
-            
-              <li>
-                <a href="https://sr.ht/~retronav">Sourcehut</a>
-              </li>
-            
-              <li>
-                <a href="https://github.com/retronav">GitHub</a>
-              </li>
-            
-              <li>
-                <a href="https://www.linkedin.com/in/pranav-karawale">LinkedIn</a>
-              </li>
-            
-          </ul>
-        </dd>
+        <li>
+          <a href="/projects">Projects</a>
+        </li>
       
-    </dl>
+        <li>
+          <a href="/feeds">Feeds</a>
+        </li>
+      
+        <li>
+          <a href="/posts">Blog</a>
+        </li>
+      
+        <li>
+          <a href="/notes">Notes</a>
+        </li>
+      
+    </ul>
   </nav>
 </footer>
   </body>

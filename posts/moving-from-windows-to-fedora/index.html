@@ -4,8 +4,7 @@
     <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="An entry discussing the things I did to migrate my laptop from Windows 11 to Fedora.
-"/>
+<meta name="description" content="An entry discussing the things I did to migrate my laptop from Windows 11 to Fedora."/>
 
 <link rel="me" href="https://github.com/retronav"/>
 <link rel="me" href="https://fosstodon.org/@retronav"/>
@@ -17,8 +16,8 @@
 
     <link rel="pingback" href="https://webmention.io/karawale.in/xmlrpc"/>
 
-        <link rel="preload" as="font" type="font/woff2" href="fonts/cabin-latin-variable-wghtOnly-normal.woff2" crossorigin="anonymous">
-        <link rel="preload" as="font" type="font/woff2" href="fonts/victor-mono-latin.woff2" crossorigin="anonymous"><meta name="generator" content="Eleventy"/>
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/cabin-latin-variable-wghtOnly-normal.woff2" crossorigin="anonymous">
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/iosevka-minimal.woff2" crossorigin="anonymous"><meta name="generator" content="Eleventy v2.0.0"/>
 
 <link rel="shortcut icon" href="/favicon.png" type="image/png">
 <link rel="stylesheet" href="/main.css"/>
@@ -46,6 +45,12 @@
     <time class="dt-published" datetime="2022-08-02T00:00:00Z">
       02 August 2022
     </time>
+    
+      <span>, updated on</span>
+      <time class="dt-updated" datetime="2022-08-05T00:00:00Z">
+      05 August 2022
+      </time>
+    
     <span class="seperator">&centerdot;</span>
     <span>By</span><div class="h-card h-card-mini p-author">
     <img class="u-photo" width="24" height="24" src="/img/me96.webp" alt="A close-up photo of my face.">
@@ -55,7 +60,17 @@
 </div>
     <br>
     
+      <span>Tagged under: </span>
     
+    
+      
+    
+      
+        <a class="p-category" href="/tags/fedora">fedora</a>
+      
+    
+      
+        <a class="p-category" href="/tags/linux">linux</a>
       
     
   </header>
@@ -95,37 +110,37 @@ programming projects, I ran <a href="https://npmjs.com/npkill"><code>npkill</cod
 project using <code>venv</code> which was contributing a big chunk to the backup size. For
 that, it received the same treatment except here the <code>.venv</code> directory was
 removed. I decided to test brotli for backups, and so ran these:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #F07178">tar</span><span style="color: #BFBDB6"> -cvf Programming.tar Programming/</span></span>
-<span class="line"><span style="color: #F07178">brotli</span><span style="color: #BFBDB6"> -j Programming.tar</span></span>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #EBDBB2">tar -cvf Programming.tar Programming/</span></span>
+<span class="line"><span style="color: #EBDBB2">brotli -j Programming.tar</span></span>
 <span class="line"></span></code></pre>
 <p>Which gives a <code>Programming.tar.br</code> and gave decent results compression wise, I'd
 say. For backing up keys, I followed a similar procedure. I created the
 following directory structure:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">keys-backup/</span></span>
-<span class="line"><span style="color: #bfbdb6">├── gpg</span></span>
-<span class="line"><span style="color: #bfbdb6">└── ssh</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">keys-backup/</span></span>
+<span class="line"><span style="color: #ebdbb2">├── gpg</span></span>
+<span class="line"><span style="color: #ebdbb2">└── ssh</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p>In <code>ssh/</code>, contents of <code>~/.ssh</code> were tossed into. For <code>gpg/</code>, I followed
 <a href="https://www.jwillikers.com/backup-and-restore-a-gpg-key">this excellent guide</a>
 to export my GPG keys. The resulting directory:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">keys-backup/</span></span>
-<span class="line"><span style="color: #bfbdb6">├── gpg</span></span>
-<span class="line"><span style="color: #bfbdb6">│	├── priv.asc</span></span>
-<span class="line"><span style="color: #bfbdb6">│	├── pub.asc</span></span>
-<span class="line"><span style="color: #bfbdb6">│	└── trustdb.txt</span></span>
-<span class="line"><span style="color: #bfbdb6">└── ssh</span></span>
-<span class="line"><span style="color: #bfbdb6">    ├── config</span></span>
-<span class="line"><span style="color: #bfbdb6">    ├── gh_codespaces.id_ed25519</span></span>
-<span class="line"><span style="color: #bfbdb6">    ├── gh_codespaces.id_ed25519.pub</span></span>
-<span class="line"><span style="color: #bfbdb6">    ├── github.id_ed25519</span></span>
-<span class="line"><span style="color: #bfbdb6">    ├── github.id_ed25519.pub</span></span>
-<span class="line"><span style="color: #bfbdb6">    ├── id_ed25519</span></span>
-<span class="line"><span style="color: #bfbdb6">    ├── id_ed25519.pub</span></span>
-<span class="line"><span style="color: #bfbdb6">    ├── known_hosts</span></span>
-<span class="line"><span style="color: #bfbdb6">    ├── known_hosts.old</span></span>
-<span class="line"><span style="color: #bfbdb6">    ├── srht.id_ed25519</span></span>
-<span class="line"><span style="color: #bfbdb6">    └── srht.id_ed25519.pub</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">keys-backup/</span></span>
+<span class="line"><span style="color: #ebdbb2">├── gpg</span></span>
+<span class="line"><span style="color: #ebdbb2">│   ├── priv.asc</span></span>
+<span class="line"><span style="color: #ebdbb2">│   ├── pub.asc</span></span>
+<span class="line"><span style="color: #ebdbb2">│   └── trustdb.txt</span></span>
+<span class="line"><span style="color: #ebdbb2">└── ssh</span></span>
+<span class="line"><span style="color: #ebdbb2">    ├── config</span></span>
+<span class="line"><span style="color: #ebdbb2">    ├── gh_codespaces.id_ed25519</span></span>
+<span class="line"><span style="color: #ebdbb2">    ├── gh_codespaces.id_ed25519.pub</span></span>
+<span class="line"><span style="color: #ebdbb2">    ├── github.id_ed25519</span></span>
+<span class="line"><span style="color: #ebdbb2">    ├── github.id_ed25519.pub</span></span>
+<span class="line"><span style="color: #ebdbb2">    ├── id_ed25519</span></span>
+<span class="line"><span style="color: #ebdbb2">    ├── id_ed25519.pub</span></span>
+<span class="line"><span style="color: #ebdbb2">    ├── known_hosts</span></span>
+<span class="line"><span style="color: #ebdbb2">    ├── known_hosts.old</span></span>
+<span class="line"><span style="color: #ebdbb2">    ├── srht.id_ed25519</span></span>
+<span class="line"><span style="color: #ebdbb2">    └── srht.id_ed25519.pub</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p>This was then converted into a <code>.tar.br</code> using the commands used previously.
 These <code>.tar.br</code> files were then copied to <a href="https://mega.io">MEGA</a> and a flash
 drive.</p>
@@ -214,7 +229,9 @@ uninstall this driver, and this is where I messed up. I'm not sure where it went
 wrong, but now I couldn't figure out what to do.</p>
 <h3 id="installing-the-other-custom-driver">Installing the other custom driver</h3>
 <p>Since I had not upgraded the kernel, this was the perfect chance to fix this.
-After upgrading the kernel, I then installed Tomás Pinho's driver which is
+After upgrading the kernel, I then installed
+<a href="https://github.com/tomaspinho/rtl8821ce">Tomás Pinho's driver</a>
+which is
 specifically made for Realtek RTL8821CE network card. Following the instructions
 given in the README, I was able to install this driver. Minor differences in the
 process installation were:</p>
@@ -226,6 +243,11 @@ process installation were:</p>
 one will solve the issue. And it did! Wi-Fi back to normal, I could now browse
 the Internet, run updates, do stuff. Life back to normal.</p>
 <h2 id="more-things-i-did-to-make-stuff-work">More things I did to make stuff work</h2>
+<blockquote>
+<p>I intend this section to be a "living section"; keeping track of things I
+did to make stuff work. This might eventually get moved to a seperate, living
+document.</p>
+</blockquote>
 <ul>
 <li>Firefox was not playing videos. From the solutions mentioned on
 <a href="https://unix.stackexchange.com/q/690359">this page</a>, installing <code>ffmpeg</code>
@@ -233,17 +255,28 @@ did the trick.</li>
 <li>Bring back the
 <a href="https://extensions.gnome.org/extension/615/appindicator-support/">system tray</a>
 in the top bar.</li>
+<li>Set <code>snd-hda-intel</code>'s model to
+<a href="https://www.kernel.org/doc/html/latest/sound/hd-audio/models.html"><code>headset-mic</code></a>
+via modprobe to make headset mic working again.</li>
+<li>For some reason OBS outputs poor recordings when using the <code>FFMPEG VAAPI</code>
+encoder, so to make it print better, albeit more huge recordings, use CQP
+for "Rate Control" with QP=30 (works fine enough for my use case).</li>
 </ul>
   </div>
   <footer>
     <hr>
-    <h2>Webmentions</h2>
+    <h2>Comments</h2>
 <section class="webmention webmention-reactions">
     <p>
-        My site uses <a href="http://indieweb.org/webmention">Webmentions</a> via the 
-        <a href="https://indieweb.org">Indieweb</a>
-        and <a href="https://webmention.io">webmention.io</a> 
-        for likes, reposts, and replies/comments.
+        To comment, like, or repost this page, my website supports 
+        <a href="https://en.wikipedia.org/wiki/Webmention">webmentions</a>.
+        Such interactions on different social media platforms will show up here.
+        Alternatively, you can also send a webmention from your website using
+        the form below.
+        <br>
+        <br>
+        Or if you want to, you can e-mail your thoughts about it on 
+        "<code>my first name [at] this domain</code>".
     </p>
     <form class="send-webmention" action="https://webmention.io/karawale.in/webmention" method="post">
         <label for="webmention-form-input">
@@ -267,6 +300,25 @@ in the top bar.</li>
         <ul class="webmention-reactions">
     
         
+            
+                <li class="webmention-reaction">
+                    
+                        
+                    
+                    <a 
+                    aria-description="Liked by Alexandre Flion"
+                    title="Liked by Alexandre Flion"
+                    href="https://fosstodon.org/@retronav/108759002028532133#favorited-by-106924161699568780">
+                        <img
+                        width="48" height="48" 
+                        src="https://webmention.io/avatar/cdn.fosstodon.org/113d155a6325a3e9555ff9319a39ce20ae69fd2542e0b81f0e45aec33ebc4dd3.png"
+                        alt="Avatar of Alexandre Flion">
+                    </a>
+                </li>
+            
+        
+    
+        
     
         
     
@@ -282,6 +334,10 @@ in the top bar.</li>
     </details>
     <h3>Replies</h3>
     <ul class="webmention-reactions">
+    
+        
+            
+        
     
         
     
@@ -304,66 +360,33 @@ in the top bar.</li>
 <hr>
 <footer>
   <nav>
-    <dl>
+    <ul>
       
-        <dt>Main</dt>
-        <dd>
-          <ul>
-            
-              <li>
-                <a href="/">Home</a>
-              </li>
-            
-              <li>
-                <a href="/contact">Contact</a>
-              </li>
-            
-              <li>
-                <a href="/projects">Projects</a>
-              </li>
-            
-              <li>
-                <a href="/feed.xml">RSS</a>
-              </li>
-            
-          </ul>
-        </dd>
+        <li>
+          <a href="/">Home</a>
+        </li>
       
-        <dt>Writings</dt>
-        <dd>
-          <ul>
-            
-              <li>
-                <a href="/posts">Blog</a>
-              </li>
-            
-              <li>
-                <a href="/notes">Notes</a>
-              </li>
-            
-          </ul>
-        </dd>
+        <li>
+          <a href="/about">About</a>
+        </li>
       
-        <dt>Links</dt>
-        <dd>
-          <ul>
-            
-              <li>
-                <a href="https://sr.ht/~retronav">Sourcehut</a>
-              </li>
-            
-              <li>
-                <a href="https://github.com/retronav">GitHub</a>
-              </li>
-            
-              <li>
-                <a href="https://www.linkedin.com/in/pranav-karawale">LinkedIn</a>
-              </li>
-            
-          </ul>
-        </dd>
+        <li>
+          <a href="/projects">Projects</a>
+        </li>
       
-    </dl>
+        <li>
+          <a href="/feeds">Feeds</a>
+        </li>
+      
+        <li>
+          <a href="/posts">Blog</a>
+        </li>
+      
+        <li>
+          <a href="/notes">Notes</a>
+        </li>
+      
+    </ul>
   </nav>
 </footer>
   </body>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="A short guide + notes for upgrading your WSL Ubuntu LTS distro"/>
+<meta name="description" content="Pranav Karawale&#39;s various things in writing."/>
 
 <link rel="me" href="https://github.com/retronav"/>
 <link rel="me" href="https://fosstodon.org/@retronav"/>
@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="/main.css"/>
 <title>
     
-        Upgrading your Ubuntu LTS distro in WSL - Pranav Karawale
+        About Notes - Pranav Karawale
     
 </title>
 
@@ -39,81 +39,34 @@
 </header>
 <hr>
 <main>
-  <article class="h-entry">
-  <header>
-    <h1 class="p-name" class="title">Upgrading your Ubuntu LTS distro in WSL</h1>
-    <time class="dt-published" datetime="2022-01-20T00:00:00Z">
-      20 January 2022
-    </time>
-    
-    <span class="seperator">&centerdot;</span>
-    <span>By</span><div class="h-card h-card-mini p-author">
+  
+<article class="note h-entry">
+    <header>
+        <h1>About Notes</h1>
+        <time class="dt-published" datetime="2022-08-05T17:00:36Z">
+            05 August 2022</time>
+        <span class="seperator">&centerdot;</span>
+       By <div class="h-card h-card-mini p-author">
     <img class="u-photo" width="24" height="24" src="/img/me96.webp" alt="A close-up photo of my face.">
     <a href="/" rel="author" class="p-name u-url">
         Pranav Karawale
     </a>
 </div>
-    <br>
-    
-      <span>Tagged under: </span>
-    
-    
-      
-    
-      
-        <a class="p-category" href="/tags/wsl">wsl</a>
-      
-    
-      
-        <a class="p-category" href="/tags/linux">linux</a>
-      
-    
-  </header>
-  <aside>
-    
-  </aside>
-  <hr/>
-  <div class="e-content">
-    <blockquote>
-<p>Note: This post was written after upgrading my Ubuntu 20.04 LTS, so I don't
-have any relevant screenshots/logs at the moment. Things are subject to change
-in the future.</p>
-</blockquote>
-<p>I was configuring my git settings when I realised that git's version was an
-older one (2.25). So I tried to update, but it didn't do that and instead told
-that it's already up-to-date. It didn't took long to realise that the newer
-versions are on the repositories of the newer versions and so I need to upgrade
-my WSL distro. Here are the steps:</p>
-<ol>
-<li>Run <code>sudo do-release-upgrade</code>
-At this stage you will probably see some error
-telling you that it couldn't find any release, that is because it is looking
-for LTS releases but there isn't any (as of writing this), so you need to
-change some configuration files.
-<ul>
-<li>Open the <code>/etc/update-manager/release-upgrades</code>, and set the <code>Prompt</code> from
-<code>lts</code> to <code>normal</code> (only do this if you are OK with a non-LTS version). Now
-you can run the original command again.</li>
-</ul>
-</li>
-<li>It will start pulling the repositories of the newest upgradable release. If
-you notice that the installer is hanging and then terminating, that is
-because of it trying to start <code>snap</code>. So, for the upgrade to proceed, you
-need to remove <code>snap</code>. Don't worry, if you need it, you can install it back
-after the upgrade (<a href="https://discourse.ubuntu.com/t/using-snapd-in-wsl2/12113">why is snap even in WSL when it doesn't work by default?
-¯\_(ツ)_/¯</a>).
-Remove the <code>snap</code> and <code>snapd</code> packages, you'd be good to go.</li>
-<li>Now follow the prompts. At one point it will ask for permission to restart
-all services. Grant the permission and let it continue.</li>
-<li>BOOM! You have upgraded to a newer version! Hope you enjoy your distro with a
-breath of fresh air.</li>
-</ol>
-<hr>
-<p>I could find this on <a href="https://www.hughrawlinson.me/posts/2021/06/04/solved-do-release-upgrade-hangs-in-ubuntu-on-wsl">another post</a> by Hugh Rawlinson, however their Ubuntu's version was 18.04 LTS, but the steps are pretty much the same.</p>
-  </div>
-  <footer>
+    </header>
+    <aside>
+        
+    </aside>
+    <div class="e-content">
+        <p>Notes are a sort of micro-blog for me. I aim to POSSE these to related websites
+if that is possible. You can expect longer replies to posts I find online, or
+replies containing stuff which I could consider to be necessary to be archived.</p>
+<p>Indivivual notes's file names are in the format <code>%Y-%V-nn.md</code>, where
+<code>%Y</code> = full year, <code>%V</code> = ISO week number, <code>nn</code> = nth post for said week.</p>
+<p>There should also be a webmention reply below.</p>
+    </div>
     <hr>
-    <h2>Comments</h2>
+    <footer>
+        <h2>Comments</h2>
 <section class="webmention webmention-reactions">
     <p>
         To comment, like, or repost this page, my website supports 
@@ -137,7 +90,7 @@ breath of fresh air.</li>
         <input 
             type="text"
             name="target"
-            hidden value="https://karawale.in/posts/upgrading-ubuntu-lts-wsl/"
+            hidden value="https://karawale.in/notes/2022-31-01/"
         >
         <input type="submit" value="Send webmention">
     </form>
@@ -183,7 +136,7 @@ breath of fresh air.</li>
 </ul>
 </section>
 <section class="webmention-replies"></section>
-  </footer>
+    </footer>
 </article>
 </main>
 <hr>

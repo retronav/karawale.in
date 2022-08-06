@@ -16,8 +16,8 @@
 
     <link rel="pingback" href="https://webmention.io/karawale.in/xmlrpc"/>
 
-        <link rel="preload" as="font" type="font/woff2" href="fonts/cabin-latin-variable-wghtOnly-normal.woff2" crossorigin="anonymous">
-        <link rel="preload" as="font" type="font/woff2" href="fonts/victor-mono-latin.woff2" crossorigin="anonymous"><meta name="generator" content="Eleventy"/>
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/cabin-latin-variable-wghtOnly-normal.woff2" crossorigin="anonymous">
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/iosevka-minimal.woff2" crossorigin="anonymous"><meta name="generator" content="Eleventy v2.0.0"/>
 
 <link rel="shortcut icon" href="/favicon.png" type="image/png">
 <link rel="stylesheet" href="/main.css"/>
@@ -45,6 +45,7 @@
     <time class="dt-published" datetime="2022-03-23T00:00:00Z">
       23 March 2022
     </time>
+    
     <span class="seperator">&centerdot;</span>
     <span>By</span><div class="h-card h-card-mini p-author">
     <img class="u-photo" width="24" height="24" src="/img/me96.webp" alt="A close-up photo of my face.">
@@ -110,14 +111,14 @@ whole thing wouldn't even work at all!</p>
 <h2 id="making-the-binary-work-in-the-container">Making the binary work in the container</h2>
 <p>So the first steps were to try out my application binary (made using
 <code>pyinstaller</code>) in the image. So the commands to make it were:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #F07178">set</span><span style="color: #BFBDB6"> id (</span><span style="color: #F07178">buildah</span><span style="color: #BFBDB6"> from --pull alpine)</span></span>
-<span class="line"><span style="color: #F07178">buildah</span><span style="color: #BFBDB6"> copy $id ./dist/cli /</span></span>
-<span class="line"><span style="color: #F07178">buildah</span><span style="color: #BFBDB6"> run $id -- sh</span></span>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #EBDBB2">set id (buildah from --pull alpine)</span></span>
+<span class="line"><span style="color: #EBDBB2">buildah copy </span><span style="color: #A89984">$</span><span style="color: #83A598">id</span><span style="color: #EBDBB2"> ./dist/cli /</span></span>
+<span class="line"><span style="color: #EBDBB2">buildah run </span><span style="color: #A89984">$</span><span style="color: #83A598">id</span><span style="color: #EBDBB2"> -- sh</span></span>
 <span class="line"></span></code></pre>
 <p>Note that I am jumping into the container's shell because I didn't want
 to commit an image right now. Tried to run the binary, only to get</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">sh: ./dist/cli: not found</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">sh: ./dist/cli: not found</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p>I was initially confused by this error message, but later got to know that this
 is a
 <a href="https://stackoverflow.com/a/66974607">common symptom of a dynamic link failure</a>
@@ -126,9 +127,9 @@ is a
 searching, I found a
 <a href="https://wiki.alpinelinux.org/wiki/Running_glibc_programs">way to run glibc programs on Alpine linux</a>
 . So tried that, and...</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">/ # ./cli --help</span></span>
-<span class="line"><span style="color: #bfbdb6">Error relocating /tmp/_MEIAdPkMp/libz.so.1: crc32_z: symbol not found</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">/ # ./cli --help</span></span>
+<span class="line"><span style="color: #ebdbb2">Error relocating /tmp/_MEIAdPkMp/libz.so.1: crc32_z: symbol not found</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p>So, definitely I was clueless about what to do. So I really had two options:
 switch to another image, or not containerise. Fortunately, I picked the
 first one - choose a different image.</p>
@@ -147,11 +148,11 @@ in a few clicks by navigating through the website, you will land here - the page
 that tells how to
 <a href="https://playwright.dev/python/docs/cli#install-system-dependencies">install system dependencies</a>. So I pulled on a temporary Ubuntu container
 and tried to install python3 and pip, but...</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">root@35423fdec4a9:/# apt install -y python3 python3-pip</span></span>
-<span class="line"><span style="color: #bfbdb6">...</span></span>
-<span class="line"><span style="color: #bfbdb6">Need to get 72.5 MB of archives.</span></span>
-<span class="line"><span style="color: #bfbdb6">After this operation, 319 MB of additional disk space will be used.</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">root@35423fdec4a9:/# apt install -y python3 python3-pip</span></span>
+<span class="line"><span style="color: #ebdbb2">...</span></span>
+<span class="line"><span style="color: #ebdbb2">Need to get 72.5 MB of archives.</span></span>
+<span class="line"><span style="color: #ebdbb2">After this operation, 319 MB of additional disk space will be used.</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p>319 MB? Just to install the system dependencies? I was shocked. I decided to
 leave this here and instead take a look in the source code of the Playwright CLI
 , to figure out how it figures out system dependencies. So after quite a bit of
@@ -161,25 +162,25 @@ which has a list of dependencies required for Playwright to function. Immediatel
 <h3 id="installing-dependencies-the-diy-way">Installing dependencies, the DIY way</h3>
 <p>If we run playwright without the dependencies installed, we will get something
 like this:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">╔════════════════════════════════════════════════════════════╗</span></span>
-<span class="line"><span style="color: #bfbdb6">║ Host system is missing a few dependencies to run browsers. ║</span></span>
-<span class="line"><span style="color: #bfbdb6">║ Please install them with the following command:            ║</span></span>
-<span class="line"><span style="color: #bfbdb6">║                                                            ║</span></span>
-<span class="line"><span style="color: #bfbdb6">║     playwright install-deps                                ║</span></span>
-<span class="line"><span style="color: #bfbdb6">║                                                            ║</span></span>
-<span class="line"><span style="color: #bfbdb6">║ &#x3C;3 Playwright Team                                         ║</span></span>
-<span class="line"><span style="color: #bfbdb6">╚════════════════════════════════════════════════════════════╝</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">╔════════════════════════════════════════════════════════════╗</span></span>
+<span class="line"><span style="color: #ebdbb2">║ Host system is missing a few dependencies to run browsers. ║</span></span>
+<span class="line"><span style="color: #ebdbb2">║ Please install them with the following command:            ║</span></span>
+<span class="line"><span style="color: #ebdbb2">║                                                            ║</span></span>
+<span class="line"><span style="color: #ebdbb2">║     playwright install-deps                                ║</span></span>
+<span class="line"><span style="color: #ebdbb2">║                                                            ║</span></span>
+<span class="line"><span style="color: #ebdbb2">║ &#x3C;3 Playwright Team                                         ║</span></span>
+<span class="line"><span style="color: #ebdbb2">╚════════════════════════════════════════════════════════════╝</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p>So I hacked up a little Deno script to fetch the dependencies:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">deno eval "import {deps} from 'https://raw.githubusercontent.com/microsoft/playwright/main/packages/playwright-core/src/utils/nativeDeps.ts'; console.log(deps['ubuntu20.04']['chromium'].join('\n'));"</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">deno eval "import {deps} from 'https://raw.githubusercontent.com/microsoft/playwright/main/packages/playwright-core/src/utils/nativeDeps.ts'; console.log(deps['ubuntu20.04']['chromium'].join('\n'));"</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p><small>Cheeky enough, I know 😉. By the way, Deno is used because the source is
 a TypeScript file, and I wouldn't like to install several dozen packages on Node
 just to get the dependencies list.</small></p>
 <p>And tried installing that in the container but apt decided to greet me with an
 error message:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">E: Unable to locate package &#x3C;all-the-package-names-seperated-by-a-space></span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">E: Unable to locate package &#x3C;all-the-package-names-seperated-by-a-space></span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p>Realising how naïve this was, I tried to look up for solutions to this. One
 <a href="https://unix.stackexchange.com/a/212214">solution that particularly stood out</a>
 was somewhat like this:</p>
@@ -188,70 +189,70 @@ was somewhat like this:</p>
 <li>Using <code>xargs</code> to pass the arguments to apt
 So I came up with these lines to do it:</li>
 </ol>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #ACB6BF8C; font-style: italic"># Install dependencies</span></span>
-<span class="line"><span style="color: #F07178">deno</span><span style="color: #BFBDB6"> eval </span><span style="color: #AAD94C">"import {deps} from 'https://raw.githubusercontent.com/microsoft/playwright/main/packages/playwright-core/src/utils/nativeDeps.ts'; console.log(deps['ubuntu20.04']['chromium'].join('\n'));"</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">></span><span style="color: #BFBDB6"> /tmp/deps.txt</span></span>
-<span class="line"><span style="color: #F07178">buildah</span><span style="color: #BFBDB6"> copy $id /tmp/deps.txt /tmp</span></span>
-<span class="line"><span style="color: #F07178">buildah</span><span style="color: #BFBDB6"> run $id -- xargs -a /tmp/deps.txt apt install -y</span></span>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #928374; font-style: italic"># Install dependencies</span></span>
+<span class="line"><span style="color: #EBDBB2">deno eval </span><span style="color: #A89984">"</span><span style="color: #B8BB26">import {deps} from 'https://raw.githubusercontent.com/microsoft/playwright/main/packages/playwright-core/src/utils/nativeDeps.ts'; console.log(deps['ubuntu20.04']['chromium'].join('\n'));</span><span style="color: #A89984">"</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">></span><span style="color: #EBDBB2"> /tmp/deps.txt</span></span>
+<span class="line"><span style="color: #EBDBB2">buildah copy </span><span style="color: #A89984">$</span><span style="color: #83A598">id</span><span style="color: #EBDBB2"> /tmp/deps.txt /tmp</span></span>
+<span class="line"><span style="color: #EBDBB2">buildah run </span><span style="color: #A89984">$</span><span style="color: #83A598">id</span><span style="color: #EBDBB2"> -- xargs -a /tmp/deps.txt apt install -y</span></span>
 <span class="line"></span></code></pre>
 <p>Which gets those packages installed, claiming ~117 MB of space in the process
 (not to shabby, at least better than the previous 319 MB).</p>
 <h3 id="the-tzdata-prompt-problem">The tzdata prompt problem</h3>
 <p>While doing the installation, I noticed a prompt popping up:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">Configuring tzdata</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span>
-<span class="line"><span style="color: #bfbdb6">------------------</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span>
-<span class="line"><span style="color: #bfbdb6">Please select the geographic area in which you live. Subsequent configuration</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span>
-<span class="line"><span style="color: #bfbdb6">questions will narrow this down by presenting a list of cities, representing</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span>
-<span class="line"><span style="color: #bfbdb6">the time zones in which they are located.</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span>
-<span class="line"><span style="color: #bfbdb6">1. Africa 4. Australia 7. Atlantic 10. Pacific 13. Etc</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span>
-<span class="line"><span style="color: #bfbdb6">2. America 5. Arctic 8. Europe 11. SystemV</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span>
-<span class="line"><span style="color: #bfbdb6">3. Antarctica 6. Asia 9. Indian 12. US</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span>
-<span class="line"><span style="color: #bfbdb6">Geographic area:</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">Configuring tzdata</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span>
+<span class="line"><span style="color: #ebdbb2">------------------</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span>
+<span class="line"><span style="color: #ebdbb2">Please select the geographic area in which you live. Subsequent configuration</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span>
+<span class="line"><span style="color: #ebdbb2">questions will narrow this down by presenting a list of cities, representing</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span>
+<span class="line"><span style="color: #ebdbb2">the time zones in which they are located.</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span>
+<span class="line"><span style="color: #ebdbb2">1. Africa 4. Australia 7. Atlantic 10. Pacific 13. Etc</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span>
+<span class="line"><span style="color: #ebdbb2">2. America 5. Arctic 8. Europe 11. SystemV</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span>
+<span class="line"><span style="color: #ebdbb2">3. Antarctica 6. Asia 9. Indian 12. US</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span>
+<span class="line"><span style="color: #ebdbb2">Geographic area:</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p>This was really a disappointment since building container image is supposed to
 be an automated process. <a href="https://serverfault.com/a/992421">Looking up a
 solution</a> for this on the Web, I found out
 that if I set the <code>DEBIAN_FRONTEND</code> environment variable to <code>noninteractive</code>, I
 can stop the prompt from appearing. But I still need a time zone somehow! There
 was another solution for it:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">buildah config --env TZ=Asia/Kolkata $id</span></span>
-<span class="line"><span style="color: #bfbdb6">buildah run $id -- ln -snf /usr/share/zoneinfo/\$TZ /etc/localtime</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">buildah config --env TZ=Asia/Kolkata $id</span></span>
+<span class="line"><span style="color: #ebdbb2">buildah run $id -- ln -snf /usr/share/zoneinfo/\$TZ /etc/localtime</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p><small>Notice the $TZ. The $ was to prevent the TZ env from the host to creep
 in</small> Running this, gets the job done. No more tzdata prompt in the middle
 of an installation, yay!</p>
 <h2 id="setting-up-the-image-s-public-interface">Setting up the image's public interface</h2>
 <p>The first step was to change the working directory, since the app is being
 copied to <code>/app</code>.</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">buildah config --entrypoint '["/app/cli"]' $id</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">buildah config --entrypoint '["/app/cli"]' $id</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p>After this, I commit the image and then remove the working container:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">buildah commit $id rep</span></span>
-<span class="line"><span style="color: #bfbdb6">buildah rm $id</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">buildah commit $id rep</span></span>
+<span class="line"><span style="color: #ebdbb2">buildah rm $id</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <h2 id="building-the-image">Building the image</h2>
 <p>After this, I thought the thing was done. So I start the process of building the
 image and leave the machine alone for some time. After the build was done, I
 tried to run the image just to see that everything is working.</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">podman run -it --rm localhost/rep</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">podman run -it --rm localhost/rep</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p>And I see a very, very peculiar error:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">Usage: cli [OPTIONS] COMMAND [ARGS]...</span></span>
-<span class="line"><span style="color: #bfbdb6">Try 'cli --help' for help.</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span>
-<span class="line"><span style="color: #bfbdb6">Error: No such command 'bash'.</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">Usage: cli [OPTIONS] COMMAND [ARGS]...</span></span>
+<span class="line"><span style="color: #ebdbb2">Try 'cli --help' for help.</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span>
+<span class="line"><span style="color: #ebdbb2">Error: No such command 'bash'.</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p>But I didn't pass bash as a parameter! However, digging in the logs, I see a
 line:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">WARN[0000] cmd "bash" exists and will be passed to entrypoint as a parameter</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">WARN[0000] cmd "bash" exists and will be passed to entrypoint as a parameter</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p>Some more "looking up" and I get to know that I have not set the <code>cmd</code> key in
 the image config<sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref aria-describedby="footnote-label">1</a></sup>. So I had two attempts to fix it:</p>
 <ol>
@@ -262,15 +263,15 @@ worked! There was no "bash" being passed as a parameter!</li>
 </ol>
 <h3 id="running-the-image">Running the image</h3>
 <p>For this one, I use this command to run it:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">podman run -it --rm -v $PWD/config:/app/config -v $PWD/out:/app/out localhost/rep</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">podman run -it --rm -v $PWD/config:/app/config -v $PWD/out:/app/out localhost/rep</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p>And it worked flawlessly. I was happy.</p>
 <h3 id="size-of-the-image">Size of the image</h3>
 <p>I also took a look at the image size just to see if our efforts have made any
 significant effect. So running <code>podman image ls</code> gives:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">REPOSITORY                 TAG         IMAGE ID      CREATED            SIZE</span></span>
-<span class="line"><span style="color: #bfbdb6">localhost/rep              latest      4c129f4360a0  About an hour ago  494 MB</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">REPOSITORY                 TAG         IMAGE ID      CREATED            SIZE</span></span>
+<span class="line"><span style="color: #ebdbb2">localhost/rep              latest      4c129f4360a0  About an hour ago  494 MB</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p>494 MB. Still OK. <del>Could have easily been in the range of 1GB if I would
 install Python to install the dependencies.</del> I did that too, here are some
 rough figures:</p>
@@ -322,13 +323,18 @@ elsewhere. <a href="#user-content-fnref-1" data-footnote-backref class="data-foo
   </div>
   <footer>
     <hr>
-    <h2>Webmentions</h2>
+    <h2>Comments</h2>
 <section class="webmention webmention-reactions">
     <p>
-        My site uses <a href="http://indieweb.org/webmention">Webmentions</a> via the 
-        <a href="https://indieweb.org">Indieweb</a>
-        and <a href="https://webmention.io">webmention.io</a> 
-        for likes, reposts, and replies/comments.
+        To comment, like, or repost this page, my website supports 
+        <a href="https://en.wikipedia.org/wiki/Webmention">webmentions</a>.
+        Such interactions on different social media platforms will show up here.
+        Alternatively, you can also send a webmention from your website using
+        the form below.
+        <br>
+        <br>
+        Or if you want to, you can e-mail your thoughts about it on 
+        "<code>my first name [at] this domain</code>".
     </p>
     <form class="send-webmention" action="https://webmention.io/karawale.in/webmention" method="post">
         <label for="webmention-form-input">
@@ -350,6 +356,8 @@ elsewhere. <a href="#user-content-fnref-1" data-footnote-backref class="data-foo
             Likes and reposts
         </summary>
         <ul class="webmention-reactions">
+    
+        
     
         
             
@@ -405,6 +413,8 @@ elsewhere. <a href="#user-content-fnref-1" data-footnote-backref class="data-foo
     <ul class="webmention-reactions">
     
         
+    
+        
             
         
     
@@ -452,66 +462,33 @@ elsewhere. <a href="#user-content-fnref-1" data-footnote-backref class="data-foo
 <hr>
 <footer>
   <nav>
-    <dl>
+    <ul>
       
-        <dt>Main</dt>
-        <dd>
-          <ul>
-            
-              <li>
-                <a href="/">Home</a>
-              </li>
-            
-              <li>
-                <a href="/contact">Contact</a>
-              </li>
-            
-              <li>
-                <a href="/projects">Projects</a>
-              </li>
-            
-              <li>
-                <a href="/feed.xml">RSS</a>
-              </li>
-            
-          </ul>
-        </dd>
+        <li>
+          <a href="/">Home</a>
+        </li>
       
-        <dt>Writings</dt>
-        <dd>
-          <ul>
-            
-              <li>
-                <a href="/posts">Blog</a>
-              </li>
-            
-              <li>
-                <a href="/notes">Notes</a>
-              </li>
-            
-          </ul>
-        </dd>
+        <li>
+          <a href="/about">About</a>
+        </li>
       
-        <dt>Links</dt>
-        <dd>
-          <ul>
-            
-              <li>
-                <a href="https://sr.ht/~retronav">Sourcehut</a>
-              </li>
-            
-              <li>
-                <a href="https://github.com/retronav">GitHub</a>
-              </li>
-            
-              <li>
-                <a href="https://www.linkedin.com/in/pranav-karawale">LinkedIn</a>
-              </li>
-            
-          </ul>
-        </dd>
+        <li>
+          <a href="/projects">Projects</a>
+        </li>
       
-    </dl>
+        <li>
+          <a href="/feeds">Feeds</a>
+        </li>
+      
+        <li>
+          <a href="/posts">Blog</a>
+        </li>
+      
+        <li>
+          <a href="/notes">Notes</a>
+        </li>
+      
+    </ul>
   </nav>
 </footer>
   </body>

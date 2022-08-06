@@ -16,8 +16,8 @@
 
     <link rel="pingback" href="https://webmention.io/karawale.in/xmlrpc"/>
 
-        <link rel="preload" as="font" type="font/woff2" href="fonts/cabin-latin-variable-wghtOnly-normal.woff2" crossorigin="anonymous">
-        <link rel="preload" as="font" type="font/woff2" href="fonts/victor-mono-latin.woff2" crossorigin="anonymous"><meta name="generator" content="Eleventy"/>
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/cabin-latin-variable-wghtOnly-normal.woff2" crossorigin="anonymous">
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/iosevka-minimal.woff2" crossorigin="anonymous"><meta name="generator" content="Eleventy v2.0.0"/>
 
 <link rel="shortcut icon" href="/favicon.png" type="image/png">
 <link rel="stylesheet" href="/main.css"/>
@@ -45,6 +45,7 @@
     <time class="dt-published" datetime="2020-12-18T00:00:00Z">
       18 December 2020
     </time>
+    
     <span class="seperator">&centerdot;</span>
     <span>By</span><div class="h-card h-card-mini p-author">
     <img class="u-photo" width="24" height="24" src="/img/me96.webp" alt="A close-up photo of my face.">
@@ -111,22 +112,22 @@ them.</p>
 access to data and who cannot. These are written in .rules files and have a
 similar syntax to JavaScript which can be understood in the docs. Since we used
 production mode, you will see this particular rule in your security rules:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">match /{document=**} {</span></span>
-<span class="line"><span style="color: #bfbdb6">    allow read, write: if false;</span></span>
-<span class="line"><span style="color: #bfbdb6">}</span></span>
-<span class="line"><span style="color: #bfbdb6">//Don't remove this rule, or else your project is gone</span></span>
-<span class="line"><span style="color: #bfbdb6">//and keep this rule at end (this comment is added by me)</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">match /{document=**} {</span></span>
+<span class="line"><span style="color: #ebdbb2">    allow read, write: if false;</span></span>
+<span class="line"><span style="color: #ebdbb2">}</span></span>
+<span class="line"><span style="color: #ebdbb2">//Don't remove this rule, or else your project is gone</span></span>
+<span class="line"><span style="color: #ebdbb2">//and keep this rule at end (this comment is added by me)</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p>Which literally means that no client can access your database and storage, which
 is sometimes not needed. So we can introduce changes in how we store data. If
 you've used Firebase, you know that for every user that signs up for your app,
 they are assigned a unique ID (or UID). We can store resources based on their
 UID, for example, in a todo app, one can store user's data in their database at
 path <code>/todos/users-uid</code> which makes sense. So in this, we can add a new rule:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #bfbdb6">match /todos/{uid=\*\*} {</span></span>
-<span class="line"><span style="color: #bfbdb6">allow read, write: if request.auth != null and request.auth.uid == uid;</span></span>
-<span class="line"><span style="color: #bfbdb6">}</span></span>
-<span class="line"><span style="color: #bfbdb6"></span></span></code></pre>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #ebdbb2">match /todos/{uid=\*\*} {</span></span>
+<span class="line"><span style="color: #ebdbb2">allow read, write: if request.auth != null and request.auth.uid == uid;</span></span>
+<span class="line"><span style="color: #ebdbb2">}</span></span>
+<span class="line"><span style="color: #ebdbb2"></span></span></code></pre>
 <p>This means that if anyone accesses any path under todos collection, they should
 be authenticated to the app, and if they try to access a specific UID in the
 collection, the database will only allow access if they access data under their
@@ -191,13 +192,18 @@ a nice day :)</p>
   </div>
   <footer>
     <hr>
-    <h2>Webmentions</h2>
+    <h2>Comments</h2>
 <section class="webmention webmention-reactions">
     <p>
-        My site uses <a href="http://indieweb.org/webmention">Webmentions</a> via the 
-        <a href="https://indieweb.org">Indieweb</a>
-        and <a href="https://webmention.io">webmention.io</a> 
-        for likes, reposts, and replies/comments.
+        To comment, like, or repost this page, my website supports 
+        <a href="https://en.wikipedia.org/wiki/Webmention">webmentions</a>.
+        Such interactions on different social media platforms will show up here.
+        Alternatively, you can also send a webmention from your website using
+        the form below.
+        <br>
+        <br>
+        Or if you want to, you can e-mail your thoughts about it on 
+        "<code>my first name [at] this domain</code>".
     </p>
     <form class="send-webmention" action="https://webmention.io/karawale.in/webmention" method="post">
         <label for="webmention-form-input">
@@ -232,10 +238,14 @@ a nice day :)</p>
     
         
     
+        
+    
 </ul>
     </details>
     <h3>Replies</h3>
     <ul class="webmention-reactions">
+    
+        
     
         
     
@@ -258,66 +268,33 @@ a nice day :)</p>
 <hr>
 <footer>
   <nav>
-    <dl>
+    <ul>
       
-        <dt>Main</dt>
-        <dd>
-          <ul>
-            
-              <li>
-                <a href="/">Home</a>
-              </li>
-            
-              <li>
-                <a href="/contact">Contact</a>
-              </li>
-            
-              <li>
-                <a href="/projects">Projects</a>
-              </li>
-            
-              <li>
-                <a href="/feed.xml">RSS</a>
-              </li>
-            
-          </ul>
-        </dd>
+        <li>
+          <a href="/">Home</a>
+        </li>
       
-        <dt>Writings</dt>
-        <dd>
-          <ul>
-            
-              <li>
-                <a href="/posts">Blog</a>
-              </li>
-            
-              <li>
-                <a href="/notes">Notes</a>
-              </li>
-            
-          </ul>
-        </dd>
+        <li>
+          <a href="/about">About</a>
+        </li>
       
-        <dt>Links</dt>
-        <dd>
-          <ul>
-            
-              <li>
-                <a href="https://sr.ht/~retronav">Sourcehut</a>
-              </li>
-            
-              <li>
-                <a href="https://github.com/retronav">GitHub</a>
-              </li>
-            
-              <li>
-                <a href="https://www.linkedin.com/in/pranav-karawale">LinkedIn</a>
-              </li>
-            
-          </ul>
-        </dd>
+        <li>
+          <a href="/projects">Projects</a>
+        </li>
       
-    </dl>
+        <li>
+          <a href="/feeds">Feeds</a>
+        </li>
+      
+        <li>
+          <a href="/posts">Blog</a>
+        </li>
+      
+        <li>
+          <a href="/notes">Notes</a>
+        </li>
+      
+    </ul>
   </nav>
 </footer>
   </body>

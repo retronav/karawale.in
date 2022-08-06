@@ -16,8 +16,8 @@
 
     <link rel="pingback" href="https://webmention.io/karawale.in/xmlrpc"/>
 
-        <link rel="preload" as="font" type="font/woff2" href="fonts/cabin-latin-variable-wghtOnly-normal.woff2" crossorigin="anonymous">
-        <link rel="preload" as="font" type="font/woff2" href="fonts/victor-mono-latin.woff2" crossorigin="anonymous"><meta name="generator" content="Eleventy"/>
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/cabin-latin-variable-wghtOnly-normal.woff2" crossorigin="anonymous">
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/iosevka-minimal.woff2" crossorigin="anonymous"><meta name="generator" content="Eleventy v2.0.0"/>
 
 <link rel="shortcut icon" href="/favicon.png" type="image/png">
 <link rel="stylesheet" href="/main.css"/>
@@ -45,6 +45,7 @@
     <time class="dt-published" datetime="2020-11-20T00:00:00Z">
       20 November 2020
     </time>
+    
     <span class="seperator">&centerdot;</span>
     <span>By</span><div class="h-card h-card-mini p-author">
     <img class="u-photo" width="24" height="24" src="/img/me96.webp" alt="A close-up photo of my face.">
@@ -107,15 +108,15 @@ advised.</p>
 <h2 id="defining-the-global-variables-precisely-stores">Defining the global variables(precisely, stores)</h2>
 <p>To keep track of what goes here and there, we need some global variables to
 preserve and mutate all the states.</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> __refs__ </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> {}</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> __reactives__ </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> []</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> __reactiveEl__ </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> document</span><span style="color: #F29668">.</span><span style="color: #FFB454">querySelectorAll</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">'[reactive]'</span><span style="color: #BFBDB6">)</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">reactive</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> (</span><span style="color: #D2A6FF">obj</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> {</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #ACB6BF8C; font-style: italic">/*Add logic*/</span></span>
-<span class="line"><span style="color: #BFBDB6">}</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">__updateDOM__</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> (</span><span style="color: #D2A6FF">ref</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> {</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #ACB6BF8C; font-style: italic">/*Add logic*/</span></span>
-<span class="line"><span style="color: #BFBDB6">}</span><span style="color: #BFBDB6B3">;</span></span>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #FB4934">const</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">__refs__</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{};</span></span>
+<span class="line"><span style="color: #FB4934">const</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">__reactives__</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> []</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #FB4934">const</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">__reactiveEl__</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">document</span><span style="color: #A89984">.</span><span style="color: #FABD2F">querySelectorAll</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">'</span><span style="color: #B8BB26">[reactive]</span><span style="color: #A89984">'</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #FB4934">const</span><span style="color: #EBDBB2"> </span><span style="color: #FABD2F">reactive</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">(</span><span style="color: #83A598">obj</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #928374; font-style: italic">/*Add logic*/</span></span>
+<span class="line"><span style="color: #A89984">};</span></span>
+<span class="line"><span style="color: #FB4934">const</span><span style="color: #EBDBB2"> </span><span style="color: #FABD2F">__updateDOM__</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">(</span><span style="color: #83A598">ref</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #928374; font-style: italic">/*Add logic*/</span></span>
+<span class="line"><span style="color: #A89984">};</span></span>
 <span class="line"></span></code></pre>
 <p>This is just everything we need for the logic. The variables whose names start
 and end with double underscores are
@@ -135,7 +136,7 @@ the <code>reactive</code> attribute (<code>&#x3C;element reactive>&#x3C;/element
 use the special reactive powers.</p>
 <p>To access the reactive elements from the store, we will use the ES6 string
 interpolation syntax. So, to access the <code>count</code>, we will write</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #39BAE680">&#x3C;</span><span style="color: #39BAE6">h1</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">reactive</span><span style="color: #39BAE680">></span><span style="color: #BFBDB6">The time is ${count}</span><span style="color: #39BAE680">&#x3C;/</span><span style="color: #39BAE6">h1</span><span style="color: #39BAE680">></span></span>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #83A598">&#x3C;</span><span style="color: #8EC07C; font-weight: bold">h1</span><span style="color: #EBDBB2"> </span><span style="color: #FABD2F">reactive</span><span style="color: #83A598">></span><span style="color: #EBDBB2">The time is ${count}</span><span style="color: #83A598">&#x3C;/</span><span style="color: #8EC07C; font-weight: bold">h1</span><span style="color: #83A598">></span></span>
 <span class="line"></span></code></pre>
 <h2 id="the-refs">The <code>__refs__</code></h2>
 <p>Here, we will store the values of the object passed in the <code>reactive</code> function.</p>
@@ -144,140 +145,140 @@ interpolation syntax. So, to access the <code>count</code>, we will write</p>
 <h2 id="the-reactive">The <code>reactive()</code></h2>
 <p>This function is basically a store where you'd be storing all the reactive
 stuff. The definition of the function is surprisingly simple:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">reactive</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> (</span><span style="color: #D2A6FF">obj</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> {</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #ACB6BF8C; font-style: italic">// Loop through the string</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #39BAE6">Object</span><span style="color: #F29668">.</span><span style="color: #FFB454">keys</span><span style="color: #BFBDB6">(obj)</span><span style="color: #F29668">.</span><span style="color: #FFB454">forEach</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">key</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> {</span></span>
-<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #ACB6BF8C; font-style: italic">// defineProperty, anyone??</span></span>
-<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #ACB6BF8C; font-style: italic">// We want to maintain reactivity, so we are using custom</span></span>
-<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #ACB6BF8C; font-style: italic">// getters and setters</span></span>
-<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #39BAE6">Object</span><span style="color: #F29668">.</span><span style="color: #FFB454">defineProperty</span><span style="color: #BFBDB6">(__refs__</span><span style="color: #BFBDB6B3">,</span><span style="color: #BFBDB6"> key</span><span style="color: #BFBDB6B3">,</span><span style="color: #BFBDB6"> {</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #FFB454">get</span><span style="color: #BFBDB6">() {</span></span>
-<span class="line"><span style="color: #BFBDB6">        </span><span style="color: #FF8F40">return</span><span style="color: #BFBDB6"> obj[key]</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">      }</span><span style="color: #BFBDB6B3">,</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #ACB6BF8C; font-style: italic">// This shows an interesting aspect of the logic.</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #ACB6BF8C; font-style: italic">// This will update the target element everytime</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #ACB6BF8C; font-style: italic">// something changes.</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #FFB454">set</span><span style="color: #BFBDB6">(</span><span style="color: #D2A6FF">val</span><span style="color: #BFBDB6">) {</span></span>
-<span class="line"><span style="color: #BFBDB6">        obj[key] </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> val</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">        </span><span style="color: #FFB454">__updateDOM__</span><span style="color: #BFBDB6">(key)</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">      }</span><span style="color: #BFBDB6B3">,</span></span>
-<span class="line"><span style="color: #BFBDB6">    })</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #ACB6BF8C; font-style: italic">// Think of this as an initial render</span></span>
-<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #FFB454">__updateDOM__</span><span style="color: #BFBDB6">(key)</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">  })</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #ACB6BF8C; font-style: italic">// This is an important step otherwise</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #ACB6BF8C; font-style: italic">// everything is useless</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FF8F40">return</span><span style="color: #BFBDB6"> __refs__</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">}</span><span style="color: #BFBDB6B3">;</span></span>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #FB4934">const</span><span style="color: #EBDBB2"> </span><span style="color: #FABD2F">reactive</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">(</span><span style="color: #83A598">obj</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #A89984">  </span><span style="color: #928374; font-style: italic">// Loop through the string</span></span>
+<span class="line"><span style="color: #EBDBB2">  Object</span><span style="color: #A89984">.</span><span style="color: #FABD2F">keys</span><span style="color: #EBDBB2">(</span><span style="color: #83A598">obj</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">.</span><span style="color: #FABD2F">forEach</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">(</span><span style="color: #83A598">key</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #A89984">    </span><span style="color: #928374; font-style: italic">// defineProperty, anyone??</span></span>
+<span class="line"><span style="color: #A89984">    </span><span style="color: #928374; font-style: italic">// We want to maintain reactivity, so we are using custom</span></span>
+<span class="line"><span style="color: #A89984">    </span><span style="color: #928374; font-style: italic">// getters and setters</span></span>
+<span class="line"><span style="color: #EBDBB2">    Object</span><span style="color: #A89984">.</span><span style="color: #FABD2F">defineProperty</span><span style="color: #EBDBB2">(</span><span style="color: #83A598">__refs__</span><span style="color: #A89984">,</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">key</span><span style="color: #A89984">,</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #EBDBB2">      </span><span style="color: #FABD2F">get</span><span style="color: #A89984">()</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #EBDBB2">        </span><span style="color: #FB4934">return</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">obj</span><span style="color: #EBDBB2">[</span><span style="color: #83A598">key</span><span style="color: #EBDBB2">]</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">      </span><span style="color: #A89984">},</span></span>
+<span class="line"><span style="color: #A89984">      </span><span style="color: #928374; font-style: italic">// This shows an interesting aspect of the logic.</span></span>
+<span class="line"><span style="color: #A89984">      </span><span style="color: #928374; font-style: italic">// This will update the target element everytime</span></span>
+<span class="line"><span style="color: #A89984">      </span><span style="color: #928374; font-style: italic">// something changes.</span></span>
+<span class="line"><span style="color: #EBDBB2">      </span><span style="color: #FABD2F">set</span><span style="color: #A89984">(</span><span style="color: #83A598">val</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #EBDBB2">        </span><span style="color: #83A598">obj</span><span style="color: #EBDBB2">[</span><span style="color: #83A598">key</span><span style="color: #EBDBB2">] </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">val</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">        </span><span style="color: #FABD2F">__updateDOM__</span><span style="color: #EBDBB2">(</span><span style="color: #83A598">key</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">      </span><span style="color: #A89984">},</span></span>
+<span class="line"><span style="color: #EBDBB2">    </span><span style="color: #A89984">}</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #A89984">    </span><span style="color: #928374; font-style: italic">// Think of this as an initial render</span></span>
+<span class="line"><span style="color: #EBDBB2">    </span><span style="color: #FABD2F">__updateDOM__</span><span style="color: #EBDBB2">(</span><span style="color: #83A598">key</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #A89984">}</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #A89984">  </span><span style="color: #928374; font-style: italic">// This is an important step otherwise</span></span>
+<span class="line"><span style="color: #A89984">  </span><span style="color: #928374; font-style: italic">// everything is useless</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #FB4934">return</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">__refs__</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #A89984">};</span></span>
 <span class="line"></span></code></pre>
 <h2 id="the-update-dom">The <code>__updateDOM__()</code></h2>
 <p>This is the
 <a href="https://en.wikipedia.org/wiki/Rosetta_(software)#:~:text=Rosetta%20is%20a%20dynamic%20binary%20translator%20developed,application%20compatibility%20layer%20between%20different%20CPU%20architectures">Rosetta</a>
 for the <code>reactive</code> DOM Elements and the <code>__refs__</code>. This function is also
 relative simple in its definition:</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #ACB6BF8C; font-style: italic">// Ref can be any key from the __refs__ store</span></span>
-<span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">__updateDOM__</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> (</span><span style="color: #D2A6FF">ref</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> {</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #ACB6BF8C; font-style: italic">// This is to check whether we want to update a specific ref value</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FF8F40">if</span><span style="color: #BFBDB6"> (ref) {</span></span>
-<span class="line"><span style="color: #BFBDB6">    __reactives__</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #ACB6BF8C; font-style: italic">// filter out the elements we need</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #F29668">.</span><span style="color: #FFB454">filter</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">reactive</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> reactive</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">dataset</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">ref </span><span style="color: #F29668">===</span><span style="color: #BFBDB6"> ref)</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #F29668">.</span><span style="color: #FFB454">forEach</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">reactive</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> {</span></span>
-<span class="line"><span style="color: #BFBDB6">        </span><span style="color: #FF8F40">let</span><span style="color: #BFBDB6"> ref </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> reactive</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">dataset</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">ref</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">        </span><span style="color: #ACB6BF8C; font-style: italic">// Interacting with the DOM</span></span>
-<span class="line"><span style="color: #BFBDB6">        </span><span style="color: #ACB6BF8C; font-style: italic">// Nullish coalescing, anybody?</span></span>
-<span class="line"><span style="color: #BFBDB6">        reactive</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">textContent </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> __refs__[ref] </span><span style="color: #F29668">??</span><span style="color: #BFBDB6"> </span><span style="color: #AAD94C">''</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">      })</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">  }</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #ACB6BF8C; font-style: italic">// UPDATE ALL!!</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FF8F40">else</span></span>
-<span class="line"><span style="color: #BFBDB6">    __reactives__</span><span style="color: #F29668">.</span><span style="color: #FFB454">forEach</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">reactive</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> {</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #FF8F40">let</span><span style="color: #BFBDB6"> ref </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> reactive</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">dataset</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">ref</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #ACB6BF8C; font-style: italic">// Interacting with the DOM</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #ACB6BF8C; font-style: italic">// Nullish coalescing, anybody?</span></span>
-<span class="line"><span style="color: #BFBDB6">      reactive</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">textContent </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> __refs__[ref] </span><span style="color: #F29668">??</span><span style="color: #BFBDB6"> </span><span style="color: #AAD94C">''</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">    })</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">}</span><span style="color: #BFBDB6B3">;</span></span>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #928374; font-style: italic">// Ref can be any key from the __refs__ store</span></span>
+<span class="line"><span style="color: #FB4934">const</span><span style="color: #EBDBB2"> </span><span style="color: #FABD2F">__updateDOM__</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">(</span><span style="color: #83A598">ref</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #A89984">  </span><span style="color: #928374; font-style: italic">// This is to check whether we want to update a specific ref value</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #FB4934">if</span><span style="color: #EBDBB2"> (</span><span style="color: #83A598">ref</span><span style="color: #EBDBB2">) </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #EBDBB2">    </span><span style="color: #83A598">__reactives__</span></span>
+<span class="line"><span style="color: #A89984">      </span><span style="color: #928374; font-style: italic">// filter out the elements we need</span></span>
+<span class="line"><span style="color: #EBDBB2">      </span><span style="color: #A89984">.</span><span style="color: #FABD2F">filter</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">(</span><span style="color: #83A598">reactive</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> </span><span style="color: #83A598">reactive</span><span style="color: #A89984">.</span><span style="color: #83A598">dataset</span><span style="color: #A89984">.</span><span style="color: #83A598">ref</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">===</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">ref</span><span style="color: #EBDBB2">)</span></span>
+<span class="line"><span style="color: #EBDBB2">      </span><span style="color: #A89984">.</span><span style="color: #FABD2F">forEach</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">(</span><span style="color: #83A598">reactive</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #EBDBB2">        </span><span style="color: #FB4934">let</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">ref</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">reactive</span><span style="color: #A89984">.</span><span style="color: #83A598">dataset</span><span style="color: #A89984">.</span><span style="color: #83A598">ref</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #A89984">        </span><span style="color: #928374; font-style: italic">// Interacting with the DOM</span></span>
+<span class="line"><span style="color: #A89984">        </span><span style="color: #928374; font-style: italic">// Nullish coalescing, anybody?</span></span>
+<span class="line"><span style="color: #EBDBB2">        </span><span style="color: #83A598">reactive</span><span style="color: #A89984">.</span><span style="color: #83A598">textContent</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">__refs__</span><span style="color: #EBDBB2">[</span><span style="color: #83A598">ref</span><span style="color: #EBDBB2">] </span><span style="color: #FB4934">??</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">''</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">      </span><span style="color: #A89984">}</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #A89984">}</span></span>
+<span class="line"><span style="color: #A89984">  </span><span style="color: #928374; font-style: italic">// UPDATE ALL!!</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #FB4934">else</span></span>
+<span class="line"><span style="color: #EBDBB2">    </span><span style="color: #83A598">__reactives__</span><span style="color: #A89984">.</span><span style="color: #FABD2F">forEach</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">(</span><span style="color: #83A598">reactive</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #EBDBB2">      </span><span style="color: #FB4934">let</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">ref</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">reactive</span><span style="color: #A89984">.</span><span style="color: #83A598">dataset</span><span style="color: #A89984">.</span><span style="color: #83A598">ref</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #A89984">      </span><span style="color: #928374; font-style: italic">// Interacting with the DOM</span></span>
+<span class="line"><span style="color: #A89984">      </span><span style="color: #928374; font-style: italic">// Nullish coalescing, anybody?</span></span>
+<span class="line"><span style="color: #EBDBB2">      </span><span style="color: #83A598">reactive</span><span style="color: #A89984">.</span><span style="color: #83A598">textContent</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">__refs__</span><span style="color: #EBDBB2">[</span><span style="color: #83A598">ref</span><span style="color: #EBDBB2">] </span><span style="color: #FB4934">??</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">''</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">    </span><span style="color: #A89984">}</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #A89984">};</span></span>
 <span class="line"></span></code></pre>
 <h2 id="finding-all-the-reactive-variables-and-bootstrapping-them">Finding all the reactive variables and bootstrapping them</h2>
 <p>This can be wrapped as an IIFE (Immediately Invoked Function Expression) but I
 don't consider doing it for the sake of simplicity. So, here we go!!</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #ACB6BF8C; font-style: italic">// Get live elements</span></span>
-<span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> __reactiveEl__ </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> document</span><span style="color: #F29668">.</span><span style="color: #FFB454">querySelectorAll</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">'[reactive]'</span><span style="color: #BFBDB6">)</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">__reactiveEl__</span><span style="color: #F29668">.</span><span style="color: #FFB454">forEach</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">el</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> {</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #ACB6BF8C; font-style: italic">// Match the `count` between &#x3C;h1 reactive>${count}&#x3C;/h1></span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> refs </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> el</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">innerHTML</span><span style="color: #F29668">.</span><span style="color: #FFB454">match</span><span style="color: #BFBDB6">(</span><span style="color: #95E6CB">/\${([</span><span style="color: #F29668">^</span><span style="color: #95E6CB">}]</span><span style="color: #F29668">+</span><span style="color: #95E6CB">)}/</span><span style="color: #FF8F40">g</span><span style="color: #BFBDB6">)</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #ACB6BF8C; font-style: italic">// If the refs exist</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FF8F40">if</span><span style="color: #BFBDB6"> (refs) {</span></span>
-<span class="line"><span style="color: #BFBDB6">    refs</span><span style="color: #F29668">.</span><span style="color: #FFB454">forEach</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">ref</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> {</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #ACB6BF8C; font-style: italic">// extract it</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> dataRef </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> ref</span><span style="color: #F29668">.</span><span style="color: #FFB454">split</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">'{'</span><span style="color: #BFBDB6">)[</span><span style="color: #D2A6FF">1</span><span style="color: #BFBDB6">]</span><span style="color: #F29668">.</span><span style="color: #FFB454">split</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">'}'</span><span style="color: #BFBDB6">)[</span><span style="color: #D2A6FF">0</span><span style="color: #BFBDB6">]</span><span style="color: #F29668">.</span><span style="color: #FFB454">trim</span><span style="color: #BFBDB6">()</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #ACB6BF8C; font-style: italic">// insert a special span element with the element</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #ACB6BF8C; font-style: italic">// and store the key name in the `data-ref` attribute</span></span>
-<span class="line"><span style="color: #BFBDB6">      el</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">innerHTML </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> el</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">innerHTML</span><span style="color: #F29668">.</span><span style="color: #FFB454">replace</span><span style="color: #BFBDB6">(</span></span>
-<span class="line"><span style="color: #BFBDB6">        ref</span><span style="color: #BFBDB6B3">,</span></span>
-<span class="line"><span style="color: #BFBDB6">        </span><span style="color: #AAD94C">`&#x3C;span class="reactivity-anywhere" data-ref="</span><span style="color: #FF8F40">${</span><span style="color: #BFBDB6">dataRef</span><span style="color: #FF8F40">}</span><span style="color: #AAD94C">">&#x3C;/span>`</span></span>
-<span class="line"><span style="color: #BFBDB6">      )</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">    })</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #ACB6BF8C; font-style: italic">// Push the span element in __reactives__</span></span>
-<span class="line"><span style="color: #BFBDB6">    __reactives__</span><span style="color: #F29668">.</span><span style="color: #FFB454">push</span><span style="color: #BFBDB6">(</span><span style="color: #F29668">...</span><span style="color: #BFBDB6">el</span><span style="color: #F29668">.</span><span style="color: #FFB454">querySelectorAll</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">'span.reactivity-anywhere'</span><span style="color: #BFBDB6">))</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">  }</span></span>
-<span class="line"><span style="color: #BFBDB6">})</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #ACB6BF8C; font-style: italic">// Initialize all the magic!!</span></span>
-<span class="line"><span style="color: #FFB454">__updateDOM__</span><span style="color: #BFBDB6">()</span><span style="color: #BFBDB6B3">;</span></span>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #928374; font-style: italic">// Get live elements</span></span>
+<span class="line"><span style="color: #FB4934">const</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">__reactiveEl__</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">document</span><span style="color: #A89984">.</span><span style="color: #FABD2F">querySelectorAll</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">'</span><span style="color: #B8BB26">[reactive]</span><span style="color: #A89984">'</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #83A598">__reactiveEl__</span><span style="color: #A89984">.</span><span style="color: #FABD2F">forEach</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">(</span><span style="color: #83A598">el</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #A89984">  </span><span style="color: #928374; font-style: italic">// Match the `count` between &#x3C;h1 reactive>${count}&#x3C;/h1></span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #FB4934">const</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">refs</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">el</span><span style="color: #A89984">.</span><span style="color: #83A598">innerHTML</span><span style="color: #A89984">.</span><span style="color: #FABD2F">match</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">/</span><span style="color: #D3869B">\$</span><span style="color: #FE8019">{</span><span style="color: #A89984">([</span><span style="color: #8EC07C">^</span><span style="color: #D3869B">}</span><span style="color: #A89984">]</span><span style="color: #8EC07C">+</span><span style="color: #A89984">)</span><span style="color: #FE8019">}</span><span style="color: #A89984">/</span><span style="color: #FB4934">g</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #A89984">  </span><span style="color: #928374; font-style: italic">// If the refs exist</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #FB4934">if</span><span style="color: #EBDBB2"> (</span><span style="color: #83A598">refs</span><span style="color: #EBDBB2">) </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #EBDBB2">    </span><span style="color: #83A598">refs</span><span style="color: #A89984">.</span><span style="color: #FABD2F">forEach</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">(</span><span style="color: #83A598">ref</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #A89984">      </span><span style="color: #928374; font-style: italic">// extract it</span></span>
+<span class="line"><span style="color: #EBDBB2">      </span><span style="color: #FB4934">const</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">dataRef</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">ref</span><span style="color: #A89984">.</span><span style="color: #FABD2F">split</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">'</span><span style="color: #B8BB26">{</span><span style="color: #A89984">'</span><span style="color: #EBDBB2">)[</span><span style="color: #D3869B">1</span><span style="color: #EBDBB2">]</span><span style="color: #A89984">.</span><span style="color: #FABD2F">split</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">'</span><span style="color: #B8BB26">}</span><span style="color: #A89984">'</span><span style="color: #EBDBB2">)[</span><span style="color: #D3869B">0</span><span style="color: #EBDBB2">]</span><span style="color: #A89984">.</span><span style="color: #FABD2F">trim</span><span style="color: #EBDBB2">()</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #A89984">      </span><span style="color: #928374; font-style: italic">// insert a special span element with the element</span></span>
+<span class="line"><span style="color: #A89984">      </span><span style="color: #928374; font-style: italic">// and store the key name in the `data-ref` attribute</span></span>
+<span class="line"><span style="color: #EBDBB2">      </span><span style="color: #83A598">el</span><span style="color: #A89984">.</span><span style="color: #83A598">innerHTML</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">el</span><span style="color: #A89984">.</span><span style="color: #83A598">innerHTML</span><span style="color: #A89984">.</span><span style="color: #FABD2F">replace</span><span style="color: #EBDBB2">(</span></span>
+<span class="line"><span style="color: #EBDBB2">        </span><span style="color: #83A598">ref</span><span style="color: #A89984">,</span></span>
+<span class="line"><span style="color: #EBDBB2">        </span><span style="color: #A89984">`</span><span style="color: #B8BB26">&#x3C;span class="reactivity-anywhere" data-ref="</span><span style="color: #A89984">${</span><span style="color: #83A598">dataRef</span><span style="color: #A89984">}</span><span style="color: #B8BB26">">&#x3C;/span></span><span style="color: #A89984">`</span></span>
+<span class="line"><span style="color: #EBDBB2">      )</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">    </span><span style="color: #A89984">}</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #A89984">    </span><span style="color: #928374; font-style: italic">// Push the span element in __reactives__</span></span>
+<span class="line"><span style="color: #EBDBB2">    </span><span style="color: #83A598">__reactives__</span><span style="color: #A89984">.</span><span style="color: #FABD2F">push</span><span style="color: #EBDBB2">(</span><span style="color: #8EC07C">...</span><span style="color: #83A598">el</span><span style="color: #A89984">.</span><span style="color: #FABD2F">querySelectorAll</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">'</span><span style="color: #B8BB26">span.reactivity-anywhere</span><span style="color: #A89984">'</span><span style="color: #EBDBB2">))</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #A89984">}</span></span>
+<span class="line"><span style="color: #A89984">}</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #928374; font-style: italic">// Initialize all the magic!!</span></span>
+<span class="line"><span style="color: #FABD2F">__updateDOM__</span><span style="color: #EBDBB2">()</span><span style="color: #A89984">;</span></span>
 <span class="line"></span></code></pre>
 <h2 id="making-input-and-textarea-work-with-reactives">Making <code>&#x3C;input></code> and <code>&#x3C;textarea></code> work with reactives</h2>
 <p>Of course, we need this if user input is needed for our code to run.</p>
 <p>The supercharged textareas and input elements will bear the <code>ref</code> attribute</p>
 <p>A lot of things, harsh things are going to be done in this section, so brace
 yourself and hold on tight.</p>
-<pre class="shiki" style="background-color: #0b0e14"><code><span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">parseDefaultRefValue</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> (</span><span style="color: #D2A6FF">el</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> {</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FF8F40">let</span><span style="color: #BFBDB6"> parsed </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> </span><span style="color: #D2A6FF">null</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FF8F40">try</span><span style="color: #BFBDB6"> {</span></span>
-<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #ACB6BF8C; font-style: italic">// If the passed key is a function, run it</span></span>
-<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #ACB6BF8C; font-style: italic">// and store the value</span></span>
-<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #ACB6BF8C; font-style: italic">// I'm sorry, but we need to use eval here</span></span>
-<span class="line"><span style="color: #BFBDB6">    parsed </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> </span><span style="color: #F07178">eval</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">`(</span><span style="color: #FF8F40">${</span><span style="color: #BFBDB6">el</span><span style="color: #F29668">.</span><span style="color: #FFB454">getAttribute</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">'ref-default'</span><span style="color: #BFBDB6">)</span><span style="color: #FF8F40">}</span><span style="color: #AAD94C">)()`</span><span style="color: #BFBDB6">)</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">  } </span><span style="color: #FF8F40">catch</span><span style="color: #BFBDB6"> (e) {</span></span>
-<span class="line"><span style="color: #BFBDB6">    parsed </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> el</span><span style="color: #F29668">.</span><span style="color: #FFB454">getAttribute</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">'ref-default'</span><span style="color: #BFBDB6">)</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">  }</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FF8F40">return</span><span style="color: #BFBDB6"> parsed</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">}</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">assignDefaultRefsToInputs</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> (</span><span style="color: #D2A6FF">el</span><span style="color: #BFBDB6B3">,</span><span style="color: #BFBDB6"> </span><span style="color: #D2A6FF">ref</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> {</span></span>
-<span class="line"><span style="color: #BFBDB6">  __refs__[ref] </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">parseDefaultRefValue</span><span style="color: #BFBDB6">(el)</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">}</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #ACB6BF8C; font-style: italic">// Select input and textarea elements containing the</span></span>
-<span class="line"><span style="color: #ACB6BF8C; font-style: italic">// 'ref' attribute, where the attr. value refers to any</span></span>
-<span class="line"><span style="color: #ACB6BF8C; font-style: italic">// key in the __refs__ store.</span></span>
-<span class="line"><span style="color: #ACB6BF8C; font-style: italic">// The `ref-default` contains the default value for the `ref`</span></span>
-<span class="line"><span style="color: #ACB6BF8C; font-style: italic">// eg.</span></span>
-<span class="line"><span style="color: #ACB6BF8C; font-style: italic">// &#x3C;textarea ref="name">&#x3C;/textarea></span></span>
-<span class="line"><span style="color: #BFBDB6">document</span><span style="color: #F29668">.</span><span style="color: #FFB454">querySelectorAll</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">'input[ref], textarea[ref]'</span><span style="color: #BFBDB6">)</span><span style="color: #F29668">.</span><span style="color: #FFB454">forEach</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">el</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> {</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #ACB6BF8C; font-style: italic">// Keep a ref to the ref!! Because we don't want to</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #ACB6BF8C; font-style: italic">// lose it in event listeners</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> ref </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> el</span><span style="color: #F29668">.</span><span style="color: #FFB454">getAttribute</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">'ref'</span><span style="color: #BFBDB6">)</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">  </span><span style="color: #FF8F40">if</span><span style="color: #BFBDB6"> (ref) {</span></span>
-<span class="line"><span style="color: #BFBDB6">    </span><span style="color: #ACB6BF8C; font-style: italic">// lazily update default values</span></span>
-<span class="line"><span style="color: #BFBDB6">    window</span><span style="color: #F29668">.</span><span style="color: #FFB454">addEventListener</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">'load'</span><span style="color: #BFBDB6B3">,</span><span style="color: #BFBDB6"> () </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">assignDefaultRefsToInputs</span><span style="color: #BFBDB6">(el</span><span style="color: #BFBDB6B3">,</span><span style="color: #BFBDB6"> ref))</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">    el</span><span style="color: #F29668">.</span><span style="color: #FFB454">addEventListener</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">'input'</span><span style="color: #BFBDB6B3">,</span><span style="color: #BFBDB6"> () </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> {</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #ACB6BF8C; font-style: italic">// again, a dumb reference to the ref</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> elRef </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> ref</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #ACB6BF8C; font-style: italic">// preserve default value</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #FF8F40">const</span><span style="color: #BFBDB6"> defaultVal </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> </span><span style="color: #FFB454">parseDefaultRefValue</span><span style="color: #BFBDB6">(el)</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #ACB6BF8C; font-style: italic">// Set whatever value is typed as the ref value</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #ACB6BF8C; font-style: italic">// else, the default value</span></span>
-<span class="line"><span style="color: #BFBDB6">      __refs__[elRef] </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> el</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">value </span><span style="color: #F29668">!==</span><span style="color: #BFBDB6"> </span><span style="color: #AAD94C">''</span><span style="color: #BFBDB6"> </span><span style="color: #F29668">?</span><span style="color: #BFBDB6"> el</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">value </span><span style="color: #F29668">:</span><span style="color: #BFBDB6"> defaultVal</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">      </span><span style="color: #FF8F40">if</span><span style="color: #BFBDB6"> (__refs__[elRef] </span><span style="color: #F29668">!==</span><span style="color: #BFBDB6"> defaultVal) {</span></span>
-<span class="line"><span style="color: #BFBDB6">        </span><span style="color: #ACB6BF8C; font-style: italic">// Keep rest of the input/textarea elements in sync</span></span>
-<span class="line"><span style="color: #BFBDB6">        </span><span style="color: #39BAE6">Array</span><span style="color: #F29668">.</span><span style="color: #FFB454">from</span><span style="color: #BFBDB6">(document</span><span style="color: #F29668">.</span><span style="color: #FFB454">querySelectorAll</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">'input[ref], textarea[ref]'</span><span style="color: #BFBDB6">))</span></span>
-<span class="line"><span style="color: #BFBDB6">          </span><span style="color: #ACB6BF8C; font-style: italic">// Find input/textareas with same refs</span></span>
-<span class="line"><span style="color: #BFBDB6">          </span><span style="color: #F29668">.</span><span style="color: #FFB454">filter</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">el</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> el</span><span style="color: #F29668">.</span><span style="color: #FFB454">getAttribute</span><span style="color: #BFBDB6">(</span><span style="color: #AAD94C">'ref'</span><span style="color: #BFBDB6">) </span><span style="color: #F29668">===</span><span style="color: #BFBDB6"> elRef)</span></span>
-<span class="line"><span style="color: #BFBDB6">          </span><span style="color: #ACB6BF8C; font-style: italic">// Keep their value in sync</span></span>
-<span class="line"><span style="color: #BFBDB6">          </span><span style="color: #F29668">.</span><span style="color: #FFB454">forEach</span><span style="color: #BFBDB6">((</span><span style="color: #D2A6FF">el</span><span style="color: #BFBDB6">) </span><span style="color: #FF8F40">=></span><span style="color: #BFBDB6"> (el</span><span style="color: #F29668">.</span><span style="color: #BFBDB6">value </span><span style="color: #F29668">=</span><span style="color: #BFBDB6"> __refs__[elRef]))</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">      }</span></span>
-<span class="line"><span style="color: #BFBDB6">    })</span><span style="color: #BFBDB6B3">;</span></span>
-<span class="line"><span style="color: #BFBDB6">  }</span></span>
-<span class="line"><span style="color: #BFBDB6">})</span><span style="color: #BFBDB6B3">;</span></span>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #FB4934">const</span><span style="color: #EBDBB2"> </span><span style="color: #FABD2F">parseDefaultRefValue</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">(</span><span style="color: #83A598">el</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #FB4934">let</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">parsed</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #D3869B">null</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #FB4934">try</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #A89984">    </span><span style="color: #928374; font-style: italic">// If the passed key is a function, run it</span></span>
+<span class="line"><span style="color: #A89984">    </span><span style="color: #928374; font-style: italic">// and store the value</span></span>
+<span class="line"><span style="color: #A89984">    </span><span style="color: #928374; font-style: italic">// I'm sorry, but we need to use eval here</span></span>
+<span class="line"><span style="color: #EBDBB2">    </span><span style="color: #83A598">parsed</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> eval(</span><span style="color: #A89984">`</span><span style="color: #B8BB26">(</span><span style="color: #A89984">${</span><span style="color: #83A598">el</span><span style="color: #A89984">.</span><span style="color: #FABD2F">getAttribute</span><span style="color: #B8BB26">(</span><span style="color: #A89984">'</span><span style="color: #B8BB26">ref-default</span><span style="color: #A89984">'</span><span style="color: #B8BB26">)</span><span style="color: #A89984">}</span><span style="color: #B8BB26">)()</span><span style="color: #A89984">`</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #A89984">}</span><span style="color: #EBDBB2"> </span><span style="color: #FB4934">catch</span><span style="color: #EBDBB2"> (</span><span style="color: #83A598">e</span><span style="color: #EBDBB2">) </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #EBDBB2">    </span><span style="color: #83A598">parsed</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">el</span><span style="color: #A89984">.</span><span style="color: #FABD2F">getAttribute</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">'</span><span style="color: #B8BB26">ref-default</span><span style="color: #A89984">'</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #A89984">}</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #FB4934">return</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">parsed</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #A89984">};</span></span>
+<span class="line"><span style="color: #FB4934">const</span><span style="color: #EBDBB2"> </span><span style="color: #FABD2F">assignDefaultRefsToInputs</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">(</span><span style="color: #83A598">el</span><span style="color: #A89984">,</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">ref</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #83A598">__refs__</span><span style="color: #EBDBB2">[</span><span style="color: #83A598">ref</span><span style="color: #EBDBB2">] </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #FABD2F">parseDefaultRefValue</span><span style="color: #EBDBB2">(</span><span style="color: #83A598">el</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #A89984">};</span></span>
+<span class="line"><span style="color: #928374; font-style: italic">// Select input and textarea elements containing the</span></span>
+<span class="line"><span style="color: #928374; font-style: italic">// 'ref' attribute, where the attr. value refers to any</span></span>
+<span class="line"><span style="color: #928374; font-style: italic">// key in the __refs__ store.</span></span>
+<span class="line"><span style="color: #928374; font-style: italic">// The `ref-default` contains the default value for the `ref`</span></span>
+<span class="line"><span style="color: #928374; font-style: italic">// eg.</span></span>
+<span class="line"><span style="color: #928374; font-style: italic">// &#x3C;textarea ref="name">&#x3C;/textarea></span></span>
+<span class="line"><span style="color: #83A598">document</span><span style="color: #A89984">.</span><span style="color: #FABD2F">querySelectorAll</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">'</span><span style="color: #B8BB26">input[ref], textarea[ref]</span><span style="color: #A89984">'</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">.</span><span style="color: #FABD2F">forEach</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">(</span><span style="color: #83A598">el</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #A89984">  </span><span style="color: #928374; font-style: italic">// Keep a ref to the ref!! Because we don't want to</span></span>
+<span class="line"><span style="color: #A89984">  </span><span style="color: #928374; font-style: italic">// lose it in event listeners</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #FB4934">const</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">ref</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">el</span><span style="color: #A89984">.</span><span style="color: #FABD2F">getAttribute</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">'</span><span style="color: #B8BB26">ref</span><span style="color: #A89984">'</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #FB4934">if</span><span style="color: #EBDBB2"> (</span><span style="color: #83A598">ref</span><span style="color: #EBDBB2">) </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #A89984">    </span><span style="color: #928374; font-style: italic">// lazily update default values</span></span>
+<span class="line"><span style="color: #EBDBB2">    </span><span style="color: #83A598">window</span><span style="color: #A89984">.</span><span style="color: #FABD2F">addEventListener</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">'</span><span style="color: #B8BB26">load</span><span style="color: #A89984">'</span><span style="color: #A89984">,</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">()</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> </span><span style="color: #FABD2F">assignDefaultRefsToInputs</span><span style="color: #EBDBB2">(</span><span style="color: #83A598">el</span><span style="color: #A89984">,</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">ref</span><span style="color: #EBDBB2">))</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">    </span><span style="color: #83A598">el</span><span style="color: #A89984">.</span><span style="color: #FABD2F">addEventListener</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">'</span><span style="color: #B8BB26">input</span><span style="color: #A89984">'</span><span style="color: #A89984">,</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">()</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #A89984">      </span><span style="color: #928374; font-style: italic">// again, a dumb reference to the ref</span></span>
+<span class="line"><span style="color: #EBDBB2">      </span><span style="color: #FB4934">const</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">elRef</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">ref</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #A89984">      </span><span style="color: #928374; font-style: italic">// preserve default value</span></span>
+<span class="line"><span style="color: #EBDBB2">      </span><span style="color: #FB4934">const</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">defaultVal</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #FABD2F">parseDefaultRefValue</span><span style="color: #EBDBB2">(</span><span style="color: #83A598">el</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #A89984">      </span><span style="color: #928374; font-style: italic">// Set whatever value is typed as the ref value</span></span>
+<span class="line"><span style="color: #A89984">      </span><span style="color: #928374; font-style: italic">// else, the default value</span></span>
+<span class="line"><span style="color: #EBDBB2">      </span><span style="color: #83A598">__refs__</span><span style="color: #EBDBB2">[</span><span style="color: #83A598">elRef</span><span style="color: #EBDBB2">] </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">el</span><span style="color: #A89984">.</span><span style="color: #83A598">value</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">!==</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">''</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">?</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">el</span><span style="color: #A89984">.</span><span style="color: #83A598">value</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">:</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">defaultVal</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">      </span><span style="color: #FB4934">if</span><span style="color: #EBDBB2"> (</span><span style="color: #83A598">__refs__</span><span style="color: #EBDBB2">[</span><span style="color: #83A598">elRef</span><span style="color: #EBDBB2">] </span><span style="color: #8EC07C">!==</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">defaultVal</span><span style="color: #EBDBB2">) </span><span style="color: #A89984">{</span></span>
+<span class="line"><span style="color: #A89984">        </span><span style="color: #928374; font-style: italic">// Keep rest of the input/textarea elements in sync</span></span>
+<span class="line"><span style="color: #EBDBB2">        Array</span><span style="color: #A89984">.</span><span style="color: #FABD2F">from</span><span style="color: #EBDBB2">(</span><span style="color: #83A598">document</span><span style="color: #A89984">.</span><span style="color: #FABD2F">querySelectorAll</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">'</span><span style="color: #B8BB26">input[ref], textarea[ref]</span><span style="color: #A89984">'</span><span style="color: #EBDBB2">))</span></span>
+<span class="line"><span style="color: #A89984">          </span><span style="color: #928374; font-style: italic">// Find input/textareas with same refs</span></span>
+<span class="line"><span style="color: #EBDBB2">          </span><span style="color: #A89984">.</span><span style="color: #FABD2F">filter</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">(</span><span style="color: #83A598">el</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> </span><span style="color: #83A598">el</span><span style="color: #A89984">.</span><span style="color: #FABD2F">getAttribute</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">'</span><span style="color: #B8BB26">ref</span><span style="color: #A89984">'</span><span style="color: #EBDBB2">) </span><span style="color: #8EC07C">===</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">elRef</span><span style="color: #EBDBB2">)</span></span>
+<span class="line"><span style="color: #A89984">          </span><span style="color: #928374; font-style: italic">// Keep their value in sync</span></span>
+<span class="line"><span style="color: #EBDBB2">          </span><span style="color: #A89984">.</span><span style="color: #FABD2F">forEach</span><span style="color: #EBDBB2">(</span><span style="color: #A89984">(</span><span style="color: #83A598">el</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=></span><span style="color: #EBDBB2"> (</span><span style="color: #83A598">el</span><span style="color: #A89984">.</span><span style="color: #83A598">value</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #83A598">__refs__</span><span style="color: #EBDBB2">[</span><span style="color: #83A598">elRef</span><span style="color: #EBDBB2">]))</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">      </span><span style="color: #A89984">}</span></span>
+<span class="line"><span style="color: #EBDBB2">    </span><span style="color: #A89984">}</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
+<span class="line"><span style="color: #EBDBB2">  </span><span style="color: #A89984">}</span></span>
+<span class="line"><span style="color: #A89984">}</span><span style="color: #EBDBB2">)</span><span style="color: #A89984">;</span></span>
 <span class="line"></span></code></pre>
 <h2 id="we-re-almost-done">We're almost done!</h2>
 <p>Now the only thing that remains is to write some HTML to check whether
@@ -305,13 +306,18 @@ also be happy to help you! Thank you for bearing with me in such a long post!</p
   </div>
   <footer>
     <hr>
-    <h2>Webmentions</h2>
+    <h2>Comments</h2>
 <section class="webmention webmention-reactions">
     <p>
-        My site uses <a href="http://indieweb.org/webmention">Webmentions</a> via the 
-        <a href="https://indieweb.org">Indieweb</a>
-        and <a href="https://webmention.io">webmention.io</a> 
-        for likes, reposts, and replies/comments.
+        To comment, like, or repost this page, my website supports 
+        <a href="https://en.wikipedia.org/wiki/Webmention">webmentions</a>.
+        Such interactions on different social media platforms will show up here.
+        Alternatively, you can also send a webmention from your website using
+        the form below.
+        <br>
+        <br>
+        Or if you want to, you can e-mail your thoughts about it on 
+        "<code>my first name [at] this domain</code>".
     </p>
     <form class="send-webmention" action="https://webmention.io/karawale.in/webmention" method="post">
         <label for="webmention-form-input">
@@ -346,10 +352,14 @@ also be happy to help you! Thank you for bearing with me in such a long post!</p
     
         
     
+        
+    
 </ul>
     </details>
     <h3>Replies</h3>
     <ul class="webmention-reactions">
+    
+        
     
         
     
@@ -372,66 +382,33 @@ also be happy to help you! Thank you for bearing with me in such a long post!</p
 <hr>
 <footer>
   <nav>
-    <dl>
+    <ul>
       
-        <dt>Main</dt>
-        <dd>
-          <ul>
-            
-              <li>
-                <a href="/">Home</a>
-              </li>
-            
-              <li>
-                <a href="/contact">Contact</a>
-              </li>
-            
-              <li>
-                <a href="/projects">Projects</a>
-              </li>
-            
-              <li>
-                <a href="/feed.xml">RSS</a>
-              </li>
-            
-          </ul>
-        </dd>
+        <li>
+          <a href="/">Home</a>
+        </li>
       
-        <dt>Writings</dt>
-        <dd>
-          <ul>
-            
-              <li>
-                <a href="/posts">Blog</a>
-              </li>
-            
-              <li>
-                <a href="/notes">Notes</a>
-              </li>
-            
-          </ul>
-        </dd>
+        <li>
+          <a href="/about">About</a>
+        </li>
       
-        <dt>Links</dt>
-        <dd>
-          <ul>
-            
-              <li>
-                <a href="https://sr.ht/~retronav">Sourcehut</a>
-              </li>
-            
-              <li>
-                <a href="https://github.com/retronav">GitHub</a>
-              </li>
-            
-              <li>
-                <a href="https://www.linkedin.com/in/pranav-karawale">LinkedIn</a>
-              </li>
-            
-          </ul>
-        </dd>
+        <li>
+          <a href="/projects">Projects</a>
+        </li>
       
-    </dl>
+        <li>
+          <a href="/feeds">Feeds</a>
+        </li>
+      
+        <li>
+          <a href="/posts">Blog</a>
+        </li>
+      
+        <li>
+          <a href="/notes">Notes</a>
+        </li>
+      
+    </ul>
   </nav>
 </footer>
   </body>
