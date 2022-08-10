@@ -6,6 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="This little experiment gives variables &#39;superpowers&#39; to be able to reflect their changes directly into the DOM."/>
 
+<link rel="canonical" href="https://karawale.in/posts/reactivity-anywhere-without-virtual-dom/"/>
+
 <link rel="me" href="https://github.com/retronav"/>
 <link rel="me" href="https://fosstodon.org/@retronav"/>
 
@@ -31,7 +33,8 @@
   <body>
     
 <header>
-    <img src="/logo96.webp" height="48" width="48" alt="">
+    <img src="/logo96.webp" height="48" width="48" 
+        alt="My logo; The letters 'pk' in a white, bold font on a purplish background.">
     <br/>
     <div class="h-card">
         <a class="u-url p-name" href="/">Pranav Karawale</a>
@@ -41,19 +44,31 @@
         <ul>
         
             <li>
-            <a href="/about">About</a>
+                <a 
+                    href="/about"
+                    
+                >About</a>
             </li>
         
             <li>
-            <a href="/projects">Projects</a>
+                <a 
+                    href="/projects"
+                    
+                >Projects</a>
             </li>
         
             <li>
-            <a href="/posts">Blog</a>
+                <a 
+                    href="/posts"
+                    
+                >Blog</a>
             </li>
         
             <li>
-            <a href="/more-links">More</a>
+                <a 
+                    href="/more-links"
+                    aria-label="More links"
+                >More</a>
             </li>
         
         </ul>
@@ -329,9 +344,9 @@ of an idea. So, feel free to critically think over it.</p>
 you're ready to go (some frameworks, using this idea, might even exist)! I'd
 also be happy to help you! Thank you for bearing with me in such a long post!</p>
   </div>
-  <footer>
-    <hr>
-    <section class="comments">
+</article>
+<hr />
+<section class="comments">
     <h2>Comments</h2>
     <section class="webmention webmention-reactions">
         <p>
@@ -343,7 +358,10 @@ also be happy to help you! Thank you for bearing with me in such a long post!</p
             Or if you want to, you can e-mail your thoughts about it on 
             <code>pranav [at] karawale.in</code>.
         </p>
-        <form class="send-webmention" action="https://webmention.io/karawale.in/webmention" method="post">
+        <form 
+            class="send-webmention" action="https://webmention.io/karawale.in/webmention" 
+            method="post"
+            aria-label="Send a webmention to this page">
             <label for="webmention-form-input">
                 URL of your webmention
             </label>
@@ -358,11 +376,11 @@ also be happy to help you! Thank you for bearing with me in such a long post!</p
             >
             <input type="submit" value="Send webmention">
         </form>
-        <details>
+        <details aria-label="Likes and reposts of this page">
             <summary>
                 Likes and reposts
             </summary>
-            <ul class="webmention-reactions">
+            <ul class="webmention-reactions" aria-label="Likes and reposts of this page">
     
         
     
@@ -403,10 +421,9 @@ also be happy to help you! Thank you for bearing with me in such a long post!</p
     
 </ul>
     </section>
-    <section class="webmention-replies"></section>
+    <section class="webmention-replies" aria-label="Replies to this page">
+    </section>
 </section>
-  </footer>
-</article>
 </main>
 <hr>
 <footer>
