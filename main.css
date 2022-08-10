@@ -11,18 +11,20 @@
 }
 
 :root {
-  --light-color-main: #ebffff;
-  --light-color-accent: #c2fdff;
+  --light-color-main: #faf9fb;
+  --light-color-accent: #e9e6e9;
   --light-color-main-text: #292929;
   --light-color-accent-text: #292929;
   --light-color-anchor: #0040b6;
   --light-color-blockquote: #444;
+  --light-border: #444;
   --dark-color-main: #161517;
-  --dark-color-accent: #242124;
+  --dark-color-accent: #343134;
   --dark-color-main-text: #fafafa;
   --dark-color-accent-text: #ebeaeb;
   --dark-color-anchor: #4fbeff;
   --dark-color-blockquote: #ccc;
+  --dark-border: #ccc;
   --font-size-title: var(--step-5);
   --font-size-h1: var(--step-4);
   --font-size-h2: var(--step-3);
@@ -39,13 +41,8 @@
 header {
   margin: 1rem;
 }
-
-footer {
-  position: relative;
-  bottom: 0;
-  margin-top: 2rem;
-}
-footer nav ul {
+header nav ul {
+  margin: 1rem 0 0 0;
   padding: 0;
   list-style: none;
   display: flex;
@@ -53,7 +50,16 @@ footer nav ul {
   flex-wrap: wrap;
   place-content: center;
 }
+
+footer {
+  position: relative;
+  bottom: 0;
+  margin-top: 2rem;
+}
 footer .comments h2 {
+  text-align: center;
+}
+footer .license {
   text-align: center;
 }
 
@@ -183,6 +189,7 @@ li.webmention-reply article header img {
     --color-accent-text: var(--dark-color-accent-text);
     --color-anchor: var(--dark-color-anchor);
     --color-blockquote: var(--dark-color-blockquote);
+    --border: var(--dark-border);
   }
 }
 @media (prefers-color-scheme: light) {
@@ -193,6 +200,7 @@ li.webmention-reply article header img {
     --color-accent-text: var(--light-color-accent-text);
     --color-anchor: var(--light-color-anchor);
     --color-blockquote: var(--light-color-blockquote);
+    --border: var(--light-border);
   }
 }
 * {
@@ -272,8 +280,11 @@ code {
   font-variant-ligatures: none;
 }
 
-code {
+code:not(pre code) {
   word-wrap: break-word;
+  padding: 0 2px;
+  border-radius: var(--border-radius-generic);
+  background-color: var(--color-accent);
 }
 
 blockquote {
@@ -303,6 +314,10 @@ section.post-preview {
 }
 section.post-preview h2 {
   margin: 0;
+}
+
+aside {
+  margin: 1rem;
 }
 
 .note .p-content {
