@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>Pranav Karawale&#39;s blog</title><subtitle>Posts about some interesting stuff from Pranav Karawale&#39;s blog.</subtitle><link href="https://karawale.in/feeds/posts.xml" rel="self"/><link href="https://karawale.in/"/><generator uri="https://11ty.dev" version="2.0.0">Eleventy v2.0.0</generator><updated>2022-08-05T00:00:00Z</updated><id>https://karawale.in/</id><author><name>Pranav Karawale</name><email>pranav@karawale.in</email></author><rights>© CC BY-NC-SA 4.0 2020-2022 Pranav Karawale</rights><category term="technology"/><entry><title>Moving from Windows to Fedora</title><link href="https://karawale.in/posts/moving-from-windows-to-fedora/"/><updated>2022-08-05T00:00:00Z</updated><id>https://karawale.in/posts/moving-from-windows-to-fedora/</id><content type="html">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title/><subtitle/><link href="" rel="self"/><link href=""/><generator uri="https://11ty.dev" version="2.0.0">Eleventy v2.0.0</generator><updated>2022-03-23T00:00:00Z</updated><id/><author><name/><email/></author><rights>© CC BY-NC-SA 4.0 2020-2022 Pranav Karawale</rights><category term="technology"/><entry><title>Moving from Windows to Fedora</title><link href="/posts/moving-from-windows-to-fedora/"/><updated>2022-08-02T00:00:00Z</updated><id>/posts/moving-from-windows-to-fedora/</id><content type="html">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
 &lt;p&gt;The motives behind this was to&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Understand my system better (working with UEFI, Secure boot, etc)&lt;/li&gt;
@@ -59,7 +59,7 @@ to export my GPG keys. The resulting directory:&lt;/p&gt;
 &lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #ebdbb2&quot;&gt;    └── srht.id_ed25519.pub&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #ebdbb2&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This was then converted into a &lt;code&gt;.tar.br&lt;/code&gt; using the commands used previously.
-These &lt;code&gt;.tar.br&lt;/code&gt; files were then copied to &lt;a href=&quot;https://mega.io/&quot;&gt;MEGA&lt;/a&gt; and a flash
+These &lt;code&gt;.tar.br&lt;/code&gt; files were then copied to &lt;a href=&quot;https://mega.io&quot;&gt;MEGA&lt;/a&gt; and a flash
 drive.&lt;/p&gt;
 &lt;p&gt;For pictures and videos, I didn&#39;t really had much pictures to backup, most of
 them were screenshots that can be safely left behind; didn&#39;t need them. I had
@@ -178,21 +178,7 @@ via modprobe to make headset mic working again.&lt;/li&gt;
 &lt;li&gt;For some reason OBS outputs poor recordings when using the &lt;code&gt;FFMPEG VAAPI&lt;/code&gt;
 encoder, so to make it print better, albeit more huge recordings, use CQP
 for &quot;Rate Control&quot; with QP=30 (works fine enough for my use case).&lt;/li&gt;
-&lt;/ul&gt;</content></entry><entry><title>Assigning unequal amount of tasks among people</title><link href="https://karawale.in/posts/assigning-unequal-amount-of-tasks/"/><updated>2022-04-10T00:00:00Z</updated><id>https://karawale.in/posts/assigning-unequal-amount-of-tasks/</id><content type="html">&lt;p&gt;In a previous &lt;a href=&quot;https://karawale.in/posts/assigning-equal-amount-of-tasks-among-people&quot;&gt;post&lt;/a&gt;, we
-took a look at how we can randomly assign tasks of equal priority among some
-people. But this time, the game is now a bit harder. We have a certain number
-of tasks to assign to some people and that number is not divisible to the
-number of people.&lt;/p&gt;
-&lt;h2 id=&quot;upping-the-game&quot;&gt;Upping the game&lt;/h2&gt;
-&lt;p&gt;Well, this is not really a game, but this one was a bit harder and required
-some thinking. This time, we have&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;m number of tasks to divide among n people&lt;/li&gt;
-&lt;li&gt;m is not divisible by n&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;To design a model for this task, I&#39;ve used &lt;a href=&quot;https://excalidraw.com/&quot;&gt;Exclalidraw&lt;/a&gt; to
-whip up a drawing real quick, explaining what my plans are.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://karawale.in/posts/assigning-unequal-amount-of-tasks/TODO&quot; alt=&quot;An image&quot; /&gt;&lt;/p&gt;</content></entry><entry><title>Making a container image for my school python project</title><link href="https://karawale.in/posts/making-container-image-for-school-project/"/><updated>2022-03-23T00:00:00Z</updated><id>https://karawale.in/posts/making-container-image-for-school-project/</id><content type="html">&lt;h2 id=&quot;what-is-this&quot;&gt;What is this?&lt;/h2&gt;
+&lt;/ul&gt;</content></entry><entry><title>Making a container image for my school python project</title><link href="/posts/making-container-image-for-school-project/"/><updated>2022-03-23T00:00:00Z</updated><id>/posts/making-container-image-for-school-project/</id><content type="html">&lt;h2 id=&quot;what-is-this&quot;&gt;What is this?&lt;/h2&gt;
 &lt;p&gt;This is a simple documentation/journal/story of me trying to create a container
 image for my school python project using &lt;code&gt;podman&lt;/code&gt;/&lt;code&gt;buildah&lt;/code&gt; for the first time.&lt;/p&gt;
 &lt;p&gt;I used:&lt;/p&gt;
@@ -200,7 +186,7 @@ image for my school python project using &lt;code&gt;podman&lt;/code&gt;/&lt;cod
 &lt;li&gt;&lt;code&gt;podman&lt;/code&gt;: The pick for me because Docker has too many features that I don&#39;t
 use.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;buildah&lt;/code&gt;: Used for making the container image.&lt;/li&gt;
-&lt;li&gt;All scripts written in &lt;a href=&quot;https://fishshell.com/&quot;&gt;&lt;code&gt;fish&lt;/code&gt;&lt;/a&gt; unless specified.&lt;/li&gt;
+&lt;li&gt;All scripts written in &lt;a href=&quot;https://fishshell.com&quot;&gt;&lt;code&gt;fish&lt;/code&gt;&lt;/a&gt; unless specified.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;first-steps&quot;&gt;First steps&lt;/h2&gt;
 &lt;p&gt;I&#39;ve had experience with Docker but I found &lt;code&gt;podman&lt;/code&gt; and &lt;code&gt;buildah&lt;/code&gt; to be more of
@@ -358,7 +344,7 @@ line:&lt;/p&gt;
 &lt;pre class=&quot;shiki&quot; style=&quot;background-color: #1d2021&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #ebdbb2&quot;&gt;WARN[0000] cmd &quot;bash&quot; exists and will be passed to entrypoint as a parameter&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #ebdbb2&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Some more &quot;looking up&quot; and I get to know that I have not set the &lt;code&gt;cmd&lt;/code&gt; key in
-the image config&lt;sup&gt;&lt;a href=&quot;https://karawale.in/posts/making-container-image-for-school-project/#user-content-fn-1&quot; id=&quot;user-content-fnref-1&quot; data-footnote-ref=&quot;&quot; aria-describedby=&quot;footnote-label&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. So I had two attempts to fix it:&lt;/p&gt;
+the image config&lt;sup&gt;&lt;a href=&quot;#user-content-fn-1&quot; id=&quot;user-content-fnref-1&quot; data-footnote-ref=&quot;&quot; aria-describedby=&quot;footnote-label&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. So I had two attempts to fix it:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;buildah config --cmd &quot;&quot; $id&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;buildah config --cmd &#39;[&quot;&quot;]&#39; $id&lt;/code&gt; But they didn&#39;t work. I, getting bonkers
@@ -420,19 +406,19 @@ to the script that makes the container image.&lt;/p&gt;
 &lt;li id=&quot;user-content-fn-1&quot;&gt;
 &lt;p&gt;( &lt;a href=&quot;https://www.mankier.com/1/buildah-config#--cmd&quot;&gt;https://www.mankier.com/1/buildah-config#--cmd&lt;/a&gt; ) Always read your man
 pages when in doubt. It helps. If it doesn&#39;t, then you might need to look up
-elsewhere. &lt;a href=&quot;https://karawale.in/posts/making-container-image-for-school-project/#user-content-fnref-1&quot; data-footnote-backref=&quot;&quot; class=&quot;data-footnote-backref&quot; aria-label=&quot;Back to content&quot;&gt;↩&lt;/a&gt;&lt;/p&gt;
+elsewhere. &lt;a href=&quot;#user-content-fnref-1&quot; data-footnote-backref=&quot;&quot; class=&quot;data-footnote-backref&quot; aria-label=&quot;Back to content&quot;&gt;↩&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/section&gt;</content></entry><entry><title>I&#39;m moving my blog to Eleventy</title><link href="https://karawale.in/posts/moving-to-eleventy/"/><updated>2022-03-17T00:00:00Z</updated><id>https://karawale.in/posts/moving-to-eleventy/</id><content type="html">&lt;p&gt;You read the title. I&#39;ve migrated my site over to &lt;a href=&quot;https://11ty.dev/&quot;&gt;Eleventy&lt;/a&gt;,
-from &lt;a href=&quot;https://astro.build/&quot;&gt;Astro&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;</content></entry><entry><title>I&#39;m moving my blog to Eleventy</title><link href="/posts/moving-to-eleventy/"/><updated>2022-03-17T00:00:00Z</updated><id>/posts/moving-to-eleventy/</id><content type="html">&lt;p&gt;You read the title. I&#39;ve migrated my site over to &lt;a href=&quot;https://11ty.dev&quot;&gt;Eleventy&lt;/a&gt;,
+from &lt;a href=&quot;https://astro.build&quot;&gt;Astro&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;backstory&quot;&gt;Backstory&lt;/h2&gt;
-&lt;p&gt;First of all, I always wanted to love &lt;a href=&quot;https://11ty.dev/&quot;&gt;Eleventy (or 11ty)&lt;/a&gt;.
+&lt;p&gt;First of all, I always wanted to love &lt;a href=&quot;https://11ty.dev&quot;&gt;Eleventy (or 11ty)&lt;/a&gt;.
 When I discovered it (in 2020), it was love at first sight, and I wanted to
 build my site with it. But that time the project was probably in the beta stage,
 which reflected by its 0.x version number. Docs were not arranged good enough
 for me, some things required deep understanding of Eleventy. I felt it&#39;s
 probably not for me at that stage, and then moved on. Then comes
-&lt;a href=&quot;https://gohugo.io/&quot;&gt;Hugo&lt;/a&gt;. I built my site using Hugo. It was fast, like,
+&lt;a href=&quot;https://gohugo.io&quot;&gt;Hugo&lt;/a&gt;. I built my site using Hugo. It was fast, like,
 &lt;em&gt;exceptionally fast&lt;/em&gt;. There were lots of themes/templates to choose from, and I
 got my site up within a week. But there was a problem. Hugo basically had very
 little opportunities for extensibility. Being written Go, which is a compiled
@@ -471,14 +457,14 @@ of Astro, as I&#39;m writing this.&lt;/p&gt;
 &lt;li&gt;Beta software. Now no one here is to be blamed for this, it&#39;s always good to
 be a kind of early adopter for new software. Astro, I think, is doing things
 the right way, or to be more precise, the way they should be. Astro,
-&lt;a href=&quot;http://slinkity.dev/&quot;&gt;Slinkity&lt;/a&gt;, &lt;a href=&quot;https://remix.run/&quot;&gt;Remix&lt;/a&gt; are some of the
+&lt;a href=&quot;http://slinkity.dev/&quot;&gt;Slinkity&lt;/a&gt;, &lt;a href=&quot;https://remix.run&quot;&gt;Remix&lt;/a&gt; are some of the
 newer tools which are doing the web things the right way, ship HTML, with JS
 stepping down as the second-in-line. Doing things the right way takes time,
 and I know it very well. The new compiler in Go unfortunately has some
 bizarre bug which would throw random errors even on files with the correct
 syntax. It was a pain to get things fixed with that.&lt;/li&gt;
 &lt;li&gt;Personal preferences. Astro, like Hugo or Eleventy, does not have
-shortcodes&lt;sup&gt;&lt;a href=&quot;https://karawale.in/posts/moving-to-eleventy/#user-content-fn-1&quot; id=&quot;user-content-fnref-1&quot; data-footnote-ref=&quot;&quot; aria-describedby=&quot;footnote-label&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; as of now (there will be, I know it, probably I&#39;ll implement it
+shortcodes&lt;sup&gt;&lt;a href=&quot;#user-content-fn-1&quot; id=&quot;user-content-fnref-1&quot; data-footnote-ref=&quot;&quot; aria-describedby=&quot;footnote-label&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; as of now (there will be, I know it, probably I&#39;ll implement it
 if I get the chance), which I absolutely like to use. I was not very pleased
 with writing JSX-esque components in my Markdown. Also my way of writing and
 structuring my personal website didn&#39;t align with the structure of a typical
@@ -512,10 +498,10 @@ case of extensibility.&lt;/p&gt;
 &lt;li id=&quot;user-content-fn-1&quot;&gt;
 &lt;p&gt;In Astro, shortcodes basically means using a component written in a
 framework or Astro&#39;s own templating language. I&#39;ll implement them if its in
-the plans and if I get it done correctly. &lt;a href=&quot;https://karawale.in/posts/moving-to-eleventy/#user-content-fnref-1&quot; data-footnote-backref=&quot;&quot; class=&quot;data-footnote-backref&quot; aria-label=&quot;Back to content&quot;&gt;↩&lt;/a&gt;&lt;/p&gt;
+the plans and if I get it done correctly. &lt;a href=&quot;#user-content-fnref-1&quot; data-footnote-backref=&quot;&quot; class=&quot;data-footnote-backref&quot; aria-label=&quot;Back to content&quot;&gt;↩&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/section&gt;</content></entry><entry><title>Assigning equal amount of tasks among people</title><link href="https://karawale.in/posts/assigning-equal-amount-of-tasks-among-people/"/><updated>2022-02-26T00:00:00Z</updated><id>https://karawale.in/posts/assigning-equal-amount-of-tasks-among-people/</id><content type="html">&lt;h2 id=&quot;context&quot;&gt;Context&lt;/h2&gt;
+&lt;/section&gt;</content></entry><entry><title>Assigning equal amount of tasks among people</title><link href="/posts/assigning-equal-amount-of-tasks-among-people/"/><updated>2022-02-26T00:00:00Z</updated><id>/posts/assigning-equal-amount-of-tasks-among-people/</id><content type="html">&lt;h2 id=&quot;context&quot;&gt;Context&lt;/h2&gt;
 &lt;p&gt;So I had this edge-case scenario where I was to assign tasks among the four of
 us for a video project. We had initially decided to take the tasks numerically,
 but then I thought, &quot;let&#39;s make this randomized&quot;. The tasks were equally
@@ -572,7 +558,7 @@ among 4 people is possible, but 7 tasks among 3 isn&#39;t. I&#39;ll probably wri
 for this too in the future.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;small&gt;The names in the snippet are a reference to an Ed Sheeran&#39;s song. Check
-if you can find out ;)&lt;/small&gt;&lt;/p&gt;</content></entry><entry><title>Upgrading your Ubuntu LTS distro in WSL</title><link href="https://karawale.in/posts/upgrading-ubuntu-lts-wsl/"/><updated>2022-01-20T00:00:00Z</updated><id>https://karawale.in/posts/upgrading-ubuntu-lts-wsl/</id><content type="html">&lt;blockquote&gt;
+if you can find out ;)&lt;/small&gt;&lt;/p&gt;</content></entry><entry><title>Upgrading your Ubuntu LTS distro in WSL</title><link href="/posts/upgrading-ubuntu-lts-wsl/"/><updated>2022-01-20T00:00:00Z</updated><id>/posts/upgrading-ubuntu-lts-wsl/</id><content type="html">&lt;blockquote&gt;
 &lt;p&gt;Note: This post was written after upgrading my Ubuntu 20.04 LTS, so I don&#39;t
 have any relevant screenshots/logs at the moment. Things are subject to change
 in the future.&lt;/p&gt;
@@ -607,12 +593,12 @@ all services. Grant the permission and let it continue.&lt;/li&gt;
 breath of fresh air.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr /&gt;
-&lt;p&gt;I could find this on &lt;a href=&quot;https://www.hughrawlinson.me/posts/2021/06/04/solved-do-release-upgrade-hangs-in-ubuntu-on-wsl&quot;&gt;another post&lt;/a&gt; by Hugh Rawlinson, however their Ubuntu&#39;s version was 18.04 LTS, but the steps are pretty much the same.&lt;/p&gt;</content></entry><entry><title>One Liner for rimraf that gets the job done</title><link href="https://karawale.in/posts/one-liner-for-rimraf-that-gets-the-job-done/"/><updated>2021-07-10T00:00:00Z</updated><id>https://karawale.in/posts/one-liner-for-rimraf-that-gets-the-job-done/</id><content type="html">&lt;p&gt;I have been striving to cut down on node_modules. Most of the times, I need
+&lt;p&gt;I could find this on &lt;a href=&quot;https://www.hughrawlinson.me/posts/2021/06/04/solved-do-release-upgrade-hangs-in-ubuntu-on-wsl&quot;&gt;another post&lt;/a&gt; by Hugh Rawlinson, however their Ubuntu&#39;s version was 18.04 LTS, but the steps are pretty much the same.&lt;/p&gt;</content></entry><entry><title>One Liner for rimraf that gets the job done</title><link href="/posts/one-liner-for-rimraf-that-gets-the-job-done/"/><updated>2021-07-10T00:00:00Z</updated><id>/posts/one-liner-for-rimraf-that-gets-the-job-done/</id><content type="html">&lt;p&gt;I have been striving to cut down on node_modules. Most of the times, I need
 rimraf to delete a folder (usually &lt;code&gt;public&lt;/code&gt;/&lt;code&gt;dist&lt;/code&gt;/&lt;code&gt;build&lt;/code&gt;) and to keep the
 project cross platform. So, here is a one-liner to delete a folder/file:&lt;/p&gt;
 &lt;pre class=&quot;shiki&quot; style=&quot;background-color: #1d2021&quot;&gt;&lt;code&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt;node -e &lt;/span&gt;&lt;span style=&quot;color: #A89984&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #B8BB26&quot;&gt;require(&#39;fs&#39;).rmSync(&#39;PATH&#39;,{recursive:true,force:true})&lt;/span&gt;&lt;span style=&quot;color: #A89984&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Note: Replace &lt;code&gt;PATH&lt;/code&gt; by the path to the folder/file. This works the same as &lt;code&gt;rm -rf&lt;/code&gt; command, but cross-platform.&lt;/p&gt;</content></entry><entry><title>Angularfire V7 Auth Guard</title><link href="https://karawale.in/posts/angularfire-v7-auth-guard/"/><updated>2021-06-08T00:00:00Z</updated><id>https://karawale.in/posts/angularfire-v7-auth-guard/</id><content type="html">&lt;p&gt;As of now, the AngularFire v7(&lt;strong&gt;&quot;Beta&quot;&lt;/strong&gt;) does not have an implementation for an
+&lt;p&gt;Note: Replace &lt;code&gt;PATH&lt;/code&gt; by the path to the folder/file. This works the same as &lt;code&gt;rm -rf&lt;/code&gt; command, but cross-platform.&lt;/p&gt;</content></entry><entry><title>Angularfire V7 Auth Guard</title><link href="/posts/angularfire-v7-auth-guard/"/><updated>2021-06-08T00:00:00Z</updated><id>/posts/angularfire-v7-auth-guard/</id><content type="html">&lt;p&gt;As of now, the AngularFire v7(&lt;strong&gt;&quot;Beta&quot;&lt;/strong&gt;) does not have an implementation for an
 auth guard(which I really need), so I went ahead, copied the original auth guard
 code (from v6), and refactored it to make it compatible with v7.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;This code works on Angular 12. I haven&#39;t tested it for older versions, but it should work.&lt;/strong&gt;&lt;/p&gt;
@@ -714,7 +700,7 @@ code (from v6), and refactored it to make it compatible with v7.&lt;/p&gt;
 &lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt;    &lt;/span&gt;&lt;span style=&quot;color: #83A598&quot;&gt;loggedIn&lt;/span&gt;&lt;span style=&quot;color: #A89984&quot;&gt;,&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt;    &lt;/span&gt;&lt;span style=&quot;color: #FABD2F&quot;&gt;map&lt;/span&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #A89984&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #83A598&quot;&gt;loggedIn&lt;/span&gt;&lt;span style=&quot;color: #A89984&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #8EC07C&quot;&gt;=&gt;&lt;/span&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt; (&lt;/span&gt;&lt;span style=&quot;color: #83A598&quot;&gt;loggedIn&lt;/span&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #FB4934&quot;&gt;&amp;#x26;&amp;#x26;&lt;/span&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #83A598&quot;&gt;redirect&lt;/span&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt;) &lt;/span&gt;&lt;span style=&quot;color: #FB4934&quot;&gt;||&lt;/span&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #D3869B&quot;&gt;true&lt;/span&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color: #EBDBB2&quot;&gt;  )&lt;/span&gt;&lt;span style=&quot;color: #A89984&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</content></entry><entry><title>How to Keep Your Firebase Project Safe and Secure from everyone</title><link href="https://karawale.in/posts/how-to-keep-your-firebase-config-safe/"/><updated>2020-12-18T00:00:00Z</updated><id>https://karawale.in/posts/how-to-keep-your-firebase-config-safe/</id><content type="html">&lt;p&gt;After doing a couple of open source Firebase projects (web apps, I mean), I feel
+&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</content></entry><entry><title>How to Keep Your Firebase Project Safe and Secure from everyone</title><link href="/posts/how-to-keep-your-firebase-config-safe/"/><updated>2020-12-18T00:00:00Z</updated><id>/posts/how-to-keep-your-firebase-config-safe/</id><content type="html">&lt;p&gt;After doing a couple of open source Firebase projects (web apps, I mean), I feel
 like I&#39;m experienced* enough to write this post. So if I say something wrong
 here, kindly let me know here.&lt;/p&gt;
 &lt;h2 id=&quot;why-is-this-necessary&quot;&gt;Why is this necessary?&lt;/h2&gt;
@@ -818,7 +804,7 @@ show them off or else you&#39;re done.&lt;/p&gt;
 &lt;h2 id=&quot;ending-thoughts&quot;&gt;Ending thoughts&lt;/h2&gt;
 &lt;p&gt;Good job if you&#39;ve made it this far. Now you can just chill back and write some
 code for your project. Always tell me if you got stuck in any of the steps. Have
-a nice day :)&lt;/p&gt;</content></entry><entry><title>Reactivity Anywhere Without Virtual Dom</title><link href="https://karawale.in/posts/reactivity-anywhere-without-virtual-dom/"/><updated>2020-11-20T00:00:00Z</updated><id>https://karawale.in/posts/reactivity-anywhere-without-virtual-dom/</id><content type="html">&lt;h2 id=&quot;how-did-this-got-into-my-mind&quot;&gt;How did this got into my mind??&lt;/h2&gt;
+a nice day :)&lt;/p&gt;</content></entry><entry><title>Reactivity Anywhere Without Virtual Dom</title><link href="/posts/reactivity-anywhere-without-virtual-dom/"/><updated>2020-11-20T00:00:00Z</updated><id>/posts/reactivity-anywhere-without-virtual-dom/</id><content type="html">&lt;h2 id=&quot;how-did-this-got-into-my-mind&quot;&gt;How did this got into my mind??&lt;/h2&gt;
 &lt;p&gt;Virtual DOM can be referenced as the thing which just &quot;introduced&quot; me to the
 title of this post. What if we keep aside all that diffing, state stuff, and
 focus on one thing: reactivity between the JavaScript and the DOM. Well, most of
@@ -1028,7 +1014,7 @@ store, it will take precedence, not the first one&lt;/li&gt;
 HTML!&quot; or &quot;All JS!&quot; but harmony between the two (not to mention CSS here) that
 will appreciate the job these languages have to do.&lt;/li&gt;
 &lt;li&gt;Minimal overhead. As I said earlier, no virtual DOM, only real DOM (credits to
-&lt;a href=&quot;https://svelte.dev/&quot;&gt;Svelte&lt;/a&gt;) with some objects in memory&lt;/li&gt;
+&lt;a href=&quot;https://svelte.dev&quot;&gt;Svelte&lt;/a&gt;) with some objects in memory&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;limitations&quot;&gt;Limitations&lt;/h2&gt;
 &lt;p&gt;You&#39;re going to think over this :) because this is just a crude implementation
