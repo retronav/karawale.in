@@ -316,6 +316,27 @@ section.post-preview h2 {
   margin: 0;
 }
 
+nav.other-posts ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 768px) {
+  nav.other-posts ul {
+    flex-direction: column;
+  }
+}
+nav.other-posts ul li {
+  margin: 0.5rem;
+}
+nav.other-posts ul li.previous {
+  text-align: left;
+}
+nav.other-posts ul li.next {
+  text-align: right;
+}
+
 aside {
   margin: 1rem;
 }
