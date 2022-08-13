@@ -180,6 +180,7 @@ li.webmention-reply article header img {
 @font-face {
   font-family: "Iosevka Minimal";
   src: url(/fonts/iosevka-minimal.woff2);
+  font-display: optional;
 }
 @media (prefers-color-scheme: dark) {
   :root {
