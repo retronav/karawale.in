@@ -84,8 +84,8 @@
     </time>
     
       <span>, updated on</span>
-      <time class="dt-updated" datetime="2022-08-05T00:00:00Z">
-      05 August 2022
+      <time class="dt-updated" datetime="2022-08-15T00:00:00Z">
+      15 August 2022
       </time>
     
     <span class="seperator">&centerdot;</span>
@@ -301,6 +301,11 @@ via modprobe to make headset mic working again.</li>
 <li>For some reason OBS outputs poor recordings when using the <code>FFMPEG VAAPI</code>
 encoder, so to make it print better, albeit more huge recordings, use CQP
 for "Rate Control" with QP=30 (works fine enough for my use case).</li>
+<li>Because I have installed a custom Wi-Fi driver, some non-fatal error messages
+are expected, but ABRT decided to let me know every single time about it. Due
+to this, there are 520 error reports in ABRT at the time. Reading the manpage
+of <a href="https://www.mankier.com/5/abrt-oops.conf"><code>abrt-oops.conf</code></a>, setting the
+option <code>OnlyFatalMCE</code> to <code>yes</code> does the trick.</li>
 </ul>
   </div>
 </article>

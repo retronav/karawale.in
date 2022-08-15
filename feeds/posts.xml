@@ -178,6 +178,11 @@ via modprobe to make headset mic working again.&lt;/li&gt;
 &lt;li&gt;For some reason OBS outputs poor recordings when using the &lt;code&gt;FFMPEG VAAPI&lt;/code&gt;
 encoder, so to make it print better, albeit more huge recordings, use CQP
 for &quot;Rate Control&quot; with QP=30 (works fine enough for my use case).&lt;/li&gt;
+&lt;li&gt;Because I have installed a custom Wi-Fi driver, some non-fatal error messages
+are expected, but ABRT decided to let me know every single time about it. Due
+to this, there are 520 error reports in ABRT at the time. Reading the manpage
+of &lt;a href=&quot;https://www.mankier.com/5/abrt-oops.conf&quot;&gt;&lt;code&gt;abrt-oops.conf&lt;/code&gt;&lt;/a&gt;, setting the
+option &lt;code&gt;OnlyFatalMCE&lt;/code&gt; to &lt;code&gt;yes&lt;/code&gt; does the trick.&lt;/li&gt;
 &lt;/ul&gt;</content></entry><entry><title>Making a container image for my school python project</title><link href="/posts/making-container-image-for-school-project/"/><updated>2022-03-23T00:00:00Z</updated><id>/posts/making-container-image-for-school-project/</id><content type="html">&lt;h2 id=&quot;what-is-this&quot;&gt;What is this?&lt;/h2&gt;
 &lt;p&gt;This is a simple documentation/journal/story of me trying to create a container
 image for my school python project using &lt;code&gt;podman&lt;/code&gt;/&lt;code&gt;buildah&lt;/code&gt; for the first time.&lt;/p&gt;
