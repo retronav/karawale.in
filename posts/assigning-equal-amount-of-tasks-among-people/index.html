@@ -21,7 +21,9 @@
         <link rel="preload" as="font" type="font/woff2" href="/fonts/cabin-latin-variable-wghtOnly-normal.woff2" crossorigin="anonymous">
         <link rel="preload" as="font" type="font/woff2" href="/fonts/iosevka-minimal.woff2" crossorigin="anonymous"><link rel="authorization_endpoint" href="https://indieauth.com/auth">
 <link rel="token_endpoint" href="https://tokens.indieauth.com/token">
-<link rel="micropub" href="https://karawale-in-indieweb.herokuapp.com/micropub">
+
+    <link rel="micropub" href="https://retronav.de1.hashbang.sh/lilac/micropub">
+
 
 <meta name="generator" content="Eleventy v2.0.0"/>
 
@@ -141,7 +143,7 @@ job done.</p>
 <h2 id="the-script">The script</h2>
 <pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #FB4934">import</span><span style="color: #EBDBB2"> random</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #928374; font-style: italic"># Obviously these are not the real names and tasks.</span></span>
+<span class="line"><span style="color: #928374"># Obviously these are not the real names and tasks.</span></span>
 <span class="line"><span style="color: #EBDBB2">people </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">[</span><span style="color: #A89984">"</span><span style="color: #B8BB26">Jack</span><span style="color: #A89984">"</span><span style="color: #A89984">,</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">"</span><span style="color: #B8BB26">Jamie</span><span style="color: #A89984">"</span><span style="color: #A89984">]</span></span>
 <span class="line"><span style="color: #EBDBB2">tasks </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #A89984">[</span></span>
 <span class="line"><span style="color: #EBDBB2">	</span><span style="color: #A89984">"</span><span style="color: #B8BB26">Going for the messages</span><span style="color: #A89984">"</span><span style="color: #A89984">,</span></span>
@@ -154,15 +156,15 @@ job done.</p>
 <span class="line"></span>
 <span class="line"><span style="color: #EBDBB2">task_per_person </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #FE8019">len</span><span style="color: #A89984">(</span><span style="color: #D5C4A1">tasks</span><span style="color: #A89984">)</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">/</span><span style="color: #EBDBB2"> </span><span style="color: #FE8019">len</span><span style="color: #A89984">(</span><span style="color: #D5C4A1">people</span><span style="color: #A89984">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #928374; font-style: italic"># This shouldn't continue if the tasks cannot be divided equally. If this</span></span>
-<span class="line"><span style="color: #928374; font-style: italic"># is the case, then one has to remove some number of tasks to make the</span></span>
-<span class="line"><span style="color: #928374; font-style: italic"># number correct, or else make a custom solution.</span></span>
+<span class="line"><span style="color: #928374"># This shouldn't continue if the tasks cannot be divided equally. If this</span></span>
+<span class="line"><span style="color: #928374"># is the case, then one has to remove some number of tasks to make the</span></span>
+<span class="line"><span style="color: #928374"># number correct, or else make a custom solution.</span></span>
 <span class="line"><span style="color: #FB4934">if</span><span style="color: #EBDBB2"> task_per_person </span><span style="color: #8EC07C">%</span><span style="color: #EBDBB2"> </span><span style="color: #D3869B">1</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">!=</span><span style="color: #EBDBB2"> </span><span style="color: #D3869B">0</span><span style="color: #A89984">:</span></span>
 <span class="line"><span style="color: #EBDBB2">	</span><span style="color: #FB4934">raise</span><span style="color: #EBDBB2"> </span><span style="color: #FABD2F">Exception</span><span style="color: #A89984">(</span><span style="color: #A89984">"</span><span style="color: #B8BB26">Tasks cannot be equally divided</span><span style="color: #A89984">"</span><span style="color: #A89984">)</span></span>
 <span class="line"></span>
 <span class="line"><span style="color: #EBDBB2">c </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> </span><span style="color: #D3869B">0</span></span>
 <span class="line"><span style="color: #FB4934">for</span><span style="color: #EBDBB2"> i </span><span style="color: #FB4934">in</span><span style="color: #EBDBB2"> </span><span style="color: #FE8019">range</span><span style="color: #A89984">(</span><span style="color: #FABD2F">int</span><span style="color: #A89984">(</span><span style="color: #D5C4A1">task_per_person</span><span style="color: #A89984">)):</span></span>
-<span class="line"><span style="color: #EBDBB2">	</span><span style="color: #928374; font-style: italic"># Shuffling the tasks list is totally optional</span></span>
+<span class="line"><span style="color: #EBDBB2">	</span><span style="color: #928374"># Shuffling the tasks list is totally optional</span></span>
 <span class="line"><span style="color: #EBDBB2">	random</span><span style="color: #A89984">.</span><span style="color: #83A598">shuffle</span><span style="color: #A89984">(</span><span style="color: #D5C4A1">tasks</span><span style="color: #A89984">)</span></span>
 <span class="line"><span style="color: #EBDBB2">	shuffled </span><span style="color: #8EC07C">=</span><span style="color: #EBDBB2"> people</span></span>
 <span class="line"><span style="color: #EBDBB2">	random</span><span style="color: #A89984">.</span><span style="color: #83A598">shuffle</span><span style="color: #A89984">(</span><span style="color: #D5C4A1">shuffled</span><span style="color: #A89984">)</span></span>
@@ -243,44 +245,12 @@ if you can find out ;)</small></p>
             </summary>
             <ul class="webmention-reactions" aria-label="Likes and reposts of this page">
     
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
 </ul>
         </details>
     </section>
     <section class="webmention-replies" aria-label="Replies to this page">
         <h3>Replies</h3>
         <ul class="webmention-reactions">
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
     
 </ul>
     </section>

@@ -21,7 +21,9 @@
         <link rel="preload" as="font" type="font/woff2" href="/fonts/cabin-latin-variable-wghtOnly-normal.woff2" crossorigin="anonymous">
         <link rel="preload" as="font" type="font/woff2" href="/fonts/iosevka-minimal.woff2" crossorigin="anonymous"><link rel="authorization_endpoint" href="https://indieauth.com/auth">
 <link rel="token_endpoint" href="https://tokens.indieauth.com/token">
-<link rel="micropub" href="https://karawale-in-indieweb.herokuapp.com/micropub">
+
+    <link rel="micropub" href="https://retronav.de1.hashbang.sh/lilac/micropub">
+
 
 <meta name="generator" content="Eleventy v2.0.0"/>
 
@@ -233,7 +235,7 @@ was somewhat like this:</p>
 <li>Using <code>xargs</code> to pass the arguments to apt
 So I came up with these lines to do it:</li>
 </ol>
-<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #928374; font-style: italic"># Install dependencies</span></span>
+<pre class="shiki" style="background-color: #1d2021"><code><span class="line"><span style="color: #928374"># Install dependencies</span></span>
 <span class="line"><span style="color: #EBDBB2">deno eval </span><span style="color: #A89984">"</span><span style="color: #B8BB26">import {deps} from 'https://raw.githubusercontent.com/microsoft/playwright/main/packages/playwright-core/src/utils/nativeDeps.ts'; console.log(deps['ubuntu20.04']['chromium'].join('\n'));</span><span style="color: #A89984">"</span><span style="color: #EBDBB2"> </span><span style="color: #8EC07C">></span><span style="color: #EBDBB2"> /tmp/deps.txt</span></span>
 <span class="line"><span style="color: #EBDBB2">buildah copy </span><span style="color: #A89984">$</span><span style="color: #83A598">id</span><span style="color: #EBDBB2"> /tmp/deps.txt /tmp</span></span>
 <span class="line"><span style="color: #EBDBB2">buildah run </span><span style="color: #A89984">$</span><span style="color: #83A598">id</span><span style="color: #EBDBB2"> -- xargs -a /tmp/deps.txt apt install -y</span></span>
@@ -355,7 +357,7 @@ over the course of a week.</p>
 <p>Also, here's a
 <a href="https://github.com/retronav/rep/blob/main/scripts/build-image.fish">direct link</a>
 to the script that makes the container image.</p>
-<section data-footnotes class="footnotes"><h3 id="footnote-label" class="sr-only">Footnotes</h3>
+<section data-footnotes class="footnotes"><h3 class="sr-only" id="footnote-label">Footnotes</h3>
 <ol>
 <li id="user-content-fn-1">
 <p>( <a href="https://www.mankier.com/1/buildah-config#--cmd">https://www.mankier.com/1/buildah-config#--cmd</a> ) Always read your man
@@ -429,107 +431,12 @@ elsewhere. <a href="#user-content-fnref-1" data-footnote-backref class="data-foo
             </summary>
             <ul class="webmention-reactions" aria-label="Likes and reposts of this page">
     
-        
-    
-        
-    
-        
-            
-                <li class="webmention-reaction">
-                    
-                        
-                    
-                    <a 
-                    aria-description="Liked by Podman"
-                    title="Liked by Podman"
-                    href="https://twitter.com/retronav/status/1506653934227664908#favorited-by-1407427126710747142">
-                        <img
-                        width="48" height="48" 
-                        src="https://webmention.io/avatar/pbs.twimg.com/71048ba80d8be651308930243a5a0068f961fc3443322084533e05142488e092.jpg"
-                        alt="Avatar of Podman">
-                    </a>
-                </li>
-            
-        
-    
-        
-            
-        
-    
-        
-            
-                <li class="webmention-reaction">
-                    
-                        
-                    
-                    <a 
-                    aria-description="Reposted by Podman"
-                    title="Reposted by Podman"
-                    href="https://twitter.com/Podman_io/status/1506746573245628422">
-                        <img
-                        width="48" height="48" 
-                        src="https://webmention.io/avatar/pbs.twimg.com/71048ba80d8be651308930243a5a0068f961fc3443322084533e05142488e092.jpg"
-                        alt="Avatar of Podman">
-                    </a>
-                </li>
-            
-        
-    
-        
-    
-        
-    
-        
-    
 </ul>
         </details>
     </section>
     <section class="webmention-replies" aria-label="Replies to this page">
         <h3>Replies</h3>
         <ul class="webmention-reactions">
-    
-        
-    
-        
-    
-        
-            
-        
-    
-        
-            
-                <li class="webmention-reply">
-                    <article role="comment">
-                        <header>
-                            <a class="webmention-reply-author" href="https://twitter.com/Podman_io">
-                                <img height="48" width="48" src="https://webmention.io/avatar/pbs.twimg.com/71048ba80d8be651308930243a5a0068f961fc3443322084533e05142488e092.jpg" alt="Avatar of Podman">
-                            </a>
-                            <span>Podman</span>
-                            <br/>
-                            <small>
-                                <time datetime="2022-03-23T21:36:09+00:00">
-                                    23 March 2022 at 21:36
-                                </time>
-                            </small>
-                        </header>
-                        Glad to hear you enjoyed the adventure!
-                        <footer>
-                            <a href="https://brid.gy/comment/twitter/retronav/1506653934227664908/1506746648302702592">Source</a>
-                        </footer>
-                    </article>
-                </li>
-            
-        
-    
-        
-            
-        
-    
-        
-    
-        
-    
-        
     
 </ul>
     </section>
