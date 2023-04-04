@@ -1,7 +1,7 @@
 baseUrl: https://karawale.in
 title: Pranav Karawale
 author: Pranav Karawale
-description: "Pranav Karawale's various things in writing."
+summary: "Pranav Karawale's various things in writing."
 preloads:
   - as: font
     href: /fonts/cabin.woff2
