@@ -1,7 +1,3 @@
----
-title: Pranav Karawale
----
+# Hi! 
 
-{% for post in collections.posts %}
-  {{ post.data.title }}
-{% endfor %}
+I am Pranav Karawale. Website will be updated soon.

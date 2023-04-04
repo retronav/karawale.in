@@ -1,0 +1,13 @@
+<img src="{{ site.indieweb.hcard.photo }}" alt="My profile picture." width="48" height="48"/>
+<br/>
+<a href="/">{{ site.indieweb.hcard.name }}</a>
+<hr/>
+<nav>
+    <ul class="flex-list">
+        {% for entry in site.menus.navbar %}
+            <li>
+                <a href="{{ entry.url }}">{{ entry.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</nav>

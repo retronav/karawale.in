@@ -30,7 +30,10 @@ export async function render(content) {
     .use(rehypeShiki, { highlighter })
     .use(rehypeSlug)
     .use(rehypeShiftHeading, { shift: 1 })
-    .use(rehypeAutolinkHeadings)
+    .use(rehypeAutolinkHeadings, {
+      content: h("span", "#"),
+      properties: { class: "anchor" },
+    })
     .use(rehypeStringify, { allowDangerousHtml: true });
 
   const html = String(await processor.process(content));

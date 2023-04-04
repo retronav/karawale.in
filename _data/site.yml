@@ -2,9 +2,28 @@ baseUrl: https://karawale.in
 title: Pranav Karawale
 author: Pranav Karawale
 description: "Pranav Karawale's various things in writing."
-micropub: https://karawale.in/micropub
 preloads:
   - as: font
     href: /fonts/cabin.woff2
   - as: font
     href: /fonts/iosevka-minimal.woff2
+
+indieweb:
+  micropub: https://karawale.in/micropub
+  authorization_endpoint: https://indieauth.com/auth
+  token_endpoint: https://tokens.indieauth.com/token
+  me: https://github.com/retronav
+  hcard:
+    name: Pranav Karawale
+    photo: /media/me96.webp
+    nickname: retronav
+    note: "Myself. Clarify more about me"
+
+menus:
+  navbar:
+    - name: Projects
+      url: /projects
+    - name: Posts
+      url: /posts
+    - name: More links
+      url: /more-links

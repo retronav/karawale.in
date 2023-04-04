@@ -42,4 +42,27 @@ body {
     gap: var(--border-radius-generic);
     margin: 1rem 0;
   }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    a.anchor {
+      opacity: 0;
+      padding-right: 0.25ch;
+      margin-left: -1.25ch;
+      position: relative;
+    }
+    @include mq.mq($from: tablet) {
+      &:hover > a.anchor {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// Only the anchors in articles should be visible
+a.anchor {
+  display: none;
 }
