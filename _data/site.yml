@@ -1,0 +1,10 @@
+baseUrl: https://karawale.in
+title: Pranav Karawale
+author: Pranav Karawale
+description: "Pranav Karawale's various things in writing."
+micropub: https://karawale.in/micropub
+preloads:
+  - as: font
+    href: /fonts/cabin.woff2
+  - as: font
+    href: /fonts/iosevka-minimal.woff2

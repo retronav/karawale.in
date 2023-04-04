@@ -1,0 +1,20 @@
+---js
+{
+    pagination : {
+        data: "collections",
+        size: 1,
+        alias: "collectionName",
+        before: function(paginationData, fullData) {
+            const postKinds = require(`${process.cwd()}/postKinds.js`);
+            return paginationData.filter(entry => [...postKinds, "posts"].includes(entry));
+        }
+    },
+    permalink: "/{{ collectionName }}/"
+}
+---
+{% import "partials/post.njk" as post with context %}
+{% for page in collections[collectionName] %}
+    {{ post.postStart(page) }}
+    {{ post[page.data.kind](page) }}
+    {{ post.postEnd(page) }}
+{% endfor %}

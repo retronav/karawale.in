@@ -1,0 +1,10 @@
+---
+layout: base
+---
+
+{% import "partials/post.njk" as post with context %}
+{% set currentPost = collections.posts | getCollectionItem %}
+
+{{ post.postStart(currentPost) }}
+{{ post.photo(currentPost) }}
+{{ post.postEnd(currentPost) }}

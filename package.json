@@ -1,0 +1,36 @@
+{
+  "name": "website-11ty",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-img": "^3.1.0",
+    "@11ty/eleventy-plugin-vite": "^4.0.0",
+    "@retronav/rehype-shiki": "^1.0.1",
+    "@sindresorhus/slugify": "^2.2.0",
+    "dayjs": "^1.11.7",
+    "hast-util-from-html": "^1.0.1",
+    "hast-util-to-string": "^2.0.0",
+    "hastscript": "^7.2.0",
+    "rehype-autolink-headings": "^6.1.1",
+    "rehype-parse": "^8.0.4",
+    "rehype-shift-heading": "^1.0.2",
+    "rehype-stringify": "^9.0.3",
+    "remark-gfm": "^3.0.1",
+    "remark-parse": "^10.0.1",
+    "remark-rehype": "^10.1.0",
+    "sass": "^1.60.0",
+    "shiki": "^0.14.1",
+    "unified": "^10.1.2",
+    "unist-util-map": "^3.1.3",
+    "unist-util-visit": "^4.1.2",
+    "yaml": "^2.2.1"
+  }
+}
