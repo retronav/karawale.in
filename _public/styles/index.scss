@@ -1,0 +1,45 @@
+@use "atomic";
+@use "fonts";
+@use "mq";
+@use "theme";
+@use "code-theme";
+
+@use "header";
+@use "footer";
+
+body {
+  margin: 4rem 1rem;
+
+  @include mq.mq($from: tablet) {
+    max-width: 60ch;
+    margin: 4rem auto;
+  }
+}
+
+.hidden {
+  @include atomic.hidden;
+}
+
+.h-feed > ul {
+  list-style: none;
+  padding: 0;
+  > li {
+    @include theme.accent;
+    border-radius: var(--border-radius-generic);
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+  }
+}
+
+.h-entry {
+  .tags {
+    @include atomic.flex-list;
+  }
+  .photos {
+    display: grid;
+    grid-template-rows: repeat(2, fit-content);
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--border-radius-generic);
+    margin: 1rem 0;
+  }
+}

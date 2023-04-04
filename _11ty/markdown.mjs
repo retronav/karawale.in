@@ -15,7 +15,7 @@ import Image from "@11ty/eleventy-img";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { fromHtml } from "hast-util-from-html";
 
-const highlighter = await getHighlighter({ theme: "nord" });
+const highlighter = await getHighlighter({ theme: "gruvbox-dark-hard" });
 
 /**
  * Render markdown to HTML via unified.

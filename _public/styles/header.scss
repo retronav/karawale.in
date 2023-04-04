@@ -1,0 +1,11 @@
+@use "atomic";
+
+body > header {
+  text-align: center;
+
+  nav ul {
+    @include atomic.flex-list;
+    align-items: center;
+    justify-content: center;
+  }
+}

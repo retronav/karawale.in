@@ -1,0 +1,132 @@
+@use "atomic";
+@use "mq";
+
+:root {
+  --light-color-main: #faf9fb;
+  --light-color-accent: #e9e6e9;
+  --light-color-main-text: #292929;
+  --light-color-accent-text: #292929;
+  --light-color-anchor: #0040b6;
+  --light-color-blockquote: #444;
+  --light-border: #444;
+
+  --dark-color-main: #161517;
+  --dark-color-accent: #343134;
+  --dark-color-main-text: #fafafa;
+  --dark-color-accent-text: #ebeaeb;
+  --dark-color-anchor: #4fbeff;
+  --dark-color-blockquote: #ccc;
+  --dark-border: #ccc;
+
+  --blockquote-border: 0.3rem solid #666;
+  --border-radius-generic: 5px;
+}
+
+@mixin main {
+  color: var(--color-main-text);
+  background-color: var(--color-main);
+}
+
+@mixin accent {
+  color: var(--color-accent-text);
+  background-color: var(--color-accent);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-main: var(--dark-color-main);
+    --color-accent: var(--dark-color-accent);
+    --color-main-text: var(--dark-color-main-text);
+    --color-accent-text: var(--dark-color-accent-text);
+    --color-anchor: var(--dark-color-anchor);
+    --color-blockquote: var(--dark-color-blockquote);
+    --border: var(--dark-border);
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-main: var(--light-color-main);
+    --color-accent: var(--light-color-accent);
+    --color-main-text: var(--light-color-main-text);
+    --color-accent-text: var(--light-color-accent-text);
+    --color-anchor: var(--light-color-anchor);
+    --color-blockquote: var(--light-color-blockquote);
+    --border: var(--light-border);
+  }
+}
+
+body {
+    @include main;
+    line-height: 1.5;
+}
+
+// Style links according to the current color scheme
+a,
+a:visited {
+  color: var(--color-anchor);
+}
+
+// Just my personal preference how dl's should look like.
+dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  dd {
+    text-align: right;
+  }
+}
+
+pre {
+  border-radius: var(--border-radius-generic);
+  padding: 1rem;
+  overflow-x: auto;
+  background-color: var(--code-background);
+  color: var(--code-foreground);
+}
+
+code:not(pre code) {
+  word-wrap: break-word;
+  padding: 0 2px;
+  border-radius: var(--border-radius-generic);
+  background-color: var(--color-accent);
+}
+
+blockquote {
+  color: var(--color-blockquote);
+}
+
+article.h-entry {
+  header {
+    text-align: center;
+  }
+}
+nav.other-posts ul {
+    @include atomic.flex-list;
+    justify-content: space-between;
+   @include mq.mq($until: tablet) {
+     li {
+       width: 100%;
+     }
+   }
+    li.next {
+      text-align: right;
+    }
+  }
+
+#TableOfContents {
+  ul {
+    text-align: left;
+  }
+}
+
+main {
+  margin: 1rem auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+  // Don't let images overflow!
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}

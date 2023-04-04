@@ -10,6 +10,8 @@ const yaml = require("yaml");
  * @returns
  */
 module.exports = function (eleventyConfig) {
+  eleventyConfig.setUseGitIgnore(false);
+
   postKinds.map((kind) =>
     eleventyConfig.addCollection(kind, (collectionApi) =>
       collectionApi
