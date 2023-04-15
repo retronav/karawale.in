@@ -11,6 +11,7 @@
   --font-family-sans: GeneralSans, sans-serif;
   --font-family-monospace: Iosevka, monospace;
   --border-radius: 10px;
+  --code-background: #1d2021;
   // --accent : will be one of the five colors randomly set by SSG
 }
 
@@ -102,6 +103,11 @@ code {
 pre {
   padding: 1rem;
   border-radius: var(--border-radius);
+}
+code:not(pre code) {
+  border-radius: var(--border-radius);
+  padding: 1px;
+  background: var(--code-background);
 }
 
 header.site-header {

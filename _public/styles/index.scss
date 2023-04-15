@@ -4,7 +4,7 @@
 
 // Stuff on /index.html
 .home-grid {
-  min-height: 100vh;
+  min-height: 80vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
@@ -33,6 +33,7 @@ main {
 section.h-feed {
   ul {
     list-style: none;
+    padding: 0;
     li article {
         margin: 2rem 0;
         padding: 1rem;
@@ -42,6 +43,10 @@ section.h-feed {
         transition: box-shadow .2s ease;
         &:hover {
             box-shadow: 10px 10px 0px 0px var(--accent);
+        }
+        .tags {
+          display: flex;
+          gap: 1ch;
         }
     }
   }
