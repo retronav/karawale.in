@@ -12,8 +12,8 @@ import { unified } from "unified";
 import { toString } from "hast-util-to-string";
 import * as path from "path";
 import Image from "@11ty/eleventy-img";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { fromHtml } from "hast-util-from-html";
+import { select } from "hast-util-select";
 
 const highlighter = await getHighlighter({ theme: "gruvbox-dark-hard" });
 
@@ -30,10 +30,6 @@ export async function render(content) {
     .use(rehypeShiki, { highlighter })
     .use(rehypeSlug)
     .use(rehypeShiftHeading, { shift: 1 })
-    .use(rehypeAutolinkHeadings, {
-      content: h("span", "#"),
-      properties: { class: "anchor" },
-    })
     .use(rehypeStringify, { allowDangerousHtml: true });
 
   const html = String(await processor.process(content));
@@ -56,7 +52,7 @@ function rehypeSlug() {
   };
 }
 
-export function rehypeImage() {
+export function generateImagePreview() {
   return async (tree) => {
     const matches = [];
     visit(tree, "element", (node, index, parent) => {
@@ -87,5 +83,20 @@ export function rehypeImage() {
       const linkNode = h("a", { href: node.properties.src }, [imgNode]);
       parent.children.splice(index, 1, linkNode);
     }
+  };
+}
+
+export function randomAccentColor() {
+  const colors = [
+    "amber",
+    "rose-quartz",
+    "light-red",
+    "turquoise",
+    "yellow-green",
+  ];
+  return (tree) => {
+    const head = select("head", tree);
+    const color = colors[Math.floor(Math.random() * 5)];
+    head.children.push(h("style", `:root { --accent: var(--${color}); }`));
   };
 }

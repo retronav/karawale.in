@@ -1,4 +1,5 @@
 const EleventyVitePlugin = require("@11ty/eleventy-plugin-vite");
+const EleventyPluginRss = require("@11ty/eleventy-plugin-rss");
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
 const filters = require("./_11ty/filters");
 const postKinds = require("./postKinds");
@@ -26,6 +27,14 @@ module.exports = function (eleventyConfig) {
   );
 
   eleventyConfig.addPlugin(EleventyVitePlugin);
+  eleventyConfig.addPlugin(EleventyRenderPlugin);
+  eleventyConfig.addFilter("absoluteUrl", EleventyPluginRss.absoluteUrl);
+  eleventyConfig.addFilter(
+    "htmlToAbsoluteUrls",
+    EleventyPluginRss.convertHtmlToAbsoluteUrls
+  );
+  eleventyConfig.addFilter("dateToRfc3339", EleventyPluginRss.dateToRfc3339);
+  eleventyConfig.addFilter("dateToRfc822", EleventyPluginRss.dateToRfc822);
   eleventyConfig.addFilter("formatDate", filters.formatDate);
   eleventyConfig.addDataExtension("yml", (content) => yaml.parse(content));
   eleventyConfig.setLibrary("md", {
@@ -34,26 +43,32 @@ module.exports = function (eleventyConfig) {
     render: (str) =>
       import("./_11ty/markdown.mjs").then(({ render }) => render(str)),
   });
-  
+
   eleventyConfig.addPassthroughCopy("styles");
   eleventyConfig.addPassthroughCopy({ _public: "." });
 
-  eleventyConfig.addTransform("preview-images", async (content, outputPath) => {
-    if (outputPath && outputPath.endsWith(".html") === false) return;
-    const unified = (await import("unified")).unified;
-    const rehypeParse = (await import("rehype-parse")).default;
-    const rehypeStringify = (await import("rehype-stringify")).default;
-    const rehypeImage = (await import("./_11ty/markdown.mjs")).rehypeImage;
+  eleventyConfig.addTransform(
+    "postprocess-html-xml",
+    async (content, outputPath) => {
+      if (outputPath.endsWith(".html")) {
+        const unified = (await import("unified")).unified;
+        const rehypeParse = (await import("rehype-parse")).default;
+        const rehypeStringify = (await import("rehype-stringify")).default;
+        const { generateImagePreview, randomAccentColor } = await import(
+          "./_11ty/markdown.mjs"
+        );
 
-    const processor = unified()
-      .use(rehypeParse)
-      .use(rehypeImage)
-      .use(rehypeStringify);
+        const processor = unified()
+          .use(rehypeParse)
+          .use(generateImagePreview)
+          .use(randomAccentColor)
+          .use(rehypeStringify);
 
-    return String(await processor.process(content));
-  });
+        return String(await processor.process(content));
+      } else if (outputPath.endsWith(".xml")) return content;
+    }
+  );
 
-  eleventyConfig.addPlugin(EleventyRenderPlugin);
   return {
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",

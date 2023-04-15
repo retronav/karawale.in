@@ -2,17 +2,16 @@
 <html lang="en">
   <head>
     {% include "partials/head.njk" %}
+    {% block head %}{% endblock %}
   </head>
   <body>
-    <header>
+    <header class="site-header">
       {% include "partials/header.njk" %}
     </header>
-    <hr/>
     <main>
       {{ content | safe }}
     </main>
-    <hr/>
-    <footer>
+    <footer class="site-footer">
       {% include "partials/footer.njk" %}
     </footer>
   </body>

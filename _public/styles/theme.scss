@@ -1,132 +1,134 @@
-@use "atomic";
 @use "mq";
 
 :root {
-  --light-color-main: #faf9fb;
-  --light-color-accent: #e9e6e9;
-  --light-color-main-text: #292929;
-  --light-color-accent-text: #292929;
-  --light-color-anchor: #0040b6;
-  --light-color-blockquote: #444;
-  --light-border: #444;
-
-  --dark-color-main: #161517;
-  --dark-color-accent: #343134;
-  --dark-color-main-text: #fafafa;
-  --dark-color-accent-text: #ebeaeb;
-  --dark-color-anchor: #4fbeff;
-  --dark-color-blockquote: #ccc;
-  --dark-border: #ccc;
-
-  --blockquote-border: 0.3rem solid #666;
-  --border-radius-generic: 5px;
+  --amber: #ffbf00;
+  --rose-quartz: #aaa4b6;
+  --light-red: #fb9998;
+  --turquoise: #2fdac6;
+  --yellow-green: #b2cc3e;
+  --black: #000;
+  --white: #fff;
+  --font-family-sans: GeneralSans, sans-serif;
+  --font-family-monospace: Iosevka, monospace;
+  --border-radius: 10px;
+  // --accent : will be one of the five colors randomly set by SSG
 }
 
-@mixin main {
-  color: var(--color-main-text);
-  background-color: var(--color-main);
+// Utility classes
+.hidden {
+  display: none;
 }
 
-@mixin accent {
-  color: var(--color-accent-text);
-  background-color: var(--color-accent);
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: var(--white);
+    --foreground: var(--black);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-main: var(--dark-color-main);
-    --color-accent: var(--dark-color-accent);
-    --color-main-text: var(--dark-color-main-text);
-    --color-accent-text: var(--dark-color-accent-text);
-    --color-anchor: var(--dark-color-anchor);
-    --color-blockquote: var(--dark-color-blockquote);
-    --border: var(--dark-border);
+    --background: var(--black);
+    --foreground: var(--white);
   }
 }
-@media (prefers-color-scheme: light) {
-  :root {
-    --color-main: var(--light-color-main);
-    --color-accent: var(--light-color-accent);
-    --color-main-text: var(--light-color-main-text);
-    --color-accent-text: var(--light-color-accent-text);
-    --color-anchor: var(--light-color-anchor);
-    --color-blockquote: var(--light-color-blockquote);
-    --border: var(--light-border);
-  }
+
+/* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+:root {
+  --step--2: clamp(0.78rem, calc(0.77rem + 0.03vw), 0.8rem);
+  --step--1: clamp(0.94rem, calc(0.92rem + 0.11vw), 1rem);
+  --step-0: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+  --step-1: clamp(1.35rem, calc(1.28rem + 0.37vw), 1.56rem);
+  --step-2: clamp(1.62rem, calc(1.5rem + 0.58vw), 1.95rem);
+  --step-3: clamp(1.94rem, calc(1.77rem + 0.87vw), 2.44rem);
+  --step-4: clamp(2.33rem, calc(2.08rem + 1.25vw), 3.05rem);
+  --step-5: clamp(2.8rem, calc(2.45rem + 1.77vw), 3.82rem);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-    @include main;
-    line-height: 1.5;
+  color: var(--foreground);
+  background-color: var(--background);
+  font-size: var(--step-0);
+  font-family: var(--font-family-sans);
+  margin: 0;
 }
 
-// Style links according to the current color scheme
+pre,
+code {
+  font-family: var(--font-family-monospace);
+}
+
+.title {
+  font-size: var(--step-5);
+  font-weight: 900;
+}
+h1 {
+  font-size: var(--step-4);
+}
+h2 {
+  font-size: var(--step-3);
+}
+h3 {
+  font-size: var(--step-2);
+}
+h4 {
+  font-size: var(--step-1);
+}
+h5 {
+  font-size: var(--step-0);
+}
+small {
+  font-size: var(--step--1);
+}
+
 a,
 a:visited {
-  color: var(--color-anchor);
-}
-
-// Just my personal preference how dl's should look like.
-dl {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  dd {
-    text-align: right;
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  &:hover {
+    text-decoration-thickness: 4px;
   }
 }
 
-pre {
-  border-radius: var(--border-radius-generic);
-  padding: 1rem;
+pre,
+code {
   overflow-x: auto;
-  background-color: var(--code-background);
-  color: var(--code-foreground);
+}
+pre {
+  padding: 1rem;
+  border-radius: var(--border-radius);
 }
 
-code:not(pre code) {
-  word-wrap: break-word;
-  padding: 0 2px;
-  border-radius: var(--border-radius-generic);
-  background-color: var(--color-accent);
-}
-
-blockquote {
-  color: var(--color-blockquote);
-}
-
-article.h-entry {
-  header {
-    text-align: center;
+header.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid var(--foreground);
+  @include mq.mq($until: tablet) {
+    flex-direction: column;
   }
-}
-nav.other-posts ul {
-    @include atomic.flex-list;
-    justify-content: space-between;
-   @include mq.mq($until: tablet) {
-     li {
-       width: 100%;
-     }
-   }
-    li.next {
-      text-align: right;
+  img.logo {
+    background: var(--accent);
+  }
+  nav {
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
     }
   }
-
-#TableOfContents {
-  ul {
-    text-align: left;
-  }
 }
 
-main {
-  margin: 1rem auto;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-
-  // Don't let images overflow!
-  img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
+footer.site-footer {
+  border-top: 2px solid var(--foreground);
+  text-align: center;
 }
