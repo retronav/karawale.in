@@ -89,8 +89,8 @@ export function generateImagePreview() {
 export function randomAccentColor() {
   const colors = [
     "amber",
-    "rose-quartz",
-    "light-red",
+    "wisteria",
+    "light-coral",
     "turquoise",
     "yellow-green",
   ];
