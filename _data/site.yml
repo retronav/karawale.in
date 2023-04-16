@@ -13,6 +13,8 @@ indieweb:
   authorization_endpoint: https://indieauth.com/auth
   token_endpoint: https://tokens.indieauth.com/token
   me: https://github.com/retronav
+  webmention: https://webmention.io/karawale.in/webmention
+  pingback: https://webmention.io/karawale.in/xmlrpc
   hcard:
     name: Pranav Karawale
     photo: /media/me96.webp
