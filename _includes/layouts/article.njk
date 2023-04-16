@@ -3,6 +3,41 @@ layout: base
 ---
 
 <article class="h-entry">
-    <h1 class="title">{{ title }}</h1>
-    {{ content | safe }}
+    <h1 class="title p-name">{{ title }}</h1>
+    <aside>
+        <p class="p-summary hidden">{{ summary }}</p>
+        <a href="{{ site.baseUrl }}" class="p-author hidden">{{ site.author }}</a>
+        <a href="{{ page.url | absoluteUrl(site.baseUrl) }}" class="u-url hidden"></a>
+        <small>
+            Published <time class="dt-published" datetime="{{ date | formatDate("YYYY-MM-DDTHH:mm:ssZ") }}">
+            {{ date | formatDate("DD MMMM, YYYY") }}
+        </time>
+        {% if updated %}
+            , updated
+            <time class="dt-updated" datetime="{{ updated | formatDate("YYYY-MM-DDTHH:mm:ssZ") }}">
+                {{ updated | formatDate("DD MMMM, YYYY") }}
+            </time>
+        {% endif %}
+        </small>
+        <br />
+        <small>
+            Tagged under: 
+            <ul class="tags">
+                {% for tag in tags %}
+                <li>
+                    <a href="/tags/{{ tag }}">
+                        #<span class="p-category">{{ tag }}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </small>
+        <details>
+            <summary>Table of Contents</summary>
+            {{ content | toc | safe }}
+        </details>
+    </aside>
+    <section class="e-content">
+        {{ content | safe }}
+    </section>
 </article>

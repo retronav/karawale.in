@@ -35,19 +35,19 @@ section.h-feed {
     list-style: none;
     padding: 0;
     li article {
-        margin: 2rem 0;
-        padding: 1rem;
-        border: 5px solid var(--accent);
-        border-radius: var(--border-radius);
-        box-shadow: 5px 5px 0px 0px var(--accent);
-        transition: box-shadow .2s ease;
-        &:hover {
-            box-shadow: 10px 10px 0px 0px var(--accent);
-        }
-        .tags {
-          display: flex;
-          gap: 1ch;
-        }
+      margin: 2rem 0;
+      padding: 1rem;
+      border: 5px solid var(--accent);
+      border-radius: var(--border-radius);
+      box-shadow: 5px 5px 0px 0px var(--accent);
+      transition: box-shadow 0.2s ease;
+      &:hover {
+        box-shadow: 10px 10px 0px 0px var(--accent);
+      }
+      .tags {
+        display: flex;
+        gap: 1ch;
+      }
     }
   }
 }
@@ -55,5 +55,24 @@ section.h-feed {
 article.h-entry {
   .title {
     text-align: center;
+  }
+  aside {
+    .tags {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: inline-flex;
+      gap: 1ch;
+    }
+    details {
+      margin: 1rem 0;
+      .toc {
+        border: 1px solid var(--accent);
+        border-radius: var(--border-radius);
+        ul {
+          list-style: none;
+        }
+      }
+    }
   }
 }

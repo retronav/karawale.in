@@ -1,5 +1,6 @@
 const EleventyVitePlugin = require("@11ty/eleventy-plugin-vite");
 const EleventyPluginRss = require("@11ty/eleventy-plugin-rss");
+const EleventyPluginToc = require('eleventy-plugin-toc')
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
 const filters = require("./_11ty/filters");
 const postKinds = require("./postKinds");
@@ -28,6 +29,9 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(EleventyVitePlugin);
   eleventyConfig.addPlugin(EleventyRenderPlugin);
+  eleventyConfig.addPlugin(EleventyPluginToc, {
+    ul: true
+  });
   eleventyConfig.addFilter("absoluteUrl", EleventyPluginRss.absoluteUrl);
   eleventyConfig.addFilter(
     "htmlToAbsoluteUrls",
