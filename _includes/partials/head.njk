@@ -11,6 +11,7 @@
     {{  title+" - "+site.title if title and title !== site.title else site.title }}
 </title>
 <link rel="stylesheet" href="{{ '/styles/index.scss' | url }}" />
+<link rel="shortcut icon" href="/favicon.png" type="image/png">
 {% if site.indieweb %}
     {% set indieweb = site.indieweb %}
     {{ link(indieweb, "micropub") }}
