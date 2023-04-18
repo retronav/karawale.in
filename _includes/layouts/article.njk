@@ -6,7 +6,7 @@ layout: base
     <h1 class="title p-name">{{ title }}</h1>
     <aside>
         <p class="p-summary hidden">{{ summary }}</p>
-        <a href="{{ site.baseUrl }}" class="p-author hidden">{{ site.author }}</a>
+        <a href="{{ site.baseUrl }}" class="p-author h-card hidden">{{ site.author }}</a>
         <a href="{{ page.url | absoluteUrl(site.baseUrl) }}" class="u-url hidden"></a>
         <small>
             Published <time class="dt-published" datetime="{{ date | formatDate("YYYY-MM-DDTHH:mm:ssZ") }}">
