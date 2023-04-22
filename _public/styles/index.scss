@@ -21,6 +21,24 @@ html {
     &:nth-child(1) {
       background: var(--accent);
       color: var(--black);
+      .title {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  .h-card {
+    padding: 0;
+    .u-photo {
+      float: left;
+      border-radius: 50%;
+      margin-right: 1rem;
+    }
+    p {
+      margin: 0.5rem;
+    }
+    code {
+      background-color: var(--accent);
+      padding: 0;
     }
   }
 }
@@ -134,7 +152,8 @@ article.h-entry {
   text-transform: uppercase;
 }
 
-#webmention-form-input, .send-webmention input[type="submit"] {
+#webmention-form-input,
+.send-webmention input[type="submit"] {
   font-size: var(--step-0);
   background: var(--background);
   color: var(--foreground);

@@ -17,9 +17,9 @@ indieweb:
   pingback: https://webmention.io/karawale.in/xmlrpc
   hcard:
     name: Pranav Karawale
-    photo: /media/me96.webp
+    photo: /media/me.webp
     nickname: retronav
-    note: "Myself. Clarify more about me"
+    note: "Computers enthusiast"
 
 menus:
   navbar:

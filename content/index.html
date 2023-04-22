@@ -3,6 +3,25 @@
     <h1 class="title" style="font-weight: normal">
       Hi! I am <b>Pranav Karawale</b>.
     </h1>
+    <section class="h-card">
+      <img
+        class="u-photo"
+        src="{{ site.indieweb.hcard.photo }}"
+        alt="A portrait picture of mine."
+        height="128"
+        width="128"
+        loading="lazy"
+      />
+      <a href="/" class="u-url"></a>
+      <p class="p-name">
+          <span class="p-given-name">{{ site.indieweb.hcard.name.split(" ")[0] }}</span>
+          <span class="p-family-name">{{ site.indieweb.hcard.name.split(" ")[1] }}</span>
+      </p>
+      <p>
+        Known online as <code><span class="p-nickname">{{ site.indieweb.hcard.nickname }}</span></code>
+      </p>
+      <p class="p-note">{{ site.indieweb.hcard.note }}  </p>
+    </section>
   </section>
   <section>
     <p>Website will be updated soon.</p>
