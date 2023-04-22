@@ -13,6 +13,7 @@
             title="{{ ariaDesc }}"
             href="{{ mention.url }}">
                 <img 
+                loading="lazy"
                 width="48" 
                 height="48"
                 src="{{ mention.author.photo }}"
@@ -35,7 +36,7 @@
             <article role="comment">
                 <header>
                     <a class="webmention-reply-author" href="{{ mention.author.url }}">
-                        <img height="48" width="48" src="{{ mention.author.photo }}" alt="Avatar of {{ mention.author.name }}"></a>
+                        <img loading="lazy" height="48" width="48" src="{{ mention.author.photo }}" alt="Avatar of {{ mention.author.name }}"></a>
                         <span>{{ mention.author.name }}</span>
                         <br/>
                         <a href="{{ mention["wm-source"] }}">
