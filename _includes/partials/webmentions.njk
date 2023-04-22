@@ -1,0 +1,81 @@
+{% set mentions = (page.url | absoluteUrl(site.baseUrl) | webmentions) %}
+<section class="webmention-reactions" aria-label="Reactions on this page">
+    <span>{{ mentions.reactions.length }} reactions</span>
+    {% for mention in mentions.reactions %}
+        {% if mention["wm-property"] == "like-of" %}
+            {% set ariaDesc = "Liked by " + mention.author.name %}
+        {% elif mention["wm-property"] == "repost-of" %}
+            {% set ariaDesc = "Reposted by " + mention.author.name %}
+        {% endif %}
+        <a 
+            class="webmention-reaction"
+            aria-description="{{ ariaDesc }}"
+            title="{{ ariaDesc }}"
+            href="{{ mention.url }}">
+                <img 
+                width="48" 
+                height="48"
+                src="{{ mention.author.photo }}"
+                alt="Avatar of {{ mention.author.name }}">
+        </a>
+    {% endfor %}
+</section>
+{% if mentions.replies.length === 0 %}
+    <p class="no-webmention-replies">
+       No replies yet
+    </p>
+{% else %}
+<details class="webmention-replies">
+<summary>
+    {{ mentions.replies.length }} replies
+</summary>
+<ul aria-label="Replies to this page">
+    {% for mention in mentions.replies %}
+        <li class="webmention-reply">
+            <article role="comment">
+                <header>
+                    <a class="webmention-reply-author" href="{{ mention.author.url }}">
+                        <img height="48" width="48" src="{{ mention.author.photo }}" alt="Avatar of {{ mention.author.name }}"></a>
+                        <span>{{ mention.author.name }}</span>
+                        <br/>
+                        <a href="{{ mention["wm-source"] }}">
+                            <time class="dt-published" datetime="{{ mention.published | formatDate("YYYY-MM-DDTHH:mm:ssZ") }}">
+                                {{ mention.published | formatDate("DD MMM, YYYY, h:mma") }}
+                            </time>
+                        </a>
+                    </header>
+                    <section class="e-content">
+                        {{ mention.content.text }}
+                    </section>
+                </article>
+            </li>
+        {% endfor %}
+    </ul>
+</details>
+{% endif %}
+
+<form 
+    class="send-webmention" action="{{ site.indieweb.webmention }}" 
+    method="post"
+    aria-label="Send a webmention to this page">
+    <label for="webmention-form-input">
+        <h4 style="margin-bottom: 0.5em">Send a reply from your website:</h4>
+    </label>
+    <input 
+        id="webmention-form-input"
+        name="source" type="url" 
+        required placeholder="https://yourwebsite.tld/">
+    <input 
+        type="text"
+        name="target"
+        hidden value="{{ page.url | absoluteUrl(site.baseUrl) }}"
+    >
+    <input type="submit" value="Send webmention">
+</form>
+
+<p>
+    My website supports
+    <a href="https://indieweb.org/Webmention">webmentions</a>
+    using <a href="https://webmention.io">webmention.io</a> 
+    via the <a href="https://indieweb.org">Indieweb</a>.
+</p>

@@ -46,6 +46,16 @@
   --step-5: clamp(2.8rem, calc(2.45rem + 1.77vw), 3.82rem);
 }
 
+@mixin interactive-border {
+  border: 5px solid var(--accent);
+  border-radius: var(--border-radius);
+  box-shadow: 5px 5px 0px 0px var(--accent);
+  transition: box-shadow 0.2s ease;
+  &:hover {
+    box-shadow: 10px 10px 0px 0px var(--accent);
+  }
+}
+
 * {
   box-sizing: border-box;
 }

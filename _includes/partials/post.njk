@@ -1,5 +1,5 @@
 {% macro postStart(post) %}
-    <article class="h-entry">
+    <article class="h-entry {{ post.data.kind }}">
         <a href="{{ site.baseUrl }}" class="p-author h-card hidden">{{ site.author }}</a>
         {# Continued in postEnd #}
 {% endmacro %}
@@ -34,7 +34,7 @@
     <p>{{ post.data.summary }}</p>
 {% endmacro %}
 {% macro note(post) %}
-    <p>{{ post.content | safe }}</p>
+    <section class="e-content">{{ post.content | safe }}</section>
 {% endmacro %}
 {% macro like(post) %}
     <p>Like of
@@ -48,6 +48,6 @@
         {% endfor %}
     </section>
     {% if post.content %}
-        <p>{{ post.content | safe }}</p>
+        <section class="e-content">{{ post.content | safe }}</section>
     {% endif %}
 {% endmacro %}

@@ -40,6 +40,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("dateToRfc3339", EleventyPluginRss.dateToRfc3339);
   eleventyConfig.addFilter("dateToRfc822", EleventyPluginRss.dateToRfc822);
   eleventyConfig.addFilter("formatDate", filters.formatDate);
+  eleventyConfig.addFilter("webmentions", filters.webmentions);
   eleventyConfig.addDataExtension("yml", (content) => yaml.parse(content));
   eleventyConfig.setLibrary("md", {
     set: () => {},

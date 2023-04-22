@@ -6,7 +6,7 @@ layout: base
 {% set currentPost = collections.posts | getCollectionItem %}
 
 {{ post.postStart(currentPost) }}
-{{ post.photo(currentPost) }}
+{{ post.note(currentPost) }}
 {{ post.postEnd(currentPost) }}
 
 {% include "partials/webmentions.njk" %}
