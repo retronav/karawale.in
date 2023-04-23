@@ -1,8 +1,45 @@
 <article class="home-grid">
   <section>
-    <h1 class="title" style="font-weight: normal">
-      Hi! I am <b>Pranav Karawale</b>.
-    </h1>
+    <div>
+      <h1 class="title" style="font-weight: normal">
+        Hi! I am <b>Pranav Karawale</b>.
+      </h1>
+    </div>
+  </section>
+  <section>
+    <h2>About me</h2>
+    <p>
+      I am a student pursuing a degree in computer engineering. As a self-taught
+      developer, my work usually involves developing websites, APIs, terminal
+      utilities. I don't have a favorite programming language as of now, but the
+      most used ones are TypeScript, Go and Python. I also occassionally
+      contribute to open source. Learning some machine learning and Rust has
+      always been on my bucket list, but I never really got close to it.
+      Hopefully soon.
+    </p>
+    <p>
+      My accolades regarding programming include winning a gold medal under the
+      skill "Web Technologies" at
+      <a href="https://worldskillsindia.co.in/indiaskillsjunior/"
+        >JuniorSkills 2021</a
+      >, a skill competition conducted all over India.
+    </p>
+    <p>
+      Besides computers, I have a lot of other interests. I watch a lot of
+      football and basketball. For football, I am an avid supporter of
+      Manchester United FC. For basketball, I'm a casual and watch the NBA. I am
+      a decent player at both the sports. One of the things I'm working on is to
+      be able to dunk a basketball.
+    </p>
+    <p>
+      My favorite artists keep changing, but Ed Sheeran and Eminem have been a
+      staple of my music collection for a long time. I also like listening to
+      old Bollywood songs ('90s and '00s). I am always on the look for indie
+      music creators and would love to listen to some. Even though I am a
+      terrible chess player, I enjoy keeping tabs on what's happening in the
+      chess world.
+    </p>
+    <h2>This is me</h2>
     <section class="h-card">
       <img
         class="u-photo"
@@ -12,19 +49,32 @@
         width="128"
         loading="lazy"
       />
-      <a href="/" class="u-url"></a>
-      <p class="p-name">
-          <span class="p-given-name">{{ site.indieweb.hcard.name.split(" ")[0] }}</span>
-          <span class="p-family-name">{{ site.indieweb.hcard.name.split(" ")[1] }}</span>
-      </p>
-      <p>
-        Known online as <code><span class="p-nickname">{{ site.indieweb.hcard.nickname }}</span></code>
-      </p>
-      <p class="p-note">{{ site.indieweb.hcard.note }}  </p>
+      <div>
+        <p class="p-name">
+          <a href="/" class="u-url">
+            <span class="p-given-name"
+              >{{ site.indieweb.hcard.name.split(" ")[0] }}</span
+            >
+            <span class="p-family-name"
+              >{{ site.indieweb.hcard.name.split(" ")[1] }}</span
+            >
+          </a>
+        </p>
+        <p>
+          Known online as
+          <code
+            ><span class="p-nickname"
+              >{{ site.indieweb.hcard.nickname }}</span
+            ></code
+          >
+        </p>
+        <p class="p-note">{{ site.indieweb.hcard.note }}</p>
+        <p>
+          <span class="p-region">Maharashtra</span>,
+          <span class="p-country-name">India</span>
+        </p>
+      </div>
     </section>
-  </section>
-  <section>
-    <p>Website will be updated soon.</p>
   </section>
 </article>
 

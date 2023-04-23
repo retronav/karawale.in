@@ -1,4 +1,5 @@
 {% set mentions = (page.url | absoluteUrl(site.baseUrl) | webmentions) %}
+{% if mentions.reactions.length > 0 %}
 <section class="webmention-reactions" aria-label="Reactions on this page">
     <span>{{ mentions.reactions.length }} reactions</span>
     {% for mention in mentions.reactions %}
@@ -20,36 +21,33 @@
                 alt="Avatar of {{ mention.author.name }}">
         </a>
     {% endfor %}
+{% endif %}
 </section>
-{% if mentions.replies.length === 0 %}
-    <p class="no-webmention-replies">
-       No replies yet
-    </p>
-{% else %}
+{% if mentions.replies.length > 0 %}
 <details class="webmention-replies">
 <summary>
     {{ mentions.replies.length }} replies
 </summary>
 <ul aria-label="Replies to this page">
     {% for mention in mentions.replies %}
-        <li class="webmention-reply">
-            <article role="comment">
-                <header>
-                    <a class="webmention-reply-author" href="{{ mention.author.url }}">
-                        <img loading="lazy" height="48" width="48" src="{{ mention.author.photo }}" alt="Avatar of {{ mention.author.name }}"></a>
-                        <span>{{ mention.author.name }}</span>
-                        <br/>
-                        <a href="{{ mention["wm-source"] }}">
-                            <time class="dt-published" datetime="{{ mention.published | formatDate("YYYY-MM-DDTHH:mm:ssZ") }}">
-                                {{ mention.published | formatDate("DD MMM, YYYY, h:mma") }}
-                            </time>
-                        </a>
-                    </header>
-                    <section class="e-content">
-                        {{ mention.content.text }}
-                    </section>
-                </article>
-            </li>
+    <li class="webmention-reply">
+        <article role="comment">
+            <header>
+                <a class="webmention-reply-author" href="{{ mention.author.url }}">
+                    <img loading="lazy" height="48" width="48" src="{{ mention.author.photo }}" alt="Avatar of {{ mention.author.name }}"></a>
+                    <span>{{ mention.author.name }}</span>
+                    <br/>
+                    <a href="{{ mention["wm-source"] }}">
+                        <time class="dt-published" datetime="{{ mention.published | formatDate("YYYY-MM-DDTHH:mm:ssZ") }}">
+                            {{ mention.published | formatDate("DD MMM, YYYY, h:mma") }}
+                        </time>
+                    </a>
+                </header>
+                <section class="e-content">
+                    {{ mention.content.text }}
+                </section>
+            </article>
+        </li>
         {% endfor %}
     </ul>
 </details>

@@ -9,36 +9,34 @@ html {
 // Stuff on /index.html
 .home-grid {
   min-height: 80vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  @include mq.mq($until: tablet) {
-    grid-template-columns: 1fr;
-    grid-template-rows: fit-content 1fr;
-  }
   section {
     padding: 1rem;
     &:nth-child(1) {
       background: var(--accent);
       color: var(--black);
-      .title {
-        margin-bottom: 1rem;
+      div {
+        max-width: 80ch;
+        margin: auto;
       }
+    }
+    &:nth-child(2) {
+      max-width: 60ch;
+      margin: auto;
     }
   }
   .h-card {
     padding: 0;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    @include mq.mq($until: mobile) {
+      flex-direction: column;
+    }
     .u-photo {
-      float: left;
       border-radius: 50%;
-      margin-right: 1rem;
     }
     p {
-      margin: 0.5rem;
-    }
-    code {
-      background-color: var(--accent);
-      padding: 0;
+      margin: 0;
     }
   }
 }
@@ -145,11 +143,6 @@ article.h-entry {
       padding-top: 1rem;
     }
   }
-}
-
-.no-webmention-replies {
-  font-size: var(--step-1);
-  text-transform: uppercase;
 }
 
 #webmention-form-input,
