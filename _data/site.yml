@@ -21,6 +21,19 @@ indieweb:
     nickname: retronav
     note: "Computer enthusiast"
 
+socials:
+  GitHub: 
+    link: https://github.com/retronav
+  Codeberg: 
+    link: https://codeberg.org/retronav
+  Mastodon: 
+    link: https://fosstodon.org/@retronav
+    text: "@retronav@fosstodon.org"
+  Email:
+    text: my first name @ this domain
+  Matrix:
+    text: "@pranav:envs.net"
+
 menus:
   navbar:
     - name: Projects
