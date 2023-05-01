@@ -3,8 +3,7 @@
   "scripts": {
     "build": "eleventy",
     "dev": "eleventy --serve",
-    "watch": "eleventy --watch",
-    "postinstall": "cp _11ty/gruvbox-dark-hard.json node_modules/shiki/themes"
+    "watch": "eleventy --watch"
   },
   "dependencies": {
     "@11ty/eleventy": "^2.0.1",

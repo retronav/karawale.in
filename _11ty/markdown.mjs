@@ -1,4 +1,4 @@
-import { getHighlighter } from "shiki";
+import { getHighlighter, loadTheme } from "shiki";
 import { slugifyWithCounter } from "@sindresorhus/slugify";
 import { visit } from "unist-util-visit";
 import { h } from "hastscript";
@@ -15,7 +15,8 @@ import Image from "@11ty/eleventy-img";
 import { fromHtml } from "hast-util-from-html";
 import { select } from "hast-util-select";
 
-const highlighter = await getHighlighter({ theme: "gruvbox-dark-hard" });
+const theme = await loadTheme(path.resolve("./_11ty/gruvbox-dark-hard.json"));
+const highlighter = await getHighlighter({ theme });
 
 /**
  * Render markdown to HTML via unified.
