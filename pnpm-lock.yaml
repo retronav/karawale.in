@@ -25,6 +25,9 @@ dependencies:
   eleventy-plugin-toc:
     specifier: ^1.1.5
     version: 1.1.5
+  eleventy-sass:
+    specifier: ^2.2.1
+    version: 2.2.1(@11ty/eleventy@2.0.1)
   hast-util-from-html:
     specifier: ^1.0.1
     version: 1.0.1
@@ -1053,6 +1056,26 @@ packages:
     resolution: {integrity: sha512-Fo5AZZSBH8CKvz0axJQA9nmnTFOflAMFrngaKER4rOz3C6oDwqxK8N+kNFepmIsieTPkrH+iREWLJ+/9j5JjUg==}
     dependencies:
       cheerio: 1.0.0-rc.12
+    dev: false
+
+  /eleventy-sass@2.2.1(@11ty/eleventy@2.0.1):
+    resolution: {integrity: sha512-Di7ee3+BNy9h+H97eZHOxsQqb+7GgHT3sbqCVgKcOtiw0ZSczW9I7/3dfhNwxtZ7TfT9gqeaJ79N6a2NML3bmA==}
+    peerDependencies:
+      '@11ty/eleventy': ^1.0.0 || ^2.0.0-canary.12 || ^2.0.0-beta.1
+      eleventy-plugin-clean: ^1.1.0
+      eleventy-plugin-rev: ^1.1.1
+    peerDependenciesMeta:
+      eleventy-plugin-clean:
+        optional: true
+      eleventy-plugin-rev:
+        optional: true
+    dependencies:
+      '@11ty/eleventy': 2.0.1
+      debug: 4.3.4
+      kleur: 4.1.5
+      sass: 1.62.0
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /encodeurl@1.0.2:

@@ -1,6 +1,6 @@
-const EleventyVitePlugin = require("@11ty/eleventy-plugin-vite");
+const EleventySassPlugin = require("eleventy-sass");
 const EleventyPluginRss = require("@11ty/eleventy-plugin-rss");
-const EleventyPluginToc = require('eleventy-plugin-toc')
+const EleventyPluginToc = require("eleventy-plugin-toc");
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
 const filters = require("./_11ty/filters");
 const postKinds = require("./postKinds");
@@ -27,10 +27,10 @@ module.exports = function (eleventyConfig) {
       .filter((post) => !Boolean(post.data.draft))
   );
 
-  eleventyConfig.addPlugin(EleventyVitePlugin);
+  eleventyConfig.addPlugin(EleventySassPlugin);
   eleventyConfig.addPlugin(EleventyRenderPlugin);
   eleventyConfig.addPlugin(EleventyPluginToc, {
-    ul: true
+    ul: true,
   });
   eleventyConfig.addFilter("absoluteUrl", EleventyPluginRss.absoluteUrl);
   eleventyConfig.addFilter(
@@ -70,7 +70,7 @@ module.exports = function (eleventyConfig) {
           .use(rehypeStringify);
 
         return String(await processor.process(content));
-      } else if (outputPath.endsWith(".xml")) return content;
+      } else return content;
     }
   );
 
