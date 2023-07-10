@@ -82,7 +82,7 @@ module.exports = function (eleventyConfig) {
       includes: "../_includes",
       layouts: "../_includes/layouts",
       data: "../_data",
-      output: "dist",
+      output: process.env.ELEVENTY_OUTPUT ?? "dist",
     },
   };
 };
