@@ -1,115 +1,113 @@
 <article class="home-grid">
-  <section>
-    <div>
-      <h1 class="title" style="font-weight: normal">
-        Hi! I am <b>Pranav Karawale</b>.
-      </h1>
-    </div>
-  </section>
-  <section>
-    <h2 id="about-me">About me</h2>
-    <p>
-      I am a student pursuing a degree in computer engineering. As a self-taught
-      developer, my work usually involves developing websites, APIs, terminal
-      utilities. I don't have a favorite programming language as of now, but the
-      most used ones are TypeScript, Go and Python. I also occassionally
-      contribute to open source. Learning some machine learning and Rust has
-      always been on my bucket list, but I never really got close to it.
-      Hopefully soon.
-    </p>
-    <p>
-      My accolades regarding programming include winning a gold medal under the
-      skill "Web Technologies" at
-      <a href="https://worldskillsindia.co.in/indiaskillsjunior/"
-        >JuniorSkills 2021</a
-      >, a skill competition conducted all over India.
-    </p>
-    <p>
-      Besides computers, I have a lot of other interests. I watch a lot of
-      football and basketball. For football, I am an avid supporter of
-      Manchester United FC. For basketball, I'm a casual and watch the NBA. I am
-      a decent player at both the sports. One of the things I'm working on is to
-      be able to dunk a basketball.
-    </p>
-    <p>
-      My favorite artists keep changing, but Ed Sheeran and Eminem have been a
-      staple of my music collection for a long time. I also like listening to
-      old Bollywood songs ('90s and '00s). I am always on the look for indie
-      music creators and would love to listen to some. Even though I am a
-      terrible chess player, I enjoy keeping tabs on what's happening in the
-      chess world.
-    </p>
-    <h2 id="contact">Ways to reach me</h2>
-    <p>
-      I also have accounts on a few other services. You can use some of them to
-      contact me:
-    </p>
-    <ul>
-      {% for name, social in site.socials %}
-      <li>
-        {% if social.link and social.text %} {{ name }}:
-        <a rel="me" href="{{ social.link }}"><code>{{ social.text }}</code></a>
-        {% elif social.link %}
-        <a rel="me" href="{{ social.link }}">{{ name }}</a>
-        {% else %} {{ name }}: <code>{{ social.text }}</code>
-        {% endif %}
-      </li>
-      {% endfor %}
-    </ul>
-    <h2 id="this-site">About this website</h2>
-    <p>
-      This website serves as my home on the Internet. I someday aim to make this
-      my primary source of interaction with fellow Internet people.
-    </p>
-    <p>
-      This website is made using <a href="https://11ty.dev">Eleventy</a>. The
-      posts are managed using my Micropub server,
-      <a href="https://codeberg.org/retronav/lilac">Lilac</a>. Most my stuff,
-      including this website is generously hosted by
-      <a href="https://exozy.me">the exozyme project</a>.
-    </p>
-    <h2>This is me</h2>
-    <section class="h-card">
-      <img
-        class="u-photo"
-        src="{{ site.indieweb.hcard.photo }}"
-        alt="A portrait picture of mine."
-        height="128"
-        width="128"
-        loading="lazy"
-      />
-      <div>
-        <p class="p-name">
-          <a href="/" class="u-url">
-            <span class="p-given-name"
-              >{{ site.indieweb.hcard.name.split(" ")[0] }}</span
-            >
-            <span class="p-family-name"
-              >{{ site.indieweb.hcard.name.split(" ")[1] }}</span
-            >
-          </a>
-        </p>
-        <p>
-          Known online as
-          <code
-            ><span class="p-nickname"
-              >{{ site.indieweb.hcard.nickname }}</span
-            ></code
-          >
-        </p>
-        <p class="p-note">{{ site.indieweb.hcard.note }}</p>
-        <p>
-          <span class="p-region">Maharashtra</span>,
-          <span class="p-country-name">India</span>
-        </p>
-      </div>
-    </section>
-  </section>
+	<section>
+		<div>
+			<h1 class="title" style="font-weight: normal">
+				Hi! I am <b>Pranav Karawale</b>.
+			</h1>
+		</div>
+	</section>
+	<section>
+		<h2 id="about-me">About me</h2>
+		<p>
+			I am a student pursuing a degree in computer engineering. As a self-taught
+			developer, my work usually involves developing websites, APIs, terminal
+			utilities. I don't have a favorite programming language as of now, but the
+			most used ones are TypeScript, Go and Python. I also occassionally
+			contribute to open source. Learning some machine learning and Rust has
+			always been on my bucket list, but I never really got close to it.
+			Hopefully soon.
+		</p>
+		<p>
+			My accolades regarding programming include winning a gold medal under the
+			skill "Web Technologies" at
+			<a href="https://worldskillsindia.co.in/indiaskillsjunior/"
+				>JuniorSkills 2021</a
+			>, a skill competition conducted all over India.
+		</p>
+		<p>
+			Besides computers, I have a lot of other interests. I watch a lot of
+			football and basketball. For football, I am an avid supporter of
+			Manchester United FC. For basketball, I'm a casual and watch the NBA. I am
+			a decent player at both the sports. One of the things I'm working on is to
+			be able to dunk a basketball.
+		</p>
+		<p>
+			My music taste keeps slightly changing over time. My favorite artists to
+			listen to right now are
+		</p>
+		<p>Hip Hop - Ye, Kendrick Lamar, J. Cole, Future</p>
+		<p>Pop/R&B - OneRepublic, The Weeknd, The Chainsmokers</p>
+		<h2 id="contact">Ways to reach me</h2>
+		<p>
+			I also have accounts on a few other services. You can use some of them to
+			contact me:
+		</p>
+		<ul>
+			{% for name, social in site.socials %}
+			<li>
+				{% if social.link and social.text %} {{ name }}:
+				<a rel="me" href="{{ social.link }}"><code>{{ social.text }}</code></a>
+				{% elif social.link %}
+				<a rel="me" href="{{ social.link }}">{{ name }}</a>
+				{% else %} {{ name }}: <code>{{ social.text }}</code>
+				{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
+		<h2 id="this-site">About this website</h2>
+		<p>
+			This website serves as my home on the Internet. I someday aim to make this
+			my primary source of interaction with fellow Internet people.
+		</p>
+		<p>
+			This website is made using <a href="https://11ty.dev">Eleventy</a>. The
+			posts are managed using my Micropub server,
+			<a href="https://codeberg.org/retronav/lilac">Lilac</a>. Most my stuff,
+			including this website is generously hosted by
+			<a href="https://exozy.me">the exozyme project</a>.
+		</p>
+		<h2>This is me</h2>
+		<section class="h-card">
+			<img
+				class="u-photo"
+				src="{{ site.indieweb.hcard.photo }}"
+				alt="A portrait picture of mine."
+				height="128"
+				width="128"
+				loading="lazy"
+			/>
+			<div>
+				<p class="p-name">
+					<a href="/" class="u-url">
+						<span class="p-given-name"
+							>{{ site.indieweb.hcard.name.split(" ")[0] }}</span
+						>
+						<span class="p-family-name"
+							>{{ site.indieweb.hcard.name.split(" ")[1] }}</span
+						>
+					</a>
+				</p>
+				<p>
+					Known online as
+					<code
+						><span class="p-nickname"
+							>{{ site.indieweb.hcard.nickname }}</span
+						></code
+					>
+				</p>
+				<p class="p-note">{{ site.indieweb.hcard.note }}</p>
+				<p>
+					<span class="p-region">Maharashtra</span>,
+					<span class="p-country-name">India</span>
+				</p>
+			</div>
+		</section>
+	</section>
 </article>
 
 <style>
-  main {
-    max-width: 100%;
-    margin: 0rem auto;
-  }
+	main {
+		max-width: 100%;
+		margin: 0rem auto;
+	}
 </style>
