@@ -89,15 +89,15 @@ export function generateImagePreview() {
 
 export function randomAccentColor() {
   const colors = [
-    "amber",
-    "wisteria",
-    "light-coral",
-    "turquoise",
-    "yellow-green",
+    "#F063A1",
+    "#FB8552",
+    "#FBD352",
+    "#7FDBDA",
+    "#8C54FE",
   ];
   return (tree) => {
     const head = select("head", tree);
     const color = colors[Math.floor(Math.random() * 5)];
-    head.children.push(h("style", `:root { --accent: var(--${color}); }`));
+    head.children.push(h("style", `:root { --accent: ${color}; }`));
   };
 }

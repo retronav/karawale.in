@@ -22,23 +22,18 @@ indieweb:
     note: "Computer enthusiast"
 
 socials:
-  GitHub: 
+  GitHub:
     link: https://github.com/retronav
-  Codeberg: 
-    link: https://codeberg.org/retronav
-  Mastodon: 
-    link: https://fosstodon.org/@retronav
-    text: "@retronav@fosstodon.org"
+  LinkedIn:
+    link: https://linkedin.com/in/pranavkarawale
   Email:
     text: my first name @ this domain
-  Matrix:
-    text: "@pranav:envs.net"
 
 menus:
   navbar:
-    - name: Projects
-      url: /projects
+    # - name: Projects
+      # url: /projects
     - name: Posts
       url: /posts
-    - name: More links
-      url: /more-links
+    # - name: More links
+    #   url: /more-links
