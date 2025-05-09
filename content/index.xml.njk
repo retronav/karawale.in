@@ -13,12 +13,12 @@ layout: rss.njk
     <atom:link href="{{ permalink | absoluteUrl(site.baseUrl) }}" rel="self" type="application/rss+xml"/>
     <description>{{ site.summary }}</description>
     <language>{{ metadata.language }}</language>
-    {%- for post in collections.posts | reverse %}
-      {%- set absolutePostUrl = post.url | absoluteUrl(site.baseUrl) %}
+    {%- for post in posts | reverse %}
+      {%- set absolutePostUrl = ("/posts/"+post.slug) | absoluteUrl(site.baseUrl) %}
       <item>
-        <title>{{ post.data.title }}</title>
+        <title>{{ post.title }}</title>
         <link>{{ absolutePostUrl }}</link>
-        <description>{{ postTemplate[post.data.kind](post) | htmlToAbsoluteUrls(absolutePostUrl) }}</description>
+        <description>{{ postTemplate['post'](post) | htmlToAbsoluteUrls(absolutePostUrl) }}</description>
         <pubDate>{{ post.date | dateToRfc822 }}</pubDate>
         <dc:creator>{{ site.author }}</dc:creator>
         <guid>{{ absolutePostUrl }}</guid>

@@ -3,27 +3,27 @@ layout: base
 ---
 
 <article class="h-entry {{ kind }}">
-    <h1 class="title p-name">{{ title }}</h1>
+    <h1 class="title p-name">{{ post.title }}</h1>
     <aside>
-        <p class="p-summary hidden">{{ summary }}</p>
+        <p class="p-summary hidden">{{ post.summary }}</p>
         <a href="{{ site.baseUrl }}" class="p-author h-card hidden">{{ site.author }}</a>
         <a href="{{ page.url | absoluteUrl(site.baseUrl) }}" class="u-url hidden"></a>
         <small>
-            Published <time class="dt-published" datetime="{{ date | formatDate("YYYY-MM-DDTHH:mm:ssZ") }}">
-            {{ date | formatDate("DD MMMM, YYYY") }}
+            Published <time class="dt-published" datetime="{{ post.date | formatDate("YYYY-MM-DDTHH:mm:ssZ") }}">
+            {{ post.date | formatDate("DD MMMM, YYYY") }}
         </time>
-        {% if updated %}
+        {% if post.updated %}
             , updated
-            <time class="dt-updated" datetime="{{ updated | formatDate("YYYY-MM-DDTHH:mm:ssZ") }}">
-                {{ updated | formatDate("DD MMMM, YYYY") }}
+            <time class="dt-updated" datetime="{{ post.updated | formatDate("YYYY-MM-DDTHH:mm:ssZ") }}">
+                {{ post.updated | formatDate("DD MMMM, YYYY") }}
             </time>
         {% endif %}
         </small>
         <br />
         <small>
-            Tagged under: 
+            Tagged under:
             <ul class="tags">
-                {% for tag in tags %}
+                {% for tag in post.tags %}
                 <li>
                     <a href="/tags/{{ tag }}">
                         #<span class="p-category">{{ tag }}</span>
@@ -34,12 +34,11 @@ layout: base
         </small>
         <details>
             <summary>Table of Contents</summary>
-            {{ content | toc | safe }}
+            {{ post.content | toc | safe }}
         </details>
     </aside>
     <section class="e-content">
-        {{ content | safe }}
+        {{ post.content | safe }}
     </section>
 </article>
 <hr>
-{% include "partials/webmentions.njk" %}
