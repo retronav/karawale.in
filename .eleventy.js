@@ -15,6 +15,47 @@ const dayjs = require("dayjs");
 module.exports = function (eleventyConfig) {
 	eleventyConfig.setUseGitIgnore(false);
 
+	eleventyConfig.addCollection("tags", (collectionApi) => {
+		const allUniquePosts = collectionApi.getAll()[0].data.posts;
+
+		const tagsMap = {};
+
+		if (allUniquePosts && Array.isArray(allUniquePosts)) {
+			allUniquePosts.forEach((post) => {
+				if (post && post.tags && Array.isArray(post.tags)) {
+					const uniqueNormalizedTagsForPost = new Set();
+					post.tags.forEach((tagString) => {
+						if (typeof tagString === "string" && tagString.trim() !== "") {
+							uniqueNormalizedTagsForPost.add(tagString.trim());
+						}
+					});
+
+					uniqueNormalizedTagsForPost.forEach((normalizedTag) => {
+						if (!tagsMap[normalizedTag]) {
+							tagsMap[normalizedTag] = {
+								name: normalizedTag,
+								posts: [],
+							};
+						}
+						tagsMap[normalizedTag].posts.push(post);
+					});
+				}
+			});
+		}
+
+		const tagsArray = Object.values(tagsMap);
+
+		tagsArray.sort((a, b) => {
+			const nameA = a.name.toLowerCase();
+			const nameB = b.name.toLowerCase();
+			if (nameA < nameB) return -1;
+			if (nameA > nameB) return 1;
+			return 0;
+		});
+
+		return tagsArray;
+	});
+
 	eleventyConfig.addPlugin(EleventySassPlugin);
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
 	eleventyConfig.addPlugin(EleventyPluginToc, {

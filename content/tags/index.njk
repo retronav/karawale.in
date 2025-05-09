@@ -1,0 +1,15 @@
+---
+title: Tags
+---
+
+<section class="tag-list">
+    <h1 class="p-name">{{ title }}</h1>
+    <ul>
+        {% for tag in collections.tags | sort %}
+        <li>
+            <a href="/tags/{{ tag.name | slugify }}/">{{ tag.name }}</a>
+            ({{ tag.posts.length }} post{% if tag.posts.length != 1 %}s{% endif %})
+        </li>
+        {% endfor %}
+    </ul>
+</section>

@@ -1,0 +1,23 @@
+---
+pagination:
+    data: collections.tags
+    size: 1
+    alias: tag
+permalink: "tags/{{ tag.name}}/"
+eleventyComputed:
+    title: Posts tagged with {{ tag.name }}
+---
+
+{% import "partials/post.njk" as post with context %}
+<section class="h-feed">
+    <h1 class="p-name">{{ title }}</h1>
+    <ul>
+        {% for page in (tag.posts | reverse) %}
+        <li>
+            {{ post.postStart(page) }}
+            {{ post.post(page) }}
+            {{ post.postEnd(page) }}
+        </li>
+        {% endfor %}
+    </ul>
+</section>
