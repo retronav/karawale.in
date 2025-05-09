@@ -119,3 +119,11 @@ footer.site-footer {
   text-align: center;
   margin: 1rem 0;
 }
+
+blockquote {
+  border-left: 4px solid var(--accent);
+  color: var(--accent);
+  opacity: 0.9;
+  margin: 0;
+  padding-left: 1rem;
+}

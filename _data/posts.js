@@ -364,7 +364,12 @@ module.exports = async () => {
 		const databaseId = process.env.NOTION_DATABASE_ID;
 		const { results: dbEntries } = await notion.databases.query({
 			database_id: databaseId,
-			// sorts: [{ property: "Date", direction: "descending" }],
+			filter: {
+				property: "Draft",
+				checkbox: {
+					does_not_equal: true
+				}
+			}
 		});
 
 		console.log(`Found ${dbEntries.length} entries in the database.`);
@@ -393,10 +398,10 @@ module.exports = async () => {
 				pageIdToSlugMap,
 				contentSlugifier
 			);
-
+			
 			const summary =
 				entry.properties.Summary?.rich_text?.[0]?.plain_text || "";
-			const date = dayjs(entry.created_time).toDate();
+			const date = dayjs(entry.properties.Published?.date?.start ?? entry.created_time).toDate();
 			const tags =
 				entry.properties.Tags?.multi_select?.map((tag) => tag.name) || [];
 
