@@ -1,10 +1,8 @@
 const { Client } = require("@notionhq/client");
 const dotenv = require("dotenv");
-const {
-	default: createPageSlug,
-	slugifyWithCounter,
-} = require("@sindresorhus/slugify");
+const { default: createPageSlug } = require("@sindresorhus/slugify");
 const dayjs = require("dayjs");
+const { AssetCache } = require("@11ty/eleventy-fetch");
 
 dotenv.config();
 
@@ -80,70 +78,84 @@ function blockToHtml(block, pageIdToSlugMap) {
 				pageIdToSlugMap
 			)}</p>`;
 		case "heading_1":
-			return `<h1>${richTextToHtml(block.heading_1.rich_text, pageIdToSlugMap)}</h1>`;
+			return `<h1>${richTextToHtml(
+				block.heading_1.rich_text,
+				pageIdToSlugMap
+			)}</h1>`;
 		case "heading_2":
-			return `<h2>${richTextToHtml(block.heading_2.rich_text, pageIdToSlugMap)}</h2>`;
+			return `<h2>${richTextToHtml(
+				block.heading_2.rich_text,
+				pageIdToSlugMap
+			)}</h2>`;
 		case "heading_3":
-			return `<h3>${richTextToHtml(block.heading_3.rich_text, pageIdToSlugMap)}</h3>`;
+			return `<h3>${richTextToHtml(
+				block.heading_3.rich_text,
+				pageIdToSlugMap
+			)}</h3>`;
 		case "bulleted_list_item":
 			return `<li>${richTextToHtml(
 				block.bulleted_list_item.rich_text,
 				pageIdToSlugMap
-			)}${block.children
-				? `<ul>${blocksToHtml(
-					block.children,
-					pageIdToSlugMap,
-					contentSlugifier
-				)}</ul>`
-				: ""
-				}</li>`;
+			)}${
+				block.children
+					? `<ul>${blocksToHtml(
+							block.children,
+							pageIdToSlugMap,
+							contentSlugifier
+					  )}</ul>`
+					: ""
+			}</li>`;
 		case "numbered_list_item":
 			return `<li>${richTextToHtml(
 				block.numbered_list_item.rich_text,
 				pageIdToSlugMap
-			)}${block.children
-				? `<ol>${blocksToHtml(
-					block.children,
-					pageIdToSlugMap
-				)}</ol>`
-				: ""
-				}</li>`;
+			)}${
+				block.children
+					? `<ol>${blocksToHtml(block.children, pageIdToSlugMap)}</ol>`
+					: ""
+			}</li>`;
 		case "to_do":
-			return `<div class="todo-item"><input type="checkbox"${block.to_do.checked ? " checked" : ""
-				} disabled /> <span>${richTextToHtml(
-					block.to_do.rich_text,
-					pageIdToSlugMap
-				)}</span></div>`;
+			return `<div class="todo-item"><input type="checkbox"${
+				block.to_do.checked ? " checked" : ""
+			} disabled /> <span>${richTextToHtml(
+				block.to_do.rich_text,
+				pageIdToSlugMap
+			)}</span></div>`;
 		case "toggle":
 			return `<details><summary>${richTextToHtml(
 				block.toggle.rich_text,
 				pageIdToSlugMap
-			)}</summary>${block.children
-				? blocksToHtml(block.children, pageIdToSlugMap, contentSlugifier)
-				: ""
-				}</details>`;
+			)}</summary>${
+				block.children
+					? blocksToHtml(block.children, pageIdToSlugMap, contentSlugifier)
+					: ""
+			}</details>`;
 		case "code":
-			return `<pre><code class="language-${block.code.language
-				}">${richTextToHtml(block.code.rich_text, pageIdToSlugMap)}</code></pre>`;
+			return `<pre><code class="language-${
+				block.code.language
+			}">${richTextToHtml(block.code.rich_text, pageIdToSlugMap)}</code></pre>`;
 		case "quote":
 			return `<blockquote>${richTextToHtml(
 				block.quote.rich_text,
 				pageIdToSlugMap
-			)}${block.children
-				? blocksToHtml(block.children, pageIdToSlugMap, contentSlugifier)
-				: ""
-				}</blockquote>`;
-		case "callout":
-			return `<div class="callout">${block.callout.icon
-				? `<div class="callout-icon">${renderIcon(block.callout.icon)}</div>`
-				: ""
-				}<div class="callout-content">${richTextToHtml(
-					block.callout.rich_text,
-					pageIdToSlugMap
-				)}${block.children
+			)}${
+				block.children
 					? blocksToHtml(block.children, pageIdToSlugMap, contentSlugifier)
 					: ""
-				}</div></div>`;
+			}</blockquote>`;
+		case "callout":
+			return `<div class="callout">${
+				block.callout.icon
+					? `<div class="callout-icon">${renderIcon(block.callout.icon)}</div>`
+					: ""
+			}<div class="callout-content">${richTextToHtml(
+				block.callout.rich_text,
+				pageIdToSlugMap
+			)}${
+				block.children
+					? blocksToHtml(block.children, pageIdToSlugMap, contentSlugifier)
+					: ""
+			}</div></div>`;
 		case "divider":
 			return "<hr>";
 		case "image":
@@ -155,12 +167,13 @@ function blockToHtml(block, pageIdToSlugMap) {
 			const figcaption =
 				block.image.caption && block.image.caption.length > 0
 					? `<figcaption>${richTextToHtml(
-						block.image.caption,
-						pageIdToSlugMap
-					)}</figcaption>`
+							block.image.caption,
+							pageIdToSlugMap
+					  )}</figcaption>`
 					: "";
-			return `<figure><img src="${imageUrl}" alt="${captionText || "image"
-				}" />${figcaption}</figure>`;
+			return `<figure><img src="${imageUrl}" alt="${
+				captionText || "image"
+			}" />${figcaption}</figure>`;
 		case "table":
 			if (!block.children) return "";
 			const rows = block.children
@@ -179,18 +192,18 @@ function blockToHtml(block, pageIdToSlugMap) {
 		case "column_list":
 			return block.children
 				? `<div class="column-list">${blocksToHtml(
-					block.children,
-					pageIdToSlugMap,
-					contentSlugifier
-				)}</div>`
+						block.children,
+						pageIdToSlugMap,
+						contentSlugifier
+				  )}</div>`
 				: "";
 		case "column":
 			return block.children
 				? `<div class="column">${blocksToHtml(
-					block.children,
-					pageIdToSlugMap,
-					contentSlugifier
-				)}</div>`
+						block.children,
+						pageIdToSlugMap,
+						contentSlugifier
+				  )}</div>`
 				: "";
 		case "link_preview":
 			return `<a href="${block.link_preview.url}" class="link-preview" target="_blank">${block.link_preview.url}</a>`;
@@ -236,8 +249,9 @@ function richTextToHtml(richTextArray, pageIdToSlugMap) {
 				}
 				if (richText.mention.type === "date") {
 					const { start, end, time_zone } = richText.mention.date;
-					return `<time datetime="${start}${end ? `/${end}` : ""}">${start}${end ? ` to ${end}` : ""
-						}${time_zone ? ` (${time_zone})` : ""}</time>`;
+					return `<time datetime="${start}${end ? `/${end}` : ""}">${start}${
+						end ? ` to ${end}` : ""
+					}${time_zone ? ` (${time_zone})` : ""}</time>`;
 				}
 				return content;
 			}
@@ -341,6 +355,19 @@ function renderIcon(icon) {
  * and structures them for Eleventy's data cascade.
  */
 module.exports = async () => {
+	const { renderHtml } = await import("../_11ty/markdown.mjs");
+	let posts = [];
+
+	let asset = new AssetCache("notion-posts");
+	if (asset.isCacheValid("6h")) {
+		posts = await asset.getCachedValue();
+		for (const post of posts) {
+			post.date = dayjs(post.date).toDate();
+			post.updated = dayjs(post.updated).toDate();
+		}
+		return posts;
+	}
+
 	try {
 		const databaseId = process.env.NOTION_DATABASE_ID;
 		const { results: dbEntries } = await notion.databases.query({
@@ -348,9 +375,9 @@ module.exports = async () => {
 			filter: {
 				property: "Published",
 				checkbox: {
-					equals: true
-				}
-			}
+					equals: true,
+				},
+			},
 		});
 
 		console.log(`Found ${dbEntries.length} entries in the database.`);
@@ -362,48 +389,48 @@ module.exports = async () => {
 			pageIdToSlugMap.set(entry.id, createPageSlug(title));
 		}
 
-		const allPosts = [];
-		for (const entry of dbEntries) {
-			const title =
-				entry.properties.Title?.title?.[0]?.plain_text || "Untitled";
-			const pageSlug = pageIdToSlugMap.get(entry.id);
+		// Process all posts concurrently instead of sequentially
+		posts = await Promise.all(
+			dbEntries.map(async (entry) => {
+				const title =
+					entry.properties.Title?.title?.[0]?.plain_text || "Untitled";
+				const pageSlug = pageIdToSlugMap.get(entry.id);
 
-			console.log(
-				`Processing entry: ${title} (ID: ${entry.id}, Slug: ${pageSlug})`
-			);
+				console.log(`Processing entry: ${title} (ID: ${entry.id})`);
 
-			const blocks = await fetchBlockChildren(entry.id);
-			let htmlContent = blocksToHtml(
-				blocks,
-				pageIdToSlugMap,
-			);
-			const { renderHtml } = await import("../_11ty/markdown.mjs");
-			htmlContent = await renderHtml(htmlContent);
+				const blocks = await fetchBlockChildren(entry.id);
+				let htmlContent = blocksToHtml(blocks, pageIdToSlugMap);
+				htmlContent = await renderHtml(htmlContent);
 
-			const summary =
-				entry.properties.Summary?.rich_text?.[0]?.plain_text || "";
-			const date = dayjs(entry.properties.Date?.date?.start ?? entry.created_time).toDate();
-			const tags =
-				entry.properties.Tags?.multi_select?.map((tag) => tag.name) || [];
+				const summary =
+					entry.properties.Summary?.rich_text?.[0]?.plain_text || "";
+				const date = dayjs(
+					entry.properties.Date?.date?.start ?? entry.created_time
+				).toDate();
+				const tags =
+					entry.properties.Tags?.multi_select?.map((tag) => tag.name) || [];
 
-			allPosts.push({
-				id: entry.id,
-				title,
-				slug: pageSlug,
-				url: `/posts/${pageSlug}/`,
-				summary,
-				content: htmlContent,
-				date,
-				updated: dayjs(entry.last_edited_time).toDate(),
-				tags,
-			});
-		}
+				const slug = `${dayjs(date).format("YYYY-MM-DD")}-${pageSlug}`;
 
-		console.log(`Successfully processed ${allPosts.length} posts.`);
+				return {
+					id: entry.id,
+					title,
+					slug,
+					url: `/posts/${slug}/`,
+					summary,
+					content: htmlContent,
+					date,
+					updated: dayjs(entry.last_edited_time).toDate(),
+					tags,
+				};
+			})
+		);
 
-		return allPosts;
+		console.log(`Successfully processed ${posts.length} posts.`);
 	} catch (error) {
 		console.error("Error fetching or processing Notion data:", error);
-		return []; // Return empty array on error to prevent build failure
 	}
+
+	await asset.save(posts, "json");
+	return posts;
 };
