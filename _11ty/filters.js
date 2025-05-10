@@ -24,4 +24,22 @@ async function webmentions(url) {
     }));
 }
 
-module.exports = { formatDate, webmentions };
+function bescape(text) {
+  const escapeMap = {
+    '\\': '\\u005C',
+    '\'': '\\u0027',
+    '"': '\\u0022',
+    '>': '\\u003E',
+    '<': '\\u003C',
+    '&': '\\u0026',
+    '=': '\\u003D',
+    '-': '\\u002D',
+    ';': '\\u003B'
+  };
+
+  return text.replace(/["'><&=\-;\\]/g, function (ch) {
+    return escapeMap[ch];
+  });
+}
+
+module.exports = { formatDate, webmentions, bescape };

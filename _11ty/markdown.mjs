@@ -1,4 +1,4 @@
-import { getHighlighter, loadTheme } from "shiki";
+import { loadTheme } from "shiki";
 import { slugifyWithCounter } from "@sindresorhus/slugify";
 import { visit } from "unist-util-visit";
 import { h } from "hastscript";
@@ -7,16 +7,16 @@ import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import rehypeShiki from "@retronav/rehype-shiki";
+import rehypeShiki from '@shikijs/rehype'
 import { unified } from "unified";
 import { toString } from "hast-util-to-string";
 import * as path from "path";
 import Image from "@11ty/eleventy-img";
 import { fromHtml } from "hast-util-from-html";
 import { select } from "hast-util-select";
+import rehypeParse from "rehype-parse";
 
 const theme = await loadTheme(path.resolve("./_11ty/gruvbox-dark-hard.json"));
-const highlighter = await getHighlighter({ theme });
 
 /**
  * Render markdown to HTML via unified.
@@ -28,7 +28,19 @@ export async function render(content) {
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeShiki, { highlighter })
+    .use(rehypeShiki, { theme })
+    .use(rehypeSlug)
+    .use(rehypeShiftHeading, { shift: 1 })
+    .use(rehypeStringify, { allowDangerousHtml: true });
+
+  const html = String(await processor.process(content));
+  return html;
+}
+
+export async function renderHtml(content) {
+  const processor = unified()
+    .use(rehypeParse)
+    .use(rehypeShiki, { theme })
     .use(rehypeSlug)
     .use(rehypeShiftHeading, { shift: 1 })
     .use(rehypeStringify, { allowDangerousHtml: true });

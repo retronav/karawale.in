@@ -68,10 +68,9 @@ function richTextToPlainText(richTextArray) {
  * Converts a Notion block object to its HTML representation.
  * @param {Object} block - Notion block object.
  * @param {Map<string, string>} pageIdToSlugMap - Map of page IDs to their slugs for internal links.
- * @param {Function} contentSlugifier - An instance of slugifyWithCounter for generating unique heading IDs.
  * @returns {string} HTML representation of the block.
  */
-function blockToHtml(block, pageIdToSlugMap, contentSlugifier) {
+function blockToHtml(block, pageIdToSlugMap) {
 	if (!block) return "";
 
 	switch (block.type) {
@@ -81,85 +80,71 @@ function blockToHtml(block, pageIdToSlugMap, contentSlugifier) {
 				pageIdToSlugMap
 			)}</p>`;
 		case "heading_1":
-			return `<h1 id="${contentSlugifier(
-				richTextToPlainText(block.heading_1.rich_text)
-			)}">${richTextToHtml(block.heading_1.rich_text, pageIdToSlugMap)}</h1>`;
+			return `<h1>${richTextToHtml(block.heading_1.rich_text, pageIdToSlugMap)}</h1>`;
 		case "heading_2":
-			return `<h2 id="${contentSlugifier(
-				richTextToPlainText(block.heading_2.rich_text)
-			)}">${richTextToHtml(block.heading_2.rich_text, pageIdToSlugMap)}</h2>`;
+			return `<h2>${richTextToHtml(block.heading_2.rich_text, pageIdToSlugMap)}</h2>`;
 		case "heading_3":
-			return `<h3 id="${contentSlugifier(
-				richTextToPlainText(block.heading_3.rich_text)
-			)}">${richTextToHtml(block.heading_3.rich_text, pageIdToSlugMap)}</h3>`;
+			return `<h3>${richTextToHtml(block.heading_3.rich_text, pageIdToSlugMap)}</h3>`;
 		case "bulleted_list_item":
 			return `<li>${richTextToHtml(
 				block.bulleted_list_item.rich_text,
 				pageIdToSlugMap
-			)}${
-				block.children
-					? `<ul>${blocksToHtml(
-							block.children,
-							pageIdToSlugMap,
-							contentSlugifier
-					  )}</ul>`
-					: ""
-			}</li>`;
+			)}${block.children
+				? `<ul>${blocksToHtml(
+					block.children,
+					pageIdToSlugMap,
+					contentSlugifier
+				)}</ul>`
+				: ""
+				}</li>`;
 		case "numbered_list_item":
 			return `<li>${richTextToHtml(
 				block.numbered_list_item.rich_text,
 				pageIdToSlugMap
-			)}${
-				block.children
-					? `<ol>${blocksToHtml(
-							block.children,
-							pageIdToSlugMap,
-							contentSlugifier
-					  )}</ol>`
-					: ""
-			}</li>`;
+			)}${block.children
+				? `<ol>${blocksToHtml(
+					block.children,
+					pageIdToSlugMap,
+					contentSlugifier
+				)}</ol>`
+				: ""
+				}</li>`;
 		case "to_do":
-			return `<div class="todo-item"><input type="checkbox"${
-				block.to_do.checked ? " checked" : ""
-			} disabled /> <span>${richTextToHtml(
-				block.to_do.rich_text,
-				pageIdToSlugMap
-			)}</span></div>`;
+			return `<div class="todo-item"><input type="checkbox"${block.to_do.checked ? " checked" : ""
+				} disabled /> <span>${richTextToHtml(
+					block.to_do.rich_text,
+					pageIdToSlugMap
+				)}</span></div>`;
 		case "toggle":
 			return `<details><summary>${richTextToHtml(
 				block.toggle.rich_text,
 				pageIdToSlugMap
-			)}</summary>${
-				block.children
-					? blocksToHtml(block.children, pageIdToSlugMap, contentSlugifier)
-					: ""
-			}</details>`;
+			)}</summary>${block.children
+				? blocksToHtml(block.children, pageIdToSlugMap, contentSlugifier)
+				: ""
+				}</details>`;
 		case "code":
-			return `<pre><code class="language-${
-				block.code.language
-			}">${richTextToHtml(block.code.rich_text, pageIdToSlugMap)}</code></pre>`;
+			return `<pre><code class="language-${block.code.language
+				}">${richTextToHtml(block.code.rich_text, pageIdToSlugMap)}</code></pre>`;
 		case "quote":
 			return `<blockquote>${richTextToHtml(
 				block.quote.rich_text,
 				pageIdToSlugMap
-			)}${
-				block.children
-					? blocksToHtml(block.children, pageIdToSlugMap, contentSlugifier)
-					: ""
-			}</blockquote>`;
+			)}${block.children
+				? blocksToHtml(block.children, pageIdToSlugMap, contentSlugifier)
+				: ""
+				}</blockquote>`;
 		case "callout":
-			return `<div class="callout">${
-				block.callout.icon
-					? `<div class="callout-icon">${renderIcon(block.callout.icon)}</div>`
-					: ""
-			}<div class="callout-content">${richTextToHtml(
-				block.callout.rich_text,
-				pageIdToSlugMap
-			)}${
-				block.children
+			return `<div class="callout">${block.callout.icon
+				? `<div class="callout-icon">${renderIcon(block.callout.icon)}</div>`
+				: ""
+				}<div class="callout-content">${richTextToHtml(
+					block.callout.rich_text,
+					pageIdToSlugMap
+				)}${block.children
 					? blocksToHtml(block.children, pageIdToSlugMap, contentSlugifier)
 					: ""
-			}</div></div>`;
+				}</div></div>`;
 		case "divider":
 			return "<hr>";
 		case "image":
@@ -171,13 +156,12 @@ function blockToHtml(block, pageIdToSlugMap, contentSlugifier) {
 			const figcaption =
 				block.image.caption && block.image.caption.length > 0
 					? `<figcaption>${richTextToHtml(
-							block.image.caption,
-							pageIdToSlugMap
-					  )}</figcaption>`
+						block.image.caption,
+						pageIdToSlugMap
+					)}</figcaption>`
 					: "";
-			return `<figure><img src="${imageUrl}" alt="${
-				captionText || "image"
-			}" />${figcaption}</figure>`;
+			return `<figure><img src="${imageUrl}" alt="${captionText || "image"
+				}" />${figcaption}</figure>`;
 		case "table":
 			if (!block.children) return "";
 			const rows = block.children
@@ -196,18 +180,18 @@ function blockToHtml(block, pageIdToSlugMap, contentSlugifier) {
 		case "column_list":
 			return block.children
 				? `<div class="column-list">${blocksToHtml(
-						block.children,
-						pageIdToSlugMap,
-						contentSlugifier
-				  )}</div>`
+					block.children,
+					pageIdToSlugMap,
+					contentSlugifier
+				)}</div>`
 				: "";
 		case "column":
 			return block.children
 				? `<div class="column">${blocksToHtml(
-						block.children,
-						pageIdToSlugMap,
-						contentSlugifier
-				  )}</div>`
+					block.children,
+					pageIdToSlugMap,
+					contentSlugifier
+				)}</div>`
 				: "";
 		case "link_preview":
 			return `<a href="${block.link_preview.url}" class="link-preview" target="_blank">${block.link_preview.url}</a>`;
@@ -253,9 +237,8 @@ function richTextToHtml(richTextArray, pageIdToSlugMap) {
 				}
 				if (richText.mention.type === "date") {
 					const { start, end, time_zone } = richText.mention.date;
-					return `<time datetime="${start}${end ? `/${end}` : ""}">${start}${
-						end ? ` to ${end}` : ""
-					}${time_zone ? ` (${time_zone})` : ""}</time>`;
+					return `<time datetime="${start}${end ? `/${end}` : ""}">${start}${end ? ` to ${end}` : ""
+						}${time_zone ? ` (${time_zone})` : ""}</time>`;
 				}
 				return content;
 			}
@@ -291,10 +274,9 @@ function richTextToHtml(richTextArray, pageIdToSlugMap) {
  * Converts an array of Notion blocks to their HTML representation.
  * @param {Array} blocks - Array of Notion block objects.
  * @param {Map<string, string>} pageIdToSlugMap - Map of page IDs to their slugs for internal links.
- * @param {Function} contentSlugifier - An instance of slugifyWithCounter for generating unique heading IDs.
  * @returns {string} HTML representation of the blocks.
  */
-function blocksToHtml(blocks, pageIdToSlugMap, contentSlugifier) {
+function blocksToHtml(blocks, pageIdToSlugMap) {
 	if (!blocks || blocks.length === 0) return "";
 	let html = "";
 	let listType = null;
@@ -320,7 +302,7 @@ function blocksToHtml(blocks, pageIdToSlugMap, contentSlugifier) {
 			listType = null;
 		}
 
-		html += blockToHtml(block, pageIdToSlugMap, contentSlugifier);
+		html += blockToHtml(block, pageIdToSlugMap);
 
 		const currentBlockIsList =
 			block.type === "bulleted_list_item" ||
@@ -365,9 +347,9 @@ module.exports = async () => {
 		const { results: dbEntries } = await notion.databases.query({
 			database_id: databaseId,
 			filter: {
-				property: "Draft",
+				property: "Published",
 				checkbox: {
-					does_not_equal: true
+					equals: true
 				}
 			}
 		});
@@ -386,22 +368,22 @@ module.exports = async () => {
 			const title =
 				entry.properties.Title?.title?.[0]?.plain_text || "Untitled";
 			const pageSlug = pageIdToSlugMap.get(entry.id);
-			const contentSlugifier = slugifyWithCounter(); // Instance for unique heading IDs per post
 
 			console.log(
 				`Processing entry: ${title} (ID: ${entry.id}, Slug: ${pageSlug})`
 			);
 
 			const blocks = await fetchBlockChildren(entry.id);
-			const htmlContent = blocksToHtml(
+			let htmlContent = blocksToHtml(
 				blocks,
 				pageIdToSlugMap,
-				contentSlugifier
 			);
-			
+			const { renderHtml } = await import("../_11ty/markdown.mjs");
+			htmlContent = await renderHtml(htmlContent);
+
 			const summary =
 				entry.properties.Summary?.rich_text?.[0]?.plain_text || "";
-			const date = dayjs(entry.properties.Published?.date?.start ?? entry.created_time).toDate();
+			const date = dayjs(entry.properties.Date?.date?.start ?? entry.created_time).toDate();
 			const tags =
 				entry.properties.Tags?.multi_select?.map((tag) => tag.name) || [];
 
