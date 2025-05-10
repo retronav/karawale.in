@@ -104,8 +104,7 @@ function blockToHtml(block, pageIdToSlugMap) {
 			)}${block.children
 				? `<ol>${blocksToHtml(
 					block.children,
-					pageIdToSlugMap,
-					contentSlugifier
+					pageIdToSlugMap
 				)}</ol>`
 				: ""
 				}</li>`;
