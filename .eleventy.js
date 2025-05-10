@@ -1,4 +1,5 @@
 const EleventySassPlugin = require("eleventy-sass");
+const { eleventyImageTransformPlugin } = require("@11ty/eleventy-img");
 const EleventyPluginRss = require("@11ty/eleventy-plugin-rss");
 const EleventyPluginToc = require("@uncenter/eleventy-plugin-toc");
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
@@ -58,6 +59,9 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addPlugin(EleventySassPlugin);
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
+	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+		urlPath: "/media/"
+	});
 	eleventyConfig.addPlugin(EleventyPluginToc, {
 		ul: true,
 		tags: ["h1", "h2", "h3", "h4"],
@@ -75,8 +79,8 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addFilter("getPostAgeInYears", filters.getPostAgeInYears);
 	eleventyConfig.addDataExtension("yml", (content) => yaml.parse(content));
 	eleventyConfig.setLibrary("md", {
-		set: () => {},
-		disable: () => {},
+		set: () => { },
+		disable: () => { },
 		render: (str) =>
 			import("./_11ty/markdown.mjs").then(({ render }) => render(str)),
 	});
