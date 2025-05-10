@@ -1,13 +1,21 @@
 @use "mq";
 
+$amber: #ffbf00;
+$wisteria: #b495c6;
+$light-coral: #fb9998;
+$turquoise: #2fdac6;
+$yellow-green: #b2cc3e;
+$black: #000;
+$white: #fff;
+
 :root {
-  --amber: #ffbf00;
-  --wisteria: #b495c6;
-  --light-coral: #fb9998;
-  --turquoise: #2fdac6;
-  --yellow-green: #b2cc3e;
-  --black: #000;
-  --white: #fff;
+  --amber: #{$amber};
+  --wisteria: #{$wisteria};
+  --light-coral: #{$light-coral};
+  --turquoise: #{$turquoise};
+  --yellow-green: #{$yellow-green};
+  --black: #{$black};
+  --white: #{$white};
   --font-family-sans: GeneralSans, sans-serif;
   --font-family-monospace: Iosevka, monospace;
   --border-radius: 10px;

@@ -72,6 +72,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addFilter("formatDate", filters.formatDate);
 	eleventyConfig.addFilter("webmentions", filters.webmentions);
 	eleventyConfig.addFilter("bescape", filters.bescape);
+	eleventyConfig.addFilter("getPostAgeInYears", filters.getPostAgeInYears);
 	eleventyConfig.addDataExtension("yml", (content) => yaml.parse(content));
 	eleventyConfig.setLibrary("md", {
 		set: () => {},

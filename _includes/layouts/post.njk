@@ -2,7 +2,7 @@
 layout: base
 ---
 
-<article class="h-entry {{ kind }}">
+<article class="h-entry post">
     <h1 class="title p-name">{{ post.title }}</h1>
     <aside>
         <p class="p-summary hidden">{{ post.summary }}</p>
@@ -32,6 +32,14 @@ layout: base
                 {% endfor %}
             </ul>
         </small>
+        {% set postAge = post.date | getPostAgeInYears %}
+        {% if postAge > 0 %}
+        <p class="old">
+            <small>
+                ⚠️ This article is over {{ postAge }} year{% if postAge > 1 %}s{% endif %} old. Opinions and technicalities change!
+            </small>
+        </p>
+        {% endif %}
         <details>
             <summary>Table of Contents</summary>
             {{ post.content | toc | safe }}
@@ -42,3 +50,4 @@ layout: base
     </section>
 </article>
 <hr>
+{% include "partials/webmentions.njk" %}

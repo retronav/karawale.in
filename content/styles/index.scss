@@ -1,6 +1,7 @@
 @use "fonts";
 @use "mq";
 @use "theme";
+@use 'sass:color';
 
 html {
   scrollbar-gutter: stable;
@@ -68,11 +69,17 @@ section.h-feed {
 }
 
 article.h-entry {
-  &.article {
+  &.post {
     .title {
       text-align: center;
     }
     aside {
+      .old {
+        background: color.change(theme.$amber, $alpha: 0.4);
+        padding: 1rem;
+        margin: 0.5rem 0;
+        border-radius: var(--border-radius);
+      }
       .tags {
         list-style: none;
         padding: 0;
