@@ -23,45 +23,6 @@ $white: #fff;
 	// --accent : will be one of the five colors randomly set by SSG
 }
 
-/* Shiki Glow Styles */
-.mtkidk {
-	color: #f92aad !important;
-	text-shadow: 0 0 2px #100c0f, 0 0 5px #dc078e33, 0 0 10px #fff3;
-}
-
-.mtk3 {
-	color: #6d77b3;
-}
-
-.mtk4 {
-	color: #f97e72;
-}
-
-.line span[style*="color:#36F9F6"],
-.line span[style*="color:#72F1B8"] {
-	color: #fdfdfd !important;
-	text-shadow: 0 0 2px #001716, 0 0 3px #03edf975, 0 0 5px #03edf975,
-		0 0 8px #03edf975;
-}
-
-.line span[style*="color:#FF7EDB"] {
-	color: #fff5f6 !important;
-	text-shadow: 0 0 2px #000, 0 0 10px #fc1f2c75, 0 0 5px #fc1f2c75,
-		0 0 25px #fc1f2c75;
-}
-
-// .line span[style*="color:#72F1B8"] {
-// 	color: #72f1b8 !important;
-// 	text-shadow: 0 0 2px #100c0f, 0 0 10px #257c5575, 0 0 35px #21272475;
-// }
-
-.line span[style*="color:#FFFFFFEE"],
-.line span[style*="color:#FEDE5D"] {
-	color: #f4eee4 !important;
-	text-shadow: 0 0 2px #393a33, 0 0 8px #f39f0575, 0 0 2px #f39f0575;
-}
-/* End Shiki Glow Styles */
-
 // Utility classes
 .hidden {
 	display: none;
