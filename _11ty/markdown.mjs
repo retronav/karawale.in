@@ -16,7 +16,7 @@ import { fromHtml } from "hast-util-from-html";
 import { select } from "hast-util-select";
 import rehypeParse from "rehype-parse";
 
-const theme = await loadTheme(path.resolve("./_11ty/gruvbox-dark-hard.json"));
+const theme = await loadTheme(path.resolve("./_11ty/synthwave.json"));
 
 /**
  * Render markdown to HTML via unified.
