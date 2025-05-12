@@ -14,6 +14,7 @@ const dayjs = require("dayjs");
  * @returns
  */
 module.exports = function (eleventyConfig) {
+	const serveMode = process.argv.includes("--serve");
 	eleventyConfig.setUseGitIgnore(false);
 
 	eleventyConfig.addCollection("tags", (collectionApi) => {
@@ -59,9 +60,10 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addPlugin(EleventySassPlugin);
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
-	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
-		urlPath: "/media/"
-	});
+	if (!serveMode) // for some reason this plugin breaks serve mode
+		eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+			urlPath: "/media/",
+		});
 	eleventyConfig.addPlugin(EleventyPluginToc, {
 		ul: true,
 		tags: ["h1", "h2", "h3", "h4"],
@@ -79,8 +81,8 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addFilter("getPostAgeInYears", filters.getPostAgeInYears);
 	eleventyConfig.addDataExtension("yml", (content) => yaml.parse(content));
 	eleventyConfig.setLibrary("md", {
-		set: () => { },
-		disable: () => { },
+		set: () => {},
+		disable: () => {},
 		render: (str) =>
 			import("./_11ty/markdown.mjs").then(({ render }) => render(str)),
 	});
