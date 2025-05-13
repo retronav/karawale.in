@@ -1,8 +1,8 @@
-const dotenv = require("dotenv");
+import { config } from "dotenv";
 
-dotenv.config();
+config();
 
-module.exports = function () {
+export default function () {
     return {
 		UMAMI_TRACKING_URL: process.env.UMAMI_TRACKING_URL || "",
         UMAMI_WEBSITE_ID: process.env.UMAMI_WEBSITE_ID || ""

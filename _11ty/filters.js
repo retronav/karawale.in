@@ -1,15 +1,19 @@
-require("dotenv").config();
-const EleventyFetch = require("@11ty/eleventy-fetch");
-const dayjs = require("dayjs");
-dayjs.extend(require("dayjs/plugin/utc"));
-dayjs.extend(require("dayjs/plugin/timezone"));
+import { config } from "dotenv";
+import EleventyFetch from "@11ty/eleventy-fetch";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc.js"
+import timezone from "dayjs/plugin/timezone.js"
+
+config();
+dayjs.extend(utc);
+dayjs.extend(timezone);
 dayjs.tz.setDefault("UTC");
 
-function formatDate(date, format) {
+export function formatDate(date, format) {
 	return dayjs.tz(date).utc().format(format);
 }
 
-async function webmentions(url) {
+export async function webmentions(url) {
 	const webmentionsUrl = `https://webmention.io/api/mentions.jf2?token=${process.env.WEBMENTION_IO_TOKEN}&per-page=10000`;
 	return EleventyFetch(webmentionsUrl, {
 		duration: "4h",
@@ -24,7 +28,7 @@ async function webmentions(url) {
 		}));
 }
 
-function bescape(text) {
+export function bescape(text) {
 	const escapeMap = {
 		"\\": "\\u005C",
 		"'": "\\u0027",
@@ -42,7 +46,7 @@ function bescape(text) {
 	});
 }
 
-function getPostAgeInYears(date) {
+export function getPostAgeInYears(date) {
 	const now = new Date();
 	const postDate = new Date(date);
 	const diff = now - postDate;
@@ -51,4 +55,3 @@ function getPostAgeInYears(date) {
 	return diffInYears;
 }
 
-module.exports = { formatDate, webmentions, bescape, getPostAgeInYears };

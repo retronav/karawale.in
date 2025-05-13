@@ -1,9 +1,9 @@
-const { Client } = require("@notionhq/client");
-const { NotionDatabaseManager, properties } = require("@retronav/rosette");
-const { z } = require("zod");
-const dayjs = require("dayjs");
-const { AssetCache } = require("@11ty/eleventy-fetch");
-const { default: slugify } = require("@sindresorhus/slugify");
+import { Client } from "@notionhq/client";
+import { NotionDatabaseManager, properties } from "@retronav/rosette";
+import { z } from "zod";
+import Fetch from "@11ty/eleventy-fetch";
+import { default as slugify } from "@sindresorhus/slugify";
+import { renderHtml } from "../_11ty/markdown.js";
 
 const schema = z
 	.object({
@@ -25,33 +25,34 @@ const schema = z
 		projectUrl: data["Project URL"],
 	}));
 
-module.exports = async function () {
-	let asset = new AssetCache("notion-projects");;
-	let projects = [];
-	if (asset.isCacheValid("6h")) {
-		projects = await asset.getCachedValue();
-		return projects;
+export default Fetch(
+	async function () {
+		const notion = new Client({
+			auth: process.env.NOTION_API_KEY,
+		});
+		const databaseId = "1f0aa550f57680e5a88bdd587c59e591";
+		const notionDatabase = new NotionDatabaseManager(
+			notion,
+			schema,
+			databaseId
+		);
+
+		const data = await notionDatabase.process({
+			slugger: (p) => slugify(p.name),
+		});
+		return await Promise.all(
+			Array.from(data.entries()).map(async ([id, post]) => ({
+				...post.properties,
+				id,
+				slug: post.slug,
+				content: await renderHtml(post.content),
+				url: `/projects/${post.slug}`,
+			}))
+		);
+	},
+	{
+		duration: "1h",
+		type: "json",
+		requestId: "notion-projects",
 	}
-
-	const { renderHtml } = await import("../_11ty/markdown.mjs");
-	const notion = new Client({
-		auth: process.env.NOTION_API_KEY,
-	});
-	const databaseId = "1f0aa550f57680e5a88bdd587c59e591";
-	const notionDatabase = new NotionDatabaseManager(notion, schema, databaseId);
-
-	const data = await notionDatabase.process({
-		slugger: (p) => slugify(p.name),
-	});
-	projects = await Promise.all(
-		Array.from(data.entries()).map(async ([id, post]) => ({
-			...post.properties,
-			id,
-			slug: post.slug,
-			content: await renderHtml(post.content),
-			url: `/projects/${post.slug}`,
-		}))
-	);
-	await asset.save(projects, "json");
-	return projects;
-};
+);

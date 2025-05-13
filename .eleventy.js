@@ -1,19 +1,17 @@
-const EleventySassPlugin = require("eleventy-sass");
-const { eleventyImageTransformPlugin } = require("@11ty/eleventy-img");
-const EleventyPluginRss = require("@11ty/eleventy-plugin-rss");
-const EleventyPluginToc = require("@uncenter/eleventy-plugin-toc");
-const { EleventyRenderPlugin } = require("@11ty/eleventy");
-const filters = require("./_11ty/filters");
-const postKinds = require("./postKinds");
-const yaml = require("yaml");
-const dayjs = require("dayjs");
+import EleventySassPlugin from "eleventy-sass";
+import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import { absoluteUrl, convertHtmlToAbsoluteUrls, dateToRfc3339, dateToRfc822 } from "@11ty/eleventy-plugin-rss";
+import EleventyPluginToc from "@uncenter/eleventy-plugin-toc";
+import { EleventyRenderPlugin } from "@11ty/eleventy";
+import { formatDate, webmentions, bescape, getPostAgeInYears } from "./_11ty/filters.js";
+import { parse } from "yaml";
 
 /**
  *
  * @param {import("@11ty/eleventy").UserConfig} eleventyConfig
  * @returns
  */
-module.exports = function (eleventyConfig) {
+export default function (eleventyConfig) {
 	const serveMode = process.argv.includes("--serve");
 	eleventyConfig.setUseGitIgnore(false);
 
@@ -68,23 +66,23 @@ module.exports = function (eleventyConfig) {
 		ul: true,
 		tags: ["h1", "h2", "h3", "h4"],
 	});
-	eleventyConfig.addFilter("absoluteUrl", EleventyPluginRss.absoluteUrl);
+	eleventyConfig.addFilter("absoluteUrl", absoluteUrl);
 	eleventyConfig.addFilter(
 		"htmlToAbsoluteUrls",
-		EleventyPluginRss.convertHtmlToAbsoluteUrls
+		convertHtmlToAbsoluteUrls
 	);
-	eleventyConfig.addFilter("dateToRfc3339", EleventyPluginRss.dateToRfc3339);
-	eleventyConfig.addFilter("dateToRfc822", EleventyPluginRss.dateToRfc822);
-	eleventyConfig.addFilter("formatDate", filters.formatDate);
-	eleventyConfig.addFilter("webmentions", filters.webmentions);
-	eleventyConfig.addFilter("bescape", filters.bescape);
-	eleventyConfig.addFilter("getPostAgeInYears", filters.getPostAgeInYears);
-	eleventyConfig.addDataExtension("yml", (content) => yaml.parse(content));
+	eleventyConfig.addFilter("dateToRfc3339", dateToRfc3339);
+	eleventyConfig.addFilter("dateToRfc822", dateToRfc822);
+	eleventyConfig.addFilter("formatDate", formatDate);
+	eleventyConfig.addFilter("webmentions", webmentions);
+	eleventyConfig.addFilter("bescape", bescape);
+	eleventyConfig.addFilter("getPostAgeInYears", getPostAgeInYears);
+	eleventyConfig.addDataExtension("yml", (content) => parse(content));
 	eleventyConfig.setLibrary("md", {
 		set: () => {},
 		disable: () => {},
 		render: (str) =>
-			import("./_11ty/markdown.mjs").then(({ render }) => render(str)),
+			import("./_11ty/markdown.js").then(({ render }) => render(str)),
 	});
 
 	eleventyConfig.addPassthroughCopy("styles");
@@ -98,7 +96,7 @@ module.exports = function (eleventyConfig) {
 				const rehypeParse = (await import("rehype-parse")).default;
 				const rehypeStringify = (await import("rehype-stringify")).default;
 				const { generateImagePreview, randomAccentColor } = await import(
-					"./_11ty/markdown.mjs"
+					"./_11ty/markdown.js"
 				);
 
 				const processor = unified()
