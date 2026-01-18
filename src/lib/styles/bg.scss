@@ -1,0 +1,195 @@
+// Overcomplicated background generated from https://www.mshr.app/create/1727910717365
+@keyframes overkill-background {
+    0% {
+        --x-0: 85%;
+        --c-0: hsla(306, 31%, 6%, 1);
+        --y-0: 80%;
+        --s-start-0: 9%;
+        --s-end-0: 55%;
+        --y-1: 24%;
+        --s-start-1: 5%;
+        --s-end-1: 72%;
+        --c-1: hsla(344, 95%, 52%, 0.2);
+        --x-1: 60%;
+        --c-2: hsla(306, 31%, 6%, 0.49);
+        --y-2: 82%;
+        --x-2: 13%;
+        --s-start-2: 5%;
+        --s-end-2: 52%;
+        --x-3: 24%;
+        --s-start-3: 13%;
+        --s-end-3: 68%;
+        --c-3: hsla(305, 31%, 20%, 1);
+        --y-3: 7%;
+    }
+
+    100% {
+        --x-0: 31%;
+        --c-0: hsla(306, 31%, 6%, 1);
+        --y-0: 94%;
+        --s-start-0: 9%;
+        --s-end-0: 55%;
+        --y-1: 25%;
+        --s-start-1: 5%;
+        --s-end-1: 72%;
+        --c-1: hsla(344, 0%, 0%, 1);
+        --x-1: 2%;
+        --c-2: hsla(306, 31%, 6%, 1);
+        --y-2: 20%;
+        --x-2: 98%;
+        --s-start-2: 5%;
+        --s-end-2: 52%;
+        --x-3: 95%;
+        --s-start-3: 13%;
+        --s-end-3: 68%;
+        --c-3: hsla(324, 51%, 65%, 0.1);
+        --y-3: 92%;
+    }
+}
+
+@property --x-0 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 85%
+}
+
+@property --c-0 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: hsla(306, 31%, 6%, 1)
+}
+
+@property --y-0 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 80%
+}
+
+@property --s-start-0 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 9%
+}
+
+@property --s-end-0 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 55%
+}
+
+@property --y-1 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 24%
+}
+
+@property --s-start-1 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 5%
+}
+
+@property --s-end-1 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 72%
+}
+
+@property --c-1 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: hsla(344, 95%, 52%, 0.2)
+}
+
+@property --x-1 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 60%
+}
+
+@property --c-2 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: hsla(306, 31%, 6%, 0.49)
+}
+
+@property --y-2 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 82%
+}
+
+@property --x-2 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 13%
+}
+
+@property --s-start-2 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 5%
+}
+
+@property --s-end-2 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 52%
+}
+
+@property --x-3 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 24%
+}
+
+@property --s-start-3 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 13%
+}
+
+@property --s-end-3 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 68%
+}
+
+@property --c-3 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: hsla(305, 31%, 20%, 1)
+}
+
+@property --y-3 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 7%
+}
+
+body {
+    --x-0: 85%;
+    --c-0: hsla(306, 31%, 6%, 1);
+    --y-0: 80%;
+    --y-1: 24%;
+    --c-1: hsla(344, 95%, 52%, 0.2);
+    --x-1: 60%;
+    --c-2: hsla(306, 31%, 6%, 0.49);
+    --y-2: 82%;
+    --x-2: 13%;
+    --x-3: 24%;
+    --c-3: hsla(305, 31%, 20%, 1);
+    --y-3: 7%;
+    ;
+    background-color: hsla(306, 31%, 6%, 1);
+
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+    }
+
+    background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+    animation: overkill-background 10s linear infinite alternate;
+    background-blend-mode: normal, normal, normal, normal;
+    will-change: transform, opacity;
+    contain: paint;
+}
