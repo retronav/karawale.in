@@ -1,13 +1,14 @@
 <script lang="ts">
-	import logoImage from "$lib/assets/logo.png";
+	// @ts-ignore : the w property is valid
+	import logoImage from "$lib/assets/logo.png?enhanced&w=128;256";
 	import SynthwaveGrid from "$lib/SynthwaveGrid.svelte";
 </script>
 
 <main>
 	<div class="grid">
-		<SynthwaveGrid height={256}>
+		<SynthwaveGrid>
 			{#snippet logo()}
-				<enhanced:img src={logoImage} alt="Logo" width="256" height="256" />
+				<enhanced:img src={logoImage} alt="Logo" width="256" sizes="(max-width: 1200px) 128px, 256px"/>
 			{/snippet}
 
 			<div class="content">
@@ -42,7 +43,7 @@
 
 <style lang="scss">
 	@use 'sass:color';
-	@use '$lib/styles/global.scss' as *;
+	@use '$lib/styles/variables' as *;
 
 	.grid {
 		width: 100%;

@@ -1,0 +1,31 @@
+@use "sass:color";
+
+// Color Palette
+$background: #150b14;
+$foreground: #f8f9f8;
+$golden: #fcc22f;
+$pink: #eb35b9;
+$red: #f91250;
+
+// Derived colors
+$link-color: color.adjust($foreground, $lightness: -10%);
+
+// Typography
+$font-family-serif: "EB Garamond Variable", serif;
+$font-family-mono: "JetBrains Mono Variable", monospace;
+
+// CRT Effect Variables
+$crt-background: #0f1419;
+$crt-glow-color: rgba(0, 150, 150, 0.12);
+$crt-scanline-opacity: 0.15;
+$crt-scanline-width: 1px;
+$crt-scanline-gap: 1px;
+$crt-moving-scanline-color: hsla(0, 0%, 100%, 0.15);
+$crt-flicker-opacity: 0.01;
+$crt-text-color: rgba(120, 255, 120, 0.7);
+$crt-curvature: 0px;
+$crt-vignette-opacity: 0.15;
+$crt-aberration-offset: 1.2px;
+$crt-aberration-opacity: 0.05;
+$crt-moving-scanline-height: 0.6px;
+$header-glow-color: rgba(120, 255, 150, 0.4);

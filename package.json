@@ -8,6 +8,7 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
+		"postinstall": "mkdir -p static/fonts && cp node_modules/@fontsource-variable/eb-garamond/files/eb-garamond-latin-wght-normal.woff2 static/fonts/ && cp node_modules/@fontsource-variable/eb-garamond/files/eb-garamond-latin-wght-italic.woff2 static/fonts/ && cp node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2 static/fonts/",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},

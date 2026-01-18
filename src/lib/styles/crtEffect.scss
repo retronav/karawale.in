@@ -1,18 +1,20 @@
+@use "./variables" as *;
+
 :root {
-    --crt-background: #0f1419;
-    --crt-glow-color: rgba(0, 150, 150, .12);
-    --crt-scanline-opacity: 0.15;
-    --crt-scanline-width: 1px;
-    --crt-scanline-gap: 1px;
-    --crt-moving-scanline-color: hsla(0, 0%, 100%, .15);
-    --crt-flicker-opacity: 0.01;
-    --crt-text-color: rgba(120, 255, 120, .7);
-    --crt-curvature: 0px;
-    --crt-vignette-opacity: 0.15;
-    --crt-aberration-offset: 1.2px;
-    --crt-aberration-opacity: 0.05;
-    --crt-moving-scanline-height: 0.6px;
-    --header-glow-color: rgba(120, 255, 150, .4);
+    --crt-background: #{$crt-background};
+    --crt-glow-color: #{$crt-glow-color};
+    --crt-scanline-opacity: #{$crt-scanline-opacity};
+    --crt-scanline-width: #{$crt-scanline-width};
+    --crt-scanline-gap: #{$crt-scanline-gap};
+    --crt-moving-scanline-color: #{$crt-moving-scanline-color};
+    --crt-flicker-opacity: #{$crt-flicker-opacity};
+    --crt-text-color: #{$crt-text-color};
+    --crt-curvature: #{$crt-curvature};
+    --crt-vignette-opacity: #{$crt-vignette-opacity};
+    --crt-aberration-offset: #{$crt-aberration-offset};
+    --crt-aberration-opacity: #{$crt-aberration-opacity};
+    --crt-moving-scanline-height: #{$crt-moving-scanline-height};
+    --header-glow-color: #{$header-glow-color};
 }
 
 @keyframes flicker {

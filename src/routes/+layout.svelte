@@ -1,12 +1,7 @@
 <script lang="ts">
 	import favicon from "$lib/assets/favicon.png";
 	import CrtEffect from "$lib/CrtEffect.svelte";
-	import "$lib/styles/global.scss";
-	import "$lib/styles/typography.scss";
-	import "$lib/styles/bg.scss";
-	import "@fontsource-variable/eb-garamond";
-	import "@fontsource-variable/eb-garamond/wght-italic";
-	import "@fontsource-variable/jetbrains-mono";
+	import "$lib/styles/index.scss";
 	import { MediaQuery } from "svelte/reactivity";
 
 	let { children } = $props();
@@ -34,6 +29,22 @@
 		href={favicon}
 		type="image/png"
 	/>
+	<link
+		rel="preload"
+		href="/fonts/eb-garamond-latin-wght-normal.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin="anonymous"
+	/>
+	<link
+		rel="preload"
+		href="/fonts/eb-garamond-latin-wght-italic.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin="anonymous"
+	/>
+
+	<title>retronav</title>
 </svelte:head>
 
 <main>

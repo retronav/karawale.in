@@ -1,10 +1,5 @@
 @use "sass:color";
-
-$background: #150B14;
-$foreground: #F8F9F8;
-$golden: #fcc22f;
-$pink: #eb35b9;
-$red: #f91250;
+@use "./variables" as *;
 
 :root {
     --background: #{$background};
@@ -17,18 +12,16 @@ body {
     height: 100%;
     margin: 0;
 
-    font-family: "EB Garamond Variable", serif;
+    font-family: $font-family-serif;
 }
 
 body {
     background-color: var(--background);
     color: var(--foreground);
-
-    font-size: 22px;
 }
 
 a {
-    color: color.adjust($foreground, $lightness: -10%);
+    color: $link-color;
 }
 
 // CRT stuff
