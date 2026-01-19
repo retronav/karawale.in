@@ -2,7 +2,6 @@
 	// @ts-ignore : the w property is valid
 	import logoImage from "$lib/assets/logo.png?enhanced&w=128;256";
 	import SynthwaveGrid from "$lib/SynthwaveGrid.svelte";
-	import "$lib/styles/bg.scss";
 </script>
 
 <SynthwaveGrid>
