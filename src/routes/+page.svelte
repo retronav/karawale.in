@@ -2,6 +2,7 @@
 	// @ts-ignore : the w property is valid
 	import logoImage from "$lib/assets/logo.png?enhanced&w=128;256";
 	import SynthwaveGrid from "$lib/SynthwaveGrid.svelte";
+	import "$lib/styles/bg.scss";
 </script>
 
 <SynthwaveGrid>
@@ -76,8 +77,6 @@
 
 		h1 {
 			margin: 0;
-			font-weight: 900;
-			letter-spacing: -2px;
 			color: inherit;
 			color: $golden;
 		}
