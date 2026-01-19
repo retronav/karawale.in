@@ -47,10 +47,10 @@
 			</section>
 			<section>
 				<p>
-					Welcome to my personal corner of the web. Here lies my engineering
-					projects, my musings, my curiosities, my design philosophies, my
-					personality with a quill that paints nostalgia on the fabric of the
-					future.
+					Welcome to my personal corner of the web. This is a digital
+					home for my engineering projects, my musings, my
+					curiosities, my design philosophies, my personality with a
+					quill that paints nostalgia on the fabric of the future.
 				</p>
 			</section>
 		</section>
