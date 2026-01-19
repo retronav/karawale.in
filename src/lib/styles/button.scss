@@ -1,0 +1,41 @@
+// Modified button 43 from https://csspro.com/css-3d-buttons/
+
+@use 'sass:color';
+@use './variables' as *;
+
+$bg: color.adjust($background, $lightness: 15%);
+
+button {
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  padding: 0.25rem 1rem;
+  font-size: var(--step-0);
+  background: linear-gradient(to bottom, color.adjust($bg, $lightness: 10%) 0%, color.adjust($bg, $lightness: -5%) 100%);
+  border: 1px solid color.adjust($bg, $lightness: -15%);
+  border-bottom: 1px solid color.adjust($bg, $lightness: -25%);
+  text-shadow: 0 -1px 1px color.adjust($bg, $lightness: -20%);
+  color: $foreground;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: linear-gradient(to bottom, color.adjust($bg, $lightness: -5%) 0%, color.adjust($bg, $lightness: -15%) 100%);
+    border-color: color.adjust($bg, $lightness: -25%);
+    border-bottom-color: color.adjust($bg, $lightness: -35%);
+    text-shadow: 0 0px 10px color.adjust($bg, $lightness: -30%);
+  }
+
+  &:active {
+    background: linear-gradient(to bottom, color.adjust($bg, $lightness: -10%) 0%, color.adjust($bg, $lightness: -20%) 100%);
+    border: 1px solid color.adjust($bg, $lightness: -30%);
+    border-bottom: 1px solid color.adjust($bg, $lightness: -35%);
+    text-shadow: 0 -1px 1px color.adjust($bg, $lightness: -25%);
+  }
+}
+
+@media screen and (max-width: 600px) {
+    button {
+        min-height: 24px;
+    }
+}

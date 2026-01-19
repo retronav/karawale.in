@@ -8,7 +8,7 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
-		"postinstall": "mkdir -p static/fonts && cp node_modules/@fontsource-variable/eb-garamond/files/eb-garamond-latin-wght-normal.woff2 static/fonts/ && cp node_modules/@fontsource-variable/eb-garamond/files/eb-garamond-latin-wght-italic.woff2 static/fonts/ && cp node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2 static/fonts/",
+		"postinstall": "mkdir -p static/fonts && cp node_modules/@fontsource-variable/eb-garamond/files/eb-garamond-latin-wght-normal.woff2 static/fonts/ && cp node_modules/@fontsource-variable/eb-garamond/files/eb-garamond-latin-wght-italic.woff2 static/fonts/ && cp node_modules/@fontsource-variable/victor-mono/files/victor-mono-latin-wght-normal.woff2 static/fonts/",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
@@ -26,7 +26,7 @@
 	},
 	"dependencies": {
 		"@fontsource-variable/eb-garamond": "^5.2.7",
-		"@fontsource-variable/jetbrains-mono": "^5.2.8",
+		"@fontsource-variable/victor-mono": "^5.2.8",
 		"utopia-core-scss": "^1.3.1"
 	}
 }

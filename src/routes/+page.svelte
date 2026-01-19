@@ -47,11 +47,21 @@
 			</section>
 			<section>
 				<p>
-					Welcome to my personal corner of the web. This is a digital
-					home for my engineering projects, my musings, my
-					curiosities, my design philosophies, my personality with a
-					quill that paints nostalgia on the fabric of the future.
+					Welcome to my personal corner of the web. This is a digital home for
+					my engineering projects, my musings, my curiosities, my design
+					philosophies, my personality with a quill that paints nostalgia on the
+					fabric of the future.
 				</p>
+				<p>Use one of the following buttons to visit:</p>
+				<nav>
+					<a href="/projects">
+						<button>Projects</button>
+					</a>
+					<a href="/about">
+						<button>About me</button>
+					</a>
+				</nav>
+				<div class="spacer"></div>
 			</section>
 		</section>
 	</article>
@@ -92,6 +102,14 @@
 				padding: 0 1ch;
 			}
 		}
+
+		nav {
+			margin-top: 1rem;
+
+			a {
+				height: fit-content;
+			}
+		}
 	}
 
 	@media (max-width: 600px) {
@@ -102,6 +120,16 @@
 			section:nth-child(1) {
 				border-right: none;
 			}
+			nav {
+				display: flex;
+				flex-direction: column;
+				gap: 2rem;
+				width: fit-content;
+			}
+		}
+
+		.spacer {
+			height: 4rem;
 		}
 	}
 
