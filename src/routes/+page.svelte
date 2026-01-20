@@ -104,6 +104,7 @@
 		nav {
 			margin-top: 1rem;
 			display: flex;
+			flex-wrap: wrap;
 			gap: 1rem;
 
 			a {
@@ -120,29 +121,10 @@
 			section:nth-child(1) {
 				border-right: none;
 			}
-			nav {
-				display: flex;
-				flex-direction: column;
-				gap: 2rem;
-				width: fit-content;
-			}
 		}
 
 		.spacer {
 			height: 4rem;
 		}
 	}
-
-	// p {
-	// 	border: 1px solid var(--foreground);
-	// 	padding: 1rem;
-	// 	border-radius: 8px;
-	// 	background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.04) 100%);
-	// 	box-shadow:
-	//     /* Darker, top-left shadow (inset) */
-	// 		inset 5px 5px 10px rgba(0, 0, 0, 0.5),
-	// 		/* Lighter, bottom-right shadow (inset) */ inset -5px -5px 10px
-	// 			rgba(255, 255, 255, 0.1);
-
-	// }
 </style>

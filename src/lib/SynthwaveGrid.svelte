@@ -1,5 +1,5 @@
 <script>
-	let { logo, children, small } = $props();
+	let { logo, children, small = false } = $props();
 </script>
 
 <div class="container" style:--height={small ? '128px' : '256px'}>
