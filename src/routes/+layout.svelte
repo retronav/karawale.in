@@ -1,6 +1,6 @@
 <script lang="ts">
 	import favicon from "$lib/assets/favicon.png";
-	import CrtEffect from "$lib/CrtEffect.svelte";
+	// import CrtEffect from "$lib/CrtEffect.svelte";
 	import "$lib/styles/index.scss";
 	import { MediaQuery } from "svelte/reactivity";
 
@@ -37,12 +37,18 @@
 	/>
 	<link
 		rel="preload"
+		href="/fonts/victor-mono-latin-wght-normal.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin="anonymous"
+	/>
+	<link
+		rel="preload"
 		href="/fonts/eb-garamond-latin-wght-italic.woff2"
 		as="font"
 		type="font/woff2"
 		crossorigin="anonymous"
 	/>
-
 	<title>retronav</title>
 </svelte:head>
 
