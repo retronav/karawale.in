@@ -1,8 +1,8 @@
 <script>
-	let { logo, children } = $props();
+	let { logo, children, small } = $props();
 </script>
 
-<div class="container">
+<div class="container" style:--height={small ? '128px' : '256px'}>
 	<div class="logo">
 		{@render logo()}
 		<div class="horizon"></div>
@@ -17,7 +17,9 @@
 	@use "sass:color";
 	@use "$lib/styles/variables" as *;
 
-	$height: 256px;
+	:root {
+		--height: 256px;
+	}
 
 	@media (prefers-reduced-motion: reduce) {
 		.lines {
@@ -27,12 +29,12 @@
 
 	@media (max-width: 1200px) {
 		.logo :global(img) {
-			width: calc($height / 2);
-			height: calc($height / 2);
+			width: calc(var(--height) / 2);
+			height: calc(var(--height) / 2);
 		}
 
 		.container {
-			grid-template-rows: repeat(2, calc($height / 4)) 1fr !important;
+			grid-template-rows: repeat(2, calc(var(--height) / 4)) 1fr !important;
 		}
 	}
 
@@ -42,7 +44,7 @@
 		min-height: 100vh;
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: repeat(2, calc($height / 2)) 1fr;
+		grid-template-rows: repeat(2, calc(var(--height) / 2)) 1fr;
 	}
 	.logo {
 		position: relative;

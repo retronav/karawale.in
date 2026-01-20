@@ -3,39 +3,26 @@
 @use 'sass:color';
 @use './variables' as *;
 
-$bg: color.adjust($background, $lightness: 15%);
+$buttonBackground: $golden;
 
 button {
-  -webkit-font-smoothing: antialiased;
-  display: inline-block;
-  padding: 0.25rem 1rem;
-  font-size: var(--step-0);
-  background: linear-gradient(to bottom, color.adjust($bg, $lightness: 10%) 0%, color.adjust($bg, $lightness: -5%) 100%);
-  border: 1px solid color.adjust($bg, $lightness: -15%);
-  border-bottom: 1px solid color.adjust($bg, $lightness: -25%);
-  text-shadow: 0 -1px 1px color.adjust($bg, $lightness: -20%);
-  color: $foreground;
-  cursor: pointer;
-  border-radius: 0.5rem;
-  transition: all 0.2s ease;
+  background: transparent;
+  border: 2px solid $buttonBackground;
+  color: $buttonBackground;
+  padding: 5px 10px;
+  min-height: 24px;
+  font-family: $font-family-mono;
+  text-transform: uppercase;
+  box-shadow: 0 0 10px color.adjust($buttonBackground, $lightness: 10%);
+  transition: all 0.25s ease;
 
   &:hover {
-    background: linear-gradient(to bottom, color.adjust($bg, $lightness: -5%) 0%, color.adjust($bg, $lightness: -15%) 100%);
-    border-color: color.adjust($bg, $lightness: -25%);
-    border-bottom-color: color.adjust($bg, $lightness: -35%);
-    text-shadow: 0 0px 10px color.adjust($bg, $lightness: -30%);
+    background: $buttonBackground;
+    color: $background;
+    box-shadow: 0 0 20px $buttonBackground, inset 0 0 10px $foreground;
   }
 
-  &:active {
-    background: linear-gradient(to bottom, color.adjust($bg, $lightness: -10%) 0%, color.adjust($bg, $lightness: -20%) 100%);
-    border: 1px solid color.adjust($bg, $lightness: -30%);
-    border-bottom: 1px solid color.adjust($bg, $lightness: -35%);
-    text-shadow: 0 -1px 1px color.adjust($bg, $lightness: -25%);
+  &:active, &:focus {
+    outline: none;
   }
-}
-
-@media screen and (max-width: 600px) {
-    button {
-        min-height: 24px;
-    }
 }
