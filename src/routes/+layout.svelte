@@ -14,61 +14,6 @@
 	});
 </script>
 
-<svelte:head>
-	<link rel="icon" href={favicon} type="image/png" />
-	<link
-		rel="preload"
-		href="/fonts/eb-garamond-latin-wght-normal.woff2"
-		as="font"
-		type="font/woff2"
-		crossorigin="anonymous"
-	/>
-	<link
-		rel="preload"
-		href="/fonts/victor-mono-latin-wght-normal.woff2"
-		as="font"
-		type="font/woff2"
-		crossorigin="anonymous"
-	/>
-	<link
-		rel="preload"
-		href="/fonts/eb-garamond-latin-wght-italic.woff2"
-		as="font"
-		type="font/woff2"
-		crossorigin="anonymous"
-	/>
-	<meta name="theme-color" content="#150b14" />
-	<meta
-		name="description"
-		content="Pranav Karawale's personal home on the web."
-	/>
-
-	<!-- OpenGraph Tags -->
-	<meta property="og:title" content="retronav - Pranav Karawale" />
-	<meta
-		property="og:description"
-		content="Pranav Karawale's personal home on the web. Digital artisan & architect of systems."
-	/>
-	<meta property="og:image" content="https://karawale.in/logo.png" />
-	<meta property="og:url" content="https://karawale.in/" />
-	<meta property="og:type" content="website" />
-	<meta property="og:site_name" content="retronav" />
-
-	<!-- Twitter Card Tags -->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="retronav - Pranav Karawale" />
-	<meta
-		name="twitter:description"
-		content="Pranav Karawale's personal home on the web. Digital artisan & architect of systems."
-	/>
-	<meta name="twitter:image" content="https://karawale.in/logo.png" />
-
-	<!-- Canonical URL -->
-	<link rel="canonical" href="https://karawale.in/" />
-
-	<title>retronav</title>
-</svelte:head>
-
 <main>
 	{@render children()}
 	<!-- <CrtEffect /> -->
