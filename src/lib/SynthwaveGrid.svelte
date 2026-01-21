@@ -104,7 +104,7 @@
 		animation: 20s linear infinite crawlingWall;
 		background-position-y: top;
 		clip-path: polygon(30% 0%, 70% 0%, 70% 100%, 30% 100%);
-		mask-image: linear-gradient(to bottom, black 0%, black 10%, transparent 100%);
+		mask-image: linear-gradient(to bottom, transparent 0%, transparent 20%, black 50%, black 90%, transparent 100%);
 	}
 
 	.content {
