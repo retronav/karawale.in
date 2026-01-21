@@ -15,6 +15,23 @@
 
 <svelte:head>
 	<title>retronav : projects</title>
+	<meta name="description" content="Explore Pranav Karawale's technical projects, creative works, and professional endeavors at Pravideon Pvt. Ltd. View the curated collection of engineering and design achievements." />
+
+	<!-- OpenGraph Tags -->
+	<meta property="og:title" content="Projects by Pranav Karawale | retronav" />
+	<meta property="og:description" content="Technical projects, creative works, and professional endeavors. A curated collection of engineering and design achievements." />
+	<meta property="og:image" content="https://karawale.in/logo.png" />
+	<meta property="og:url" content="https://karawale.in/projects" />
+	<meta property="og:type" content="website" />
+
+	<!-- Twitter Card Tags -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Projects by Pranav Karawale | retronav" />
+	<meta name="twitter:description" content="Technical projects, creative works, and professional endeavors. A curated collection of engineering and design achievements." />
+	<meta name="twitter:image" content="https://karawale.in/logo.png" />
+
+	<!-- Canonical URL -->
+	<link rel="canonical" href="https://karawale.in/projects" />
 </svelte:head>
 
 <header>

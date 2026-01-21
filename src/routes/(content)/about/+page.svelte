@@ -4,6 +4,23 @@
 
 <svelte:head>
 	<title>retronav : about</title>
+	<meta name="description" content="Learn about Pranav Karawale, a digital artisan and architect of systems specializing in full-stack web development, IoT, and embedded systems. Discover the philosophy behind 'Precision over Pixels'." />
+
+	<!-- OpenGraph Tags -->
+	<meta property="og:title" content="About Pranav Karawale | retronav" />
+	<meta property="og:description" content="Digital artisan & architect of systems. Full-stack developer specializing in web applications, IoT, and embedded systems." />
+	<meta property="og:image" content="https://karawale.in/logo.png" />
+	<meta property="og:url" content="https://karawale.in/about" />
+	<meta property="og:type" content="profile" />
+
+	<!-- Twitter Card Tags -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="About Pranav Karawale | retronav" />
+	<meta name="twitter:description" content="Digital artisan & architect of systems. Full-stack developer specializing in web applications, IoT, and embedded systems." />
+	<meta name="twitter:image" content="https://karawale.in/logo.png" />
+
+	<!-- Canonical URL -->
+	<link rel="canonical" href="https://karawale.in/about" />
 </svelte:head>
 
 <header>
