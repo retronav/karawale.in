@@ -6,6 +6,10 @@
     </address>
 </header>
 
+<section class="content">
+    TBD
+</section>
+
 <style lang="scss">
 	@use "$lib/styles/variables" as *;
 
