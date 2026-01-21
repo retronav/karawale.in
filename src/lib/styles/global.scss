@@ -11,6 +11,11 @@ html, body {
     min-height: 100vh;
 }
 
+*::selection {
+    background: $golden;
+    color: $background;
+}
+
 body {
     margin: 0;
     font-family: $font-family-serif;

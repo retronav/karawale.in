@@ -7,7 +7,7 @@
 </header>
 
 <section class="content">
-    TBD
+    I haven't finished writing this yet. Check back later.
 </section>
 
 <style lang="scss">
@@ -25,5 +25,10 @@
     .byline {
         margin-bottom: 1rem;
         color: $golden;
+    }
+
+    .content {
+        max-width: 600px;
+        margin: 0 auto;
     }
 </style>

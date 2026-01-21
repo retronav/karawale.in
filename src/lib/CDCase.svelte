@@ -2,12 +2,18 @@
 <script lang="ts">
 	import cd from "$lib/assets/cd.png?enhanced";
 
-	const { children } = $props();
+	const { children, onReveal } = $props<{
+		children?: any;
+		onReveal?: () => void;
+	}>();
 
 	let isFlipped = $state(false);
 	let rotationY = $state(0);
 
 	function toggleFlip() {
+		if (!isFlipped) {
+			onReveal?.();
+		}
 		rotationY += 180;
 		isFlipped = !isFlipped;
 	}
@@ -107,8 +113,9 @@
 		position: absolute;
 		width: 100%;
 		height: 100%;
-		-webkit-backface-visibility: hidden;
 		backface-visibility: hidden;
+		user-select: none;
+		pointer-events: none;
 		top: 0;
 		left: 0;
 		border-radius: 3px;
@@ -157,7 +164,6 @@
 				align-items: center;
 				padding: 20px;
 				box-sizing: border-box;
-				user-select: none;
 			}
 
 			.sup {

@@ -87,6 +87,7 @@
 		grid-row: 2 / 4;
 		width: 100%;
 		height: 100%;
+		max-height: calc(100vh - var(--height) / 2);
 		background-size: 1rem 1rem;
 		background-image: linear-gradient(
 				to right,
@@ -103,6 +104,7 @@
 		animation: 20s linear infinite crawlingWall;
 		background-position-y: top;
 		clip-path: polygon(30% 0%, 70% 0%, 70% 100%, 30% 100%);
+		mask-image: linear-gradient(to bottom, black 0%, black 10%, transparent 100%);
 	}
 
 	.content {

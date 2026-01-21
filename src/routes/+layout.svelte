@@ -49,6 +49,8 @@
 		type="font/woff2"
 		crossorigin="anonymous"
 	/>
+	<meta name="theme-color" content="#150b14" />
+	<meta name="description" content="Pranav Karawale's personal home on the web.">
 	<title>retronav</title>
 </svelte:head>
 
