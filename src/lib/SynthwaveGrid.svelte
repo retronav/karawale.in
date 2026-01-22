@@ -89,7 +89,7 @@
 		max-height: calc(100vh - var(--height) / 2);
 		
 		background-size: 2rem 2rem;
-		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M0.5 0 L0.5 16 M0 0.5 L16 0.5' stroke='#{color.change($golden, $alpha: 0.2)}' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M0.5 0 L0.5 16 M0 0.5 L16 0.5' stroke='#{color.change($golden, $alpha: 0.25)}' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
 		background-repeat: repeat;
 
 		transform-origin: top center;
@@ -102,6 +102,7 @@
 			transparent 20%,
 			black 50%,
 			black 70%,
+			transparent 90%,
 			transparent 100%
 		);
 
@@ -122,7 +123,7 @@
 		.lines {
 			background-size: 1rem 1rem;
 			// increase stroke width for smaller screens
-			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M0.5 0 L0.5 16 M0 0.5 L16 0.5' stroke='#{color.change($golden, $alpha: 0.2)}' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M0.5 0 L0.5 16 M0 0.5 L16 0.5' stroke='#{color.change($golden, $alpha: 0.25)}' stroke-width='1' fill='none'/%3E%3C/svg%3E");
 			background-repeat: repeat;
 		}
 	}

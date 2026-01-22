@@ -25,25 +25,9 @@ body {
 }
 
 a {
-    color: $link-color;
+    color: $links;
 }
 
-// CRT stuff
-body {
-    filter: brightness(1.01) contrast(1.015) saturate(1.02);
-
-    &.crt-brightness {
-        filter: brightness(1.06) contrast(1.08) saturate(1.06);
-    }
-
-    &.crt-turning-on {
-        animation: crt-glitch .3s ease-out forwards;
-    }
-
-    &.crt-turning-off {
-        animation: crt-glitch .25s ease-in forwards;
-    }
-}
 
 
 @media (min-resolution: 144dpi) {

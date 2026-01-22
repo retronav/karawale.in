@@ -15,7 +15,6 @@
 
 <main>
 	{@render children()}
-	<!-- <CrtEffect /> -->
 	<footer>
 		<p>
 			&copy; {new Date().getFullYear()} Pranav Karawale.

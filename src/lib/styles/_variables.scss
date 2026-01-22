@@ -1,14 +1,14 @@
 @use "sass:color";
 
 // Color Palette
-$background: #150b14;
-$foreground: #f8f9f8;
-$golden: #fcc22f;
-$pink: #eb35b9;
-$red: #f91250;
+$background: #140913;
+$foreground: #fcfdfc;
+$golden: #ffc430;
+$pink: #f133bd;
+$red: #ff0f4f;
 
 // Derived colors
-$link-color: color.adjust($foreground, $lightness: -10%);
+$links: color.adjust($golden, $lightness: 30%);
 
 // Typography
 $font-family-serif: "EB Garamond Variable", serif;
