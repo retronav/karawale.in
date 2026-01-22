@@ -114,6 +114,7 @@
 		width: 100%;
 		height: 100%;
 		backface-visibility: hidden;
+		transform-style: preserve-3d;
 		user-select: none;
 		pointer-events: none;
 		top: 0;
@@ -127,7 +128,7 @@
 	}
 
 	.front {
-		z-index: 2;
+		z-index: auto;
 	}
 
 	.back {
