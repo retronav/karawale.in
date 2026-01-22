@@ -2,7 +2,7 @@
 	let { logo, children, small = false } = $props();
 </script>
 
-<div class="container" style:--height={small ? '128px' : '256px'}>
+<div class="container" style:--height={small ? "128px" : "256px"}>
 	<div class="logo">
 		{@render logo()}
 		<div class="horizon"></div>
@@ -86,25 +86,28 @@
 		grid-column: 1 / -1;
 		grid-row: 2 / 4;
 		width: 100%;
-		height: 100%;
 		max-height: calc(100vh - var(--height) / 2);
-		background-size: 1rem 1rem;
-		background-image: linear-gradient(
-				to right,
-				#{color.adjust($golden, $alpha: -0.8)} 1px,
-				transparent 1px
-			),
-			linear-gradient(
-				to bottom,
-				#{color.adjust($golden, $alpha: -0.8)} 1px,
-				transparent 1px
-			);
-		transform: perspective(100vh) rotateX(80deg);
+		
+		background-size: 2rem 2rem;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M0.5 0 L0.5 16 M0 0.5 L16 0.5' stroke='#{color.change($golden, $alpha: 0.2)}' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+		background-repeat: repeat;
+
 		transform-origin: top center;
-		animation: 20s linear infinite crawlingWall;
-		background-position-y: top;
+		transform: perspective(100vh) rotateX(80deg) translateY(0);
+		
 		clip-path: polygon(30% 0%, 70% 0%, 70% 100%, 30% 100%);
-		mask-image: linear-gradient(to bottom, transparent 0%, transparent 20%, black 50%, black 90%, transparent 100%);
+		mask-image: linear-gradient(
+			to bottom,
+			transparent 0%,
+			transparent 20%,
+			black 50%,
+			black 70%,
+			transparent 100%
+		);
+
+		/* Animation */
+		animation: 1s linear infinite crawlingWall;
+		will-change: transform;
 	}
 
 	.content {
@@ -114,9 +117,19 @@
 		margin: 0 2rem;
 	}
 
+
+	@media (max-width: 600px) {
+		.lines {
+			background-size: 1rem 1rem;
+		}
+	}
+
 	@keyframes crawlingWall {
-		to {
-			background-position-y: bottom;
+		0% {
+			transform: perspective(100vh) rotateX(80deg) translateY(0);
+		}
+		100% {
+			transform: perspective(100vh) rotateX(80deg) translateY(2rem);
 		}
 	}
 </style>
