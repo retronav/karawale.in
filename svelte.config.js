@@ -1,5 +1,5 @@
 import { mdsvex } from 'mdsvex';
-import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -11,7 +11,7 @@ const config = {
 		runes: true
 	},
 
-	kit: { adapter: adapter(), prerender: {handleHttpError: 'warn'} },
+	kit: { adapter: adapter() },
 	extensions: ['.svelte', '.svx']
 };
 

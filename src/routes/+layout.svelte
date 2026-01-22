@@ -1,5 +1,4 @@
 <script lang="ts">
-	import favicon from "$lib/assets/favicon.png";
 	import "$lib/styles/index.scss";
 	import { MediaQuery } from "svelte/reactivity";
 
