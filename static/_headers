@@ -1,0 +1,34 @@
+/* 
+  Cache-Control: public, max-age=3600
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  X-XSS-Protection: 1; mode=block
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/_app/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: font/woff2
+
+*.avif
+  Cache-Control: public, max-age=31536000, immutable
+
+/sitemap.xml
+  Cache-Control: public, max-age=86400
+  Content-Type: application/xml
+
+/robots.txt
+  Cache-Control: public, max-age=86400
