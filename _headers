@@ -13,17 +13,17 @@
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
-*.js
+/*.js
   Cache-Control: public, max-age=31536000, immutable
 
-*.css
+/*.css
   Cache-Control: public, max-age=31536000, immutable
 
-*.woff2
+/*.woff2
   Cache-Control: public, max-age=31536000, immutable
   Content-Type: font/woff2
 
-*.avif
+/*.avif
   Cache-Control: public, max-age=31536000, immutable
 
 /sitemap.xml
