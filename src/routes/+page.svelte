@@ -2,33 +2,9 @@
 	// @ts-ignore : the w property is valid
 	import logoImage from "$lib/assets/logo.png?enhanced&w=128;256";
 	import SynthwaveGrid from "$lib/SynthwaveGrid.svelte";
-	import favicon from "$lib/assets/favicon.png";
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} type="image/png" />
-	<link
-		rel="preload"
-		href="/fonts/eb-garamond-latin-wght-normal.woff2"
-		as="font"
-		type="font/woff2"
-		crossorigin="anonymous"
-	/>
-	<link
-		rel="preload"
-		href="/fonts/victor-mono-latin-wght-normal.woff2"
-		as="font"
-		type="font/woff2"
-		crossorigin="anonymous"
-	/>
-	<link
-		rel="preload"
-		href="/fonts/eb-garamond-latin-wght-italic.woff2"
-		as="font"
-		type="font/woff2"
-		crossorigin="anonymous"
-	/>
-	<meta name="theme-color" content="#150b14" />
 	<meta
 		name="description"
 		content="Pranav Karawale's personal home on the web."

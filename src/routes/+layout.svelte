@@ -1,6 +1,8 @@
 <script lang="ts">
 	import "$lib/styles/index.scss";
 	import { MediaQuery } from "svelte/reactivity";
+	import favicon from "$lib/assets/favicon.png";
+	import { dev } from '$app/environment';
 
 	let { children } = $props();
 
@@ -12,6 +14,35 @@
 		}
 	});
 </script>
+
+<svelte:head>
+	<link rel="icon" href={favicon} type="image/png" />
+	<link
+		rel="preload"
+		href="/fonts/eb-garamond-latin-wght-normal.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin="anonymous"
+	/>
+	<link
+		rel="preload"
+		href="/fonts/victor-mono-latin-wght-normal.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin="anonymous"
+	/>
+	<link
+		rel="preload"
+		href="/fonts/eb-garamond-latin-wght-italic.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin="anonymous"
+	/>
+	<meta name="theme-color" content="#150b14" />
+	{#if !dev}
+			<script defer src="https://umami.karawale.in/script.js" data-website-id="42cc931d-c958-4319-9c8b-d1fceed25d88" crossorigin="anonymous"></script>
+	{/if}
+</svelte:head>
 
 <main>
 	{@render children()}

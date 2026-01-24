@@ -28,7 +28,9 @@ a {
     color: $links;
 }
 
-
+pre, code {
+    font-family: $font-family-mono;
+}
 
 @media (min-resolution: 144dpi) {
     body:not(.mobile-device) :root {
