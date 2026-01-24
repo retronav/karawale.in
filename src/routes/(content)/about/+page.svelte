@@ -45,19 +45,20 @@
 		Looking back, I cannot believe a passed-down computer with a Pentium and
 		a gigabyte of memory running Windows XP was all it took to kick off this
 		lifelong obsession with computers.
+	</p>
 
-		<figure class="me">
-			<enhanced:img
-				class="img"
-				src="$lib/assets/me.jpg"
-				alt="A photo of Pranav Karawale"
-				sizes="1024px"
-				width="150px"
-				height="200px"
-			/>
-			<figcaption>Me in Avignon, France</figcaption>
-		</figure>
+	<figure class="me">
+		<enhanced:img
+			class="img"
+			src="$lib/assets/me.jpg"
+			alt="A photo of Pranav Karawale"
+			sizes="1024px"
+			width="150px"
+			height="200px"
+		/>
+	</figure>
 
+	<p>
 		I am Pranav Karawale, a
 		<b>
 			<i class="highlight">digital artisan</i> & an
@@ -106,9 +107,8 @@
 		build performant, reliable systems that live up to the eye candy. We
 		deal with end-to-end web & mobile apps, hardware automation, and the
 		union of these fields. The
-		<a href="/projects">projects page</a> of my website hosts a collection
-		of my work. For a more professional overview, you can check out my
-		résumé.
+		<a href="/projects">projects page</a> of my website hosts a collection of
+		my work. For a more professional overview, you can check out my résumé.
 	</p>
 
 	<a href="/resume.pdf"><button>Résumé</button></a>
@@ -176,11 +176,11 @@
 			margin: 0 0 0 1rem;
 		}
 
-		figcaption {
-			font-size: var(--step--1);
-			text-align: center;
-			font-style: italic;
-		}
+		// figcaption {
+		//	    font-size: var(--step--1);
+		//	    text-align: center;
+		//	 font-style: italic;
+		// }
 	}
 
 	@media (max-width: 600px) {
