@@ -145,6 +145,13 @@
 			rel="noopener noreferrer"><code>@retronav84</code></a
 		>
 	</address>
+	<address class="social">
+		<a
+			href="https://github.com/retronav"
+			target="_blank"
+			rel="noopener noreferrer"><code>retronav</code> on GitHub</a
+		>
+	</address>
 </section>
 
 <style lang="scss">
