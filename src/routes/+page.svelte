@@ -2,6 +2,7 @@
 	// @ts-ignore : the w property is valid
 	import logoImage from "$lib/assets/logo.png?enhanced&w=128;256";
 	import SynthwaveGrid from "$lib/SynthwaveGrid.svelte";
+	import { Rss } from "@lucide/svelte";
 </script>
 
 <svelte:head>
@@ -58,31 +59,35 @@
 		<section class="info">
 			<section>
 				<p>
-					Time and this world wait for no one. What waits though, is the lasting
-					impression of your first smart phone, or the crisp pages of the
-					magazine which your fingers sift through as you flip through the
-					colorful images. Impressions, that are a collective of the various
-					experiences of the authors, the makers, the creators. Impressions,
-					that give rise to trends, and become an inspiration for one or many.
-					Impressions, that shape the beginnings of something revolutionary.
+					Time and this world wait for no one. What waits though, is
+					the lasting impression of your first smart phone, or the
+					crisp pages of the magazine which your fingers sift through
+					as you flip through the colorful images. Impressions, that
+					are a collective of the various experiences of the authors,
+					the makers, the creators. Impressions, that give rise to
+					trends, and become an inspiration for one or many.
+					Impressions, that shape the beginnings of something
+					revolutionary.
 				</p>
 				<p>
-					These experiences however, are also forgotten in time and space. New
-					advancements render technology obsolete, or the world simply moves on
-					from the creations which were once deemed so novel and revolutionary.
-					Some aesthetics, designs, patterns either stand the test of time and
-					transcend every generation, or simply get left behind as a relic of
-					happier times, or in some cases, become a core creative inspiration
-					for a few people and become cult classics. This appreciation of a
-					niche is what captures the individuality within a group of people.
+					These experiences however, are also forgotten in time and
+					space. New advancements render technology obsolete, or the
+					world simply moves on from the creations which were once
+					deemed so novel and revolutionary. Some aesthetics, designs,
+					patterns either stand the test of time and transcend every
+					generation, or simply get left behind as a relic of happier
+					times, or in some cases, become a core creative inspiration
+					for a few people and become cult classics. This appreciation
+					of a niche is what captures the individuality within a group
+					of people.
 				</p>
 			</section>
 			<section>
 				<p>
-					Welcome to my personal corner of the web. This is a digital home for
-					my engineering projects, my musings, my curiosities, my design
-					philosophies, my personality with a quill that paints nostalgia on the
-					fabric of the future.
+					Welcome to my personal corner of the web. This is a digital
+					home for my engineering projects, my musings, my
+					curiosities, my design philosophies, my personality with a
+					quill that paints nostalgia on the fabric of the future.
 				</p>
 				<p>Use one of the following buttons to visit:</p>
 				<nav>
@@ -94,6 +99,13 @@
 					</a>
 					<a href="/posts">
 						<button>Posts</button>
+					</a>
+					<a href="/rss.xml">
+						<button>
+							<Rss
+								style="height: var(--step--2); width: var(--step--2)"
+							/> RSS
+						</button>
 					</a>
 				</nav>
 				<div class="spacer"></div>
