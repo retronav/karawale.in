@@ -92,6 +92,9 @@
 					<a href="/about">
 						<button>About me</button>
 					</a>
+					<a href="/posts">
+						<button>Posts</button>
+					</a>
 				</nav>
 				<div class="spacer"></div>
 			</section>

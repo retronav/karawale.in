@@ -6,7 +6,8 @@
     --foreground: #{$foreground};
 }
 
-html, body {
+html,
+body {
     width: 100%;
     min-height: 100vh;
 }
@@ -20,7 +21,8 @@ body {
     margin: 0;
     font-family: $font-family-serif;
     background-color: var(--background);
-    background-image: radial-gradient(ellipse at 50% 10%, color.change(color.mix($pink, $red, 60%), $alpha: 0.25) 0%, color.change($background, $alpha: 0) 70%);    color: var(--foreground);
+    background-image: radial-gradient(ellipse at 50% 10%, color.change(color.mix($pink, $red, 60%), $alpha: 0.25) 0%, color.change($background, $alpha: 0) 70%);
+    color: var(--foreground);
     contain: paint;
 }
 
@@ -28,7 +30,8 @@ a {
     color: $links;
 }
 
-pre, code {
+pre,
+code {
     font-family: $font-family-mono;
 }
 
@@ -53,5 +56,77 @@ pre, code {
     body:not(.mobile-device) :root {
         --crt-scanline-gap: 4px;
         --crt-aberration-offset: 3.6px;
+    }
+}
+
+// Wordpress styles, picked from
+// https://github.com/mandrasch/sveltekit-headless-wp-rest-demo/blob/main/src/scss/_gutenberg-wrapper-container.scss
+// galleries
+.wp-content {
+    // css vars
+    --wp--style--global--content-size: 750px;
+    --wp--style--global--wide-size: 1200px;
+
+    --wp--style--block-gap: 1.5rem;
+
+    &>*+* {
+        // https://developer.mozilla.org/en-US/docs/Web/CSS/margin-block-start
+        margin-block-start: 1.5rem;
+        margin-block-end: 0;
+    }
+
+    // original: body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+    &> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+        max-width: var(--wp--style--global--content-size);
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    // TODO: do we get these styles from somewhere?
+    // fix for .alignwide, not in block library styles?
+    .alignwide {
+        max-width: 1200px; // TODO: use var
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .alignfull {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .aligncenter {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .alignleft {
+        float: left;
+        margin-inline-start: 0;
+        margin-inline-end: 2em;
+    }
+
+    .alignright {
+        float: right;
+        margin-inline-start: 2em;
+        margin-inline-end: 0;
+    }
+
+    // galleries
+    .wp-block-gallery {
+        --wp--style--unstable-gallery-gap: var(--wp--style--gallery-gap-default,
+                var(--gallery-block--gutter-size, var(--wp--style--block-gap, 0.5em)));
+        gap: var(--wp--style--gallery-gap-default,
+                var(--gallery-block--gutter-size, var(--wp--style--block-gap, 0.5em)));
+    }
+
+    .is-layout-flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .figure.wp-block-gallery.has-nested-images {
+        align-items: normal;
     }
 }

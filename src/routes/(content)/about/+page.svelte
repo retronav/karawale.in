@@ -51,7 +51,7 @@
 		<enhanced:img
 			class="img"
 			src="$lib/assets/me.jpg"
-			alt="A photo of Pranav Karawale"
+			alt="A close up shot of me, Pranav Karawale"
 			sizes="1024px"
 			width="150px"
 			height="200px"

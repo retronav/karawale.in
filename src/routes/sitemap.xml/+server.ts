@@ -1,6 +1,46 @@
-export const prerender = true;
+import { fetchGraphQL } from '$lib/wordpress';
+
+interface PostSlug {
+	slug: string;
+	date: string;
+}
+
+interface PostSlugsResponse {
+	posts: {
+		nodes: PostSlug[];
+	};
+}
+
+async function getPostSlugs(): Promise<PostSlug[]> {
+	const query = `
+		query GetPostSlugs {
+			posts(where: { categoryName: "blog" }) {
+				nodes {
+					slug
+					date
+				}
+			}
+		}
+	`;
+
+	const data = await fetchGraphQL<PostSlugsResponse>(query);
+	return data.posts.nodes;
+}
 
 export async function GET() {
+	const posts = await getPostSlugs();
+
+	const postUrls = posts
+		.map(
+			(post) => `	<url>
+		<loc>https://karawale.in/posts/${post.slug}</loc>
+		<lastmod>${new Date(post.date).toISOString().split('T')[0]}</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>`
+		)
+		.join('\n');
+
 	const sitemap = `<?xml version="1.0" encoding="UTF-8" ?>
 <urlset
 	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -25,6 +65,12 @@ export async function GET() {
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
+	<url>
+		<loc>https://karawale.in/posts</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+${postUrls}
 </urlset>`.trim();
 
 	return new Response(sitemap, {
