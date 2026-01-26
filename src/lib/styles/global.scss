@@ -129,4 +129,80 @@ code {
     .figure.wp-block-gallery.has-nested-images {
         align-items: normal;
     }
+
+    // Shared typographic defaults for WordPress-rendered content
+
+    h2,
+    h3,
+    h4 {
+        color: $golden;
+        line-height: 1.2;
+        margin-top: 2rem;
+    }
+
+    p {
+        margin: 0 0 1rem;
+        color: color.adjust($foreground, $alpha: -0.1);
+    }
+
+    a {
+        color: $links;
+    }
+
+    code {
+        font-family: $font-family-mono;
+        background: color.adjust($background, $lightness: 10%);
+        padding: 0.1em 0.3em;
+        border-radius: 3px;
+        font-size: var(--step--1);
+    }
+
+    pre {
+        font-family: $font-family-mono;
+        font-size: var(--step--1);
+        background: color.adjust($background, $lightness: 5%);
+        padding: 1rem;
+        border-radius: 4px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-break: break-all;
+        border: 1px solid color.adjust($foreground, $alpha: -0.8);
+
+        code {
+            background: none;
+            padding: 0;
+        }
+    }
+
+    blockquote {
+        border-left: 3px solid $golden;
+        margin-left: 0;
+        padding-left: 1rem;
+        color: color.adjust($foreground, $alpha: -0.2);
+        font-style: italic;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid $golden;
+        box-shadow: 0 0 10px $golden;
+    }
+
+    figure {
+        margin: 1.5rem 0;
+        text-align: center;
+    }
+
+    figcaption {
+        font-size: var(--step--1);
+        color: color.adjust($foreground, $alpha: -0.4);
+        margin-top: 0.5rem;
+        font-style: italic;
+    }
+
+    // other classes which I can add to change styles
+    .golden {
+        color: $golden;
+    }
 }

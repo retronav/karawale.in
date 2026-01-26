@@ -149,58 +149,6 @@
 		}
 	}
 
-	:global(.content) {
-		line-height: 1.5;
-
-		:global(h2),
-		:global(h3),
-		:global(h4) {
-			color: $golden;
-			line-height: 1;
-		}
-
-		:global(a) {
-			color: $links;
-		}
-
-		:global(code) {
-			font-family: $font-family-mono;
-			background: color.adjust($background, $lightness: 10%);
-			padding: 0.1em 0.3em;
-			border-radius: 3px;
-			width: 100%;
-			font-size: var(--step--1);
-		}
-
-		:global(pre) {
-			font-size: var(--step--1);
-			background: color.adjust($background, $lightness: 5%);
-			padding: 1rem;
-			border-radius: 4px;
-			overflow-x: auto;
-			white-space: pre-wrap;
-			word-break: break-all;
-			border: 1px solid color.adjust($foreground, $alpha: -0.8);
-
-			:global(code) {
-				background: none;
-				padding: 0;
-			}
-		}
-
-		:global(blockquote) {
-			border-left: 3px solid $golden;
-			margin-left: 0;
-			padding-left: 1rem;
-			color: color.adjust($foreground, $alpha: -0.2);
-			font-style: italic;
-		}
-
-		:global(img) {
-			border-radius: 4px;
-		}
-	}
-
 	@media (max-width: 600px) {
 		.post {
 			width: calc(100% - 2rem);

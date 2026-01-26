@@ -52,6 +52,15 @@ export interface SinglePostResponse {
     post: WPPost | null;
 }
 
+export interface WPPage {
+    title: string;
+    content: string;
+}
+
+export interface WPPageByUriResponse {
+    nodeByUri: WPPage | null;
+}
+
 export async function fetchGraphQL<T>(query: string, variables?: Record<string, unknown>): Promise<T> {
     const response = await fetch(WP_API_URL, {
         method: 'POST',

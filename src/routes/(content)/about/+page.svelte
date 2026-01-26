@@ -129,9 +129,21 @@
 		interesting ideas and concrete opinions. All you need to do is send that
 		email!
 	</p>
-	<address class="email">
+	<address class="social">
 		<Mail aria-hidden="true" />
-		<code>pranav [at] karawale [dot] in</code>
+		<code>pranav [at] karawale.in</code>
+	</address>
+	<p>
+		I have profiles and pages across various social media platforms where I
+		create and share content as I see fit. These can also be used as methods
+		to contact me.
+	</p>
+	<address class="social">
+		<a
+			href="https://instagram.com/retronav84"
+			target="_blank"
+			rel="noopener noreferrer"><code>@retronav84</code></a
+		>
 	</address>
 </section>
 
@@ -161,7 +173,7 @@
 			color: $golden;
 		}
 
-		.email {
+		.social {
 			display: flex;
 			gap: 1ch;
 		}
