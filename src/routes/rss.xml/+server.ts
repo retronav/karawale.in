@@ -13,6 +13,8 @@ interface PostsRSSResponse {
 	};
 }
 
+export const prerender = true;
+
 async function getPostsForRSS(): Promise<PostForRSS[]> {
 	const query = `
 		query GetPostsForRSS {

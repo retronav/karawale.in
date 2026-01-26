@@ -27,6 +27,8 @@ async function getPostSlugs(): Promise<PostSlug[]> {
 	return data.posts.nodes;
 }
 
+export const prerender = true;
+
 export async function GET() {
 	const posts = await getPostSlugs();
 
