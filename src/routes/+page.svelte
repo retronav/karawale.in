@@ -3,6 +3,9 @@
 	import logoImage from "$lib/assets/logo.png?enhanced&w=128;256";
 	import SynthwaveGrid from "$lib/SynthwaveGrid.svelte";
 	import { Rss } from "@lucide/svelte";
+
+	let { data } = $props();
+	const pages = $derived(data.pages);
 </script>
 
 <svelte:head>
@@ -108,6 +111,15 @@
 						</button>
 					</a>
 				</nav>
+				{#if pages.length > 0}
+					<nav>
+						{#each pages as page}
+							<a href="/{page.slug}">
+								<button>{page.metadata.shortTitle ?? page.title}</button>
+							</a>
+						{/each}
+					</nav>
+				{/if}
 				<div class="spacer"></div>
 			</section>
 		</section>

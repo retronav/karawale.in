@@ -1,4 +1,4 @@
-import { fetchGraphQL } from '$lib/wordpress';
+import { fetchGraphQL, type PagesListResponse, type WPPageListItem } from '$lib/wordpress';
 
 interface PostSlug {
 	slug: string;
@@ -27,10 +27,27 @@ async function getPostSlugs(): Promise<PostSlug[]> {
 	return data.posts.nodes;
 }
 
+async function getPages(): Promise<WPPageListItem[]> {
+	const query = `
+		query GetPages {
+			pages {
+				nodes {
+					title
+					slug
+					date
+				}
+			}
+		}
+	`;
+
+	const data = await fetchGraphQL<PagesListResponse>(query);
+	return data.pages.nodes;
+}
+
 export const prerender = true;
 
 export async function GET() {
-	const posts = await getPostSlugs();
+	const [posts, pages] = await Promise.all([getPostSlugs(), getPages()]);
 
 	const postUrls = posts
 		.map(
@@ -39,6 +56,17 @@ export async function GET() {
 		<lastmod>${new Date(post.date).toISOString().split('T')[0]}</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
+	</url>`
+		)
+		.join('\n');
+
+	const pageUrls = pages
+		.map(
+			(page) => `	<url>
+		<loc>https://karawale.in/${page.slug}</loc>
+		<lastmod>${new Date(page.date).toISOString().split('T')[0]}</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
 	</url>`
 		)
 		.join('\n');
@@ -73,6 +101,7 @@ export async function GET() {
 		<priority>0.8</priority>
 	</url>
 ${postUrls}
+${pageUrls}
 </urlset>`.trim();
 
 	return new Response(sitemap, {
@@ -81,3 +110,4 @@ ${postUrls}
 		}
 	});
 }
+

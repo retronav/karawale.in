@@ -1,8 +1,6 @@
 import { fetchGraphQL, type SinglePostResponse, type WPPost } from "$lib/wordpress";
+import { processContent } from "$lib/rehype";
 import { error } from "@sveltejs/kit";
-import { rehype } from "rehype";
-import rehypeShiki from "@shikijs/rehype";
-import { transformerColorizedBrackets } from '@shikijs/colorized-brackets'
 import type { PageServerLoad } from "./$types";
 
 async function getPost(slug: string): Promise<WPPost | null> {
@@ -41,13 +39,8 @@ export const load: PageServerLoad = async ({ params }) => {
 		throw error(404, "Post not found");
 	}
 
-	const pipeline = rehype().use(rehypeShiki, {
-		theme: "synthwave-84",
-        transformers: [transformerColorizedBrackets()]
-	});
-
 	if (post.content) {
-		post.content = String(await pipeline.process(post.content));
+		post.content = await processContent(post.content);
 	}
 
 	return { post };

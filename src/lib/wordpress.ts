@@ -54,11 +54,31 @@ export interface SinglePostResponse {
 
 export interface WPPage {
     title: string;
+    slug: string;
     content: string;
+    metadata: {
+        shortTitle: string;
+        excerpt: string;
+    }
 }
 
 export interface WPPageByUriResponse {
     nodeByUri: WPPage | null;
+}
+
+export interface WPPageListItem {
+    title: string;
+    slug: string;
+    date: string;
+    metadata: {
+        shortTitle: string;
+    }
+}
+
+export interface PagesListResponse {
+    pages: {
+        nodes: WPPageListItem[];
+    };
 }
 
 export async function fetchGraphQL<T>(query: string, variables?: Record<string, unknown>): Promise<T> {
