@@ -1,208 +1,216 @@
-@use "sass:color";
-@use "./variables" as *;
+@use 'sass:color';
+@use './variables' as *;
 
 :root {
-    --background: #{$background};
-    --foreground: #{$foreground};
+	--background: #{$background};
+	--foreground: #{$foreground};
 }
 
 html,
 body {
-    width: 100%;
-    min-height: 100vh;
+	width: 100%;
+	min-height: 100vh;
 }
 
 *::selection {
-    background: $golden;
-    color: $background;
+	background: $golden;
+	color: $background;
 }
 
 body {
-    margin: 0;
-    font-family: $font-family-serif;
-    background-color: var(--background);
-    background-image: radial-gradient(ellipse at 50% 10%, color.change(color.mix($pink, $red, 60%), $alpha: 0.25) 0%, color.change($background, $alpha: 0) 70%);
-    color: var(--foreground);
-    contain: paint;
+	margin: 0;
+	font-family: $font-family-serif;
+	background-color: var(--background);
+	background-image: radial-gradient(
+		ellipse at 50% 10%,
+		color.change(color.mix($pink, $red, 60%), $alpha: 0.25) 0%,
+		color.change($background, $alpha: 0) 70%
+	);
+	color: var(--foreground);
+	contain: paint;
 }
 
 a {
-    color: $links;
+	color: $links;
 }
 
 pre,
 code {
-    font-family: $font-family-mono;
+	font-family: $font-family-mono;
 }
 
 @media (min-resolution: 144dpi) {
-    body:not(.mobile-device) :root {
-        --crt-scanline-width: 1px;
-        --crt-scanline-gap: 2px;
-        --crt-aberration-offset: 1.8px;
-        --crt-moving-scanline-height: 0.8px;
-    }
+	body:not(.mobile-device) :root {
+		--crt-scanline-width: 1px;
+		--crt-scanline-gap: 2px;
+		--crt-aberration-offset: 1.8px;
+		--crt-moving-scanline-height: 0.8px;
+	}
 }
 
 @media (min-resolution: 240dpi) {
-    body:not(.mobile-device) :root {
-        --crt-scanline-gap: 3px;
-        --crt-aberration-offset: 2.4px;
-        --crt-moving-scanline-height: 1px;
-    }
+	body:not(.mobile-device) :root {
+		--crt-scanline-gap: 3px;
+		--crt-aberration-offset: 2.4px;
+		--crt-moving-scanline-height: 1px;
+	}
 }
 
 @media (min-resolution: 336dpi) {
-    body:not(.mobile-device) :root {
-        --crt-scanline-gap: 4px;
-        --crt-aberration-offset: 3.6px;
-    }
+	body:not(.mobile-device) :root {
+		--crt-scanline-gap: 4px;
+		--crt-aberration-offset: 3.6px;
+	}
 }
 
 // Wordpress styles, picked from
 // https://github.com/mandrasch/sveltekit-headless-wp-rest-demo/blob/main/src/scss/_gutenberg-wrapper-container.scss
 // galleries
 .wp-content {
-    // css vars
-    --wp--style--global--content-size: 750px;
-    --wp--style--global--wide-size: 1200px;
+	// css vars
+	--wp--style--global--content-size: 750px;
+	--wp--style--global--wide-size: 1200px;
 
-    --wp--style--block-gap: 1.5rem;
+	--wp--style--block-gap: 1.5rem;
 
-    &>*+* {
-        // https://developer.mozilla.org/en-US/docs/Web/CSS/margin-block-start
-        margin-block-start: 1.5rem;
-        margin-block-end: 0;
-    }
+	& > * + * {
+		// https://developer.mozilla.org/en-US/docs/Web/CSS/margin-block-start
+		margin-block-start: 1.5rem;
+		margin-block-end: 0;
+	}
 
-    // original: body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
-    &> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
-        max-width: var(--wp--style--global--content-size);
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
+	// original: body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+	& > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+		max-width: var(--wp--style--global--content-size);
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
 
-    // TODO: do we get these styles from somewhere?
-    // fix for .alignwide, not in block library styles?
-    .alignwide {
-        max-width: 1200px; // TODO: use var
-        margin-left: auto;
-        margin-right: auto;
-    }
+	// TODO: do we get these styles from somewhere?
+	// fix for .alignwide, not in block library styles?
+	.alignwide {
+		max-width: 1200px; // TODO: use var
+		margin-left: auto;
+		margin-right: auto;
+	}
 
-    .alignfull {
-        max-width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-    }
+	.alignfull {
+		max-width: 100%;
+		margin-left: 0;
+		margin-right: 0;
+	}
 
-    .aligncenter {
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
+	.aligncenter {
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
 
-    .alignleft {
-        float: left;
-        margin-inline-start: 0;
-        margin-inline-end: 2em;
-    }
+	.alignleft {
+		float: left;
+		margin-inline-start: 0;
+		margin-inline-end: 2em;
+	}
 
-    .alignright {
-        float: right;
-        margin-inline-start: 2em;
-        margin-inline-end: 0;
-    }
+	.alignright {
+		float: right;
+		margin-inline-start: 2em;
+		margin-inline-end: 0;
+	}
 
-    // galleries
-    .wp-block-gallery {
-        --wp--style--unstable-gallery-gap: var(--wp--style--gallery-gap-default,
-                var(--gallery-block--gutter-size, var(--wp--style--block-gap, 0.5em)));
-        gap: var(--wp--style--gallery-gap-default,
-                var(--gallery-block--gutter-size, var(--wp--style--block-gap, 0.5em)));
-    }
+	// galleries
+	.wp-block-gallery {
+		--wp--style--unstable-gallery-gap: var(
+			--wp--style--gallery-gap-default,
+			var(--gallery-block--gutter-size, var(--wp--style--block-gap, 0.5em))
+		);
+		gap: var(
+			--wp--style--gallery-gap-default,
+			var(--gallery-block--gutter-size, var(--wp--style--block-gap, 0.5em))
+		);
+	}
 
-    .is-layout-flex {
-        display: flex;
-        flex-wrap: wrap;
-    }
+	.is-layout-flex {
+		display: flex;
+		flex-wrap: wrap;
+	}
 
-    .figure.wp-block-gallery.has-nested-images {
-        align-items: normal;
-    }
+	.figure.wp-block-gallery.has-nested-images {
+		align-items: normal;
+	}
 
-    // Shared typographic defaults for WordPress-rendered content
+	// Shared typographic defaults for WordPress-rendered content
 
-    h2,
-    h3,
-    h4 {
-        color: $golden;
-        line-height: 1.2;
-        margin-top: 2rem;
-    }
+	h2,
+	h3,
+	h4 {
+		color: $golden;
+		line-height: 1.2;
+		margin-top: 2rem;
+	}
 
-    p {
-        margin: 0 0 1rem;
-        color: color.adjust($foreground, $alpha: -0.1);
-    }
+	p {
+		margin: 0 0 1rem;
+		color: color.adjust($foreground, $alpha: -0.1);
+	}
 
-    a {
-        color: $links;
-    }
+	a {
+		color: $links;
+	}
 
-    code {
-        font-family: $font-family-mono;
-        background: color.adjust($background, $lightness: 10%);
-        padding: 0.1em 0.3em;
-        border-radius: 3px;
-        font-size: var(--step--1);
-    }
+	code {
+		font-family: $font-family-mono;
+		background: color.adjust($background, $lightness: 10%);
+		padding: 0.1em 0.3em;
+		border-radius: 3px;
+		font-size: var(--step--1);
+	}
 
-    pre {
-        font-family: $font-family-mono;
-        font-size: var(--step--1);
-        background: color.adjust($background, $lightness: 5%);
-        padding: 1rem;
-        border-radius: 4px;
-        overflow-x: auto;
-        white-space: pre-wrap;
-        word-break: break-all;
-        border: 1px solid color.adjust($foreground, $alpha: -0.8);
+	pre {
+		font-family: $font-family-mono;
+		font-size: var(--step--1);
+		background: color.adjust($background, $lightness: 5%);
+		padding: 1rem;
+		border-radius: 4px;
+		overflow-x: auto;
+		white-space: pre-wrap;
+		word-break: break-all;
+		border: 1px solid color.adjust($foreground, $alpha: -0.8);
 
-        code {
-            background: none;
-            padding: 0;
-        }
-    }
+		code {
+			background: none;
+			padding: 0;
+		}
+	}
 
-    blockquote {
-        border-left: 3px solid $golden;
-        margin-left: 0;
-        padding-left: 1rem;
-        color: color.adjust($foreground, $alpha: -0.2);
-        font-style: italic;
-    }
+	blockquote {
+		border-left: 3px solid $golden;
+		margin-left: 0;
+		padding-left: 1rem;
+		color: color.adjust($foreground, $alpha: -0.2);
+		font-style: italic;
+	}
 
-    img {
-        max-width: 100%;
-        height: auto;
-        border: 1px solid $golden;
-        box-shadow: 0 0 10px $golden;
-    }
+	img {
+		max-width: 100%;
+		height: auto;
+		border: 1px solid $golden;
+		box-shadow: 0 0 10px $golden;
+	}
 
-    figure {
-        margin: 1.5rem 0;
-        text-align: center;
-    }
+	figure {
+		margin: 1.5rem 0;
+		text-align: center;
+	}
 
-    figcaption {
-        font-size: var(--step--1);
-        color: color.adjust($foreground, $alpha: -0.4);
-        margin-top: 0.5rem;
-        font-style: italic;
-    }
+	figcaption {
+		font-size: var(--step--1);
+		color: color.adjust($foreground, $alpha: -0.4);
+		margin-top: 0.5rem;
+		font-style: italic;
+	}
 
-    // other classes which I can add to change styles
-    .golden {
-        color: $golden;
-    }
+	// other classes which I can add to change styles
+	.golden {
+		color: $golden;
+	}
 }

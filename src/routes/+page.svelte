@@ -1,18 +1,16 @@
 <script lang="ts">
-	// @ts-ignore : the w property is valid
-	import logoImage from "$lib/assets/logo.png?enhanced&w=128;256";
-	import SynthwaveGrid from "$lib/SynthwaveGrid.svelte";
-	import { Rss } from "@lucide/svelte";
+	// @ts-expect-error : the w property is valid
+	import logoImage from '$lib/assets/logo.png?enhanced&w=128;256';
+	import SynthwaveGrid from '$lib/SynthwaveGrid.svelte';
+	import { resolve } from '$app/paths';
+	import { Rss } from '@lucide/svelte';
 
 	let { data } = $props();
 	const pages = $derived(data.pages);
 </script>
 
 <svelte:head>
-	<meta
-		name="description"
-		content="Pranav Karawale's personal home on the web."
-	/>
+	<meta name="description" content="Pranav Karawale's personal home on the web." />
 
 	<!-- OpenGraph Tags -->
 	<meta property="og:title" content="retronav - Pranav Karawale" />
@@ -42,12 +40,7 @@
 
 <SynthwaveGrid>
 	{#snippet logo()}
-		<enhanced:img
-			src={logoImage}
-			alt="Logo"
-			width="256"
-			sizes="(max-width: 1200px) 128px, 256px"
-		/>
+		<enhanced:img src={logoImage} alt="Logo" width="256" sizes="(max-width: 1200px) 128px, 256px" />
 	{/snippet}
 
 	<article class="content">
@@ -62,59 +55,50 @@
 		<section class="info">
 			<section>
 				<p>
-					Time and this world wait for no one. What waits though, is
-					the lasting impression of your first smart phone, or the
-					crisp pages of the magazine which your fingers sift through
-					as you flip through the colorful images. Impressions, that
-					are a collective of the various experiences of the authors,
-					the makers, the creators. Impressions, that give rise to
-					trends, and become an inspiration for one or many.
-					Impressions, that shape the beginnings of something
-					revolutionary.
+					Time and this world wait for no one. What waits though, is the lasting impression of your
+					first smart phone, or the crisp pages of the magazine which your fingers sift through as
+					you flip through the colorful images. Impressions, that are a collective of the various
+					experiences of the authors, the makers, the creators. Impressions, that give rise to
+					trends, and become an inspiration for one or many. Impressions, that shape the beginnings
+					of something revolutionary.
 				</p>
 				<p>
-					These experiences however, are also forgotten in time and
-					space. New advancements render technology obsolete, or the
-					world simply moves on from the creations which were once
-					deemed so novel and revolutionary. Some aesthetics, designs,
-					patterns either stand the test of time and transcend every
-					generation, or simply get left behind as a relic of happier
-					times, or in some cases, become a core creative inspiration
-					for a few people and become cult classics. This appreciation
-					of a niche is what captures the individuality within a group
-					of people.
+					These experiences however, are also forgotten in time and space. New advancements render
+					technology obsolete, or the world simply moves on from the creations which were once
+					deemed so novel and revolutionary. Some aesthetics, designs, patterns either stand the
+					test of time and transcend every generation, or simply get left behind as a relic of
+					happier times, or in some cases, become a core creative inspiration for a few people and
+					become cult classics. This appreciation of a niche is what captures the individuality
+					within a group of people.
 				</p>
 			</section>
 			<section>
 				<p>
-					Welcome to my personal corner of the web. This is a digital
-					home for my engineering projects, my musings, my
-					curiosities, my design philosophies, my personality with a
-					quill that paints nostalgia on the fabric of the future.
+					Welcome to my personal corner of the web. This is a digital home for my engineering
+					projects, my musings, my curiosities, my design philosophies, my personality with a quill
+					that paints nostalgia on the fabric of the future.
 				</p>
 				<p>Use one of the following buttons to visit:</p>
 				<nav>
-					<a href="/projects">
+					<a href={resolve('/projects')}>
 						<button>Projects</button>
 					</a>
-					<a href="/about">
+					<a href={resolve('/about')}>
 						<button>About me</button>
 					</a>
-					<a href="/posts">
+					<a href={resolve('/posts')}>
 						<button>Posts</button>
 					</a>
-					<a href="/rss.xml">
+					<a href={resolve('/rss.xml')}>
 						<button>
-							<Rss
-								style="height: var(--step--2); width: var(--step--2)"
-							/> RSS
+							<Rss style="height: var(--step--2); width: var(--step--2)" /> RSS
 						</button>
 					</a>
 				</nav>
 				{#if pages.length > 0}
 					<nav>
-						{#each pages as page}
-							<a href="/{page.slug}">
+						{#each pages as page (page.slug)}
+							<a href={resolve(`/${page.slug}`)}>
 								<button>{page.metadata.shortTitle ?? page.title}</button>
 							</a>
 						{/each}
@@ -127,8 +111,8 @@
 </SynthwaveGrid>
 
 <style lang="scss">
-	@use "sass:color";
-	@use "$lib/styles/variables" as *;
+	@use 'sass:color';
+	@use '$lib/styles/variables' as *;
 
 	.content {
 		text-align: center;

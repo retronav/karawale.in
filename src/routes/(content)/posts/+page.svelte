@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	let { data } = $props();
 
 	function formatDate(dateString: string): string {
-		return new Date(dateString).toLocaleDateString("en-US", {
-			year: "numeric",
-			month: "long",
-			day: "numeric",
+		return new Date(dateString).toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
 		});
 	}
 </script>
@@ -53,9 +54,9 @@
 		<p class="empty">No posts yet. Check back soon!</p>
 	{:else}
 		<ul class="posts-list">
-			{#each data.posts as post}
+			{#each data.posts as post (post.slug)}
 				<li class="post-card">
-					<a href="/posts/{post.slug}">
+					<a href={resolve(`/posts/${post.slug}`)}>
 						{#if post.featuredImage?.node?.sourceUrl}
 							<img
 								class="feature-image"
@@ -66,6 +67,7 @@
 						{/if}
 						<div class="post-info">
 							<h2>{post.title}</h2>
+							<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 							<p class="excerpt">{@html post.excerpt}</p>
 							<div class="meta">
 								<time datetime={post.date}>
@@ -84,8 +86,8 @@
 </section>
 
 <style lang="scss">
-	@use "$lib/styles/variables" as *;
-	@use "sass:color";
+	@use '$lib/styles/variables' as *;
+	@use 'sass:color';
 
 	header {
 		text-align: center;

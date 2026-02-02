@@ -2,7 +2,7 @@
 	let { logo, children, small = false } = $props();
 </script>
 
-<div class="container" style:--height={small ? "128px" : "256px"}>
+<div class="container" style:--height={small ? '128px' : '256px'}>
 	<div class="logo">
 		{@render logo()}
 		<div class="horizon"></div>
@@ -14,8 +14,8 @@
 </div>
 
 <style lang="scss">
-	@use "sass:color";
-	@use "$lib/styles/variables" as *;
+	@use 'sass:color';
+	@use '$lib/styles/variables' as *;
 
 	:root {
 		--height: 256px;
@@ -87,14 +87,14 @@
 		grid-row: 2 / 4;
 		width: 100%;
 		max-height: calc(100vh - var(--height) / 2);
-		
+
 		background-size: 2rem 2rem;
 		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M0.5 0 L0.5 16 M0 0.5 L16 0.5' stroke='#{color.change($golden, $alpha: 0.25)}' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
 		background-repeat: repeat;
 
 		transform-origin: top center;
 		transform: perspective(100vh) rotateX(80deg) translateY(0);
-		
+
 		clip-path: polygon(30% 0%, 70% 0%, 70% 100%, 30% 100%);
 		mask-image: linear-gradient(
 			to bottom,
@@ -117,7 +117,6 @@
 		z-index: 2;
 		margin: 0 2rem;
 	}
-
 
 	@media (max-width: 600px) {
 		.lines {

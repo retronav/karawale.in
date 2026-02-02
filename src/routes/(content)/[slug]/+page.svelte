@@ -1,7 +1,7 @@
 <script lang="ts">
-	import "@wordpress/block-library/build-style/common.css";
-	import "@wordpress/block-library/build-style/style.css";
-	import "@wordpress/block-library/build-style/theme.css";
+	import '@wordpress/block-library/build-style/common.css';
+	import '@wordpress/block-library/build-style/style.css';
+	import '@wordpress/block-library/build-style/theme.css';
 
 	let { data } = $props();
 
@@ -35,13 +35,14 @@
 	</header>
 
 	<section class="content">
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 		{@html page.content}
 	</section>
 </article>
 
 <style lang="scss">
-	@use "$lib/styles/variables" as *;
-	@use "sass:color";
+	@use '$lib/styles/variables' as *;
+	@use 'sass:color';
 
 	.page {
 		width: 600px;
@@ -53,14 +54,14 @@
 		}
 
 		.title {
-		color: $golden;
-		margin: 0;
-	}
+			color: $golden;
+			margin: 0;
+		}
 
-	.byline {
-		margin-bottom: 1rem;
-		color: $golden;
-	}
+		.byline {
+			margin-bottom: 1rem;
+			color: $golden;
+		}
 	}
 
 	@media (max-width: 600px) {

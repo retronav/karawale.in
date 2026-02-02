@@ -1,25 +1,29 @@
 <script lang="ts">
-	import CDCase from "$lib/CDCase.svelte";
-	import CDCatalogue from "$lib/CDCatalogue.svelte";
+	import CDCase from '$lib/CDCase.svelte';
+	import CDCatalogue from '$lib/CDCatalogue.svelte';
 
 	let catalogue: CDCatalogue;
 
 	function openCatalogueItem(id: string) {
 		catalogue?.openItem(id);
 		// Scroll to catalogue
-		document
-			.querySelector(".catalogue")
-			?.scrollIntoView({ behavior: "smooth", block: "start" });
+		document.querySelector('.catalogue')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
 </script>
 
 <svelte:head>
 	<title>retronav : projects</title>
-	<meta name="description" content="Explore Pranav Karawale's technical projects, creative works, and professional endeavors at Pravideon Pvt. Ltd. View the curated collection of engineering and design achievements." />
+	<meta
+		name="description"
+		content="Explore Pranav Karawale's technical projects, creative works, and professional endeavors at Pravideon Pvt. Ltd. View the curated collection of engineering and design achievements."
+	/>
 
 	<!-- OpenGraph Tags -->
 	<meta property="og:title" content="Projects by Pranav Karawale | retronav" />
-	<meta property="og:description" content="Technical projects, creative works, and professional endeavors. A curated collection of engineering and design achievements." />
+	<meta
+		property="og:description"
+		content="Technical projects, creative works, and professional endeavors. A curated collection of engineering and design achievements."
+	/>
 	<meta property="og:image" content="https://karawale.in/logo.png" />
 	<meta property="og:url" content="https://karawale.in/projects" />
 	<meta property="og:type" content="website" />
@@ -27,7 +31,10 @@
 	<!-- Twitter Card Tags -->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content="Projects by Pranav Karawale | retronav" />
-	<meta name="twitter:description" content="Technical projects, creative works, and professional endeavors. A curated collection of engineering and design achievements." />
+	<meta
+		name="twitter:description"
+		content="Technical projects, creative works, and professional endeavors. A curated collection of engineering and design achievements."
+	/>
 	<meta name="twitter:image" content="https://karawale.in/logo.png" />
 
 	<!-- Canonical URL -->
@@ -42,8 +49,8 @@
 			<span>Pranav Karawale</span>
 		</address>
 		<p class="description">
-			These are my technical projects, creative works, bits of academia,
-			business endeavors and more, burned into a CD and neatly packaged.
+			These are my technical projects, creative works, bits of academia, business endeavors and
+			more, burned into a CD and neatly packaged.
 		</p>
 	</hgroup>
 </header>
@@ -51,7 +58,7 @@
 <section class="collection">
 	<h2>Editor's choice</h2>
 	<div>
-		<CDCase onReveal={() => openCatalogueItem("group-pravideon")}>
+		<CDCase onReveal={() => openCatalogueItem('group-pravideon')}>
 			<enhanced:img
 				class="cd-cover"
 				src="$lib/assets/cd-art/pravideon.png?enhanced&w=180"
@@ -60,7 +67,7 @@
 				alt="Pravideon Pvt. Ltd"
 			/>
 		</CDCase>
-		<CDCase onReveal={() => openCatalogueItem("Bratify")}>
+		<CDCase onReveal={() => openCatalogueItem('Bratify')}>
 			<enhanced:img
 				class="cd-cover"
 				src="$lib/assets/cd-art/bratify.png?enhanced&w=180"
@@ -69,7 +76,7 @@
 				alt="bratify"
 			/>
 		</CDCase>
-		<CDCase onReveal={() => openCatalogueItem("LoRaPWN")}>
+		<CDCase onReveal={() => openCatalogueItem('LoRaPWN')}>
 			<enhanced:img
 				class="cd-cover"
 				src="$lib/assets/cd-art/lorapwn.png?enhanced&w=180"
@@ -78,7 +85,7 @@
 				alt="LoRaPWN"
 			/>
 		</CDCase>
-		<CDCase onReveal={() => openCatalogueItem("Ixora")}>
+		<CDCase onReveal={() => openCatalogueItem('Ixora')}>
 			<enhanced:img
 				class="cd-cover"
 				src="$lib/assets/cd-art/ixora.png?enhanced&w=180"
@@ -87,7 +94,7 @@
 				alt="Ixora"
 			/>
 		</CDCase>
-		<CDCase onReveal={() => openCatalogueItem("Rosette")}>
+		<CDCase onReveal={() => openCatalogueItem('Rosette')}>
 			<enhanced:img
 				class="cd-cover"
 				src="$lib/assets/cd-art/rosette.png?enhanced&w=180"
@@ -117,8 +124,8 @@
 </section>
 
 <style lang="scss">
-	@use "$lib/styles/variables" as *;
-	@use "sass:color";
+	@use '$lib/styles/variables' as *;
+	@use 'sass:color';
 
 	header {
 		text-align: center;

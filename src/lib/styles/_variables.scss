@@ -1,4 +1,4 @@
-@use "sass:color";
+@use 'sass:color';
 
 // Color Palette
 $background: #140913;
@@ -11,8 +11,8 @@ $red: #ff0f4f;
 $links: color.adjust($golden, $lightness: 30%);
 
 // Typography
-$font-family-serif: "EB Garamond Variable", serif;
-$font-family-mono: "Victor Mono Variable", monospace;
+$font-family-serif: 'EB Garamond Variable', serif;
+$font-family-mono: 'Victor Mono Variable', monospace;
 
 // CRT Effect Variables
 $crt-background: #0f1419;

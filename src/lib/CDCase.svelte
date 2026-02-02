@@ -1,9 +1,10 @@
 <!-- Mega job from https://codepen.io/MxHarr/pen/aZpEMY for initial inspiration -->
 <script lang="ts">
-	import cd from "$lib/assets/cd.png?enhanced";
+	import cd from '$lib/assets/cd.png?enhanced';
+	import type { Snippet } from 'svelte';
 
 	const { children, onReveal } = $props<{
-		children?: any;
+		children?: Snippet;
 		onReveal?: () => void;
 	}>();
 
@@ -19,7 +20,7 @@
 	}
 
 	function handleKeydown(event: KeyboardEvent) {
-		if (event.key === "Enter" || event.key === " ") {
+		if (event.key === 'Enter' || event.key === ' ') {
 			toggleFlip();
 			event.preventDefault();
 		}
@@ -63,13 +64,7 @@
 				<div class="cd-disc">
 					<div class="album-art-backside"></div>
 					<div class="disc-hole"></div>
-					<enhanced:img
-						src={cd}
-						alt="CD Disc"
-						width="180px"
-						height="180px"
-						sizes="180px"
-					/>
+					<enhanced:img src={cd} alt="CD Disc" width="180px" height="180px" sizes="180px" />
 				</div>
 
 				<div class="spine"></div>
@@ -79,8 +74,8 @@
 </div>
 
 <style lang="scss">
-	@use "$lib/styles/variables" as *;
-	@use "sass:color";
+	@use '$lib/styles/variables' as *;
+	@use 'sass:color';
 
 	.flip-container {
 		width: 230px;
@@ -204,10 +199,7 @@
 		.spine {
 			height: 120px;
 			width: 15px;
-			background: linear-gradient(
-				rgba(255, 255, 255, 0.2) 0%,
-				rgba(255, 255, 255, 0.07) 100%
-			);
+			background: linear-gradient(rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.07) 100%);
 			box-shadow:
 				3px 0px 5px 0px rgba(0, 0, 0, 0.23),
 				inset 0px 0px 7px 0px rgba(0, 0, 0, 0.22),
@@ -319,10 +311,7 @@
 		.spine {
 			height: 120px;
 			width: 15px;
-			background: linear-gradient(
-				rgba(255, 255, 255, 0.2) 0%,
-				rgba(255, 255, 255, 0.07) 100%
-			);
+			background: linear-gradient(rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.07) 100%);
 			box-shadow:
 				3px 0px 5px 0px rgba(0, 0, 0, 0.23),
 				inset 0px 0px 7px 0px rgba(0, 0, 0, 0.22),

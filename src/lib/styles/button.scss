@@ -6,23 +6,26 @@
 $buttonBackground: $golden;
 
 button {
-  background: transparent;
-  border: 2px solid $buttonBackground;
-  color: $buttonBackground;
-  padding: 5px 10px;
-  min-height: 24px;
-  font-family: $font-family-mono;
-  text-transform: uppercase;
-  box-shadow: 0 0 10px color.adjust($buttonBackground, $lightness: 10%);
-  transition: all 0.25s ease;
+	background: transparent;
+	border: 2px solid $buttonBackground;
+	color: $buttonBackground;
+	padding: 5px 10px;
+	min-height: 24px;
+	font-family: $font-family-mono;
+	text-transform: uppercase;
+	box-shadow: 0 0 10px color.adjust($buttonBackground, $lightness: 10%);
+	transition: all 0.25s ease;
 
-  &:hover {
-    background: $buttonBackground;
-    color: $background;
-    box-shadow: 0 0 20px $buttonBackground, inset 0 0 10px $foreground;
-  }
+	&:hover {
+		background: $buttonBackground;
+		color: $background;
+		box-shadow:
+			0 0 20px $buttonBackground,
+			inset 0 0 10px $foreground;
+	}
 
-  &:active, &:focus {
-    outline: none;
-  }
+	&:active,
+	&:focus {
+		outline: none;
+	}
 }

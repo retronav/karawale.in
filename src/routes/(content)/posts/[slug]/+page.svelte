@@ -1,16 +1,17 @@
 <script lang="ts">
-	import "@wordpress/block-library/build-style/common.css";
-	import "@wordpress/block-library/build-style/style.css";
-	import "@wordpress/block-library/build-style/theme.css";
+	import '@wordpress/block-library/build-style/common.css';
+	import '@wordpress/block-library/build-style/style.css';
+	import '@wordpress/block-library/build-style/theme.css';
 
-	import { ArrowLeft } from "@lucide/svelte";
+	import { ArrowLeft } from '@lucide/svelte';
+	import { resolve } from '$app/paths';
 	let { data } = $props();
 
 	function formatDate(dateString: string): string {
-		return new Date(dateString).toLocaleDateString("en-US", {
-			year: "numeric",
-			month: "long",
-			day: "numeric",
+		return new Date(dateString).toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
 		});
 	}
 
@@ -26,8 +27,7 @@
 	<meta property="og:description" content={post.excerpt || post.title} />
 	<meta
 		property="og:image"
-		content={post.featuredImage?.node?.sourceUrl ||
-			"https://karawale.in/logo.png"}
+		content={post.featuredImage?.node?.sourceUrl || 'https://karawale.in/logo.png'}
 	/>
 	<meta property="og:url" content="https://karawale.in/posts/{post.slug}" />
 	<meta property="og:type" content="article" />
@@ -42,8 +42,7 @@
 	<meta name="twitter:description" content={post.excerpt || post.title} />
 	<meta
 		name="twitter:image"
-		content={post.featuredImage?.node?.sourceUrl ||
-			"https://karawale.in/logo.png"}
+		content={post.featuredImage?.node?.sourceUrl || 'https://karawale.in/logo.png'}
 	/>
 
 	<!-- Canonical URL -->
@@ -70,18 +69,20 @@
 		<figure class="feature-image">
 			<img src={post.featuredImage.node.sourceUrl} alt={post.title} />
 			{#if post.featuredImage.node.caption}
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				<figcaption>{@html post.featuredImage.node.caption}</figcaption>
 			{/if}
 		</figure>
 	{/if}
 
 	<section class="content">
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 		{@html post.content}
 	</section>
 </article>
 
 <nav class="back-link">
-	<a href="/posts">
+	<a href={resolve('/posts')}>
 		<button>
 			<ArrowLeft size={16} />
 			Back to posts
@@ -90,8 +91,8 @@
 </nav>
 
 <style lang="scss">
-	@use "$lib/styles/variables" as *;
-	@use "sass:color";
+	@use '$lib/styles/variables' as *;
+	@use 'sass:color';
 
 	.back-link {
 		max-width: 600px;

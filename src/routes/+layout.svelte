@@ -1,16 +1,16 @@
 <script lang="ts">
-	import "$lib/styles/index.scss";
-	import { MediaQuery } from "svelte/reactivity";
-	import favicon from "$lib/assets/favicon.png";
+	import '$lib/styles/index.scss';
+	import { MediaQuery } from 'svelte/reactivity';
+	import favicon from '$lib/assets/favicon.png';
 	import { dev } from '$app/environment';
 
 	let { children } = $props();
 
 	$effect(() => {
-		const mobile = new MediaQuery("max-width: 600px");
+		const mobile = new MediaQuery('max-width: 600px');
 
 		if (mobile) {
-			document.body.classList.add("mobile-device");
+			document.body.classList.add('mobile-device');
 		}
 	});
 </script>
@@ -46,7 +46,12 @@
 	/>
 	<meta name="theme-color" content="#150b14" />
 	{#if !dev}
-			<script defer src="https://umami.karawale.in/script.js" data-website-id="42cc931d-c958-4319-9c8b-d1fceed25d88" crossorigin="anonymous"></script>
+		<script
+			defer
+			src="https://umami.karawale.in/script.js"
+			data-website-id="42cc931d-c958-4319-9c8b-d1fceed25d88"
+			crossorigin="anonymous"
+		></script>
 	{/if}
 </svelte:head>
 

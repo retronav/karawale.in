@@ -1,8 +1,9 @@
 import { fetchGraphQL, type BlogPostsResponse, type WPPostListItem } from '$lib/wordpress';
+import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 async function getBlogPosts(): Promise<WPPostListItem[]> {
-    const query = `
+	const query = `
         query GetBlogPosts {
             posts(where: { categoryName: "blog" }) {
                 nodes {
@@ -27,14 +28,23 @@ async function getBlogPosts(): Promise<WPPostListItem[]> {
         }
     `;
 
-    const data = await fetchGraphQL<BlogPostsResponse>(query);
-    return data.posts.nodes;
+	const data = await fetchGraphQL<BlogPostsResponse>(query);
+	return data.posts.nodes;
 }
 
 export const load: PageServerLoad = async () => {
-    const posts = await getBlogPosts();
+	try {
+		const posts = await getBlogPosts();
 
-    return {
-        posts
-    };
+		return {
+			posts
+		};
+	} catch (err) {
+		// Re-throw if it's already a SvelteKit error
+		if (err && typeof err === 'object' && 'status' in err) {
+			throw err;
+		}
+		// Otherwise throw a 500 error
+		throw error(500, 'Server error');
+	}
 };
