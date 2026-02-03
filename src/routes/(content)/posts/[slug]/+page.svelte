@@ -3,8 +3,11 @@
 	import '@wordpress/block-library/build-style/style.css';
 	import '@wordpress/block-library/build-style/theme.css';
 
+	import SvelteSeo from 'svelte-seo';
 	import { ArrowLeft } from '@lucide/svelte';
 	import { resolve } from '$app/paths';
+	import type { WPSeo } from '$lib/wordpress';
+
 	let { data } = $props();
 
 	function formatDate(dateString: string): string {
@@ -16,38 +19,49 @@
 	}
 
 	const post = $derived(data.post);
+	const seo = $derived(post.seo || ({} as Partial<WPSeo>));
+
+	const title = $derived(
+		seo.title && seo.title !== 'retronav' ? seo.title : `${post.title} - retronav`
+	);
+
+	const canonical = $derived(
+		seo.canonical && seo.canonical !== 'https://karawale.in/'
+			? seo.canonical
+			: `https://karawale.in/posts/${post.slug}`
+	);
+
+	const openGraphImages = $derived(seo.ogImage ? [{ url: seo.ogImage, alt: post.title }] : []);
 </script>
 
-<svelte:head>
-	<title>retronav : {post.title}</title>
-	<meta name="description" content={post.excerpt || post.title} />
-
-	<!-- OpenGraph Tags -->
-	<meta property="og:title" content={post.title} />
-	<meta property="og:description" content={post.excerpt || post.title} />
-	<meta
-		property="og:image"
-		content={post.featuredImage?.node?.sourceUrl || 'https://karawale.in/logo.png'}
-	/>
-	<meta property="og:url" content="https://karawale.in/posts/{post.slug}" />
-	<meta property="og:type" content="article" />
-	<meta property="article:published_time" content={post.date} />
-	{#if post.author?.node}
-		<meta property="article:author" content={post.author.node.name} />
-	{/if}
-
-	<!-- Twitter Card Tags -->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content={post.title} />
-	<meta name="twitter:description" content={post.excerpt || post.title} />
-	<meta
-		name="twitter:image"
-		content={post.featuredImage?.node?.sourceUrl || 'https://karawale.in/logo.png'}
-	/>
-
-	<!-- Canonical URL -->
-	<link rel="canonical" href="https://karawale.in/posts/{post.slug}" />
-</svelte:head>
+<SvelteSeo
+	{title}
+	description={seo.description}
+	{canonical}
+	openGraph={{
+		title: seo.ogTitle || post.title,
+		description: seo.ogDescription || seo.description,
+		url: canonical,
+		type: 'article',
+		images: openGraphImages
+	}}
+	jsonLd={{
+		'@context': 'https://schema.org',
+		'@type': 'BlogPosting',
+		headline: post.title,
+		image: seo.ogImage ? [seo.ogImage] : [],
+		datePublished: post.date,
+		dateModified: post.modified,
+		author: {
+			'@type': 'Person',
+			name: post.author?.node?.name || 'Pranav Karawale'
+		},
+		mainEntityOfPage: {
+			'@type': 'WebPage',
+			'@id': canonical
+		}
+	}}
+/>
 
 <article class="post wp-content">
 	<header>

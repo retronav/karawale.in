@@ -10,10 +10,25 @@ async function getPage(slug: string): Promise<WPPage | null> {
                 ... on Page {
                     title
                     slug
+                    date
+                    modified
+                    author {
+                        node {
+                            name
+                        }
+                    }
                     content(format: RENDERED)
                     metadata {
                         shortTitle
                         excerpt
+                    }
+                    seo {
+                        title
+                        description
+                        canonical
+                        ogTitle
+                        ogDescription
+                        ogImage
                     }
                 }
             }

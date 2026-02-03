@@ -1,37 +1,34 @@
 <script>
 	import { Mail } from '@lucide/svelte';
 	import { resolve } from '$app/paths';
+	import SvelteSeo from 'svelte-seo';
 </script>
 
-<svelte:head>
-	<title>retronav : about</title>
-	<meta
-		name="description"
-		content="Learn about Pranav Karawale, a digital artisan and architect of systems specializing in full-stack web development, IoT, and embedded systems. Discover the philosophy behind 'Precision over Pixels'."
-	/>
-
-	<!-- OpenGraph Tags -->
-	<meta property="og:title" content="About Pranav Karawale | retronav" />
-	<meta
-		property="og:description"
-		content="Digital artisan & architect of systems. Full-stack developer specializing in web applications, IoT, and embedded systems."
-	/>
-	<meta property="og:image" content="https://karawale.in/logo.png" />
-	<meta property="og:url" content="https://karawale.in/about" />
-	<meta property="og:type" content="profile" />
-
-	<!-- Twitter Card Tags -->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="About Pranav Karawale | retronav" />
-	<meta
-		name="twitter:description"
-		content="Digital artisan & architect of systems. Full-stack developer specializing in web applications, IoT, and embedded systems."
-	/>
-	<meta name="twitter:image" content="https://karawale.in/logo.png" />
-
-	<!-- Canonical URL -->
-	<link rel="canonical" href="https://karawale.in/about" />
-</svelte:head>
+<SvelteSeo
+	title="retronav : about"
+	description="Learn about Pranav Karawale, a digital artisan and architect of systems specializing in full-stack web development, IoT, and embedded systems. Discover the philosophy behind 'Precision over Pixels'."
+	canonical="https://karawale.in/about"
+	openGraph={{
+		title: 'About Pranav Karawale | retronav',
+		description:
+			'Digital artisan & architect of systems. Full-stack developer specializing in web applications, IoT, and embedded systems.',
+		url: 'https://karawale.in/about',
+		type: 'profile',
+		images: [
+			{
+				url: 'https://karawale.in/logo.png',
+				alt: 'Logo'
+			}
+		]
+	}}
+	twitter={{
+		card: 'summary_large_image',
+		title: 'About Pranav Karawale | retronav',
+		description:
+			'Digital artisan & architect of systems. Full-stack developer specializing in web applications, IoT, and embedded systems.',
+		image: 'https://karawale.in/logo.png'
+	}}
+/>
 
 <header>
 	<h1 class="title">My <i>mini-memoir</i></h1>

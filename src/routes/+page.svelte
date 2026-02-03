@@ -4,39 +4,40 @@
 	import SynthwaveGrid from '$lib/SynthwaveGrid.svelte';
 	import { resolve } from '$app/paths';
 	import { Rss } from '@lucide/svelte';
+	import SvelteSeo from 'svelte-seo';
 
 	let { data } = $props();
 	const pages = $derived(data.pages);
 </script>
 
-<svelte:head>
-	<meta name="description" content="Pranav Karawale's personal home on the web." />
-
-	<!-- OpenGraph Tags -->
-	<meta property="og:title" content="retronav - Pranav Karawale" />
-	<meta
-		property="og:description"
-		content="Pranav Karawale's personal home on the web. Digital artisan & architect of systems."
-	/>
-	<meta property="og:image" content="https://karawale.in/logo.png" />
-	<meta property="og:url" content="https://karawale.in/" />
-	<meta property="og:type" content="website" />
-	<meta property="og:site_name" content="retronav" />
-
-	<!-- Twitter Card Tags -->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="retronav - Pranav Karawale" />
-	<meta
-		name="twitter:description"
-		content="Pranav Karawale's personal home on the web. Digital artisan & architect of systems."
-	/>
-	<meta name="twitter:image" content="https://karawale.in/logo.png" />
-
-	<!-- Canonical URL -->
-	<link rel="canonical" href="https://karawale.in/" />
-
-	<title>retronav</title>
-</svelte:head>
+<SvelteSeo
+	title="retronav"
+	description="Pranav Karawale's personal home on the web. Digital artisan & architect of systems."
+	canonical="https://karawale.in/"
+	openGraph={{
+		title: 'retronav - Pranav Karawale',
+		description:
+			"Pranav Karawale's personal home on the web. Digital artisan & architect of systems.",
+		url: 'https://karawale.in/',
+		type: 'website',
+		site_name: 'retronav',
+		images: [
+			{
+				url: 'https://karawale.in/logo.png',
+				alt: 'Logo',
+				width: 512,
+				height: 512
+			}
+		]
+	}}
+	twitter={{
+		card: 'summary_large_image',
+		title: 'retronav - Pranav Karawale',
+		description:
+			"Pranav Karawale's personal home on the web. Digital artisan & architect of systems.",
+		image: 'https://karawale.in/logo.png'
+	}}
+/>
 
 <SynthwaveGrid>
 	{#snippet logo()}

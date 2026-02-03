@@ -2,28 +2,55 @@
 	import '@wordpress/block-library/build-style/common.css';
 	import '@wordpress/block-library/build-style/style.css';
 	import '@wordpress/block-library/build-style/theme.css';
+	import SvelteSeo from 'svelte-seo';
+	import type { WPSeo } from '$lib/wordpress';
 
 	let { data } = $props();
 
 	const page = $derived(data.page);
+	const seo = $derived(page.seo || ({} as Partial<WPSeo>));
+
+	const title = $derived(
+		seo.title && seo.title !== 'retronav' ? seo.title : `${page.title} - retronav`
+	);
+
+	const canonical = $derived(
+		seo.canonical && seo.canonical !== 'https://karawale.in/'
+			? seo.canonical
+			: `https://karawale.in/${page.slug}`
+	);
+
+	const openGraphImages = $derived(seo.ogImage ? [{ url: seo.ogImage, alt: page.title }] : []);
 </script>
 
-<svelte:head>
-	<title>retronav : {(page.metadata?.shortTitle ?? page.title).toLowerCase()}</title>
-	<meta name="description" content={page.metadata?.excerpt} />
-
-	<!-- OpenGraph Tags -->
-	<meta property="og:title" content={page.title} />
-	<meta property="og:description" content={page.metadata?.excerpt} />
-	<meta property="og:image" content="https://karawale.in/logo.png" />
-	<meta property="og:type" content="website" />
-
-	<!-- Twitter Card Tags -->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content={page.title} />
-	<meta name="twitter:description" content={page.metadata?.excerpt} />
-	<meta name="twitter:image" content="https://karawale.in/logo.png" />
-</svelte:head>
+<SvelteSeo
+	{title}
+	description={seo.description}
+	{canonical}
+	openGraph={{
+		title: seo.ogTitle || page.title,
+		description: seo.ogDescription || seo.description,
+		url: canonical,
+		type: 'website',
+		images: openGraphImages
+	}}
+	jsonLd={{
+		'@context': 'https://schema.org',
+		'@type': 'WebPage',
+		headline: page.title,
+		image: seo.ogImage ? [seo.ogImage] : [],
+		datePublished: page.date,
+		dateModified: page.modified,
+		author: {
+			'@type': 'Person',
+			name: page.author?.node?.name || 'Pranav Karawale'
+		},
+		mainEntityOfPage: {
+			'@type': 'WebPage',
+			'@id': canonical
+		}
+	}}
+/>
 
 <article class="page wp-content">
 	<header>

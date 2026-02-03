@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import SvelteSeo from 'svelte-seo';
+
 	let { data } = $props();
 
 	function formatDate(dateString: string): string {
@@ -11,35 +13,29 @@
 	}
 </script>
 
-<svelte:head>
-	<title>retronav : posts</title>
-	<meta
-		name="description"
-		content="Blog posts by Pranav Karawale. Thoughts on technology, engineering, and design."
-	/>
-
-	<!-- OpenGraph Tags -->
-	<meta property="og:title" content="Posts | retronav" />
-	<meta
-		property="og:description"
-		content="Blog posts by Pranav Karawale. Thoughts on technology, engineering, and design."
-	/>
-	<meta property="og:image" content="https://karawale.in/logo.png" />
-	<meta property="og:url" content="https://karawale.in/posts" />
-	<meta property="og:type" content="website" />
-
-	<!-- Twitter Card Tags -->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Posts | retronav" />
-	<meta
-		name="twitter:description"
-		content="Blog posts by Pranav Karawale. Thoughts on technology, engineering, and design."
-	/>
-	<meta name="twitter:image" content="https://karawale.in/logo.png" />
-
-	<!-- Canonical URL -->
-	<link rel="canonical" href="https://karawale.in/posts" />
-</svelte:head>
+<SvelteSeo
+	title="retronav : posts"
+	description="Blog posts by Pranav Karawale. Thoughts on technology, engineering, and design."
+	canonical="https://karawale.in/posts"
+	openGraph={{
+		title: 'Posts | retronav',
+		description: 'Blog posts by Pranav Karawale. Thoughts on technology, engineering, and design.',
+		url: 'https://karawale.in/posts',
+		type: 'website',
+		images: [
+			{
+				url: 'https://karawale.in/logo.png',
+				alt: 'Logo'
+			}
+		]
+	}}
+	twitter={{
+		card: 'summary_large_image',
+		title: 'Posts | retronav',
+		description: 'Blog posts by Pranav Karawale. Thoughts on technology, engineering, and design.',
+		image: 'https://karawale.in/logo.png'
+	}}
+/>
 
 <header>
 	<h1 class="title">Some <i>thoughts</i> and <i>ramblings</i></h1>

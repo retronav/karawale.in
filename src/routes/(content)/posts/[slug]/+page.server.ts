@@ -10,6 +10,7 @@ async function getPost(slug: string): Promise<WPPost | null> {
                 title
                 slug
                 date
+                modified
                 content(format: RENDERED)
                 excerpt
                 readingTime
@@ -23,6 +24,14 @@ async function getPost(slug: string): Promise<WPPost | null> {
                     node {
                         name
                     }
+                }
+                seo {
+                    title
+                    description
+                    canonical
+                    ogTitle
+                    ogDescription
+                    ogImage
                 }
             }
         }

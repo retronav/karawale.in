@@ -19,6 +19,15 @@ export interface WPCategory {
 	name: string;
 }
 
+export interface WPSeo {
+	title: string;
+	description: string;
+	canonical: string;
+	ogTitle: string;
+	ogDescription: string;
+	ogImage: string;
+}
+
 export interface WPPostListItem {
 	title: string;
 	slug: string;
@@ -35,11 +44,13 @@ export interface WPPost {
 	title: string;
 	slug: string;
 	date: string;
+	modified: string;
 	content: string;
 	excerpt?: string;
 	readingTime?: number;
 	featuredImage: WPFeaturedImage | null;
 	author: WPAuthor | null;
+	seo: WPSeo | null;
 }
 
 export interface BlogPostsResponse {
@@ -55,11 +66,15 @@ export interface SinglePostResponse {
 export interface WPPage {
 	title: string;
 	slug: string;
+	date: string;
+	modified: string;
+	author: WPAuthor | null;
 	content: string;
 	metadata: {
 		shortTitle: string;
 		excerpt: string;
 	};
+	seo: WPSeo | null;
 }
 
 export interface WPPageByUriResponse {
