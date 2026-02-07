@@ -12,7 +12,11 @@ const config = {
 		experimental: { async: true }
 	},
 
-	kit: { adapter: adapter() },
+	kit: {
+		adapter: adapter({
+			fallback: 'spa'
+		})
+	},
 	extensions: ['.svelte', '.svx']
 };
 
