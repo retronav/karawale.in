@@ -90,7 +90,7 @@
 					<a href={resolve('/posts')}>
 						<button>Posts</button>
 					</a>
-					<a href="/rss.xml">
+					<a href="/rss.xml" target="_blank" rel="noopener noreferrer">
 						<button>
 							<Rss style="height: var(--step--2); width: var(--step--2)" /> RSS
 						</button>
