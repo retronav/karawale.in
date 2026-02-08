@@ -1,7 +1,7 @@
 <script>
-	import { Mail } from '@lucide/svelte';
 	import { resolve } from '$app/paths';
 	import SvelteSeo from 'svelte-seo';
+	import Contact from '$lib/Contact.svelte';
 </script>
 
 <SvelteSeo
@@ -117,24 +117,7 @@
 		welcome! I love to have a chat with people with interesting ideas and concrete opinions. All you
 		need to do is send that email!
 	</p>
-	<address class="social">
-		<Mail aria-hidden="true" />
-		<code>pranav [at] karawale.com</code>
-	</address>
-	<p>
-		I have profiles and pages across various social media platforms where I create and share content
-		as I see fit. These can also be used as methods to contact me.
-	</p>
-	<address class="social">
-		<a href="https://instagram.com/retronav84" target="_blank" rel="noopener noreferrer"
-			><code>@retronav84</code></a
-		>
-	</address>
-	<address class="social">
-		<a href="https://github.com/retronav" target="_blank" rel="noopener noreferrer"
-			><code>retronav</code> on GitHub</a
-		>
-	</address>
+	<Contact />
 </section>
 
 <style lang="scss">

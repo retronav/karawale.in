@@ -5,6 +5,7 @@
 	import { resolve } from '$app/paths';
 	import { Rss } from '@lucide/svelte';
 	import SvelteSeo from 'svelte-seo';
+	import Contact from '$lib/Contact.svelte';
 
 	let { data } = $props();
 	const pages = $derived(data.pages);
@@ -106,6 +107,10 @@
 					</nav>
 				{/if}
 				<div class="spacer"></div>
+				<section>
+					<p>Or, get in touch:</p>
+					<Contact />
+				</section>
 			</section>
 		</section>
 	</article>
