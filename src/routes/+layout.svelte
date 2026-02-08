@@ -42,13 +42,13 @@
 		rel="alternate"
 		type="application/rss+xml"
 		title="retronav's blog"
-		href="https://karawale.in/rss.xml"
+		href="https://karawale.com/rss.xml"
 	/>
 	<meta name="theme-color" content="#150b14" />
 	{#if !dev}
 		<script
 			defer
-			src="https://umami.karawale.in/script.js"
+			src="https://umami.karawale.com/script.js"
 			data-website-id="42cc931d-c958-4319-9c8b-d1fceed25d88"
 			crossorigin="anonymous"
 		></script>

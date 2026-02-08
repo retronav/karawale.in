@@ -48,7 +48,7 @@ function stripHtml(html: string): string {
 
 export async function GET() {
 	const posts = await getPostsForRSS();
-	const baseUrl = 'https://karawale.in';
+	const baseUrl = 'https://karawale.com';
 	const buildDate = new Date().toUTCString();
 
 	const items = posts

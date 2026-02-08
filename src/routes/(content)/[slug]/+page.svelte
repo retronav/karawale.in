@@ -15,9 +15,9 @@
 	);
 
 	const canonical = $derived(
-		seo.canonical && seo.canonical !== 'https://karawale.in/'
+		seo.canonical && seo.canonical !== 'https://karawale.com/'
 			? seo.canonical
-			: `https://karawale.in/${page.slug}`
+			: `https://karawale.com/${page.slug}`
 	);
 
 	const openGraphImages = $derived(seo.ogImage ? [{ url: seo.ogImage, alt: page.title }] : []);

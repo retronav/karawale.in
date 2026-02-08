@@ -1,5 +1,5 @@
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://umami.karawale.in; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://blog.karawale.in; object-src 'none'; connect-src 'self' https://umami.karawale.in
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://umami.karawale.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://blog.karawale.com; object-src 'none'; connect-src 'self' https://umami.karawale.com
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin

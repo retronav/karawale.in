@@ -13,17 +13,17 @@
 <SvelteSeo
 	title="retronav"
 	description="Pranav Karawale's personal home on the web. Digital artisan & architect of systems."
-	canonical="https://karawale.in/"
+	canonical="https://karawale.com/"
 	openGraph={{
 		title: 'retronav - Pranav Karawale',
 		description:
 			"Pranav Karawale's personal home on the web. Digital artisan & architect of systems.",
-		url: 'https://karawale.in/',
+		url: 'https://karawale.com/',
 		type: 'website',
 		site_name: 'retronav',
 		images: [
 			{
-				url: 'https://karawale.in/logo.png',
+				url: 'https://karawale.com/logo.png',
 				alt: 'Logo',
 				width: 512,
 				height: 512
@@ -35,7 +35,7 @@
 		title: 'retronav - Pranav Karawale',
 		description:
 			"Pranav Karawale's personal home on the web. Digital artisan & architect of systems.",
-		image: 'https://karawale.in/logo.png'
+		image: 'https://karawale.com/logo.png'
 	}}
 />
 

@@ -52,7 +52,7 @@ export async function GET() {
 	const postUrls = posts
 		.map(
 			(post) => `	<url>
-		<loc>https://karawale.in/posts/${post.slug}</loc>
+		<loc>https://karawale.com/posts/${post.slug}</loc>
 		<lastmod>${new Date(post.date).toISOString().split('T')[0]}</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
@@ -63,7 +63,7 @@ export async function GET() {
 	const pageUrls = pages
 		.map(
 			(page) => `	<url>
-		<loc>https://karawale.in/${page.slug}</loc>
+		<loc>https://karawale.com/${page.slug}</loc>
 		<lastmod>${new Date(page.date).toISOString().split('T')[0]}</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
@@ -81,22 +81,22 @@ export async function GET() {
 	xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
 >
 	<url>
-		<loc>https://karawale.in/</loc>
+		<loc>https://karawale.com/</loc>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://karawale.in/about</loc>
+		<loc>https://karawale.com/about</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://karawale.in/projects</loc>
+		<loc>https://karawale.com/projects</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://karawale.in/posts</loc>
+		<loc>https://karawale.com/posts</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>

@@ -15,16 +15,16 @@
 <SvelteSeo
 	title="retronav : projects"
 	description="Explore Pranav Karawale's technical projects, creative works, and professional endeavors at Pravideon Pvt. Ltd. View the curated collection of engineering and design achievements."
-	canonical="https://karawale.in/projects"
+	canonical="https://karawale.com/projects"
 	openGraph={{
 		title: 'Projects by Pranav Karawale | retronav',
 		description:
 			'Technical projects, creative works, and professional endeavors. A curated collection of engineering and design achievements.',
-		url: 'https://karawale.in/projects',
+		url: 'https://karawale.com/projects',
 		type: 'website',
 		images: [
 			{
-				url: 'https://karawale.in/logo.png',
+				url: 'https://karawale.com/logo.png',
 				alt: 'Logo'
 			}
 		]
@@ -34,7 +34,7 @@
 		title: 'Projects by Pranav Karawale | retronav',
 		description:
 			'Technical projects, creative works, and professional endeavors. A curated collection of engineering and design achievements.',
-		image: 'https://karawale.in/logo.png'
+		image: 'https://karawale.com/logo.png'
 	}}
 />
 

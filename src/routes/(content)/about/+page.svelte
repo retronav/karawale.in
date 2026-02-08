@@ -7,16 +7,16 @@
 <SvelteSeo
 	title="retronav : about"
 	description="Learn about Pranav Karawale, a digital artisan and architect of systems specializing in full-stack web development, IoT, and embedded systems. Discover the philosophy behind 'Precision over Pixels'."
-	canonical="https://karawale.in/about"
+	canonical="https://karawale.com/about"
 	openGraph={{
 		title: 'About Pranav Karawale | retronav',
 		description:
 			'Digital artisan & architect of systems. Full-stack developer specializing in web applications, IoT, and embedded systems.',
-		url: 'https://karawale.in/about',
+		url: 'https://karawale.com/about',
 		type: 'profile',
 		images: [
 			{
-				url: 'https://karawale.in/logo.png',
+				url: 'https://karawale.com/logo.png',
 				alt: 'Logo'
 			}
 		]
@@ -26,7 +26,7 @@
 		title: 'About Pranav Karawale | retronav',
 		description:
 			'Digital artisan & architect of systems. Full-stack developer specializing in web applications, IoT, and embedded systems.',
-		image: 'https://karawale.in/logo.png'
+		image: 'https://karawale.com/logo.png'
 	}}
 />
 
@@ -119,7 +119,7 @@
 	</p>
 	<address class="social">
 		<Mail aria-hidden="true" />
-		<code>pranav [at] karawale.in</code>
+		<code>pranav [at] karawale.com</code>
 	</address>
 	<p>
 		I have profiles and pages across various social media platforms where I create and share content

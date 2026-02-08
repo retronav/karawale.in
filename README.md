@@ -1,1 +1,1 @@
-# karawale.in
+# karawale.com

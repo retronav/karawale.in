@@ -117,7 +117,7 @@ const RETRONAV_PROJECTS: Project[] = [
 		tags: ['TypeScript', 'CodeMirror'],
 		status: 'Maintained',
 		source: 'https://github.com/retronav/ixora',
-		url: 'https://ixora.karawale.in',
+		url: 'https://ixora.karawale.com',
 		year: 2023
 	},
 	{

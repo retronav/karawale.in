@@ -16,15 +16,15 @@
 <SvelteSeo
 	title="retronav : posts"
 	description="Blog posts by Pranav Karawale. Thoughts on technology, engineering, and design."
-	canonical="https://karawale.in/posts"
+	canonical="https://karawale.com/posts"
 	openGraph={{
 		title: 'Posts | retronav',
 		description: 'Blog posts by Pranav Karawale. Thoughts on technology, engineering, and design.',
-		url: 'https://karawale.in/posts',
+		url: 'https://karawale.com/posts',
 		type: 'website',
 		images: [
 			{
-				url: 'https://karawale.in/logo.png',
+				url: 'https://karawale.com/logo.png',
 				alt: 'Logo'
 			}
 		]
@@ -33,7 +33,7 @@
 		card: 'summary_large_image',
 		title: 'Posts | retronav',
 		description: 'Blog posts by Pranav Karawale. Thoughts on technology, engineering, and design.',
-		image: 'https://karawale.in/logo.png'
+		image: 'https://karawale.com/logo.png'
 	}}
 />
 
